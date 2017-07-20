@@ -1,4 +1,4 @@
-<section data-field="<%= field %>" class="gray-bg">
+<section data-field="<%= field %>" data-office-id="<%= officeId %>" class="gray-bg">
     <div class="space-80"></div>
     <div class="container">
         <div class="row">
@@ -92,15 +92,15 @@
                     <% } %>
                 </div>
                 <div class="space-60"></div>
-                <% if (section.item.data.length > 0) { %>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="shop-pagination pull-right">
-                            <ul id="pagination-book" class="pagination-sm pagination">
-                            </ul>
+                <% if (section.item.total > section.item.per_page) { %>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="shop-pagination pull-right">
+                                <ul id="pagination-book" class="pagination-sm pagination">
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
                 <% } %>
             </div>
             <!-- Sidebar-Start -->
@@ -150,11 +150,13 @@
         var sortBy = $('#sort-book').val();
         var orderBy = $('#sort-book :selected').parent().attr('data-order-by');
         var field = $('section').attr('data-field');
+        var officeId = $('section').attr('data-office-id');
         var data = {
             field: field,
             currentPage: currentPage,
             sortBy: sortBy,
-            orderBy: orderBy
+            orderBy: orderBy,
+            officeId: officeId
         };
 
         if (field === undefined || sortBy === undefined) {

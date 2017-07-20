@@ -73,8 +73,9 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle opacity-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Workspace <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
+                                    <li><a href="/home" class="office-dropdow-a">All</a></li>
                                     <% offices.items.forEach(function(office) { %>
-                                        <li><a href="#" class="office-dropdow-a"><%= office.area %></a></li>
+                                        <li><a href="/home?officeId=<%= office.id %>" class="office-dropdow-a"><%= office.area %></a></li>
                                     <% }) %>
                                 </ul>
                             </li>

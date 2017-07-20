@@ -92,6 +92,32 @@ Book.generateBookXhtml = function (book) {
     xhtml += '<a href="/books/'+ book.id +'" class="text-primary">View detail</a>';
     xhtml += '</div>';
     xhtml += '</div>';
+    xhtml += "<div class='owners'> <strong> Shared by: </strong>";
+
+    if (book.owners) {
+        var countOwner = 0;
+        book.owners.forEach(function (index, owner) {
+            if (index === 6) {
+                xhtml += '<strong> ... </strong>';
+                return;
+            }
+
+            xhtml += "<img data-toggle='tooltip'";
+            xhtml += "class='owner-image-home img-circle'";
+            xhtml += "title='" + owner.name + "' src='";
+
+            if (owner && owner.avatar) {
+                xhtml += owner.avatar;
+            } else {
+                xhtml += '/images/user_default.png';
+            }
+
+            xhtml += "'class='media-object author-photo img-thumbnail background--white' alt='library'>";
+
+        })
+    }
+
+    xhtml += '</div>';
     xhtml += '</div>';
     xhtml += '</div>';
     xhtml += '<script src="/bower/bootstrap-star-rating/js/star-rating.js"></script>';
@@ -172,8 +198,12 @@ Book.ajaxSortBook = function (data) {
         }
     });
     var url = (data.field !== undefined) ?
-        (API_PATH + 'books/filters?field='+ data.field +'&page='+ data.currentPage)
-        : (API_PATH + 'books/category/'+ data.categoryId +'/filter/?page='+ data.currentPage);
+        (API_PATH + 'books/filters?field=' + data.field + '&page=' + data.currentPage)
+        : (API_PATH + 'books/category/' + data.categoryId + '/filter/?page=' + data.currentPage);
+
+    if (data.officeId !== 'undefined') {
+        url += '&office_id=' + data.officeId;
+    }
 
     $.ajax({
         url: url,
@@ -194,7 +224,7 @@ Book.ajaxSortBook = function (data) {
             });
             elementBookContent.html(xhtml);
 
-            showNotify('success', 'Sort success', {icon: 'glyphicon glyphicon-ok'}, {delay: 2000});
+            showNotify('success', 'Sort books success', {icon: 'glyphicon glyphicon-ok'}, {delay: 2000});
         }
     }).fail(function (errors) {
         var msg = '';
