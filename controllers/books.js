@@ -17,10 +17,16 @@ router.get('/', localSession, function (req, res, next) {
         } else {
             var page = req.query.page ? req.query.page : 1;
             var field = req.query.field;
+            var url = req.configs.api_base_url + 'books/?field=' + field + '&page=' + page;
+
+            if (req.query.officeId) {
+                url += '&office_id=' + req.query.officeId;
+            }
+
             async.parallel({
                 section: function (callback) {
                     request({
-                        url: req.configs.api_base_url + 'books/?field=' + field + '&page=' + page,
+                        url: url,
                         headers: objectHeaders.headers
                     }, function (error, response, body) {
                         if (!error && response.statusCode === 200) {
@@ -75,6 +81,7 @@ router.get('/', localSession, function (req, res, next) {
                 } else {
                     res.render('books/section', {
                         field: field,
+                        officeId: req.query.officeId,
                         section: results.section,
                         categories: results.categories,
                         sortBookBy: results.sortBookBy,
