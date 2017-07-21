@@ -6,6 +6,12 @@ $(document).on('change', '.suggestedTitle', function (e) {
     suggestDataBooks();
 });
 
+$(function () {
+    $('.btn-reset').click(function () {
+        $('.pre-img').remove();
+    })
+});
+
 function suggestDataBooks() {
     $.ajax({
         url: API_PATH + 'search-books-detail/' + $('.suggestedTitle option:selected' ).val(),
@@ -113,11 +119,12 @@ function suggestDataBooksInternal() {
             $('#data-suggest-book').empty();
 
             if (response.items.total) {
+                $('.form-group-custom').addClass('m-bottom0');
                 response.items.data.forEach(function (book) {
                     $('#data-suggest-book').append("<li data-id=" + book.id + "><a href='javascript:void(0)' onclick='return fillDataBookInternal(" + book.id + ");'>" + book.title + '</a></li>');
                 });
             } else {
-                $('#data-suggest-book').append('<li><a href="#">Not found</a></li>');
+                $('.form-group-custom').removeClass('m-bottom0');
             }
         }).fail(function (error) {
             $('#data-suggest-book').empty();
