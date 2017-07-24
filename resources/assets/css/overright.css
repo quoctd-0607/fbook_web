@@ -250,6 +250,10 @@
     margin-bottom: 15px;
 }
 
+.m-bottom0 {
+    margin-bottom: 0;
+}
+
 .owner-right {
     float: right;
 }
@@ -331,4 +335,34 @@
 
 .office-dropdow-a:hover::after, .opacity-0:hover::after {
     opacity: 0 !important;
+}
+
+.custom-span-btn {
+    opacity: 1 !important;
+    margin-left: 0 !important;
+}
+
+.title-book-custom {
+    border-radius: 0 !important;
+    border: 1px solid #ccc !important;
+    font-size: 12px !important;
+}
+
+.b-r-0 {
+    border-radius: 0 !important;
+}
+
+.search-result-custom {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+}
+
+.search-result-custom li a {
+    font-size: 12px !important;
+}
+
+.custom-span-button {
+    opacity: 1 !important;
+    margin-left: 0 !important;
 }
