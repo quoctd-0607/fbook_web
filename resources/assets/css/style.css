@@ -175,3 +175,15 @@ input:-webkit-autofill:focus {
 .navbar-header-custom {
     background: black;
 }
+
+.btn-follow {
+    margin-left: 15px;
+}
+
+.show-more {
+    display:none;
+}
+
+#load-more-user {
+    width: 97% ;
+}

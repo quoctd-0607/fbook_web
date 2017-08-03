@@ -138,6 +138,23 @@ router.get('/:id', authorize.isAuthenticated, function(req, res, next) {
                 }
             });
         },
+        follow: function (callback) {
+            request({
+                url: req.configs.api_base_url + 'users/follow/info/' + req.params.id,
+                headers: objectHeaders.headers({'Authorization': req.session.access_token})
+            }, function (error, response, body) {
+                if (!error && response.statusCode === 200) {
+                    try {
+                        var user = JSON.parse(body);
+                        callback(null, user);
+                    } catch (errsorJSONParse) {
+                        callback(null, null);
+                    }
+                } else {
+                    callback(null, null);
+                }
+            });
+        },
         categories: function (callback) {
             request({
                 url: req.configs.api_base_url + 'categories',
@@ -183,6 +200,7 @@ router.get('/:id', authorize.isAuthenticated, function(req, res, next) {
                 sharingBooks: results.sharingBooks,
                 suggestedBooks: results.suggestedBooks,
                 reviewedBooks: results.reviewedBooks,
+                follow: results.follow.items,
                 currentUrl: req.protocol + "://" + req.get('host') + '/users' + req.path,
                 pageReading: pageReading,
                 pageWaiting: pageWaiting,
