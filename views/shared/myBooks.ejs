@@ -6,6 +6,7 @@
             <div class="category-item well yellow">
                 <div class="media">
                     <div class="media-left">
+
                         <% if (book.image !== null) { %>
                             <img src="<%= book.image.web.thumbnail_path %>" class="media-object" alt="<%= book.title %>">
                         <% } else { %>
@@ -29,8 +30,18 @@
                         <div class="space-10"></div>
                         <p>
                             <%= book.overview %>
+
                         </p>
                         <a href="/books/<%= book.id %>" class="text-primary">View detail</a>
+                        <% if (pageName === "pageReading") { %>
+                        <%= book.owners[0].name %>
+                            <button class="btn-success btn-sm" name="return"
+                                    data-book-id="<%= book.id %>"
+                                    data-owner-id="<%= book.pivot.owner_id %>"
+                                    data-status="<%= configs.book_user.status.returning %>">
+                                    Return book
+                            </button>
+                        <% } %>
                     </div>
                 </div>
                 <% if (book.users_reading && book.users_reading.length) { %>

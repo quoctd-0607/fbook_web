@@ -150,14 +150,26 @@
                         </div>
                         <div class="space-20 hide-book" data-book-id="<%= data.item.id %>"></div>
                         <div class="row btn-action">
-                            <% if (data.item.btn_booking.status !== configs.book.returning) { %>
-                                <button class="btn btn-primary btn-xs" data-office-id="<%= data.item.office.id %>" name="booking"><i class="glyphicon glyphicon-hand-up"></i> Want to Read </button>
-                            <% } else { %>
-                                <button class="btn btn-primary btn-xs" name="return"
+                            <% if (data.item.btn_booking.status == configs.book_user.status.waiting) { %>
+                                <button class="btn btn-primary btn-xs" data-office-id="<%= data.item.office.id %>" name="booking"><i class="glyphicon glyphicon-hand-up"></i>
+                                <%= data.item.btn_booking.text %></button>
+                            <% } else if (data.item.btn_booking.status == configs.book_user.status.returning) { %>
+                                <button class="btn btn-success btn-xs" name="return"
                                     data-book-id="<%= data.item.id %>"
                                     data-owner-id="<%= data.item.return_book_for_owner.id %>"
                                     data-status="<%= data.item.btn_booking.status %>">
-                                    Want to Return
+                                    <%= data.item.btn_booking.text %>
+                                </button>
+                            <% } else if (data.item.btn_booking.status == configs.book_user.status.cancel_waiting) { %>
+                                <button class="btn btn-warning btn-xs" name="cancel"
+                                    data-book-id="<%= data.item.id %>"
+                                    data-owner-id="<%= data.item.cancel_book_for_owner.id %>"
+                                    data-status="<%= data.item.btn_booking.status %>">
+                                    <%= data.item.btn_booking.text %>
+                                </button>
+                            <% } else if (data.item.btn_booking.status == configs.book_user.status.returned) { %>
+                                <button class="btn btn-warning btn-xs" name="returning">
+                                    <%= data.item.btn_booking.text %>
                                 </button>
                             <% } %>
                             <% if (isCurrentUserOwneredBook) { %>
@@ -191,7 +203,7 @@
                                         <div class="col-xs-12 col-sm-12">
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="radio" name="owner_id" <%= (index === 0) ? 'checked' : ''%> value="<%= owner.id %>" required aria-required="true"/> <%= owner.name %> - You can <i><span class="text-danger"> <%= owner.pivot.status ? 'Ready to read' : 'Add to waiting' %></span></i>
+                                                    <input type="radio" name="owner_id" <%= (index === 0) ? 'checked' : ''%> value="<%= owner.id %>" required aria-required="true"/> <%= owner.name %> - You can <i><span class="text-danger"> <%= (owner.pivot.status == configs.book.status.available) ? 'Ready to read' : 'Add to waiting' %></span></i>
                                                 </label>
                                             </div>
                                         </div>
@@ -536,6 +548,19 @@
             status: status
         };
         Book.return(data);
+    });
+
+    $('button[name=cancel]').on('click', function (e) {
+        e.preventDefault();
+        var bookId = $(this).attr('data-book-id');
+        var ownerId = $(this).attr('data-owner-id');
+        var status = $(this).attr('data-status');
+        var data = {
+            book_id: bookId,
+            owner_id: ownerId,
+            status: status
+        };
+        Book.cancel(data);
     });
 
     function showTab(element) {

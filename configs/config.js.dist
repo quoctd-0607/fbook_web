@@ -12,8 +12,8 @@ var config = {
         title_limit_characters: 30,
         author_limit_characters: 20,
         status: {
-            "unavailable": 0,
-            "available": 1
+            "unavailable" : 'unavailable',
+            "available": 'available'
         }
     },
     user: {
