@@ -230,6 +230,8 @@ router.get('/:id', localSession, function (req, res, next) {
                             var data = JSON.parse(body);
                             var currentUserReview = null;
                             var returnBookForOwner = null;
+                            var cancelBookForOwner = null;
+                            var returningBookToOwner = null;
                             var messages = req.flash('errors');
                             var btnBooking = {
                                 'text': 'Want to Read',
@@ -260,11 +262,45 @@ router.get('/:id', localSession, function (req, res, next) {
                                         });
                                     });
                                 }
+                                if (data.item.users_waiting) {
+                                    data.item.users_waiting.forEach (function (userWaiting) {
+                                        data.item.owners.forEach (function (owner) {
+                                            if (userWaiting.id === req.session.user.id) {
+                                                btnBooking = {
+                                                    'text': 'Cancel waiting this book',
+                                                    'status': req.configs.book_user.status.cancel_waiting
+                                                };
+                                                if (userWaiting.owner_id === owner.id) {
+                                                    cancelBookForOwner = owner;
+                                                }
+                                                return;
+                                            }
+                                        });
+                                    });
+                                }
+                                if (data.item.users_returning) {
+                                    data.item.users_returning.forEach (function (userReturning) {
+                                        data.item.owners.forEach (function (owner) {
+                                            if (userReturning.id === req.session.user.id) {
+                                                btnBooking = {
+                                                    'text': 'You are returning this book',
+                                                    'status': req.configs.book_user.status.returned
+                                                };
+                                                if (userReturning.owner_id === owner.id) {
+                                                    returningBookToOwner = owner;
+                                                }
+                                                return;
+                                            }
+                                        });
+                                    });
+                                }
                             }
 
                             data.item.btn_booking = btnBooking;
                             data.item.current_user_review = currentUserReview;
                             data.item.return_book_for_owner = returnBookForOwner;
+                            data.item.cancel_book_for_owner = cancelBookForOwner;
+                            data.item.returning_book_to_owner = returningBookToOwner;
 
                             res.render('books/detail', {
                                 data: data,
@@ -429,13 +465,16 @@ router.post('/booking/:id', function (req, res, next) {
                 if (!error && response.statusCode === 200) {
                     try {
                         req.flash('info', 'Booking success');
-                        res.redirect('/home');
+                        res.redirect('back');
                     } catch (errorJSONParse) {
                         res.redirect('back');
                     }
                 } else {
                     if (response.statusCode === 401) {
                         req.flash('error', 'Please login to booking this book');
+                        res.redirect('back');
+                    } else if (response.statusCode === 500) {
+                        req.flash('error', JSON.parse(body).message.description);
                         res.redirect('back');
                     } else {
                         req.flash('error', 'Don\'t allow booking this book');

@@ -128,35 +128,82 @@ Book.generateBookXhtml = function (book) {
 };
 
 Book.return = function (data) {
-    var scope = this;
-    if (!scope.checkAuthorized()) return false;
+    swal({
+        title: "Are you sure return this book?",
+        type: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes",
+        closeOnConfirm: true
+    },
+    function() {
+        if (typeof(access_token) === 'undefined' || typeof(user) === 'undefined') {
+            showNotify('danger', 'Add owner fail, Please login to continue', {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
 
-    var body = JSON.stringify({
-        item: {
-            book_id: data.book_id,
-            owner_id: data.owner_id,
-            status: data.status
+            return false;
         }
-    });
 
-    $.ajax({
-        url: API_PATH + 'books/booking',
-        dataType: 'json',
-        headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
-        method: 'POST',
-        data: body
-    }).done(function () {
-        showNotify('success', 'Return success', {icon: 'glyphicon glyphicon-ok'}, {delay: 1000});
+        var body = JSON.stringify({
+            item: {
+                book_id: data.book_id,
+                owner_id: data.owner_id,
+                status: data.status
+            }
+        });
 
-        setTimeout(function () {
-            window.location.href = '/home';
-        }, 3000);
-    }).fail(function () {
-        showNotify('danger', 'Return errors', {icon: 'glyphicon glyphicon-remove'}, {delay: 1000});
-
-        setTimeout(function () {
+        $.ajax({
+            url: API_PATH + 'books/booking',
+            dataType: 'json',
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
+            method: 'POST',
+            data: body
+        }).done(function () {
             window.location.reload();
-        }, 3000);
+            showNotify('success', 'Return success', {icon: 'glyphicon glyphicon-ok'}, {delay: 1000});
+        }).fail(function () {
+            window.location.reload();
+            showNotify('danger', 'Return errors', {icon: 'glyphicon glyphicon-remove'}, {delay: 1000});
+        });
+    });
+};
+
+Book.cancel = function (data) {
+    swal({
+        title: "Are you sure cancel waiting this book?",
+        type: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes",
+        closeOnConfirm: true
+    },
+    function() {
+        if (typeof(access_token) === 'undefined' || typeof(user) === 'undefined') {
+            showNotify('danger', 'Add owner fail, Please login to continue', {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
+
+            return false;
+        }
+
+        var body = JSON.stringify({
+            item: {
+                book_id: data.book_id,
+                owner_id: data.owner_id,
+                status: data.status
+            }
+        });
+
+        $.ajax({
+            url: API_PATH + 'books/booking',
+            dataType: 'json',
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
+            method: 'POST',
+            data: body
+        }).done(function () {
+            window.location.reload();
+            showNotify('success', 'Cancle waiting success', {icon: 'glyphicon glyphicon-ok'}, {delay: 1000});
+        }).fail(function () {
+            window.location.reload();
+            showNotify('danger', 'Cancle waiting errors', {icon: 'glyphicon glyphicon-remove'}, {delay: 1000});
+        });
     });
 };
 
@@ -324,8 +371,8 @@ Book.modalBooking = function () {
             });
         } else {
             modalWantToRead.modal('show');
-        } 
-        
+        }
+
     });
 };
 
@@ -454,9 +501,10 @@ function approveRequestWaiting(userId)
             }),
         }).done(function (response) {
             if (response.message.status) {
+                $('.btn-approve').addClass('hidden');
                 $('.lbl-waiting' + userId).removeClass().addClass('label label-success').addClass('lbl-reading' + userId).html('reading');
                 $('.btn-approve-waiting' + userId).attr('onClick', 'unapproveRequestWaiting(' + userId + ')');
-                $('.btn-approve-waiting' + userId).removeClass('btn-approve-waiting' + userId).addClass('btn-unapprove-reading' + userId).addClass('btn-xs').html('Unapprove');
+                $('.btn-approve-waiting' + userId).removeClass('hidden btn-approve-waiting' + userId).addClass('btn-unapprove-reading' + userId).addClass('btn-xs').html('Unapprove');
 
                 showNotify('success', 'Request approved', {icon: 'glyphicon glyphicon-ok'}, {delay: 3000});
             } else {
@@ -554,6 +602,7 @@ function unapproveRequestWaiting(userId)
                 $('.lbl-reading' + userId).removeClass().addClass('label label-warning').addClass('lbl-waiting' + userId).html('waiting');
                 $('.btn-unapprove-reading' + userId).attr('onClick', 'approveRequestWaiting(' + userId + ')');
                 $('.btn-unapprove-reading' + userId).removeClass('btn-unapprove-reading' + userId).addClass('btn-approve-waiting' + userId).addClass('btn-xs').html('Approve');
+                $('.btn.hidden').removeClass('hidden');
 
                 showNotify('success', 'Request unapproved', {icon: 'glyphicon glyphicon-ok'}, {delay: 3000});
             } else {
