@@ -36,8 +36,10 @@
                                     <p>
                                         <%- book.overview %>
                                     </p>
-                                    <a href="/books/<%= book.id %>/approve-request" class="text-primary">View all request</a>
                                 </div>
+                            </div>
+                            <div class="pull-right">
+                                <a href="/books/<%= book.id %>/approve-request" class="text-primary btn-view-request">View all request <span class="btn-danger bnt-request"><%- book.users_waiting.length + book.users_returning.length %></span></a>
                             </div>
                             <div class="owners">
                                 <strong> Shared by: </strong>
