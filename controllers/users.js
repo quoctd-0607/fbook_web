@@ -9,6 +9,32 @@ router.get('/profile', authorize.isAuthenticated, function(req, res, next) {
     res.redirect('/users/' + req.session.user.id);
 });
 
+router.get('/my_books', authorize.isAuthenticated, function (req, res, next) {
+    var pageMyBook = req.query.pageMyBook ? req.query.pageMyBook : 1;
+
+    request({
+        url: req.configs.api_base_url + 'users/book/' + req.session.user.id + '/sharing?page=' + pageMyBook,
+        headers: objectHeaders.headers({'Authorization': req.session.access_token})
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            try {
+                var books = JSON.parse(body);
+                res.render('users/my_books.ejs', {
+                    books: books,
+                    pageTitle: 'My Books',
+                    pageName: 'My books',
+                    info: req.flash('info'),
+                    error: req.flash('error'),
+                });
+            } catch (errorJSONParse) {
+                res.redirect('home');
+            }
+        } else {
+            res.redirect('home');
+        }
+    });
+});
+
 router.get('/:id', authorize.isAuthenticated, function(req, res, next) {
     var pageReading = req.query.pageReading ? req.query.pageReading : 1;
     var pageWaiting = req.query.pageWaiting ? req.query.pageWaiting : 1;
