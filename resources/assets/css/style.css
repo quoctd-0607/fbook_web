@@ -199,3 +199,15 @@ input:-webkit-autofill:focus {
 .btn-view-request {
     float: right;
 }
+
+.click-notification:hover {
+    background-color: #ffffff;
+}
+
+.noSeen{
+    background-color: #edf2fa;;
+}
+
+.seen{
+    background-color: #ffffff;
+}
