@@ -187,3 +187,15 @@ input:-webkit-autofill:focus {
 #load-more-user {
     width: 97% ;
 }
+
+.bnt-request {
+    border-radius: 50%;
+    padding: 5px 12px;
+    font-size: 17px;
+    line-height: 1.3333333;
+    border-radius: 6
+}
+
+.btn-view-request {
+    float: right;
+}
