@@ -161,7 +161,17 @@
                                                         </div>
                                                         <span class="label label-warning lbl-waiting<%= user.id %>">approve returning</span>
                                                     <% } %>
-                                                    <%if (data.type == configs.notification.add_owner) { %>
+                                                    <%if (data.type == configs.notification.approve_waiting) { %>
+                                                        <div class="media-body">
+                                                            <div class="space-10"></div>
+                                                                <h4 class="show text-danger pull-right"><span class=""><%= data.created_at %></span></h4>
+                                                            <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
+                                                                <h4 class="media-heading"><%= data.user_send.name %> [<%= data.user_send.email %>]
+                                                                </h4>
+                                                                <p>Accept your request waiting book: <%= data.book.title %></p>
+                                                            </a>
+                                                        </div>
+                                                        <span class="label label-warning lbl-waiting<%= user.id %>">approve waiting</span>
                                                     <% } %>
                                                 </div>
                                             </div>

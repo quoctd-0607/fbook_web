@@ -27,6 +27,20 @@ var config = {
             "returned": 4,
             "cancel_waiting": 5
         }
+    },
+    notification: {
+        "approve_waiting": 'approve_waiting',
+        "unapprove_waiting": 'unapprove_waiting',
+        "approve_returning": 'approve_returning',
+        "add_owner": 'add_owner',
+        "remove_owner": 'remove_owner',
+        "review": 'review',
+        "waiting": 'waiting',
+        "cancle":' cancle',
+        "returning": 'returning',
+        "returned": 'returned',
+        "viewed ": true,
+        "not_view": false
     }
 };
 
