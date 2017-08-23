@@ -8,9 +8,9 @@ var localSession = require('../middlewares/localSession');
 var authorize = require('../middlewares/authorize');
 
 router.get('/', authorize.isAuthenticated, function (req, res, next) {
-
+    var page = req.query.page ? req.query.page : 1;
     request({
-        url: req.configs.api_base_url + 'notifications',
+        url: req.configs.api_base_url + 'notifications' + '/?page=' + page,
         headers: objectHeaders.headers({'Authorization': req.session.access_token})
     }, function (error, response, body) {
         if (!error && response.statusCode === 200) {
