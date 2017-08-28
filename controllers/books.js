@@ -305,6 +305,7 @@ router.get('/:id', localSession, function (req, res, next) {
                             res.render('books/detail', {
                                 data: data,
                                 pageTitle: 'Detail',
+                                officeId: data.item.office.id,
                                 messages: messages,
                                 error: req.flash('error'),
                                 info: req.flash('info')
