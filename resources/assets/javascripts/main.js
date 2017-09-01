@@ -120,4 +120,37 @@ jQuery(document).ready(function ($) {
         items: 1
     });
     $('.wow').parent('div').addClass('fix');
+
+    if(typeof(access_token) !== 'undefined') {
+        $( window ).on( "load", function() {
+            console.log( "window loaded" );
+            $.ajax({
+            url: API_PATH + 'notifications/count/user',
+            contentType: 'application/json',
+            dataType: 'json',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': access_token,
+            },
+            type: 'GET',
+            data: {},
+            }).done(function (response) {
+                if (response.message.code == 200) {
+                    if(response.item.count == 0)
+                    {
+                        $('.count_Notifications').html();
+                    }
+                    else
+                    {
+                        $('.count_Notifications').html(response.item.count);
+                    }
+                } else {
+                    showNotify('danger', "Data Invalid", {icon: "glyphicon glyphicon-remove"}, {delay: 1000});
+                }
+            }).fail(function (error) {
+                showNotify('danger', "Data Invalid", {icon: "glyphicon glyphicon-remove"}, {delay: 1000});
+            });
+        });
+    }
 }(jQuery));
