@@ -754,3 +754,37 @@
 .team-member-photo img {
     width: 100% !important;
 }
+
+.active-user-notification {
+    display: inline-block;
+    min-width: 13px;
+    padding: 4px 5px;
+    font-size: 17px;
+    top: -9px;
+    right: 1px;
+    position: absolute;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #f40303;
+    border-radius: 4px;
+}
+
+.active-notification {
+    display: inline-block;
+    min-width: 13px;
+    padding: 4px 7px;
+    font-size: 17px;
+    top: 52px;
+    right: 10px;
+    position: absolute;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #f40303;
+    border-radius: 19px;
+}
