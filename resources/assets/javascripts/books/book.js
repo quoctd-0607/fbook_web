@@ -248,7 +248,7 @@ Book.ajaxSortBook = function (data) {
         (API_PATH + 'books/filters?field=' + data.field + '&page=' + data.currentPage)
         : (API_PATH + 'books/category/' + data.categoryId + '/filter/?page=' + data.currentPage);
 
-    if (data.officeId !== 'undefined') {
+    if (data.officeId !== undefined) {
         url += '&office_id=' + data.officeId;
     }
 

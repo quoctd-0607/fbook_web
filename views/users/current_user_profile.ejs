@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
                 <br>
-                <h2>User profile</h2>
+                <h2>My profile</h2>
                 <div class="title-bar blue">
                     <ul class="list-inline list-unstyled">
                         <li><i class="icofont icofont-square"></i></li>
@@ -15,18 +15,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="pull-right">
-                <% if (userId === user.id) { %>
-                    <button type="button" class="btn-save btn btn-info">Save</button>
-                <% } else { %>
-                    <% if (follow.isFollow === true) { %>
-                        <button type="button" class="btn-follow btn btn-primary">Following</button>
-                    <% } else { %>
-                        <button type="button" class="btn-follow btn btn-success">Follow</button>
-                    <% } %>
-                <% } %>
-            </div>
-            <div class="col-xs-12 col-md-6 padding40 wow fadeInRight">
+            <div class="col-xs-12 pull-left col-md-6 padding40 wow fadeInRight">
                 <div class="book_item">
                     <% if (typeof data.avatar != 'undefined' && data.avatar) { %>
                         <img class="img-profile" src="<%= data.avatar %>" alt="library">
@@ -42,8 +31,9 @@
                         <p class="lead"><%= data.email %></p>
                         <h4 class="tip-left">Phone</h4>
                         <p class="lead"><%= data.phone %></p>
+                        <h4 class="tip-left">Code</h4>
+                        <p class="lead"><%= data.code %></p>
                         <h4 class="tip-left">Position</h4>
-                        <p class="lead"><%= data.position %></p>
                         <p class="lead"><%= data.position %></p>
                         <h4 class="tip-left">Followed by</h4>
                         <p class="lead"><a href="" data-toggle="modal" data-target="#followed"><%= follow.countFollowed %> people</a></p>
@@ -53,23 +43,42 @@
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">
+                <% if (userId === user.id) { %>
+                    <button type="button" class="btn-save btn btn-info">Save</button>
+                <% } else { %>
+                    <% if (follow.isFollow === true) { %>
+                        <button type="button" class="btn-follow btn btn-primary">Following</button>
+                    <% } else { %>
+                        <button type="button" class="btn-follow btn btn-success">Follow</button>
+                    <% } %>
+                <% } %>
                 <div class="rows">
-                    <h4>Favorite books</h4>
-                    <% if(categories.length) { %>
-                        <% categories.items.forEach(function (category) { %>
-                            <div class="">
-                                <% interestedCategoryIds.forEach (function (categoryId) { %>
-                                    <% if (category.id == categoryId) { %>
-                                        <li class="text-success">
-                                            <%= category.name %>
-                                        </li>
+                    <% categories.items.forEach(function (category) { %>
+                        <div class="col-md-6 list-category">
+                        <span class="button-checkbox">
+                            <% if (userId === user.id) { %>
+                                <button type="button" class="btn-category btn-block btn-sm" data-color="info"><%= getString(category.name, configs.user.category_name) %></button>
+                            <% } else { %>
+                                <button type="button" disabled class="btn-category btn-block btn-sm" data-color="info"><%= getString(category.name, configs.user.category_name) %></button>
+                            <% } %>
+                            <% if (typeof(interestedCategoryIds) != 'undefined') { %>
+                                <% var isInterested = false; %>
+                                <% interestedCategoryIds.forEach (function (categoryId) {%>
+                                    <% if (category.id == categoryId) {
+                                        isInterested = true;
+                                    %>
+                                        <input id="category<%= categoryId %>" type="checkbox" class="hidden" checked/>
                                     <% } %>
                                 <% }) %>
-                            </div>
-                        <% }) %>
-                    <% } else { %>
-                        <p>No favorite</p>
-                    <% } %>
+                                <% if (!isInterested) { %>
+                                    <input id="category<%= category.id %>" type="checkbox" class="hidden"/>
+                                <% } %>
+                            <% } else { %>
+                                <input id="category<%= category.id %>" type="checkbox" class="hidden"/>
+                            <% } %>
+                        </span>
+                        </div>
+                    <% }) %>
                 </div>
             </div>
         </div>
@@ -124,7 +133,7 @@
             <div class="panel-heading">
                 <ul class="nav nav-tabs">
                     <% var isTabActived = false; %>
-                    <% if (!isTabActived && pageReading !== 1 || pageWaiting === 1 && pageDone === 1 && pageSharing === 1 && pageReviewed === 1) {
+                    <% if (!isTabActived && pageReading !== 1 || pageWaiting === 1 && pageDone === 1 && pageSharing === 1 && pageSuggest === 1 && pageReviewed === 1) {
                         isTabActived = true;
                     %>
                         <li class="active">
@@ -152,11 +161,11 @@
                         isTabActived = true;
                     %>
                         <li class="active">
-                            <a data-toggle="tab" href="#done_books">Returned Books</a>
+                            <a data-toggle="tab" href="#done_books">Read Books</a>
                         </li>
                     <% } else { %>
                         <li>
-                            <a data-toggle="tab" href="#done_books">Returned Books</a>
+                            <a data-toggle="tab" href="#done_books">Read Books</a>
                         </li>
                     <% } %>
 
@@ -170,6 +179,20 @@
                         <li>
                             <a data-toggle="tab" href="#sharing_books">Sharing Books</a>
                         </li>
+                    <% } %>
+
+                    <% if (userId === user.id) { %>
+                        <% if (!isTabActived && pageSuggest !== 1) {
+                            isTabActived = true;
+                        %>
+                            <li class="active">
+                                <a data-toggle="tab" href="#suggested_books">Suggested Books</a>
+                            </li>
+                        <% } else { %>
+                            <li>
+                                <a data-toggle="tab" href="#suggested_books">Suggested Books</a>
+                            </li>
+                        <% } %>
                     <% } %>
 
                     <% if (!isTabActived && pageReviewed !== 1) {
@@ -188,7 +211,7 @@
             <div class="panel-body">
                 <div class="tab-content">
                     <% var isTabPaneActived = false; %>
-                    <% if (!isTabPaneActived && pageReading !== 1 || pageWaiting === 1 && pageDone === 1 && pageSharing === 1 && pageReviewed === 1) {
+                    <% if (!isTabPaneActived && pageReading !== 1 || pageWaiting === 1 && pageDone === 1 && pageSharing === 1 && pageSuggest === 1 && pageReviewed === 1) {
                         isTabPaneActived = true;
                     %>
                         <div class="tab-pane fade in active" id="reading_books">
@@ -231,6 +254,19 @@
 
                     <%- include('../shared/myBooks', {books: sharingBooks, pageName: 'pageSharing'}); %>
                     </div>
+
+                    <% if (userId === user.id) { %>
+                        <% if (!isTabPaneActived && pageSuggest !== 1) {
+                            isTabPaneActived = true;
+                        %>
+                            <div class="tab-pane fade in active" id="suggested_books">
+                        <% } else { %>
+                            <div class="tab-pane fade" id="suggested_books">
+                        <% } %>
+
+                        <%- include('../shared/myBooks', {books: suggestedBooks, pageName: 'pageSuggest'}); %>
+                        </div>
+                    <% } %>
 
                     <% if (!isTabPaneActived && pageReviewed !== 1) {
                         isTabPaneActived = true;

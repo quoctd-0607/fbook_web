@@ -37,7 +37,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="/users/profile"> <span><i class="icofont icofont-user"></i></span> Profile</a>
+                                        <a href="/users/my_profile"> <span><i class="icofont icofont-user"></i></span> Profile</a>
                                     </li>
                                     <li>
                                         <a href="/notifications"> <span><i class="icofont icofont-notification"></i></span> Notifications</a><span class="badge active-notification count_Notifications"></span>
@@ -85,10 +85,10 @@
                                      <% } %>
                                 <% }) %>
                                 <% if (typeof(officeId) === 'undefined') { %>
-                                    <a href="#" class="dropdown-toggle opacity-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Workspace Framgia<span class="caret"></span></a>
+                                    <a href="#" class="dropdown-toggle opacity-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Workspace Framgia<span class="caret"></span></a>
                                 <% } %>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/home" class="office-dropdow-a">Framgia</a></li>
+                                    <li><a href="/home/all_office" class="office-dropdow-a">Framgia</a></li>
                                     <% offices.items.forEach(function(office) { %>
                                         <li><a href="/home?officeId=<%= office.id %>" class="office-dropdow-a"><%= office.area %></a></li>
                                     <% }) %>
