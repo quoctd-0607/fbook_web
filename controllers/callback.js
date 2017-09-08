@@ -34,7 +34,12 @@ router.get('/', function(req, res, next) {
                                         return res.redirect('home');
                                     }
 
-                                    res.redirect('back');
+                                    if ((req.get('referer') == req.protocol + "://" + req.get('host') + "/home"
+                                        || req.get('referer') == req.protocol + "://" + req.get('host') + "/") && user.item.office_id) {
+                                        res.redirect('home?officeId=' + user.item.office_id);
+                                    } else {
+                                        res.redirect('back');
+                                    }
                                 } catch (errsorJSONParse) {
                                     req.flash('error', 'Login fail');
                                     res.redirect('home');

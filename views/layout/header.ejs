@@ -10,7 +10,11 @@
                         <span class="icon-bar"></span>
                     </button>
                     <!--Logo-->
-                    <a href="/home" class="navbar-left show">
+                    <% if (typeof user != 'undefined' && typeof user.office_id !== 'undefined' && user.office_id) { %>
+                        <a href="/home?officeId=<%= user.office_id %>" class="navbar-left show">
+                    <% } else { %>
+                        <a href="/home" class="navbar-left show">
+                    <% } %>
                         <img src="/images/logo_framgia.png" alt="library" class="logo-image">
                         <span class="logo-text">FBook</span>
                     </a>
@@ -61,7 +65,11 @@
                 <div class="navbar-right in fade" id="mainmenu">
                     <ul class="nav navbar-nav nav-white text-uppercase">
                         <li class="active">
-                            <a href="/home">Home</a>
+                            <% if (typeof user != 'undefined' && typeof user.office_id !== 'undefined' && user.office_id) { %>
+                                <a href="/home?officeId=<%= user.office_id %>">Home</a>
+                            <% } else { %>
+                                <a href="/home">Home</a>
+                            <% } %>
                         </li>
                         <li>
                             <a href="https://goo.gl/forms/5GLWPJNUGJJR2J2l2" target="_blank">Feedback</a>
@@ -71,9 +79,16 @@
                         </li>
                         <% if (typeof(offices.items) !== 'undefined' && typeof(offices) !== 'undefined' && offices && offices.items) { %>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle opacity-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Workspace <span class="caret"></span></a>
+                                <% offices.items.forEach(function(office) { %>
+                                    <% if (typeof(officeId) !== 'undefined' && officeId == office.id) { %>
+                                        <a href="#" class="dropdown-toggle opacity-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Workspace <%= office.area %><span class="caret"></span></a>
+                                     <% } %>
+                                <% }) %>
+                                <% if (typeof(officeId) === 'undefined') { %>
+                                    <a href="#" class="dropdown-toggle opacity-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Workspace Framgia<span class="caret"></span></a>
+                                <% } %>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/home" class="office-dropdow-a">All</a></li>
+                                    <li><a href="/home" class="office-dropdow-a">Framgia</a></li>
                                     <% offices.items.forEach(function(office) { %>
                                         <li><a href="/home?officeId=<%= office.id %>" class="office-dropdow-a"><%= office.area %></a></li>
                                     <% }) %>
