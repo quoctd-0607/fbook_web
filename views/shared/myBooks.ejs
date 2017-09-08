@@ -5,8 +5,12 @@
         <div class="col-xs-12 col-md-4 wow fadeInLeft" data-wow-delay="0.<%= index + 1 %>s">
             <div class="category-item well yellow">
                 <div class="media">
+                    <% if (typeof(book.office) !== 'undefined') { %>
+                        <span class="badge badge-notify">
+                            <%= book.office.name %>
+                        </span>
+                    <% } %>
                     <div class="media-left">
-
                         <% if (book.image !== null) { %>
                             <img src="<%= book.image.web.thumbnail_path %>" class="media-object" alt="<%= book.title %>">
                         <% } else { %>

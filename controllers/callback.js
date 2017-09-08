@@ -28,15 +28,20 @@ router.get('/', function(req, res, next) {
                                 try {
                                     var user = JSON.parse(body);
                                     req.session.user = user.item;
+                                    req.session.office_id = user.item.office_id;
                                     req.flash('info', 'Login success');
 
                                     if (req.header('Referer') == req.configs.url_sign_in_auth_server) {
                                         return res.redirect('home');
                                     }
 
-                                    if ((req.get('referer') == req.protocol + "://" + req.get('host') + "/home"
-                                        || req.get('referer') == req.protocol + "://" + req.get('host') + "/") && user.item.office_id) {
-                                        res.redirect('home?officeId=' + user.item.office_id);
+                                    if (req.get('referer') == req.protocol + "://" + req.get('host') + "/home"
+                                        || req.get('referer') == req.protocol + "://" + req.get('host') + "/") {
+                                        if (!user.item.office_id) {
+                                            res.redirect('home/all_office');
+                                        } else {
+                                            res.redirect('home?officeId=' + user.item.office_id);
+                                        }
                                     } else {
                                         res.redirect('back');
                                     }

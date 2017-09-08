@@ -43,6 +43,9 @@
                     <div class="col-xs-12 col-md-6">
                         <div class="category-item well yellow">
                             <div class="media">
+                                <span class="badge badge-notify">
+                                    <%= book.office.name %>
+                                </span>
                                 <div class="media-left">
                                     <img class="media-object" alt="Framgia book"
                                          src="<%= book.image ? book.image.web.thumbnail_path : '/images/book_thumb_default.jpg' %>">

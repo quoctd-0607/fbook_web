@@ -788,3 +788,9 @@
     background-color: #f40303;
     border-radius: 19px;
 }
+
+.badge-notify {
+   background:red;
+   position:absolute;
+   top:0px;
+}
