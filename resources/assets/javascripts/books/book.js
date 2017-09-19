@@ -78,6 +78,7 @@ Book.generateBookXhtml = function (book) {
     xhtml += '<div class="col-xs-12 col-md-6">';
     xhtml += '<div class="category-item well yellow">';
     xhtml += '<div class="media">';
+    xhtml += '<span class="badge badge-notify">' + book.office.name + '</span>';
     xhtml += '<div class="media-left">';
     xhtml += '<img src="'+ thumbnailPath +'" class="media-object" alt="Framgia Book">';
     xhtml += '</div>';
@@ -259,7 +260,7 @@ Book.ajaxSortBook = function (data) {
         method: 'POST',
         data: body
     }).done(function (response) {
-        var result = data.field !== undefined ? response.item : response.item.category;
+        var result = data.field !== undefined ? response.items : response.items.category;
 
         if (result.data.length > 0) {
             var elementBookContent = $('.row .ajax-book-content');
