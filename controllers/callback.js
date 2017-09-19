@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
     if (!req.session.access_token) {
         request.post({
             headers: objectHeaders.urlencodedHeaders,
-            url:     req.configs.auth_server_authorization_code_url,
+            url:     req.configs.auth_server_authorization_code_url + '/auth/access_token',
             body:    "client_id=" + req.configs.client_id + "&client_secret="
                 + req.configs.client_secret + '&code=' + req.query.code
         }, function(error, response, body){
@@ -27,6 +27,7 @@ router.get('/', function(req, res, next) {
                             if (!error && response.statusCode === 200) {
                                 try {
                                     var user = JSON.parse(body);
+
                                     req.session.user = user.item;
                                     req.session.office_id = user.item.office_id;
                                     req.flash('info', 'Login success');
