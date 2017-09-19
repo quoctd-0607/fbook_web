@@ -5,11 +5,11 @@
             <div class="col-xs-12 col-md-10 pull-right">
                 <h3><i class="icofont icofont-book"></i> <%= field %> books</h3>
                 <div class="space-10"></div>
-                <% if (section.item.data.length > 0) { %>
+                <% if (section.items.data.length > 0) { %>
                 <div class="row">
                     <div class="pull-left col-xs-12 col-sm-5 col-md-6">
                         <i>Books for <span class="text-primary">"<%= field %>"</span></i>
-                        <p><strong><%= section.item.data.length %></strong> of <strong><%= section.item.total %></strong> Book Found</p>
+                        <p><strong><%= section.items.data.length %></strong> of <strong><%= section.items.total %></strong> Book Found</p>
                     </div>
                     <div class="pull-right col-xs-12 col-sm-7 col-md-6">
                         <form class="form-horizontal">
@@ -39,8 +39,8 @@
                 <hr>
                 <div class="space-20"></div>
                 <div class="row ajax-book-content">
-                    <% if (section.item.data.length > 0) { %>
-                    <% section.item.data.forEach(function (book) { %>
+                    <% if (section.items.data.length > 0) { %>
+                    <% section.items.data.forEach(function (book) { %>
                     <div class="col-xs-12 col-md-6">
                         <div class="category-item well yellow">
                             <div class="media">
@@ -95,7 +95,7 @@
                     <% } %>
                 </div>
                 <div class="space-60"></div>
-                <% if (section.item.total > section.item.per_page) { %>
+                <% if (section.items.total > section.items.per_page) { %>
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="shop-pagination pull-right">
@@ -137,9 +137,9 @@
 <script src="/javascripts/books/book.js" type="text/javascript"></script>
 <script src="/javascripts/paginations/paginate.js" type="text/javascript"></script>
 <script type="text/javascript">
-    var totalPages = Math.ceil("<%= section.item.total %>"/"<%= section.item.per_page %>");
-    var currentPage = parseInt("<%= section.item.current_page %>");
-    var nextPage = "<%= section.item.next_page %>";
+    var totalPages = Math.ceil("<%= section.items.total %>"/"<%= section.items.per_page %>");
+    var currentPage = parseInt("<%= section.items.current_page %>");
+    var nextPage = "<%= section.items.next_page %>";
 
     if (totalPages) {
         Paginate.book({

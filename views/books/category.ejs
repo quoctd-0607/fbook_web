@@ -1,15 +1,15 @@
-<section data-category-id="<%= books.item.category.id %>">
+<section data-category-id="<%= books.items.category.id %>">
     <div class="space-80"></div>
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-md-10 pull-right">
-                <h3><i class="icofont icofont-book"></i><%= books.item.category.name %></h3>
+                <h3><i class="icofont icofont-book"></i><%= books.items.category.name %></h3>
                 <div class="space-30"></div>
-                <% if (books.item.category.data.length > 0) { %>
+                <% if (books.items.category.data.length > 0) { %>
                 <div class="row">
                     <div class="pull-left col-xs-12 col-sm-5 col-md-6">
-                        <i>Books for <span class="text-primary">"<%= books.item.category.name %>"</span></i>
-                        <p><strong><%= books.item.category.data.length %></strong> of <strong><%= books.item.total %></strong> Book Found</p>
+                        <i>Books for <span class="text-primary">"<%= books.items.category.name %>"</span></i>
+                        <p><strong><%= books.items.category.data.length %></strong> of <strong><%= books.items.total %></strong> Book Found</p>
                     </div>
                     <div class="pull-right col-xs-12 col-sm-7 col-md-6">
                         <form class="form-horizontal">
@@ -39,7 +39,7 @@
                 <hr>
                 <div class="space-20"></div>
                 <div class="row ajax-book-content">
-                    <% books.item.category.data.forEach(function (book) { %>
+                    <% books.items.category.data.forEach(function (book) { %>
                     <div class="col-xs-12 col-md-6">
                         <div class="category-item well yellow">
                             <div class="media">
@@ -71,7 +71,7 @@
                     <% }) %>
                 </div>
                 <div class="space-60"></div>
-                <% if (books.item.category.data.length > 0) { %>
+                <% if (books.items.category.data.length > 0) { %>
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="shop-pagination pull-right">
@@ -111,9 +111,9 @@
 <script src="/javascripts/paginations/paginate.js"></script>
 
 <script type="text/javascript">
-    var totalPages = Math.ceil("<%= books.item.total %>"/"<%= books.item.per_page %>");
-    var currentPage = parseInt("<%= books.item.current_page %>");
-    var nextPage = "<%= books.item.next_page %>"
+    var totalPages = Math.ceil("<%= books.items.total %>"/"<%= books.items.per_page %>");
+    var currentPage = parseInt("<%= books.items.current_page %>");
+    var nextPage = "<%= books.items.next_page %>"
 
     if (totalPages) {
         Paginate.book({
