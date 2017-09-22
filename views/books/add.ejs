@@ -28,7 +28,7 @@
                                 <div class="input-group">
                                     <input type="text" name="title" class="form-control bg-danger title-book title-book-custom" id="title" required="required">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-secondary b-r-0" id="fillSuggestData" type="button" data-toggle="tooltip" title="Import data book from google book">
+                                        <button class="btn btn-secondary b-r-0 btn-success" id="fillSuggestData" type="button" data-toggle="tooltip" title="Import data book from google book">
                                             <span class="glyphicon glyphicon-import custom-span-button"></span> Import from Google book
                                         </button>
                                     </span>
@@ -51,7 +51,11 @@
                                 <label for="office">Office</label>
                                 <select id="office" name="office_id" class="form-control bg-danger b-r-0" required="required">
                                     <% offices.items.forEach(function (office) { %>
-                                        <option value="<%= office.id %>"><%= office.name %></option>
+                                        <% if (officeId == office.id) { %>
+                                            <option value="<%= office.id %>" selected><%= office.name %></option>
+                                        <% } else { %>
+                                            <option value="<%= office.id %>"><%= office.name %></option>
+                                        <% } %>
                                     <% }) %>
                                 </select>
                             </div>
