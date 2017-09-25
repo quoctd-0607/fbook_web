@@ -15,10 +15,10 @@
                                             <%if (data.user_receive_id == user.id) { %>
                                                 <%if (data.viewed == configs.notification.not_view) { %>
                                                     <%if (data.type == configs.notification.waiting) { %>
-                                                        <div class=" notificaiton-box noSeen">
+                                                        <div class="notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <div class="space-10"></div>
@@ -36,7 +36,7 @@
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <div class="space-10"></div>
@@ -54,7 +54,7 @@
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <div class="space-10"></div>
@@ -72,7 +72,7 @@
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <div class="space-10"></div>
@@ -90,7 +90,7 @@
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <div class="space-10"></div>
@@ -108,7 +108,7 @@
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <div class="space-10"></div>
@@ -126,7 +126,7 @@
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <div class="space-10"></div>
@@ -140,13 +140,31 @@
                                                             </div>
                                                         </div>
                                                     <% } %>
+                                                    <%if (data.type == configs.notification.unapprove_waiting) { %>
+                                                        <div class=" notificaiton-box noSeen">
+                                                            <div class="media click-notification">
+                                                                <div class="media-left">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <div class="space-10"></div>
+                                                                    <h4 class="show text-danger pull-right"><span class=""><%= data.created_at %></span></h4>
+                                                                    <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
+                                                                        <h4 class="media-heading user-eamil-box"><%= data.user_send.name %> [<%= data.user_send.email %>]</h4>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>">approve waiting</span>
+                                                                        <p class="notification-p">Accept your request unapprove book: <%= data.book.title %></p>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <% } %>
                                                 <% } %>
                                                 <%if (data.viewed != configs.notification.not_view) { %>
                                                     <%if (data.type == configs.notification.waiting) { %>
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <div class="space-10"></div>
@@ -164,7 +182,7 @@
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <div class="space-10"></div>
@@ -182,7 +200,7 @@
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <div class="space-10"></div>
@@ -200,7 +218,7 @@
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <div class="space-10"></div>
@@ -218,7 +236,7 @@
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <div class="space-10"></div>
@@ -236,7 +254,7 @@
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <div class="space-10"></div>
@@ -254,7 +272,7 @@
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <div class="space-10"></div>
@@ -268,13 +286,30 @@
                                                             </div>
                                                         </div>
                                                     <% } %>
+                                                    <%if (data.type == configs.notification.unapprove_waiting) { %>
+                                                        <div class=" notificaiton-box seen">
+                                                            <div class="media click-notification">
+                                                                <div class="media-left">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <div class="space-10"></div>
+                                                                    <h4 class="show text-danger pull-right"><span class=""><%= data.created_at %></span></h4>
+                                                                    <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
+                                                                        <h4 class="media-heading user-eamil-box"><%= data.user_send.name %> [<%= data.user_send.email %>]</h4>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>">approve waiting</span>
+                                                                        <p class="notification-p">Accept your request unapprove book: <%= data.book.title %></p>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <% } %>
                                                 <% } %>
                                             <% } %>
                                         <% }) %>
                                     <% } else { %>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
-                                                <h2><strong>Notifications</strong></h2>
                                                 <div class="title-bar blue">
                                                     <ul class="list-inline list-unstyled">
                                                         <li><i class="icofont icofont-square"></i></li>
@@ -296,7 +331,7 @@
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
-                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                         </div>
                                                         <div class="media-body">
                                                             <div class="space-10"></div>
@@ -312,7 +347,7 @@
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
-                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                         </div>
                                                         <div class="media-body">
                                                             <div class="space-10"></div>
@@ -328,7 +363,7 @@
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
-                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                         </div>
                                                         <div class="media-body">
                                                             <div class="space-10"></div>
@@ -344,7 +379,7 @@
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
-                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                         </div>
                                                         <div class="media-body">
                                                             <div class="space-10"></div>
@@ -360,7 +395,7 @@
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
-                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                         </div>
                                                         <div class="media-body">
                                                             <div class="space-10"></div>
@@ -392,7 +427,7 @@
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
-                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                         </div>
                                                         <div class="media-body">
                                                             <div class="space-10"></div>
@@ -408,7 +443,7 @@
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
-                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object  w-70-h-70" alt="library">
+                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
                                                         </div>
                                                         <div class="media-body">
                                                             <div class="space-10"></div>
@@ -424,7 +459,6 @@
                                     <% } else { %>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
-                                                <h2><strong>Newsfeed</strong></h2>
                                                 <div class="title-bar blue">
                                                     <ul class="list-inline list-unstyled">
                                                         <li><i class="icofont icofont-square"></i></li>
@@ -442,7 +476,8 @@
                 </div>
             </div>
         </div>
-        <% if (dataNoti.items.notificationFollow.total > dataNoti.items.notificationFollow.per_page) { %>
+        <% if (dataNoti.items.notificationFollow.total > dataNoti.items.notificationFollow.per_page ||
+               dataNoti.items.notification.total > dataNoti.items.notification.per_page) { %>
             <div class="space-20"></div>
             <div class="row">
                 <div class="col-xs-12">
@@ -471,6 +506,20 @@
     var totalPages = Math.ceil("<%= dataNoti.items.notificationFollow.total %>"/"<%= dataNoti.items.notificationFollow.per_page %>");
     var currentPage = parseInt("<%= dataNoti.items.notificationFollow.current_page %>");
     var nextPage = "<%= dataNoti.items.notificationFollow.next_page %>"
+
+    if (totalPages) {
+        Paginate.book({
+            totalPages: totalPages,
+            currentPage: currentPage,
+            nextPage: nextPage
+        });
+    }
+</script>
+
+<script type="text/javascript">
+    var totalPages = Math.ceil("<%= dataNoti.items.notification.total %>"/"<%= dataNoti.items.notification.per_page %>");
+    var currentPage = parseInt("<%= dataNoti.items.notification.current_page %>");
+    var nextPage = "<%= dataNoti.items.notification.next_page %>"
 
     if (totalPages) {
         Paginate.book({

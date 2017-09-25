@@ -8,6 +8,14 @@ var app = require('../app');
 var debug = require('debug')('fbook-web:server');
 var http = require('http');
 var config = require('../configs/config');
+var Pusher = require('pusher');
+var pusher = new Pusher({
+  appId: config.pusher.app_id,
+  key: config.pusher.key,
+  secret: config.pusher.secret,
+  cluster: config.pusher.cluster,
+  encrypted: config.pusher.encrypted
+});
 
 /**
  * Get port from environment and store in Express.
