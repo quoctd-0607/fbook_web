@@ -29,7 +29,8 @@
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <% if (typeof user != 'undefined' && typeof user.avatar !== 'undefined' && user.avatar) { %>
-                                        <img src="<%= user.avatar %>" class="img-circle img-thumbnail" alt="library" /><span class="badge active-user-notification count_Notifications"></span>
+                                        <img src="<%= user.avatar %>" class="img-circle img-thumbnail" alt="library" /><span class="badge active-user-notification count_Notifications" id="notification_<%=user.id%>"></span>
+                                        <div class="hidden" id="get-user-id"><%= user.id%></div>
                                     <% }
                                     else { %>
                                         <img src="/images/user_default.png" class="img-circle img-thumbnail" alt="library" />
@@ -40,7 +41,7 @@
                                         <a href="/users/my_profile"> <span><i class="icofont icofont-user"></i></span> Profile</a>
                                     </li>
                                     <li>
-                                        <a href="/notifications"> <span><i class="icofont icofont-notification"></i></span> Notifications</a><span class="badge active-notification count_Notifications"></span>
+                                        <a href="/notifications"> <span><i class="icofont icofont-notification"></i></span> Notifications</a><span class="badge active-notification count_Notifications" id="notification_icon_<%=user.id%>"></span>
                                     </li>
                                     <li>
                                         <a href="/books/add"> <span><i class="glyphicon glyphicon-share-alt"></i></span> Share books </a>

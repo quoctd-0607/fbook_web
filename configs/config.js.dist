@@ -41,6 +41,13 @@ var config = {
         "returned": 'returned',
         "viewed ": true,
         "not_view": false
+    },
+    pusher: {
+        "app_id": '400613',
+        "key": '6a8c057c782e29509c31',
+        "secret": 'fb0924c101f46fd7625a',
+        "cluster": 'ap1',
+        "encrypted": true
     }
 };
 
