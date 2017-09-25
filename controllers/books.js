@@ -136,7 +136,8 @@ router.get('/add', authorize.isAuthenticated, function (req, res, next) {
         } else {
             res.render('books/add', {
                 categories: results.categories,
-                offices: results.offices
+                offices: results.offices,
+                officeId: req.session.office_id
             });
         }
     });

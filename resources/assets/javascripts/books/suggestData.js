@@ -2,7 +2,7 @@ $('#fillSuggestData').on('click', function (e) {
     suggestTitleBooks();
 });
 
-$(document).on('change', '.suggestedTitle', function (e) {
+$(document).on('click', '.suggestedTitle', function (e) {
     suggestDataBooks();
 });
 
