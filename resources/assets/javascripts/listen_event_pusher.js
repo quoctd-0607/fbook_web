@@ -10,6 +10,6 @@ channel.bind('App\\Events\\NotificationHandler', function(data) {
     $('#notification_icon_' + data.user_id).html(parseInt($('#notification_icon_' + data.user_id).html())+1);
     if(data.user_id == $('#get-user-id').html())
     {
-        showNotify('success', data.messages, {icon: "glyphicon glyphicon-ok"}, {delay: 5000});
+        showNotify('info', data.messages, {icon: "glyphicon glyphicon-ok"}, {delay: 5000});
     }
 });
