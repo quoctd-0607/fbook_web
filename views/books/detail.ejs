@@ -177,7 +177,7 @@
                             <% if (isCurrentUserOwneredBook) { %>
                                 <button class="btn btn-danger btn-sm remove-owner"><i class="glyphicon glyphicon-remove"></i> Remove owner this book</button>
                             <% } else { %>
-                                <button class="btn btn-primary btn-sm add-owner"><i class="glyphicon glyphicon-plus"></i> Add owner this book </button>
+                                <button class="btn btn-primary btn-sm add-owner" data-office-id="<%= data.item.office.id %>"><i class="glyphicon glyphicon-plus"></i> Add owner this book </button>
                             <% } %>
                         </div>
                     </div>
