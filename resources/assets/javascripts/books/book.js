@@ -139,7 +139,7 @@ Book.return = function (data) {
     },
     function() {
         if (typeof(access_token) === 'undefined' || typeof(user) === 'undefined') {
-            showNotify('danger', 'Add owner fail, Please login to continue', {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
+            showNotify('danger', 'Return fail, Please login to continue', {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
 
             return false;
         }
@@ -179,7 +179,7 @@ Book.cancel = function (data) {
     },
     function() {
         if (typeof(access_token) === 'undefined' || typeof(user) === 'undefined') {
-            showNotify('danger', 'Add owner fail, Please login to continue', {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
+            showNotify('danger', 'Cancle fail, Please login to continue', {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
 
             return false;
         }
