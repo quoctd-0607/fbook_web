@@ -1,0 +1,123 @@
+.prcover {
+    display: block;
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+    text-decoration: none;
+    text-align: center;
+}
+
+.prgreen-bg {
+    background-color: #1a7777;
+}
+
+.prhellofont {
+    font-size: 76px;
+}
+
+.prheadline {
+    position: relative;
+    width: 100%;
+    min-height: 50px;
+}
+
+.prheadlineinfo {
+    clear: right;
+    margin-right: 120px;
+}
+
+.pravatar {
+    left: 57px;
+    top: -123px;
+    margin-top: 0;
+    position: absolute;
+}
+
+.pravatar-image {
+    max-height: 166px;
+}
+
+.prpanel {
+    min-height: 250px;
+}
+
+.prnav-tabs > li.active > a::after {
+    background-color: #f70000;
+    box-shadow: none;
+    bottom: 0;
+    content: "";
+    height: 2px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.pr-row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.prwork {
+    margin-bottom: 5px;
+    padding: 0;
+    display: block;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    max-height: 300px;
+}
+
+.pr-a {
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    color: #454545;
+}
+
+.prcaption {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #ffffff;
+    opacity: 0;
+}
+
+.prcaption:hover {
+    opacity: 1;
+}
+
+.prbook {
+    display: block;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    margin-top: -40px;
+}
+
+.prbook-title {
+    position: relative;
+    display: inline-block;
+    max-width: 90%;
+    padding: 20px 0;
+    z-index: 77;
+    color: #454545;
+    letter-spacing: .5px;
+    border-bottom: 1px solid #bfbbbb;
+    border-top: 1px solid #bfbbbb;
+}
+
+.prcategorybutton{
+    background-color: #d4d4d4;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    text-align: left;
+}
