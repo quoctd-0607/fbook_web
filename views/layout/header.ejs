@@ -29,7 +29,7 @@
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <% if (typeof user != 'undefined' && typeof user.avatar !== 'undefined' && user.avatar) { %>
-                                        <img src="<%= user.avatar %>" class="img-circle img-thumbnail" alt="library" /><span class="badge active-user-notification count_Notifications" id="notification_<%=user.id%>"></span>
+                                        <img src="<%= user.avatar %>" class="avatar" alt="library" /><span class="badge active-user-notification count_Notifications" id="notification_<%=user.id%>"></span>
                                         <div class="hidden" id="get-user-id"><%= user.id%></div>
                                     <% }
                                     else { %>

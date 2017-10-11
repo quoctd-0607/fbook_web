@@ -32,7 +32,7 @@
                                                             </div>
                                                         </div>
                                                     <% } %>
-                                                    <%if (data.type == configs.notification.cancle) { %>
+                                                    <%if (data.type == configs.notification.cancel) { %>
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
@@ -43,7 +43,7 @@
                                                                     <h4 class="show text-danger pull-right"><span class=""><%= data.created_at %></span></h4>
                                                                     <a href="#" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-eamil-box"><%= data.user_send.name %> [<%= data.user_send.email %>]</h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>">cancle</span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>">cancel</span>
                                                                         <p class="notification-p">Cancel book request: <%= data.book.title %></p>
                                                                     </a>
                                                                 </div>
@@ -178,7 +178,7 @@
                                                             </div>
                                                         </div>
                                                     <% } %>
-                                                    <%if (data.type == configs.notification.cancle) { %>
+                                                    <%if (data.type == configs.notification.cancel) { %>
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
@@ -189,7 +189,7 @@
                                                                     <h4 class="show text-danger pull-right"><span class=""><%= data.created_at %></span></h4>
                                                                     <a href="#" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-eamil-box"><%= data.user_send.name %> [<%= data.user_send.email %>]</h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>">cancle</span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>">cancel</span>
                                                                         <p class="notification-p">Cancel book request: <%= data.book.title %></p>
                                                                     </a>
                                                                 </div>
@@ -343,7 +343,7 @@
                                                     </div>
                                                 </div>
                                             <% } %>
-                                            <%if (data.type == configs.notification.cancle) { %>
+                                            <%if (data.type == configs.notification.cancel) { %>
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">

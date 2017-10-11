@@ -23,6 +23,11 @@
                                 <img src="<%= image.web.medium_path %>" alt="library">
                             </div>
                             <% }) %>
+                            <% if (data.item.media.length == 1) { %>
+                                <div class="book_item">
+                                    <img src="<%= data.item.media[0].web.medium_path %>" alt="library">
+                                </div>
+                            <% } %>
                         </div>
                     <% } else { %>
                         <div class="book-list">
