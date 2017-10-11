@@ -179,7 +179,7 @@ Book.cancel = function (data) {
     },
     function() {
         if (typeof(access_token) === 'undefined' || typeof(user) === 'undefined') {
-            showNotify('danger', 'Cancle fail, Please login to continue', {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
+            showNotify('danger', 'Cancel fail, Please login to continue', {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
 
             return false;
         }
@@ -200,10 +200,10 @@ Book.cancel = function (data) {
             data: body
         }).done(function () {
             window.location.reload();
-            showNotify('success', 'Cancle waiting success', {icon: 'glyphicon glyphicon-ok'}, {delay: 1000});
+            showNotify('success', 'Cancel waiting success', {icon: 'glyphicon glyphicon-ok'}, {delay: 1000});
         }).fail(function () {
             window.location.reload();
-            showNotify('danger', 'Cancle waiting errors', {icon: 'glyphicon glyphicon-remove'}, {delay: 1000});
+            showNotify('danger', 'Cancel waiting errors', {icon: 'glyphicon glyphicon-remove'}, {delay: 1000});
         });
     });
 };

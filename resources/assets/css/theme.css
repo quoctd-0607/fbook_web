@@ -392,11 +392,11 @@
 }
 
 .category-item.yellow .category_icon {
-    background-color: #fec826;
+    background-color: #32b73b;
 }
 
 .category-item.yellow a:hover {
-    background-color: #fec826;
+    background-color: #32b73b;
     color: #ffffff;
 }
 
@@ -790,7 +790,26 @@
 }
 
 .badge-notify {
-   background:red;
-   position:absolute;
-   top:0px;
+    background: red;
+    position: absolute;
+    top: 7px;
+}
+
+.img-owner-detail {
+    width: 50px !important;
+    height: 50px;
+}
+
+.avatar {
+    display: inline-block;
+    border-radius: 50% !important;
+    height: 70px;
+    width: 70px;
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
 }
