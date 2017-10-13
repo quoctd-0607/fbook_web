@@ -20,6 +20,7 @@ router.get('/', function(req, res, next) {
 
                     if (data.hasOwnProperty('access_token')) {
                         req.session.access_token = data.access_token;
+                        req.session.refresh_token = data.refresh_token;
                         request({
                             url: req.configs.api_base_url + 'user-profile',
                             headers: objectHeaders.headers({'Authorization': data.access_token})
