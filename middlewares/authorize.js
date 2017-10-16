@@ -1,6 +1,7 @@
 var request = require('request');
 var express = require('express');
 var session = require('express-session');
+var objectHeaders = require('../helpers/headers');
 var app = express();
 
 module.exports = {
@@ -13,6 +14,7 @@ module.exports = {
 
         res.locals.user = req.session.user;
         res.locals.access_token = req.session.access_token;
+        res.locals.refresh_token = req.session.refresh_token;
 
         next();
     }

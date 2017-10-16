@@ -188,6 +188,7 @@ router.get('/my_profile', authorize.isAuthenticated, function(req, res, next) {
                 pageTitle: 'My profile',
                 categories: results.categories,
                 interestedCategoryIds: interestedCategoryIds,
+                officeId: results.user.item.office_id,
                 categoryIds: categoryIds,
                 userId: results.user.item.id,
                 readingBooks: results.readingBooks,
@@ -236,6 +237,10 @@ router.get('/my_books', authorize.isAuthenticated, function (req, res, next) {
 });
 
 router.get('/:id', authorize.isAuthenticated, function(req, res, next) {
+    if (typeof req.session.user !== 'undefined' && req.session.user.id == req.params.id) {
+        res.redirect('my_profile');
+    }
+
     var pageReading = req.query.pageReading ? req.query.pageReading : 1;
     var pageWaiting = req.query.pageWaiting ? req.query.pageWaiting : 1;
     var pageDone = req.query.pageDone ? req.query.pageDone : 1;
@@ -402,6 +407,7 @@ router.get('/:id', authorize.isAuthenticated, function(req, res, next) {
                 categories: results.categories,
                 interestedCategoryIds: interestedCategoryIds,
                 categoryIds: categoryIds,
+                officeId: results.user.item.office_id,
                 userId: results.user.item.id,
                 readingBooks: results.readingBooks,
                 doneBooks: results.doneBooks,

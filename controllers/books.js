@@ -325,7 +325,7 @@ router.get('/:id', localSession, function (req, res, next) {
     });
 });
 
-router.get('/category/:category_id', function (req, res, next) {
+router.get('/category/:category_id', localSession, function (req, res, next) {
     req.checkParams('category_id', 'Invalid category').notEmpty().isInt();
 
     var page = req.query.page ? req.query.page : 1;
@@ -401,7 +401,7 @@ router.get('/category/:category_id', function (req, res, next) {
     });
 });
 
-router.post('/review/:id', function (req, res, next) {
+router.post('/review/:id', authorize.isAuthenticated, function (req, res, next) {
     req.checkBody('content').notEmpty().len(1, 255);
 
     req.getValidationResult().then(function (result) {
@@ -442,7 +442,7 @@ router.post('/review/:id', function (req, res, next) {
     });
 });
 
-router.post('/booking/:id', function (req, res, next) {
+router.post('/booking/:id', authorize.isAuthenticated, function (req, res, next) {
     req.checkParams('id', 'Invalid book_id').notEmpty().isInt();
     req.checkBody('owner_id', 'Invalid owner_id').notEmpty().isInt();
     req.checkBody('status', 'Invalid status').notEmpty().isInt();

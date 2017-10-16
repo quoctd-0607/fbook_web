@@ -8,7 +8,7 @@
             <h1 class="text-white">I'm <%= data.name %></h1>
         </div>
         <div class="prheadline">
-            <div class="pravatar"><a href="/users" class=""><% if (typeof data.avatar != 'undefined' && data.avatar) { %>
+            <div class="pravatar"><a href="/users/my_profile" class=""><% if (typeof data.avatar != 'undefined' && data.avatar) { %>
                 <img class= "img-circle pravatar-image img-responsive" src="<%= data.avatar %>" alt="library">
                 <% } else { %>
                     <img class="img-circle pravatar-image img-responsive" src="/images/user_default.png" alt="library">
@@ -69,11 +69,11 @@
                             isTabActived = true;
                         %>
                             <li class="active">
-                                <a data-toggle="tab" href="#suggested_books">Suggested Books</a>
+                                <a data-toggle="tab" href="#suggested_books">Suggest Books</a>
                             </li>
                         <% } else { %>
                             <li>
-                                <a data-toggle="tab" href="#suggested_books">Suggested Books</a>
+                                <a data-toggle="tab" href="#suggested_books">Suggest Books</a>
                             </li>
                         <% } %>
                     <% } %>
@@ -113,6 +113,14 @@
                             <p class=""><%= data.code %></p>
                             <h4 class="">Position</h4>
                             <p class=""><%= data.position %></p>
+                            <h4 class="">Workspace</h4>
+                            <% if (typeof(offices.items) !== 'undefined' && typeof(data.office_id) !== 'undefined' && data.office_id && offices.items) { %>
+                                <% offices.items.forEach(function(office) { %>
+                                    <% if (office.id == data.office_id) { %>
+                                        <p class=""><%= office.area %></p>
+                                    <% } %>
+                                <% }) %>
+                            <% } %>
                             <h4 class="">Follower</h4>
                             <p class=""><a href="" data-toggle="modal" data-target="#followed"><%= follow.countFollowed %> people</a></p>
                             <h4 class="">Following</h4>
@@ -130,14 +138,9 @@
                                 <div class="modal-body">
                                     <% follow.followedBy.forEach(function (user) { %>
                                         <div class="row show-more">
-                                            <div class="col-sm-3"><a onclick="window.open('/users/<%= user.id %>')"><% if (typeof data.avatar != 'undefined' && user.avatar) { %>
-                                            <img class= "img-circle img-responsive" src="<%= user.avatar %>" alt="library">
-                                            <% } else { %>
-                                                <img class="img-circle pravatar-image img-responsive" src="/images/user_default.png" alt="library">
-                                            <% } %></a>
-                                            </div>
-                                            <div class="col-sm-9">
-                                            <p class=""><a href="" onclick="window.open('/users/<%= user.id %>')"><%- user.name %></a></p>
+                                            <div class="col-sm-12">
+                                                <p class=""><a href="" onclick="window.open('/users/<%= user.id %>')"><%- user.name %></a>
+                                                </p>
                                             </div>
                                         </div>
                                     <% }) %>
@@ -158,14 +161,9 @@
                                 <div class="modal-body">
                                     <% follow.following.forEach(function (user) { %>
                                         <div class="row show-more">
-                                            <div class="col-sm-3"><a onclick="window.open('/users/<%= user.id %>')"><% if (typeof data.avatar != 'undefined' && user.avatar) { %>
-                                            <img class= "img-circle img-responsive" src="<%= user.avatar %>" alt="library">
-                                            <% } else { %>
-                                                <img class="img-circle pravatar-image img-responsive" src="/images/user_default.png" alt="library">
-                                            <% } %></a>
-                                            </div>
-                                            <div class="col-sm-9">
-                                            <p class=""><a href="" onclick="window.open('/users/<%= user.id %>')"><%- user.name %></a></p>
+                                            <div class="col-sm-12">
+                                                <p class=""><a href="" onclick="window.open('/users/<%= user.id %>')"><%- user.name %></a>
+                                                </p>
                                             </div>
                                         </div>
                                     <% }) %>

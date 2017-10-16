@@ -35,6 +35,12 @@
 
 .pravatar-image {
     max-height: 166px;
+    border-radius: 50% !important;
+    height: 166px;
+    width: 166px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
 }
 
 .prpanel {
@@ -95,7 +101,7 @@
     width: 100%;
     position: absolute;
     text-align: center;
-    top: 50%;
+    top: 35%;
     margin-top: -40px;
 }
 
