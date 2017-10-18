@@ -71,6 +71,7 @@
     position: relative;
     overflow: hidden;
     max-height: 300px;
+    background-color: white;
 }
 
 .pr-a {
@@ -126,4 +127,11 @@
     display: block;
     width: 100%;
     text-align: left;
+}
+
+.follow-avatar {
+    padding: 1px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
 }
