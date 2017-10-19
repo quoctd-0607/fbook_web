@@ -132,13 +132,13 @@
                                     <% follow.followedBy.forEach(function (user) { %>
                                         <div class="row show-more">
                                             <div class="col-sm-3"><a onclick="window.open('/users/<%= user.id %>')"><% if (typeof data.avatar != 'undefined' && user.avatar) { %>
-                                            <img class= "img-circle img-responsive" src="<%= user.avatar %>" alt="library">
+                                            <img class= "img-circle img-responsive follow-avatar" src="<%= user.avatar %>" alt="library">
                                             <% } else { %>
-                                                <img class="img-circle pravatar-image img-responsive" src="/images/user_default.png" alt="library">
+                                                <img class="img-circle img-responsive follow-avatar" src="/images/user_default.png" alt="library">
                                             <% } %></a>
                                             </div>
                                             <div class="col-sm-9">
-                                            <p class=""><a href="" onclick="window.open('/users/<%= user.id %>')"><% user.name %></a></p>
+                                            <p class=""><a href="" onclick="window.open('/users/<%= user.id %>')"><%= user.name %></a></p>
                                             </div>
                                         </div>
                                     <% }) %>
@@ -160,13 +160,13 @@
                                     <% follow.following.forEach(function (user) { %>
                                         <div class="row show-more">
                                             <div class="col-sm-3"><a onclick="window.open('/users/<%= user.id %>')"><% if (typeof data.avatar != 'undefined' && user.avatar) { %>
-                                            <img class= "img-circle img-responsive" src="<%= user.avatar %>" alt="library">
+                                            <img class= "img-circle img-responsive follow-avatar" src="<%= user.avatar %>" alt="library">
                                             <% } else { %>
-                                                <img class="img-circle pravatar-image img-responsive" src="/images/user_default.png" alt="library">
+                                                <img class="img-circle img-responsive follow-avatar" src="/images/user_default.png" alt="library">
                                             <% } %></a>
                                             </div>
                                             <div class="col-sm-9">
-                                            <p class=""><a href="" onclick="window.open('/users/<%= user.id %>')"><% user.name %></a></p>
+                                            <p class=""><a href="" onclick="window.open('/users/<%= user.id %>')"><%= user.name %></a></p>
                                             </div>
                                         </div>
                                     <% }) %>
