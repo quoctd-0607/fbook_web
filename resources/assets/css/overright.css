@@ -216,8 +216,13 @@
 }
 
 .logo-image {
-    width: 50px;
-    height: 50px;
+    width: 68px;
+    height: 61px;
+}
+
+.icon-image {
+    width: 68px;
+    height: 61px;
 }
 
 .error-404-text {
