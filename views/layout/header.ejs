@@ -75,18 +75,15 @@
                         <li>
                             <a href="https://goo.gl/forms/5GLWPJNUGJJR2J2l2" target="_blank">Feedback</a>
                         </li>
-                        <li>
-                            <a href="https://wsm.framgia.vn/all-tools" target="_blank">More Tools</a>
-                        </li>
                         <% if (typeof(offices.items) !== 'undefined' && typeof(offices) !== 'undefined' && offices && offices.items) { %>
                             <li class="dropdown">
                                 <% offices.items.forEach(function(office) { %>
                                     <% if (typeof(officeId) !== 'undefined' && officeId == office.id) { %>
-                                        <a href="#" class="dropdown-toggle opacity-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Workspace <%= office.area %><span class="caret"></span></a>
+                                        <a href="#" class="dropdown-toggle opacity-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= office.area %><span class="caret"></span></a>
                                      <% } %>
                                 <% }) %>
                                 <% if (typeof(officeId) === 'undefined') { %>
-                                    <a href="#" class="dropdown-toggle opacity-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Workspace Framgia<span class="caret"></span></a>
+                                    <a href="#" class="dropdown-toggle opacity-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Framgia<span class="caret"></span></a>
                                 <% } %>
                                 <ul class="dropdown-menu">
                                     <li><a href="/home/all_office" class="office-dropdow-a">Framgia</a></li>
@@ -96,6 +93,16 @@
                                 </ul>
                             </li>
                         <% } %>
+                        <li>
+                            <a href="/users/fbook_app"><span><i class="icofont icofont-iphone nav-icon"></i></span>App</a>
+                        </li>
+                        <li data-toggle="tooltip" title="MORE TOOLS">
+                            <a href="https://wsm.framgia.vn/all-tools" target="_blank">
+                            <img src="/images/app_icon.png" class="icofont-fw nav-icon nav-moretoolicon"></a>
+                        </li>
+                        <li data-toggle="tooltip" title="NOTIFICATION">
+                            <a href=""> <span><i class="icofont icofont-notification nav-icon"></i></span></a>
+                        </li>
                         <% if (typeof user != 'undefined' && typeof user.name !== 'undefined' && user.name) { %>
                             <li>
                                 <a href="#"><%= user.name %></a>
