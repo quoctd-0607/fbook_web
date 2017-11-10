@@ -229,3 +229,16 @@ input:-webkit-autofill:focus {
 .notification-p {
     margin-bottom: 0px;
 }
+
+.btn-showmore {
+    min-width: 75px;
+    padding: 1px;
+}
+
+.morecontent span {
+    display: none;
+}
+
+.morelink {
+    display: block;
+}

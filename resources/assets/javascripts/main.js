@@ -121,6 +121,34 @@ jQuery(document).ready(function ($) {
     });
     $('.wow').parent('div').addClass('fix');
 
+    var showChar = 500;
+    var ellipsestext = "...";
+    var moretext = "<div class='btn btn-success btn-showmore'>Show more</div>";
+    var lesstext = "<div class='btn btn-success btn-showmore'>Show less</div>";
+    $('.more').each(function () {
+        var content = $(this).html();
+        if (content.length > showChar) {
+            var c = content.substr(0, showChar);
+            var h = content.substr(showChar, content.length - showChar);
+            var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+            $(this).html(html);
+        }
+    });
+
+    $('.morelink').click(function () {
+        if ($(this).hasClass("less")) {
+            $(this).removeClass("less");
+            $(this).html(moretext);
+        } else {
+            $(this).addClass("less");
+            $(this).html(lesstext);
+        }
+        $(this).parent().prev().toggle();
+        $(this).prev().toggle();
+
+        return false;
+    });
+
     if(typeof(access_token) !== 'undefined') {
         $( window ).on( "load", function() {
             console.log( "window loaded" );
@@ -139,7 +167,7 @@ jQuery(document).ready(function ($) {
                 if (response.message.code == 200) {
                     if(response.item.count == 0)
                     {
-                        $('.count_Notifications').html();
+                        $('.count_Notifications').html(0);
                     }
                     else
                     {

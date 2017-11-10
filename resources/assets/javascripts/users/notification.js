@@ -24,7 +24,9 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    $('.time_a_go').html(timeAGo($('.time_a_go').html()))
+    $('.time_a_go').each(function() {
+        $(this).html(timeAGo($(this).html()));
+    });
 });
 
 timeAGo = function ( date ) {
