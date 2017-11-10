@@ -3,6 +3,7 @@ var router = express.Router();
 var request = require('request');
 var objectHeaders = require('../helpers/headers');
 var authorize = require('../middlewares/authorize');
+var localSession = require('../middlewares/localSession');
 var async = require('async');
 
 router.get('/my_profile', authorize.isAuthenticated, function(req, res, next) {
@@ -234,6 +235,10 @@ router.get('/my_books', authorize.isAuthenticated, function (req, res, next) {
             res.redirect('home');
         }
     });
+});
+
+router.get('/fbook_app', localSession, function(req, res) {
+    res.render('users/fbook_app.ejs');
 });
 
 router.get('/:id', authorize.isAuthenticated, function(req, res, next) {
