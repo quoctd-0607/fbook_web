@@ -29,7 +29,7 @@
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <% if (typeof user != 'undefined' && typeof user.avatar !== 'undefined' && user.avatar) { %>
-                                        <img src="<%= user.avatar %>" class="avatar" alt="library" /><span class="badge active-user-notification count_Notifications" id="notification_<%=user.id%>"></span>
+                                        <img src="<%= user.avatar %>" class="avatar" alt="library" /><span class="badge active-user-notification"></span>
                                         <div class="hidden" id="get-user-id"><%= user.id%></div>
                                     <% }
                                     else { %>
@@ -39,9 +39,6 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="/users/my_profile"> <span><i class="icofont icofont-user"></i></span> Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="/notifications"> <span><i class="icofont icofont-notification"></i></span> Notifications</a><span class="badge active-notification count_Notifications" id="notification_icon_<%=user.id%>"></span>
                                     </li>
                                     <li>
                                         <a href="/books/add"> <span><i class="glyphicon glyphicon-share-alt"></i></span> Share books </a>
@@ -100,10 +97,25 @@
                             <a href="https://wsm.framgia.vn/all-tools" target="_blank">
                             <img src="/images/app_icon.png" class="icofont-fw nav-icon nav-moretoolicon"></a>
                         </li>
-                        <li data-toggle="tooltip" title="NOTIFICATION">
-                            <a href=""> <span><i class="icofont icofont-notification nav-icon"></i></span></a>
-                        </li>
                         <% if (typeof user != 'undefined' && typeof user.name !== 'undefined' && user.name) { %>
+                            <li data-toggle="tooltip" title="NOTIFICATION">
+                                <a href="#" class="dropdown-toggle notification_onclick_icon dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icofont icofont-notification nav-icon"></i>
+                                </a>
+                                <span class="badge active-notification count_Notifications" id="notification_<%=user.id%>"></span>
+                                <ul class="dropdown-menu dropdown-menu-notification">
+                                    <div class="arrow-up-border"></div>
+                                    <div class="arrow-up"></div>
+                                    <div class="notifi-popup clearfix">
+                                        <span class="text-color-noti notifi-headers">Notifications</span>
+                                        <input type="button" class="button-seen" onclick="return mark_read_all_notifications()" value="Mark All as Read">
+                                    </div>
+                                    <div id="box_dropdown_noti" class="scroll-dropdown-noti"></div>
+                                    <li>
+                                        <a href="/notifications" class="text-color-noti dropdown-notification-footer clearfix">view all</a>
+                                    </li>
+                                </ul>
+                            </li>
                             <li>
                                 <a href="#"><%= user.name %></a>
                             </li>
