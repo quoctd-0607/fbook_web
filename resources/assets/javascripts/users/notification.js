@@ -36,9 +36,17 @@ timeAGo = function ( date ) {
     var seconds = Math.floor(( Date.parse(new Date()) - Date.parse(date) ) / 1000 );
     interval = Math.floor( seconds / 86400 );
     if (interval > 30) {
-
         return date;
     }
+    if (interval == 1) {
+
+        return interval + ' day ago';
+    }
+    if (interval > 1) {
+
+        return interval + ' days ago';
+    }
+    interval = Math.floor( seconds / 3600 );
     if (interval == 1) {
 
         return interval + ' day ago';

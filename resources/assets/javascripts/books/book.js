@@ -633,3 +633,50 @@ function unapproveRequestWaiting(userId)
         });
     });
 }
+
+function removeRequestWaiting(userId)
+{
+    swal({
+        title: "Are you sure remove this request?",
+        type: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes",
+        closeOnConfirm: true
+    },
+    function() {
+        if (typeof(access_token) === 'undefined') {
+            showNotify('danger', 'Approve request fail, Please login to continue', {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
+
+            return false;
+        }
+
+        $.ajax({
+            url: API_PATH + 'books/approve/' + $('.hide-book').data('bookId'),
+            contentType: 'application/json',
+            dataType: 'json',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': access_token,
+            },
+            type: 'POST',
+            data: JSON.stringify({
+                item: {
+                    user_id: userId,
+                    key: 'remove_waiting'
+                }
+            }),
+        }).done(function (response) {
+            if (response.message.status) {
+                $('.approve-waiting-area-' + userId).html('');
+
+                showNotify('success', 'Request removed', {icon: 'glyphicon glyphicon-ok'}, {delay: 3000});
+            } else {
+                showNotify('danger', 'Remove request fail', {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
+            }
+        }).fail(function (error) {
+            showNotify('danger', error.responseJSON.message.description, {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
+        });
+    });
+}

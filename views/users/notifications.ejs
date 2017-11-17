@@ -12,7 +12,7 @@
                                 <div class="event-item wow fadeInRight">
                                     <% if (dataNoti && dataNoti.items.notification.data.length && dataNoti.items.notification.total) { %>
                                         <% dataNoti.items.notification.data.forEach(function(data) { %>
-                                            <%if (data.user_receive_id == user.id) { %>
+                                            <%if (data.user_receive_id == user.id && data.book != null) { %>
                                                 <%if (data.viewed == configs.notification.not_view) { %>
                                                     <%if (data.type == configs.notification.waiting) { %>
                                                         <div class="notificaiton-box noSeen">
@@ -327,7 +327,7 @@
                                 <div class="event-item wow fadeInRight">
                                     <% if (dataNoti && dataNoti.items.notificationFollow.data.length && dataNoti.items.notificationFollow.total) { %>
                                         <% dataNoti.items.notificationFollow.data.forEach(function(data) { %>
-                                            <%if (data.type == configs.notification.waiting) { %>
+                                            <%if (data.type == configs.notification.waiting && data.book != null) { %>
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
@@ -343,7 +343,7 @@
                                                     </div>
                                                 </div>
                                             <% } %>
-                                            <%if (data.type == configs.notification.cancel) { %>
+                                            <%if (data.type == configs.notification.cancel && data.book != null) { %>
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
@@ -359,7 +359,7 @@
                                                     </div>
                                                 </div>
                                             <% } %>
-                                            <%if (data.type == configs.notification.review) { %>
+                                            <%if (data.type == configs.notification.review && data.book != null) { %>
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
@@ -375,7 +375,7 @@
                                                     </div>
                                                 </div>
                                             <% } %>
-                                            <%if (data.type == configs.notification.returning) { %>
+                                            <%if (data.type == configs.notification.returning && data.book != null) { %>
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
@@ -391,7 +391,7 @@
                                                     </div>
                                                 </div>
                                             <% } %>
-                                            <%if (data.type == configs.notification.approve_returning) { %>
+                                            <%if (data.type == configs.notification.approve_returning && data.book != null) { %>
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
@@ -407,7 +407,7 @@
                                                     </div>
                                                 </div>
                                             <% } %>
-                                            <%if (data.type == configs.notification.approve_waiting) { %>
+                                            <%if (data.type == configs.notification.approve_waiting && data.book != null) { %>
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
@@ -423,7 +423,7 @@
                                                     </div>
                                                 </div>
                                             <% } %>
-                                            <%if (data.type == configs.notification.add_owner) { %>
+                                            <%if (data.type == configs.notification.add_owner && data.book != null) { %>
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
@@ -439,7 +439,7 @@
                                                     </div>
                                                 </div>
                                             <% } %>
-                                            <%if (data.type == configs.notification.remove_owner) { %>
+                                            <%if (data.type == configs.notification.remove_owner && data.book != null) { %>
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
