@@ -456,7 +456,8 @@ router.post('/booking/:id', authorize.isAuthenticated, function (req, res, next)
                 item: {
                     book_id: req.params.id,
                     owner_id: req.body.owner_id,
-                    status: req.body.status
+                    status: req.body.status,
+                    days_to_read: req.body.days_to_read
                 }
             };
             request.post({

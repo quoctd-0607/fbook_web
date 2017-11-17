@@ -18,6 +18,9 @@
                         </div></h4>
                         <input id="rating-book" name="star" class="rating" data-min="0" data-max="5" value=<%= book.avg_star %> disabled="true" data-step="0.01" data-size="xs">
                         <div class="text-danger"><%= book.office.name %></div>
+                        <% if (pageName == 'pageReading') { %>
+                            <div class="">Time started reading: <span class="time_a_go"><%= book.pivot.created_at %></span></div>
+                        <% } %>
                     </div>
                 </div>
                 <div class="hidden-md hidden-lg text-center"><p class="success"><%= book.title %></p></div>
