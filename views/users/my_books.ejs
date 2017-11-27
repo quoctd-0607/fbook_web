@@ -21,12 +21,12 @@
                     <div class="category-item well yellow">
                         <div class="media">
                             <div class="media-left">
-
                                 <% if (book.image !== null) { %>
                                     <img src="<%= book.image.web.thumbnail_path %>" class="media-object" alt="<%= book.title %>">
                                 <% } else { %>
                                     <img src="/images/book_thumb_default.jpg" class="media-object" alt="<%= book.title %>">
                                 <% } %>
+                                <a href="/books/<%= book.id %>/edit" class="text-primary edit-book">Edit</span></a>
                             </div>
                             <div class="media-body">
                                 <% if (typeof (book.title) != 'undefined' && book.title) { %>
@@ -45,7 +45,6 @@
                                 <div class="space-10"></div>
                                 <p>
                                     <%= book.overview %>
-
                                 </p>
                                 <div class="pull-right">
                                     <a href="/books/<%= book.id %>" class="text-primary pull-right">View detail</a>

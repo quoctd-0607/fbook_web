@@ -19,6 +19,73 @@ Book.checkAuthorized = function () {
     return true;
 };
 
+Book.editBook = function () {
+    var scope = this;
+    if (!scope.checkAuthorized()) return false;
+
+    if (!$('#form-edit-book').valid()) {
+        return false;
+    }
+
+    $('.loader').show();
+    var formData = new FormData();
+    formData.append('title', $('#title').val().trim());
+    formData.append('author', $('#author').val().trim());
+    formData.append('category_id', $('#category').val().trim());
+    formData.append('office_id', $('#office').val().trim());
+    formData.append('publish_date', $('#publish_date').val());
+    formData.append('description', $('#description').val().trim());
+    formData.append('code', $('.edit_book_code').data('edit-book-code'));
+    //Attach file
+    if ($("[name='image']")[0].files[0]) {
+        for (var i = 0; i < $("[name='image']").length; i++) {
+            formData.append('medias[' + i + '][file]', $("[name='image']")[i].files[0]);
+            if (i === 0 && $('.total-image').attr('key') == 0) {
+                formData.append('medias[' + i + '][type]', 1);
+            } else {
+                formData.append('medias[' + i + '][type]', 0);
+            }
+        }
+    }
+
+    for (var i = 0; i < $("[name='edit-image-book']").length; i++) {
+        if ($("[name='edit-image-book']")[i].files[0]) {
+            formData.append('update[' + i + '][file]', $("[name='edit-image-book']")[i].files[0]);
+            formData.append('update[' + i + '][id]', $("[name='edit-image-book']").eq(i).attr('key'));
+            formData.append('update[' + i + '][type]', $("[name='edit-image-book']").eq(i).data('type'));
+        }
+    }
+
+    formData.append('_method', 'PUT');
+
+    $.ajax({
+        url: API_PATH + 'books/' + $('.edit_book_id').data('edit-book-id') + '/request_update',
+        headers: {'Accept': 'application/json', 'Authorization': access_token},
+        method: 'POST',
+        contentType: false,
+        cache: false,
+        processData:false,
+        data: formData
+    }).done(function (res) {
+        if (res.message.status && res.message.code === 200) {
+            window.location.href = '/home';
+        }
+    }).fail(function (errors) {
+        $('.loader').hide();
+        var msg = '';
+        console.log(errors.responseJSON);
+        if (typeof(errors.responseJSON.message.description) !== 'undefined') {
+            errors.responseJSON.message.description.forEach(function (err) {
+                msg += err;
+            });
+        } else {
+            msg = 'Can\'t load more';
+        }
+
+        showNotify('danger', msg, {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
+    });
+};
+
 Book.loadMoreBook = function (data) {
     var scope = this;
     var url = data.field !== undefined ?

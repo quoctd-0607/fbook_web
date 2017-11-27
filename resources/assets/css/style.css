@@ -381,3 +381,90 @@ input:-webkit-autofill:focus {
 .nav-moretoolicon {
     margin-top: -3px;
 }
+
+.edit-book {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+
+.edit-book label {
+    color: black;
+    font-size: 1.1em;
+}
+
+.edit-book .left-block-edit {
+    width: 35%;
+    height: 100%;
+    display: inline-block;
+    float: left;
+    padding: 15px 15px 15px 15px;
+}
+
+.edit-book .left-block-edit .propic-edit {
+    margin-bottom: 20px;
+    display: inline-block;
+    position: relative;
+}
+
+.edit-book .left-block-edit .propic-edit img {
+    height: 200px;
+    max-width: 500px;
+    border-radius: 6px;
+    float: left;
+}
+
+.edit-book .left-block-edit .propic-edit .upload-picture {
+    display: none;
+}
+
+.edit-book .left-block-edit .propic-edit #upload-pic {
+    display: none;
+}
+
+.edit-book .left-block-edit .propic-edit a.upload-new-pic {
+    opacity: 0;
+    z-index: 2;
+    display: inline-block;
+    font-size: 1.2em;
+    float: left;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 60px;
+    width: 100%;
+    padding: 20px 20px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.edit-book .left-block-edit .propic-edit a.upload-new-pic .fa-camera {
+    margin-right: 20px;
+}
+
+
+.edit-book .left-block-edit .propic-edit:hover .upload-new-pic {
+    opacity: 1;
+    transition: all .5s ease;
+}
+
+.edit-book .left-block-edit .propic-edit:hover:after {
+    opacity: 1;
+}
+
+.edit-book .left-block-edit .propic-edit:after {
+    background-color: rgba(0, 0, 0, 0.5);
+    content: "";
+    transition: all .3s ease;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    opacity: 0;
+}
