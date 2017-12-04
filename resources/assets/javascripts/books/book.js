@@ -21,6 +21,7 @@ Book.checkAuthorized = function () {
 
 Book.editBook = function () {
     var scope = this;
+    var countImage = $("[name='edit-image-book']").length;
     if (!scope.checkAuthorized()) return false;
 
     if (!$('#form-edit-book').valid()) {
@@ -45,6 +46,7 @@ Book.editBook = function () {
             } else {
                 formData.append('medias[' + i + '][type]', 0);
             }
+            countImage ++;
         }
     }
 
@@ -57,33 +59,38 @@ Book.editBook = function () {
     }
 
     formData.append('_method', 'PUT');
+    if (countImage <= 3) {
+        $.ajax({
+            url: API_PATH + 'books/' + $('.edit_book_id').data('edit-book-id') + '/request_update',
+            headers: {'Accept': 'application/json', 'Authorization': access_token},
+            method: 'POST',
+            contentType: false,
+            cache: false,
+            processData:false,
+            data: formData
+        }).done(function (res) {
+            if (res.message.status && res.message.code === 200) {
+                window.location.href = '/home';
+            }
+        }).fail(function (errors) {
+            $('.loader').hide();
+            var msg = '';
+            console.log(errors.responseJSON);
+            if (typeof(errors.responseJSON.message.description) !== 'undefined') {
+                errors.responseJSON.message.description.forEach(function (err) {
+                    msg += err;
+                });
+            } else {
+                msg = 'Can\'t load more';
+            }
 
-    $.ajax({
-        url: API_PATH + 'books/' + $('.edit_book_id').data('edit-book-id') + '/request_update',
-        headers: {'Accept': 'application/json', 'Authorization': access_token},
-        method: 'POST',
-        contentType: false,
-        cache: false,
-        processData:false,
-        data: formData
-    }).done(function (res) {
-        if (res.message.status && res.message.code === 200) {
-            window.location.href = '/home';
-        }
-    }).fail(function (errors) {
+            showNotify('danger', msg, {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
+        });
+    } else {
         $('.loader').hide();
-        var msg = '';
-        console.log(errors.responseJSON);
-        if (typeof(errors.responseJSON.message.description) !== 'undefined') {
-            errors.responseJSON.message.description.forEach(function (err) {
-                msg += err;
-            });
-        } else {
-            msg = 'Can\'t load more';
-        }
+        showNotify('danger', 'number of images no larger than 3', {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
+    }
 
-        showNotify('danger', msg, {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
-    });
 };
 
 Book.loadMoreBook = function (data) {
@@ -738,6 +745,47 @@ function removeRequestWaiting(userId)
             if (response.message.status) {
                 $('.approve-waiting-area-' + userId).html('');
 
+                showNotify('success', 'Request removed', {icon: 'glyphicon glyphicon-ok'}, {delay: 3000});
+            } else {
+                showNotify('danger', 'Remove request fail', {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
+            }
+        }).fail(function (error) {
+            showNotify('danger', error.responseJSON.message.description, {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
+        });
+    });
+}
+
+function removeRequestUpdateBook(requestId)
+{
+    swal({
+        title: "Are you sure remove this request?",
+        type: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes",
+        closeOnConfirm: true
+    },
+    function() {
+        if (typeof(access_token) === 'undefined') {
+            showNotify('danger', 'Approve request fail, Please login to continue', {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
+
+            return false;
+        }
+
+        var formData = new FormData();
+        formData.append('_method', 'DELETE');
+
+        $.ajax({
+            url: API_PATH + 'admin/books/delete-request-edit/' + requestId,
+            headers: {'Accept': 'application/json', 'Authorization': access_token},
+            method: 'POST',
+            contentType: false,
+            cache: false,
+            processData:false,
+            data: formData
+        }).done(function (response) {
+            if (response.message.status) {
+                window.location.reload();
                 showNotify('success', 'Request removed', {icon: 'glyphicon glyphicon-ok'}, {delay: 3000});
             } else {
                 showNotify('danger', 'Remove request fail', {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});

@@ -212,7 +212,7 @@ router.get('/my_profile', authorize.isAuthenticated, function(req, res, next) {
 });
 
 router.get('/my_books', authorize.isAuthenticated, function (req, res, next) {
-    var pageMyBook = req.query.pageMyBook ? req.query.pageMyBook : 1;
+    var pageMyBook = req.query.page ? req.query.page : 1;
 
     request({
         url: req.configs.api_base_url + 'users/book/' + req.session.user.id + '/sharing?page=' + pageMyBook,
