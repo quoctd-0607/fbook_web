@@ -71,49 +71,23 @@
                     </div>
                 </div>
                 <% }) %>
-                <% if (books.items.total > books.items.per_page) { %>
-                    <div class="col-xs-12">
-                        <div class="shop-pagination pull-right">
-                            <ul class="pagination">
-                                <% if (Math.ceil(books.items.total / books.items.per_page) > 1
-                                && books.items.current_page !== 1) { %>
-                                    <li><a href="<%= currentUrl %>?<%= pageName %>=1">First</a></li>
-                                <% } else { %>
-                                    <li class="disabled"><a href="javascript:void(0)">First</a></li>
-                                <% } %>
-                                <% if (books.items.prev_page) { %>
-                                    <li><a href="<%= currentUrl %>?<%= pageName %>=<%= books.items.prev_page %>">Previous</a></li>
-                                <% } else { %>
-                                    <li class="disabled"><a href="javascript:void(0)">Previous</a></li>
-                                <% } %>
-                                <% for (var i=0; i< Math.ceil(books.items.total / books.items.per_page); i++) { %>
-                                    <% if (books.items.current_page == (i + 1)) { %>
-                                        <li class="active"><a href="javascript:void(0)"><%= i+ 1 %></a></li>
-                                    <% } else { %>
-                                        <li><a href="<%= currentUrl %>?<%= pageName %>=<%= i + 1 %>"><%= i+ 1 %></a></li>
-                                    <% } %>
-                                <% } %>
-                                <% if (books.items.next_page) { %>
-                                    <li><a href="<%= currentUrl %>?<%= pageName %>=<%= books.items.next_page %>">Next</a></li>
-                                <% } else { %>
-                                    <li class="disabled"><a href="javascript:void(0)">Next</a></li>
-                                <% } %>
-                                <% if (Math.ceil(books.items.total / books.items.per_page) > 1
-                                && books.items.current_page !== Math.ceil(books.items.total / books.items.per_page)) { %>
-                                    <li><a href="<%= currentUrl %>?<%= pageName %>=<%= Math.ceil(books.items.total / books.items.per_page) %>">Last</a></li>
-                                <% } else { %>
-                                    <li class="disabled"><a href="javascript:void(0)">Last</a></li>
-                                <% } %>
-                            </ul>
-                         </div>
-                    </div>
-                <% } %>
+
                 <% } else { %>
                     <h5 class="text-center">No book in section </h5>
                 <% } %>
             </div>
         </div>
     </div>
+    <% if (books.items.total > books.items.per_page) { %>
+        <div class="space-20"></div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="shop-pagination pull-right">
+                    <ul id="pagination-book" class="pagination-sm pagination"></ul>
+                </div>
+            </div>
+        </div>
+    <% } %>
 </section>
 
 <%- contentFor('appCss') %>
@@ -128,3 +102,17 @@
 <script src="/bower/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/javascripts/users/follow.js" type="text/javascript"></script>
 <script src="/javascripts/books/book.js" type="text/javascript"></script>
+<script src="/javascripts/paginations/paginate.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var totalPages = Math.ceil("<%= books.items.total %>"/"<%= books.items.per_page %>");
+    var currentPage = parseInt("<%= books.items.current_page %>");
+    var nextPage = "<%= books.items.next_page %>"
+
+    if (totalPages) {
+        Paginate.book({
+            totalPages: totalPages,
+            currentPage: currentPage,
+            nextPage: nextPage
+        });
+    }
+</script>

@@ -13,6 +13,7 @@ var configs = require('./configs/config');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var books = require('./routes/books');
+var admin = require('./routes/admin');
 var notifications = require('./routes/notifications')
 var authentication = require('./routes/authentication');
 var request = require('request');
@@ -48,6 +49,7 @@ index(app);
 users(app);
 books(app);
 notifications(app);
+admin(app);
 authentication.login(app);
 authentication.callback(app);
 authentication.logout(app);

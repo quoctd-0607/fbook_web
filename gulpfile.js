@@ -13,6 +13,10 @@ var img = [
     'resources/assets/images/**'
 ];
 
+var doc = [
+    'resources/assets/documents/**'
+];
+
 gulp.task('css', function () {
     return gulp.src(css)
     .pipe(gulp.dest('public/css/'));
@@ -33,4 +37,9 @@ gulp.task('js', function () {
     .pipe(gulp.dest('public/javascripts/'));
 });
 
-gulp.task('default', ['css', 'font', 'js', 'img']);
+gulp.task('doc', function () {
+    return gulp.src(doc)
+    .pipe(gulp.dest('public/documents/'));
+});
+
+gulp.task('default', ['css', 'font', 'js', 'img', 'doc']);

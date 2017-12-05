@@ -366,7 +366,7 @@ input:-webkit-autofill:focus {
 
 .scroll-dropdown-noti {
     display: block;
-    height: 300px;
+    max-height: 300px;
     overflow: auto;
 }
 
@@ -467,4 +467,13 @@ input:-webkit-autofill:focus {
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
     opacity: 0;
+}
+
+.modal-text {
+    font-family: fantasy !important;
+    color: #000 !important;
+}
+
+.theme {
+    color: red;
 }

@@ -49,6 +49,11 @@
                                     <li>
                                         <a href="/users/my_books"> <span><i class="icofont icofont-read-book"></i></span> My Books</a>
                                     </li>
+                                     <% if(user.role == 'admin') { %>
+                                        <li>
+                                            <a href="/admin/waiting-request-edit-book"> <span><i class="icofont icofont-ui-settings"></i></span> Approve requests edit book</a>
+                                        </li>
+                                    <% } %>
                                     <li>
                                         <a href="/logout"> <span><i class="icofont icofont-logout"></i></span> Log Out</a>
                                     </li>

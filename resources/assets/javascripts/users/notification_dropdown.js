@@ -126,8 +126,6 @@ $(document).ready(function() {
                 var script = document.createElement("script");
                 script.src = 'javascripts/users/notification.js';
                 h.appendChild(script);
-            } else {
-                showNotify('danger', "Data Invalid", {icon: "glyphicon glyphicon-remove"}, {delay: 1000});
             }
         }).fail(function (error) {
             showNotify('danger', "Data Invalid", {icon: "glyphicon glyphicon-remove"}, {delay: 1000});
