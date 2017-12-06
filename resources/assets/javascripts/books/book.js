@@ -460,7 +460,7 @@ $('.add-owner').on('click', function(e) {
     var bookOffice = parseInt($(this).attr('data-office-id'));
     if (user.office_id && bookOffice !== user.office_id) {
         swal({
-            title: "The book is not in the your workspace. Are you want to share book?",
+            title: "The book is not in the your workspace. Are you sure you want to share this book ?",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
@@ -471,7 +471,7 @@ $('.add-owner').on('click', function(e) {
         });
     } else {
         swal({
-            title: "Are you sure add owner this book?",
+            title: "Are you sure you want to share this book?",
             type: "info",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
@@ -549,7 +549,7 @@ $('.btn-action').on('click', '.remove-owner', function (e) {
         }).done(function (response) {
             if (response.message.status) {
                 $('.owner-image' + user.id).remove();
-                $('.remove-owner').removeClass().addClass('btn btn-primary btn-sm add-owner').html("<i class='glyphicon glyphicon-plus'></i> Add owner this book");
+                $('.remove-owner').removeClass().addClass('btn btn-primary btn-sm add-owner').html("<i class='glyphicon glyphicon-plus'></i> I have this book ");
                 showNotify('success', 'Remove owner success', {icon: 'glyphicon glyphicon-ok'}, {delay: 3000});
             } else {
                 showNotify('danger', 'Remove owner fail', {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
