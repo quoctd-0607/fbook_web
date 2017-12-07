@@ -39,6 +39,9 @@ var config = {
         "cancel":' cancel',
         "returning": 'returning',
         "returned": 'returned',
+        "request_edit_book": 'request_edit_book',
+        "approve_request_update_book": 'approve_edit_book',
+        "delete_request_update_book": 'delete_edit_book',
         "viewed ": true,
         "not_view": false
     },

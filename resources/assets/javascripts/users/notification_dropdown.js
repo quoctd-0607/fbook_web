@@ -103,6 +103,47 @@ $(document).ready(function() {
                             + data.user_send.name + "</span>" + "Return books successfully: " + data.book.title + "</p>";
                         }
                     htmlModel += "<span class='text-color-noti label label-warning lbl-waiting" + data.user_send.id + "'>approve_returning</span>";
+                    } else if (data.type == configs.notification.request_edit_book) {
+                            htmlModel += "<a href='/admin/waiting-request-edit-book"
+                            + "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='"
+                            + data.id + "'>";
+                        if (data.book.title.length > showChar) {
+                            var content = data.book.title.substr(0, showChar);
+                            htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
+                            + data.user_send.name + " </span>" + "Want to edit book: " + content + ellipsestext + "</p>";
+                        } else {
+                            htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
+                            + data.user_send.name + "</span>" + "Want to edit book: " + data.book.title + "</p>";
+                        }
+                    htmlModel += "<span class='text-color-noti label label-warning lbl-waiting" + data.user_send.id + "'>request edit book</span>";
+                    } else if (data.type == configs.notification.approve_request_update_book) {
+                            htmlModel += "<a href='#"
+                            + "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='"
+                            + data.id + "'>";
+                        if (data.book.title.length > showChar) {
+                            var content = data.book.title.substr(0, showChar);
+                            htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
+                            + data.user_send.name + " </span>" + "Approve your request edit book: " + content + ellipsestext + "</p>";
+                        } else {
+                            htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
+                            + data.user_send.name + "</span>" + "Approve your request edit book: " + data.book.title + "</p>";
+                        }
+                    htmlModel += "<span class='text-color-noti label label-warning lbl-waiting" + data.user_send.id
+                    + "'>approve request edit book</span>";
+                    } else if (data.type == configs.notification.delete_request_update_book) {
+                            htmlModel += "<a href='#"
+                            + "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='"
+                            + data.id + "'>";
+                        if (data.book.title.length > showChar) {
+                            var content = data.book.title.substr(0, showChar);
+                            htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
+                            + data.user_send.name + " </span>" + "Unapprove your request edit book: " + content + ellipsestext + "</p>";
+                        } else {
+                            htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
+                            + data.user_send.name + "</span>" + "Unapprove your request edit book: " + data.book.title + "</p>";
+                        }
+                    htmlModel += "<span class='text-color-noti label label-warning lbl-waiting" + data.user_send.id
+                    + "'>unapprove request edit books</span>";
                     } else if (data.type == configs.notification.approve_waiting) {
                             htmlModel += "<a href='/books/" + data.book.id
                             + "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='"
@@ -115,7 +156,8 @@ $(document).ready(function() {
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
                             + data.user_send.name + "</span>" + "Accept your request waiting book: " + data.book.title + "</p>";
                         }
-                    htmlModel += "<span class='text-color-noti label label-warning lbl-waiting" + data.user_send.id + "'>approve_waiting</span>";
+                    htmlModel += "<span class='text-color-noti label label-warning lbl-waiting" + data.user_send.id
+                    + "'>approve_waiting</span>";
                     }
                     htmlModel += "<p class='show text-danger pull-right time-ago-notification-dropdown'><span class='time_a_go'>"
                     + data.created_at + "</span></p></a></div></div>";

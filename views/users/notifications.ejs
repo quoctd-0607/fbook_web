@@ -140,6 +140,60 @@
                                                             </div>
                                                         </div>
                                                     <% } %>
+                                                    <%if (data.type == configs.notification.request_edit_book) { %>
+                                                        <div class=" notificaiton-box noSeen">
+                                                            <div class="media click-notification">
+                                                                <div class="media-left">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <div class="space-10"></div>
+                                                                    <h4 class="show text-danger pull-right"><span class="time_a_go"><%= data.created_at %></span></h4>
+                                                                    <a href="/admin/waiting-request-edit-book" class="notification_onclick" data-notification-id="<%= data.id %>">
+                                                                        <h4 class="media-heading user-eamil-box"><%= data.user_send.name %> [<%= data.user_send.email %>]</h4>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>">Request edit book</span>
+                                                                        <p class="notification-p">Want to edit book: <%= data.book.title %></p>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <% } %>
+                                                    <%if (data.type == configs.notification.approve_request_update_book) { %>
+                                                        <div class=" notificaiton-box noSeen">
+                                                            <div class="media click-notification">
+                                                                <div class="media-left">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <div class="space-10"></div>
+                                                                    <h4 class="show text-danger pull-right"><span class="time_a_go"><%= data.created_at %></span></h4>
+                                                                    <a href="/admin/waiting-request-edit-book" class="notification_onclick" data-notification-id="<%= data.id %>">
+                                                                        <h4 class="media-heading user-eamil-box"><%= data.user_send.name %> [<%= data.user_send.email %>]</h4>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>">approve request edit book</span>
+                                                                        <p class="notification-p">Approve your request edit book: <%= data.book.title %></p>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <% } %>
+                                                    <%if (data.type == configs.notification.delete_request_update_book) { %>
+                                                        <div class=" notificaiton-box noSeen">
+                                                            <div class="media click-notification">
+                                                                <div class="media-left">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <div class="space-10"></div>
+                                                                    <h4 class="show text-danger pull-right"><span class="time_a_go"><%= data.created_at %></span></h4>
+                                                                    <a href="/admin/waiting-request-edit-book" class="notification_onclick" data-notification-id="<%= data.id %>">
+                                                                        <h4 class="media-heading user-eamil-box"><%= data.user_send.name %> [<%= data.user_send.email %>]</h4>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>">unapprove request edit book</span>
+                                                                        <p class="notification-p">Unapprove your request edit book: <%= data.book.title %></p>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <% } %>
                                                     <%if (data.type == configs.notification.unapprove_waiting) { %>
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
@@ -281,6 +335,60 @@
                                                                         <h4 class="media-heading user-eamil-box"><%= data.user_send.name %> [<%= data.user_send.email %>]</h4>
                                                                         <span class="label label-warning lbl-waiting<%= user.id %>">approve waiting</span>
                                                                         <p class="notification-p">Accept your request waiting book: <%= data.book.title %></p>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <% } %>
+                                                    <%if (data.type == configs.notification.request_edit_book) { %>
+                                                        <div class=" notificaiton-box seen">
+                                                            <div class="media click-notification">
+                                                                <div class="media-left">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <div class="space-10"></div>
+                                                                    <h4 class="show text-danger pull-right"><span class="time_a_go"><%= data.created_at %></span></h4>
+                                                                    <a href="admin/waiting_approve_edit_book" class="notification_onclick" data-notification-id="<%= data.id %>">
+                                                                        <h4 class="media-heading user-eamil-box"><%= data.user_send.name %> [<%= data.user_send.email %>]</h4>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>">approve waiting</span>
+                                                                        <p class="notification-p">Accept your request waiting edit book: <%= data.book.title %></p>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <% } %>
+                                                    <%if (data.type == configs.notification.approve_request_update_book) { %>
+                                                        <div class=" notificaiton-box noSeen">
+                                                            <div class="media click-notification">
+                                                                <div class="media-left">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <div class="space-10"></div>
+                                                                    <h4 class="show text-danger pull-right"><span class="time_a_go"><%= data.created_at %></span></h4>
+                                                                    <a href="/admin/waiting-request-edit-book" class="notification_onclick" data-notification-id="<%= data.id %>">
+                                                                        <h4 class="media-heading user-eamil-box"><%= data.user_send.name %> [<%= data.user_send.email %>]</h4>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>">approve request edit book</span>
+                                                                        <p class="notification-p">Accept your request edit book: <%= data.book.title %></p>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <% } %>
+                                                    <%if (data.type == configs.notification.delete_request_update_book) { %>
+                                                        <div class=" notificaiton-box noSeen">
+                                                            <div class="media click-notification">
+                                                                <div class="media-left">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object w-70-h-70" alt="library">
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <div class="space-10"></div>
+                                                                    <h4 class="show text-danger pull-right"><span class="time_a_go"><%= data.created_at %></span></h4>
+                                                                    <a href="/admin/waiting-request-edit-book" class="notification_onclick" data-notification-id="<%= data.id %>">
+                                                                        <h4 class="media-heading user-eamil-box"><%= data.user_send.name %> [<%= data.user_send.email %>]</h4>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>">unapprove request edit book</span>
+                                                                        <p class="notification-p">Unapprove your request edit book: <%= data.book.title %></p>
                                                                     </a>
                                                                 </div>
                                                             </div>
