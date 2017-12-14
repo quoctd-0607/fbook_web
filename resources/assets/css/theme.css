@@ -789,6 +789,36 @@
     border-radius: 19px;
 }
 
+.badge-1 {
+    background: blue;
+    position: absolute;
+    top: 7px;
+}
+
+.badge-2 {
+    background: red;
+    position: absolute;
+    top: 7px;
+}
+
+.badge-3 {
+    background: orange;
+    position: absolute;
+    top: 7px;
+}
+
+.badge-4 {
+    background: green;
+    position: absolute;
+    top: 7px;
+}
+
+.badge-5 {
+    background: purple;
+    position: absolute;
+    top: 7px;
+}
+
 .badge-notify {
     background: red;
     position: absolute;

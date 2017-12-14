@@ -164,10 +164,36 @@ $(document).ready(function() {
                 });
                 htmlModel += "</div>";
                 $('#box_dropdown_noti').html(htmlModel);
-                var h = document.getElementsByTagName("head")[0];
-                var script = document.createElement("script");
-                script.src = 'javascripts/users/notification.js';
-                h.appendChild(script);
+                $('.notification_onclick').each(function (e) {
+                    $(this).on('click', function() {
+                        var notificationId = $(this).data('notification-id');
+                        $.ajax({
+                            url: API_PATH + 'notification/update/' + notificationId,
+                            contentType: 'application/json',
+                            dataType: 'json',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'Authorization': access_token,
+                            },
+                            type: 'GET',
+                            data: {},
+                        }).done(function (response) {
+                            if (response.message.code == 200) {
+                                if($('.count_Notifications').html() > 0) {
+                                    $('.count_Notifications').html(parseInt($('.count_Notifications').html()) - 1);
+                                }
+                            } else {
+                                showNotify('danger', 'Data Invalid', {icon: 'glyphicon glyphicon-remove'}, {delay: 1000});
+                            }
+                        }).fail(function (error) {
+                            showNotify('danger', 'Data Invalid', {icon: 'glyphicon glyphicon-remove'}, {delay: 1000});
+                        });
+                    })
+                });
+                $('.time_a_go').each(function() {
+                    $(this).html(timeAGo($(this).html()));
+                });
             }
         }).fail(function (error) {
             showNotify('danger', "Data Invalid", {icon: "glyphicon glyphicon-remove"}, {delay: 1000});
