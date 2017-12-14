@@ -152,7 +152,19 @@ Book.generateBookXhtml = function (book) {
     xhtml += '<div class="col-xs-12 col-md-6">';
     xhtml += '<div class="category-item well yellow">';
     xhtml += '<div class="media">';
-    xhtml += '<span class="badge badge-notify">' + book.office.name + '</span>';
+    if (book.office.name == 'Tran Khat Chan') {
+        xhtml += '<span class="badge badge-1">' + book.office.name + '</span>';
+    } else if (book.office.name == 'Ha Noi Office') {
+        xhtml += '<span class="badge badge-2">' + book.office.name + '</span>';
+    } else if (book.office.name == 'Da Nang Office') {
+        xhtml += '<span class="badge badge-3">' + book.office.name + '</span>';
+    } else if (book.office.name == 'HCMC Office') {
+        xhtml += '<span class="badge badge-4">' + book.office.name + '</span>';
+    } else if (book.office.name == 'Handico Office') {
+        xhtml += '<span class="badge badge-5">' + book.office.name + '</span>';
+    } else {
+        xhtml += '<span class="badge badge-notify">' + book.office.name + '</span>';
+    }
     xhtml += '<div class="media-left">';
     xhtml += '<img src="'+ thumbnailPath +'" class="media-object" alt="Framgia Book">';
     xhtml += '</div>';
