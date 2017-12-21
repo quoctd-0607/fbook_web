@@ -338,8 +338,6 @@ input:-webkit-autofill:focus {
     font-size: 12px;
     text-transform: none;
     font-weight: 500;
-    word-break: break-all;
-    /*white-space: pre;*/
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 300px;
@@ -476,4 +474,8 @@ input:-webkit-autofill:focus {
 
 .theme {
     color: red;
+}
+
+.fix-text {
+    text-align: justify;
 }
