@@ -32,23 +32,24 @@ $(document).ready(function() {
                         + data.id + "'>";
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
-                            htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + " </span>" + "Waiting book request: " + content + ellipsestext + "</p>";
+                            htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown fix-text'>"
+                            + data.user_send.name + " </span>"+ "<span>" + "Waiting book request: " + content + ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + "</span>" + "Waiting book request: " + data.book.title + "</p>";
+                            + data.user_send.name + "</span>" + "<span>" + "Waiting book request: " + data.book.title + "</span>" + "</p>";
                         }
                     htmlModel += "<span class='text-color-noti label label-warning lbl-waiting" + data.user_send.id + "'>waiting</span>";
                     } else if (data.type == configs.notification.cancel) {
                             htmlModel += "<a href='#' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='"
                             + data.id + "'>";
+                            htmlModel += "<div class='hidden' id='get-notify-view" + data.id + "'>" + data.viewed + "</div>";
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + " </span>" + "Cancel book request: " + content + ellipsestext + "</p>";
+                            + data.user_send.name + " </span>" + "<span>" + "Cancel book request: " + content + ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + "</span>" + "Cancel book request: " + data.book.title + "</p>";
+                            + data.user_send.name + "</span>" + "<span>" + "Cancel book request: " + data.book.title + "</span>" + "</p>";
                         }
                     htmlModel += "<span class='text-color-noti label label-warning lbl-waiting" + data.user_send.id + "'>cancel</span>";
                     } else if (data.type == configs.notification.review) {
@@ -58,10 +59,10 @@ $(document).ready(function() {
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + " </span>" + "Review Book: " + content + ellipsestext + "</p>";
+                            + data.user_send.name + " </span>" + "<span>" + "Review Book: " + content + ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + "</span>" + "Review Book: " + data.book.title + "</p>";
+                            + data.user_send.name + "</span>" + "<span>" + "Review Book: " + data.book.title + "</span>" + "</p>";
                         }
                     htmlModel += "<span class='text-color-noti label label-warning lbl-waiting" + data.user_send.id + "'>review</span>";
                     } else if (data.type == configs.notification.returning) {
@@ -71,10 +72,10 @@ $(document).ready(function() {
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + " </span>" + "Returning book: " + content + ellipsestext + "</p>";
+                            + data.user_send.name + " </span>" + " <span>" + "Returning book: " + content + ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + "</span>" + "Returning book: " + data.book.title + "</p>";
+                            + data.user_send.name + "</span>" + " <span>" + "Returning book: " + data.book.title + "</span>" + "</p>";
                         }
                     htmlModel += "<span class='text-color-noti label label-warning lbl-waiting" + data.user_send.id + "'>returning</span>";
                     } else if (data.type == configs.notification.returned) {
@@ -84,10 +85,10 @@ $(document).ready(function() {
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + " </span>" + "Return done book: " + content + ellipsestext + "</p>";
+                            + data.user_send.name + " </span>" + "<span>" + "Return done book: " + content + ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + "</span>" + "Return done book: " + data.book.title + "</p>";
+                            + data.user_send.name + "</span>" + "<span>" + "Return done book: " + data.book.title + "</span>" + "</p>";
                         }
                     htmlModel += "<span class='text-color-noti label label-warning lbl-waiting" + data.user_send.id + "'>returned</span>";
                     } else if (data.type == configs.notification.approve_returning) {
@@ -97,10 +98,10 @@ $(document).ready(function() {
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + " </span>" + "Return books successfully: " + content + ellipsestext + "</p>";
+                            + data.user_send.name + " </span>" + "<span>" + "Return books successfully: " + content + ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + "</span>" + "Return books successfully: " + data.book.title + "</p>";
+                            + data.user_send.name + "</span>" + "<span>" + "Return books successfully: " + data.book.title + "</span>" + "</p>";
                         }
                     htmlModel += "<span class='text-color-noti label label-warning lbl-waiting" + data.user_send.id + "'>approve_returning</span>";
                     } else if (data.type == configs.notification.request_edit_book) {
@@ -110,23 +111,23 @@ $(document).ready(function() {
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + " </span>" + "Want to edit book: " + content + ellipsestext + "</p>";
+                            + data.user_send.name + " </span>" + "<span>" + "Want to edit book: " + content + ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + "</span>" + "Want to edit book: " + data.book.title + "</p>";
+                            + data.user_send.name + "</span>" + "<span>" + "Want to edit book: " + data.book.title + "</span>" + "</p>";
                         }
                     htmlModel += "<span class='text-color-noti label label-warning lbl-waiting" + data.user_send.id + "'>request edit book</span>";
                     } else if (data.type == configs.notification.approve_request_update_book) {
-                            htmlModel += "<a href='#"
+                            htmlModel += "<a href='/books/" + data.book.id
                             + "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='"
                             + data.id + "'>";
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + " </span>" + "Approve your request edit book: " + content + ellipsestext + "</p>";
+                            + data.user_send.name + " </span>" + "<span>" + "Approve your request edit book: " + content + ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + "</span>" + "Approve your request edit book: " + data.book.title + "</p>";
+                            + data.user_send.name + "</span>" + "<span>" + "Approve your request edit book: " + data.book.title + "</span>" + "</p>";
                         }
                     htmlModel += "<span class='text-color-noti label label-warning lbl-waiting" + data.user_send.id
                     + "'>approve request edit book</span>";
@@ -134,13 +135,14 @@ $(document).ready(function() {
                             htmlModel += "<a href='#"
                             + "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='"
                             + data.id + "'>";
+                            htmlModel += "<div class='hidden' id='get-notify-view'>" + data.viewed + "</div>";
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + " </span>" + "Unapprove your request edit book: " + content + ellipsestext + "</p>";
+                            + data.user_send.name + " </span>" + "<span>" + "Unapprove your request edit book: " + content + ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + "</span>" + "Unapprove your request edit book: " + data.book.title + "</p>";
+                            + data.user_send.name + "</span>" + "<span>" + "Unapprove your request edit book: " + data.book.title + "</span>" + "</p>";
                         }
                     htmlModel += "<span class='text-color-noti label label-warning lbl-waiting" + data.user_send.id
                     + "'>unapprove request edit books</span>";
@@ -151,10 +153,10 @@ $(document).ready(function() {
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + " </span>" + "Accept your request waiting book: " + content + ellipsestext + "</p>";
+                            + data.user_send.name + " </span>" + "<span>" + "Accept your request waiting book: " + content + ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel += "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>"
-                            + data.user_send.name + "</span>" + "Accept your request waiting book: " + data.book.title + "</p>";
+                            + data.user_send.name + "</span>" + "<span>" + "Accept your request waiting book: " + data.book.title + "</span>" + "</p>";
                         }
                     htmlModel += "<span class='text-color-noti label label-warning lbl-waiting" + data.user_send.id
                     + "'>approve_waiting</span>";
@@ -182,6 +184,9 @@ $(document).ready(function() {
                             if (response.message.code == 200) {
                                 if($('.count_Notifications').html() > 0) {
                                     $('.count_Notifications').html(parseInt($('.count_Notifications').html()) - 1);
+                                    if($('#get-notify-view' + notificationId).html() == 1) {
+                                        $('.count_Notifications').html(parseInt($('.count_Notifications').html()) + 1);
+                                    }
                                 }
                             } else {
                                 showNotify('danger', 'Data Invalid', {icon: 'glyphicon glyphicon-remove'}, {delay: 1000});
