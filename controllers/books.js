@@ -302,7 +302,6 @@ router.get('/:id', localSession, function (req, res, next) {
                             data.item.return_book_for_owner = returnBookForOwner;
                             data.item.cancel_book_for_owner = cancelBookForOwner;
                             data.item.returning_book_to_owner = returningBookToOwner;
-
                             res.render('books/detail', {
                                 data: data,
                                 pageTitle: 'Detail',
