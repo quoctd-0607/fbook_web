@@ -56,4 +56,75 @@ router.post('/approve-update-request/:id', authorize.isAdmin, function (req, res
     });
 });
 
+router.get('/', authorize.isAdmin, function (req, res, next) {
+    async.parallel({
+        totalUser: (callback) => {
+            request({
+                url: req.configs.api_base_url + 'admin/count/users',
+                headers: objectHeaders.headers({'Authorization': req.session.access_token})
+            }, function (error, response, body) {
+                if (!error && response.statusCode === 200) {
+                    try {
+                        var users = JSON.parse(body);
+                        callback(null, users);
+                    } catch (errorJSONParse) {
+                        callback(null, null);
+                    }
+                } else {
+                    callback(null, null);
+                }
+            });
+        },
+        totalBook: (callback) => {
+            request({
+                url: req.configs.api_base_url + 'admin/count/books',
+                headers: objectHeaders.headers({'Authorization': req.session.access_token})
+            }, function (error, response, body) {
+                if (!error && response.statusCode === 200) {
+                    try {
+                        var books = JSON.parse(body);
+                        callback(null, books);
+                    } catch (errorJSONParse) {
+                        callback(null, null);
+                    }
+                } else {
+                    callback(null, 0);
+                }
+            });
+        },
+        totalCategory: (callback) => {
+            request({
+                url: req.configs.api_base_url + 'admin/count/categories',
+                headers: objectHeaders.headers({'Authorization': req.session.access_token})
+            }, function (error, response, body) {
+                if (!error && response.statusCode === 200) {
+                    try {
+                        var categories = JSON.parse(body);
+                        callback(null, categories);
+                    } catch (errorJSONParse) {
+                        callback(null, null);
+                    }
+                } else {
+                    callback(null, null);
+                }
+            });
+        }
+    }, (error, result) => {
+        if (error) {
+            req.flash('error', 'Please try again');
+            res.redirect('back');
+        } else {
+            res.render('admin/dashboard', {
+                layout: 'admin/layout/admin_template',
+                totalUser: result.totalUser.item,
+                totalBook: result.totalBook.item,
+                totalCategory: result.totalCategory.item,
+                pageTitle: 'Admin Dashboard',
+                info: req.flash('info'),
+                error: req.flash('error'),
+            });
+        }
+    });
+});
+
 module.exports = router;
