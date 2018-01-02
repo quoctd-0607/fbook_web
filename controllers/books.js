@@ -6,6 +6,8 @@ var async = require('async');
 var objectHeaders = require('../helpers/headers');
 var localSession = require('../middlewares/localSession');
 var authorize = require('../middlewares/authorize');
+var bodyParser = require('body-parser');
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 router.get('/', localSession, function (req, res, next) {
     req.checkQuery('field', 'Invalid field').notEmpty().isAlpha();
@@ -308,14 +310,15 @@ router.get('/:id', localSession, function (req, res, next) {
                                 officeId: data.item.office.id,
                                 messages: messages,
                                 error: req.flash('error'),
-                                info: req.flash('info')
+                                info: req.flash('info'),
+                                book_current : req.params.id
                             });
                         } catch (errorJSONParse) {
-                            req.flash('error', 'Don\'t allow show this book');
+                            req.flash('error', 'Sorry, something went wrong');
                             res.redirect('back');
                         }
                     } else {
-                        req.flash('error', 'Don\'t allow show this book');
+                        req.flash('error', 'sorry, something went wrong');
                         res.redirect('back');
                     }
                 });
@@ -554,4 +557,61 @@ router.get('/:id/edit', authorize.isAuthenticated, function (req, res, next) {
         }
     });
 });
+
+router.get('/:id/review', authorize.isAuthenticated, (req, res, next) => {
+    {
+        request({
+            url: req.configs.api_base_url + 'books/' + req.params.id,
+            headers: objectHeaders.headers
+        }, function (error, response, body) {
+            if (!error && response.statusCode === 200) {
+                try {
+                    var data = JSON.parse(body);
+                    var messages = req.flash('errors');
+                    res.render('books/write_review', {
+                        data: data,
+                        pageTitle: 'Write review',
+                        messages: messages,
+                        error: req.flash('error'),
+                        info: req.flash('info'),
+                        book_current : req.params.id
+                    });
+                } catch (errorJSONParse) {
+                    req.flash('error', 'Don\'t allow show this book');
+                    res.redirect('back');
+                }
+            } else {
+                req.flash('error', 'Don\'t allow show this book');
+                res.redirect('back');
+            }
+        });
+    }
+
+});
+
+router.post('/post-review/:id', urlencodedParser, (req, res, next) => {
+    request.post({
+        url: req.configs.api_base_url + 'books/new-review/' + req.params.id,
+        form: {
+            'item':
+            {
+                'title' : req.body.review_title,
+                'content': req.body.review_content,
+                'star':  req.body.review_start
+            }
+        },
+        headers: objectHeaders.headers({'Authorization': req.session.access_token})
+    }, (error, response, body) => {
+        if (!error && response.statusCode === 200) {
+            req.flash('info', 'Thanks for review');
+                res.redirect(`../../books/${req.params.id}`);
+        } else {
+            console.log(error);
+            req.flash('error', 'Can\'t add your review, something went wrong ');
+            res.redirect('back');
+        }
+    })
+    
+});
+
 module.exports = router;
