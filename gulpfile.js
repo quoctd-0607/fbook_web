@@ -21,6 +21,10 @@ var bs4 = [
     'node_modules/bootstrap/**'
 ];
 
+var admin = [
+    'resources/assets/admin/**'
+];
+
 gulp.task('css', function () {
     return gulp.src(css)
     .pipe(gulp.dest('public/css/'));
@@ -49,6 +53,11 @@ gulp.task('doc', function () {
 gulp.task('bs4', function () {
     return gulp.src(bs4)
     .pipe(gulp.dest('public/bower/bootstrap4'))
+});
+
+gulp.task('admin', function () {
+    return gulp.src(admin)
+    .pipe(gulp.dest('public/css/admin'))
 });
 
 gulp.task('default', ['css', 'font', 'js', 'img', 'doc', 'bs4']);
