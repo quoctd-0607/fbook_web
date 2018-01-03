@@ -1,6 +1,6 @@
-jQuery(document).ready(function ($) {
+jQuery(document).ready(function($) {
     "use strict";
-    $('.mainmenu-area a[href*="#"]:not([href="#"])').on('click',function () {
+    $('.mainmenu-area a[href*="#"]:not([href="#"])').on('click', function() {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
             var target = $(this.hash);
             target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
@@ -70,14 +70,14 @@ jQuery(document).ready(function ($) {
             }
         }
     });
-    $('.bookslide_nav .testi_next').on('click', function () {
+    $('.bookslide_nav .testi_next').on('click', function() {
         book_slide.trigger('next.owl.carousel');
     });
-    $('.bookslide_nav .testi_prev').on('click', function () {
+    $('.bookslide_nav .testi_prev').on('click', function() {
         book_slide.trigger('prev.owl.carousel');
     });
 
-    book_slide.on('translate.owl.carousel', function (property) {
+    book_slide.on('translate.owl.carousel', function(property) {
         $('.book-content .owl-dot:eq(' + property.page.index + ')').click();
     });
 
@@ -125,17 +125,17 @@ jQuery(document).ready(function ($) {
     var ellipsestext = "...";
     var moretext = "<div class='btn btn-success btn-showmore'>Show more</div>";
     var lesstext = "<div class='btn btn-success btn-showmore'>Show less</div>";
-    $('.more').each(function () {
+    $('.more').each(function() {
         var content = $(this).html();
         if (content.length > showChar) {
             var c = content.substr(0, showChar);
             var h = content.substr(showChar, content.length - showChar);
-            var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+            var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
             $(this).html(html);
         }
     });
 
-    $('.morelink').click(function () {
+    $('.morelink').click(function() {
         if ($(this).hasClass("less")) {
             $(this).removeClass("less");
             $(this).html(moretext);
@@ -149,33 +149,144 @@ jQuery(document).ready(function ($) {
         return false;
     });
 
-    if(typeof(access_token) !== 'undefined') {
+    if (typeof(access_token) !== 'undefined') {
         $.ajax({
-        url: API_PATH + 'notifications/count/user',
-        contentType: 'application/json',
-        dataType: 'json',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': access_token,
-        },
-        type: 'GET',
-        data: {},
-        }).done(function (response) {
+            url: API_PATH + 'notifications/count/user',
+            contentType: 'application/json',
+            dataType: 'json',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': access_token,
+            },
+            type: 'GET',
+            data: {},
+        }).done(function(response) {
             if (response.message.code == 200) {
-                if(response.item.count == 0)
-                {
+                if (response.item.count == 0) {
                     $('.count_Notifications').html(0);
-                }
-                else
-                {
+                } else {
                     $('.count_Notifications').html(response.item.count);
                 }
             } else {
-                showNotify('danger', "Data Invalid", {icon: "glyphicon glyphicon-remove"}, {delay: 1000});
+                showNotify('danger', "Data Invalid", {
+                    icon: "glyphicon glyphicon-remove"
+                }, {
+                    delay: 1000
+                });
             }
-        }).fail(function (error) {
-            showNotify('danger', "Data Invalid", {icon: "glyphicon glyphicon-remove"}, {delay: 1000});
+        }).fail(function(error) {
+            showNotify('danger', "Data Invalid", {
+                icon: "glyphicon glyphicon-remove"
+            }, {
+                delay: 1000
+            });
         });
     }
+
+    $('.delete-btn-topright').click(function() {
+        let reviewId = $(this).val();
+        $.ajax({
+            url: API_PATH + 'reviews/delete/' + reviewId,
+            contentType: 'application/json',
+            dataType: 'json',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': access_token,
+            },
+            type: 'DELETE',
+            data: {},
+        }).done(function(response) {
+            if (response.message.code == 200) {
+                showNotify('success', "Delete review successfull!", {
+                    icon: "glyphicon glyphicon-remove"
+                }, {
+                    delay: 1000
+                });
+                $('#review' + reviewId).remove();
+                $('#review_edit_btn').html('Add review');
+            } else {
+                showNotify('danger', "Opp\'s something went wrong", {
+                    icon: "glyphicon glyphicon-remove"
+                }, {
+                    delay: 1000
+                });
+            }
+        }).fail(function(error) {
+            showNotify('danger', "Opp\'s something went wrong", {
+                icon: "glyphicon glyphicon-remove"
+            }, {
+                delay: 1000
+            });
+        });
+    });
+
+    $('.btn_vote').click(function() {
+        let review_id = $('#review_data').val();
+        let user_id = $('#user_id' + review_id).val();
+        let status_id = $(this).val();
+        let current_vote = parseInt($('#btn_show_vote').text());
+
+        $.ajax({
+            url: API_PATH + 'books/vote',
+            contentType: 'application/json',
+            dataType: 'json',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': access_token,
+            },
+            type: 'POST',
+            data: JSON.stringify({
+                reviewId: review_id,
+                userId: user_id,
+                status: status_id
+            }),
+        }).done(function(response) {
+            if (response.message.code == 200) {
+                if (response.items.messages == 'vote_success') {
+                    if (status_id == 2) {
+                        $('.up_vote').attr("style", "color: #5488c7;");
+                        $('#btn_show_vote').html(current_vote + 1);
+                    } else {
+                        $('.down_vote').attr("style", "color: #5488c7;");
+                        $('#btn_show_vote').html(current_vote - 1);
+                    }
+                    showNotify('success', "Thanks for your vote!", {
+                        icon: "glyphicon glyphicon-remove"
+                    }, {
+                        delay: 1000
+                    });
+                } else if (response.items.messages == 'revote_success') {
+                    if (status_id == 2) {
+                        $('.up_vote').attr("style", "color: #5488c7;");
+                        $('.down_vote').attr("style", "color: #A9A9A9;");
+                        $('#btn_show_vote').html(current_vote + 1);
+                    } else {
+                        $('.down_vote').attr("style", "color: #5488c7;");
+                        $('.up_vote').attr("style", "color: #A9A9A9;");
+                        $('#btn_show_vote').html(current_vote - 1);
+                    }
+                    showNotify('success', "Thanks for your revote!", {
+                        icon: "glyphicon glyphicon-remove"
+                    }, {
+                        delay: 1000
+                    });
+                } else {
+                    showNotify('danger', "Your just up or down vote once!", {
+                        icon: "glyphicon glyphicon-remove"
+                    }, {
+                        delay: 1000
+                    });
+                }
+            }
+        }).fail(function(error) {
+            showNotify('danger', "Opp\'s something went wrong", {
+                icon: "glyphicon glyphicon-remove"
+            }, {
+                delay: 1000
+            });
+        });
+    });
 }(jQuery));

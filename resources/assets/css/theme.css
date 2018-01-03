@@ -2,7 +2,7 @@
    Helper class
    ========================================================================== */
 
-[class|=space] {
+   [class|=space] {
     display: block;
     width: 100%;
     overflow: hidden;
@@ -363,14 +363,10 @@
 
 .category-item a {
     border-radius: 2px;
-    display: inline-block;
+    display: auto;
     margin: auto;
     min-width: 150px;
     padding: 0.6em 1em;
-}
-
-.category-item a:hover {
-    background-color: #dddddd;
 }
 
 .category-item.blue .category_icon {
@@ -396,7 +392,6 @@
 }
 
 .category-item.yellow a:hover {
-    background-color: #32b73b;
     color: #ffffff;
 }
 

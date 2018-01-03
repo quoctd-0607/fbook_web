@@ -491,3 +491,51 @@ input:-webkit-autofill:focus {
     align-items: center;
     float: right;
 }
+
+.delete-btn-topright {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: none;
+    background: transparent;
+    font-weight: 700;
+}
+.relative-position {
+    position: relative;
+}
+
+#no_comment{
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
+.view_more{
+    color: #365899;
+}
+
+.vote_review{
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    font-size: 5rem;
+}
+
+.btn_vote{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+#btn_show_vote{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+.btn_voted{
+    color: #5488c7;
+}
