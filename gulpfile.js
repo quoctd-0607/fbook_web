@@ -52,7 +52,7 @@ gulp.task('doc', function () {
 
 gulp.task('bs4', function () {
     return gulp.src(bs4)
-    .pipe(gulp.dest('public/bower/bootstrap4'))
+    .pipe(gulp.dest('public/bower/bootstrap4/'))
 });
 
 gulp.task('admin', function () {
