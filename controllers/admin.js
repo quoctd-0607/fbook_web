@@ -197,6 +197,56 @@ router.get('/categories/search', authorize.isAdmin, function (req, res, next) {
         } else {
             res.redirect('back');
         }
+    })
+});
+
+router.get('/categories/create', authorize.isAdmin, function (req, res, next) {
+    res.render('admin/create_category', {
+        layout: 'admin/layout/admin_template',
+        pageTitle: 'Create category',
+        info: req.flash('info'),
+        error: req.flash('error'),
+        validate: req.flash('validate'),
+        apiValidate: req.flash('apiValidate')
+    });
+});
+
+router.post('/categories/store', authorize.isAdmin, function (req, res, next) {
+    req.checkBody('name', 'Name field is required').notEmpty();
+    req.checkBody('name', 'Name must have more than 2 characters').isLength({ min: 3 });
+
+    req.getValidationResult().then(function (result) {
+        if (!result.isEmpty()) {
+            req.flash('validate', result.array());
+            req.flash('error', 'Data invalid');
+            res.redirect('back');
+        } else {
+            request.post({
+                url: req.configs.api_base_url + 'admin/categories',
+                form: {
+                    name: req.body.name,
+                    description: req.body.description
+                },
+                headers: objectHeaders.headers({'Authorization': req.session.access_token})
+            }, function (error, response, body) {
+                if (!error && response.statusCode === 200) {
+                    try {
+                        req.flash('info', 'Create category success');
+                        res.redirect('/admin/categories');
+                    } catch (errorJSONParse) {
+                        res.redirect('back');
+                    }
+                } else if (response.statusCode === 422) {
+                    var msg = JSON.parse(body);
+                    req.flash('apiValidate', msg.message.description[0]);
+                    req.flash('error', 'Data invalid');
+                    res.redirect('back');
+                } else {
+                    req.flash('error', 'Something went wrong');
+                    res.redirect('back');
+                }
+            });
+        }
     });
 });
 
