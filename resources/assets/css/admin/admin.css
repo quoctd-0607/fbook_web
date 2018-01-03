@@ -36,3 +36,6 @@
 form .error {
     color: #fc4b6c;
 }
+.cursor-hover {
+    cursor: pointer;
+}
