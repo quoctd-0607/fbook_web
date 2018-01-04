@@ -127,7 +127,10 @@ module.exports = {
         }
         return link.replace('{?}', page_no);
     },
-    initView: function(link, content, config, page, li_active = '', a_active = '') {
+    initView: function(link, content, config, page, li_active, a_active) {
+        var li_active = (typeof li_active !== 'undefined') ?  li_active : null;
+        var a_active = (typeof a_active !== 'undefined') ?  a_active : null;
+
         return `<li class='${config.li_style} ${li_active}'>
                     <a href='${link}' class='${config.a_style} ${a_active}' data-page='${page}'>
                         ${content}
