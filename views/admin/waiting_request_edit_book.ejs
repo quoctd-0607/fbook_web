@@ -1,0 +1,174 @@
+<section class="content-header">
+    <h1>
+        Waiting Request Edit Book
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-10 offset-1">
+            <% if (dataRequest && dataRequest.item.data.length && dataRequest.item.total) { %>
+                <ul class="timeline">
+                    <% dataRequest.item.data.forEach(function(data) { %>
+                        <li id="req<%= data.id %>" class="margin-bottom-40">
+                            <div class="timeline-item no-margin">
+                                <span class="time timer"><i class="fa fa-clock-o"></i> <span class="time_a_go"><%= data.created_at %></span></span>
+                                <h3 class="timeline-header">
+                                    <a href="/books/<%= data.current_book_info.id %>/approve-request">
+                                        <%= data.user_request.name %> </a> <span class="label label-warning">Waiting</span>
+                                </h3>
+                                <div class="timeline-body">
+                                        Waiting Book: <strong><%= data.current_book_info.title %></strong>
+                                </div>
+                                <div class="timeline-footer text-right">
+                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal<%= data.id %>" class="btn btn-primary btn-lg font-size-14">View Detail</a>
+                                    <a id="load<%= data.id %>" onClick="removeRequestUpdateBook(<%= data.id %>);" data-loading="<i class='fa fa-circle-o-notch fa-spin'></i> Removing"  href="javascript:void(0)" class="btn btn-danger btn-lg font-size-14">
+                                        Decline
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="modal fade bs-example-modal-lg" id="myModal<%= data.id %>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myLargeModalLabel">Edit book detail</h4>
+                                            <button type="button" class="close close-btn " data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table table-bordered table-responsive">
+                                                <tr>
+                                                    <th></th>
+                                                    <th class="text-center">Before Change</th>
+                                                    <th class="text-center">After Change</th>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Title</strong></td>
+                                                    <td><%= data.current_book_info.title %></td>
+                                                    <% if (data.current_book_info.title == data.title) { %>
+                                                        <td>Not Change</td>
+                                                    <% } else { %>
+                                                        <td><%= data.title %>></td>
+                                                    <% } %>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Description</strong></td>
+                                                    <td><%= data.current_book_info.description %></td>
+                                                    <% if (data.current_book_info.description == data.description) { %>
+                                                        <td>Not Change</td>
+                                                    <% } else { %>
+                                                        <td><%= data.description %></td>
+                                                    <% } %>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Author</strong></td>
+                                                    <td><%= data.current_book_info.author %></td>
+                                                    <% if (data.current_book_info.author == data.author) { %>
+                                                        <td>Not Change</td>
+                                                    <% } else { %>
+                                                        <td><%= data.author %></td>
+                                                    <% } %>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Publish Date</strong></td>
+                                                    <td><%= data.current_book_info.publish_date %></td>
+                                                    <% if (Date.parse(data.current_book_info.publish_date) == Date.parse(data.publish_date)) { %>
+                                                        <td>Not Change</td>
+                                                    <% } else { %>
+                                                        <td><%= data.publish_date %></td>
+                                                    <% } %>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Category</strong></td>
+                                                    <td><%= data.current_book_info.category.name %></td>
+                                                    <% if (data.current_book_info.category.id == data.category.id) { %>
+                                                        <td>    Not Change</td>
+                                                    <% } else { %>
+                                                        <td><%= data.category.name %></td>
+                                                    <% } %>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Office</strong></td>
+                                                    <td><%= data.current_book_info.office.name %></td>
+                                                    <% if (data.current_book_info.office.id == data.office.id) { %>
+                                                        <td>Not Change</td>
+                                                    <% } else { %>
+                                                        <td><%= data.office.name %></td>
+                                                    <% } %>
+                                                </tr>
+                                                <% if(data.update_media != null) { %>
+                                                    <% data.current_book_info.media.forEach(function(old_data,index) { %>
+                                                    <tr>
+                                                        <% var check = 0 %>
+                                                        <td><strong>Image <%= index +1 %></strong></td>
+                                                        <% data.update_media.forEach(function(new_data) { %>
+                                                            <% if (old_data.id == new_data.media_id ) {%>
+                                                            <% check = 1 %>
+                                                                <td class="padding-15px">
+                                                                    <img class="image-responsive" src="<%= old_data.web.medium_path %>" alt="library">
+                                                                </td>
+                                                                <td class="padding-15px">
+                                                                    <img class="image-responsive" src="<%= new_data.web.medium_path%>" alt="library">
+                                                                </td>
+                                                            <% } %>
+                                                        <% }) %>
+                                                        <% if (check != 1) {%>
+                                                            <td class="padding-15px"><img src="<%= old_data.web.medium_path %>" alt="library"></td>
+                                                            <td>Not change</td>
+                                                        <% } %>
+                                                    </tr>
+                                                    <% }) %>
+                                                <% } %>
+                                                <% if(data.update_media != null) { %>
+                                                    <% data.update_media.forEach(function(new_data) { %>
+                                                        <tr>
+                                                            <% if (new_data.media_id == null) { %>
+                                                                <td class="theme">New Image</td>
+                                                                <td></td>
+                                                                <td class="padding-15px">
+                                                                    <img class="image-responsive" src="<%= new_data.web.medium_path%>" alt="library">
+                                                                </td>
+                                                            <% } %>
+                                                        </tr>
+                                                    <% }) %>
+                                                <% } %>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer padding-15 text-right">
+                                            <form action="/admin/approve-update-request/<%= data.id %>" method="post" name="form-approve-update-request">
+                                                <button type="submit" data-loading="<i class='fa fa-circle-o-notch fa-spin'></i> Approving" class="btn btn-primary waves-effect text-left btn-lg font-size-14 _approve-btn">Approve</button>
+                                                <a href="javascript:void(0)" class="btn btn-default waves-effect text-left btn-lg font-size-14" data-dismiss="modal">Close</a>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                            </div>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <h3 class="empty-text">Waiting request is empty</h3>
+            <% } %>
+        </div>
+    </div>
+    <% if (dataRequest.item.total > dataRequest.item.per_page) { %>
+        <div class="row">
+            <div class="col-11">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination pull-right">
+                        <%- paginate %>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    <% } %>
+</section>
+
+<%- contentFor('appCss') %>
+<link href="/bower/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+
+<%- contentFor('appjs') %>
+<script src="/javascripts/users/list_category.js" type="text/javascript"></script>
+<script src="/javascripts/users/interestedCategories.js" type="text/javascript"></script>
+<script src="/bower/sweetalert/dist/sweetalert.min.js"></script>
+<script src="/javascripts/books/book.js" type="text/javascript"></script>
