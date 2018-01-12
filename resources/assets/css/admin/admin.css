@@ -2,7 +2,6 @@
     position: absolute;
     width: 100%;
     bottom: 0;
-    text-align: center;
 }
 .table-data-empty {
     text-align: center;
@@ -10,6 +9,7 @@
 }
 .relative-postion {
     position: relative;
+    min-height: 100vh !important;
 }
 .width-30-percent {
     width: 30%;
@@ -38,4 +38,98 @@ form .error {
 }
 .cursor-hover {
     cursor: pointer;
+}
+.minimun-height {
+    min-height: 100vh;
+}
+.timeline:before {
+    content: none;
+}
+.no-margin {
+    margin: 0 !important;
+}
+.timer {
+    color: #bd2130;
+    font-size: 14px;
+}
+.font-size-14 {
+    font-size: 14px;
+}
+.margin-bottom-40 {
+    margin-bottom: 40px !important;
+}
+.example-modal .modal {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    right: auto;
+    left: auto;
+    display: block;
+    z-index: 1;
+}
+
+.example-modal .modal {
+    background: transparent !important;
+}
+.timeline .modal-header {
+    border-bottom: 1px solid #e9ecef !important;
+}
+.timeline .modal-footer {
+    border-top: 1px solid #e9ecef !important;
+}
+.close-btn {
+    padding: 0px 15px !important;
+    font-size: 30px !important;;
+}
+.padding-15 {
+    padding: 15px;
+}
+.with-20-percent {
+    width: 20%;
+}
+.with-40-percent {
+    width: 40%;
+}
+.modal-body tr th:not(:first-child) {
+    width: 40% !important;
+}
+.modal-body tr td:not(:first-child) {
+    width: 40% !important;
+}
+.modal-body tr td:first-child {
+    width: 20%;
+}
+.modal-body tr th:first-child {
+    width: 20%;
+}
+.modal-body tbody {
+    display: block;
+    width: 100%;
+}
+.modal-body tr {
+    display: flex;
+}
+.modal-body * {
+    border-color: #ddd !important;
+}
+.image-responsive {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.padding-15px {
+    padding: 15px !important;
+}
+.empty-text {
+    text-align: center;
+    color: #bd2130;
+}
+.empty-text:before, .empty-text:after {
+    content: '';
+    display: inline-block;
+    border: 1px solid #bd2130;
+    width: 50px;
+}
+section.content{
+    min-height: 100vh !important;
 }

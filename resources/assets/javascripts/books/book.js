@@ -778,32 +778,34 @@ function removeRequestUpdateBook(requestId)
         closeOnConfirm: true
     },
     function() {
+        $('#load' + requestId).addClass('disabled');
+        let loading = $('#load' + requestId).data('loading');
+        $('#load' + requestId).html(loading);
         if (typeof(access_token) === 'undefined') {
             showNotify('danger', 'Approve request fail, Please login to continue', {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
-
-            return false;
         }
+        else {
+            var formData = new FormData();
+            formData.append('_method', 'DELETE');
 
-        var formData = new FormData();
-        formData.append('_method', 'DELETE');
-
-        $.ajax({
-            url: API_PATH + 'admin/books/delete-request-edit/' + requestId,
-            headers: {'Accept': 'application/json', 'Authorization': access_token},
-            method: 'POST',
-            contentType: false,
-            cache: false,
-            processData:false,
-            data: formData
-        }).done(function (response) {
-            if (response.message.status) {
-                window.location.reload();
-                showNotify('success', 'Request removed', {icon: 'glyphicon glyphicon-ok'}, {delay: 3000});
-            } else {
-                showNotify('danger', 'Remove request fail', {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
-            }
-        }).fail(function (error) {
-            showNotify('danger', error.responseJSON.message.description, {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
-        });
+            $.ajax({
+                url: API_PATH + 'admin/books/delete-request-edit/' + requestId,
+                headers: {'Accept': 'application/json', 'Authorization': access_token},
+                method: 'POST',
+                contentType: false,
+                cache: false,
+                processData:false,
+                data: formData
+            }).done(function (response) {
+                if (response.message.status) {
+                    $('#req' + requestId).remove();
+                    showNotify('Request removed', 'info', 3000);
+                } else {
+                    showNotify('Remove request fail', 'error', 3000);
+                }
+            }).fail(function (error) {
+                showNotify(error.responseJSON.message.description, 'error', 3000);
+            });
+        }
     });
 }

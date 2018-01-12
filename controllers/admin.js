@@ -88,8 +88,15 @@ router.get('/waiting-request-edit-book', authorize.isAdmin, function (req, res, 
         if (!error && response.statusCode === 200) {
             try {
                 var data = JSON.parse(body);
-                res.render('admin/waiting_approve_edit_book', {
+                var pagination = helper.paginate({
+                        total_record: data.item.total,
+                        current_page: page,
+                        link: `${req.configs.web_domain}:${req.configs.port}/admin/waiting-request-edit-book?page={?}`
+                    });
+                res.render('admin/waiting_request_edit_book', {
+                    layout: 'admin/layout/admin_template',
                     dataRequest: data,
+                    paginate: pagination,
                     pageTitle: 'Waiting Request Edit Book',
                     info: req.flash('info'),
                     error: req.flash('error'),
@@ -140,7 +147,7 @@ router.get('/categories', authorize.isAdmin, function (req, res, next) {
                 var paginate = helper.paginate({
                     total_record: data.items.total,
                     current_page: page,
-                    link: 'http://localhost:5000/admin/categories?page={?}'
+                    link: `${req.configs.web_domain}:${req.configs.port}/admin/categories?page={?}`
                 });
                 res.render('admin/categories', {
                     layout: 'admin/layout/admin_template',
@@ -181,7 +188,7 @@ router.get('/categories/search', authorize.isAdmin, function (req, res, next) {
                 var paginate = helper.paginate({
                     total_record: data.items.total,
                     current_page: page,
-                    link: `http://localhost:5000/admin/categories/search?key_word=${keyWord}&page={?}`
+                    link: `${req.configs.web_domain}:${req.configs.port}/admin/categories/search?key_word=${keyWord}&page={?}`
                 });
                 res.render('admin/categories', {
                     layout: 'admin/layout/admin_template',
