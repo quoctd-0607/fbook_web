@@ -1,11 +1,11 @@
 var config = {
     port: 5000,
     web_domain: "book.framgia.vn",
-    api_base_url: "http://api-book.framgia.vn/api/v0/",
+    api_base_url: "http://localhost:8000/api/v0/",
     auth_server_base_url: "https://wsm.framgia.vn/authorize",
-    client_id: "wemakeitawesome",
-    client_secret: "wemakeitawesome",
-    auth_server_authorization_code_url: "http://10.0.1.14",
+    client_id: "cd398Lu2QqTdJTodWbM5AykC",
+    client_secret: "1d47ffde8df79a58e9f56919ebba3ae37b8fadd11d9c2a7a13a7d4d4ccf0",
+    auth_server_authorization_code_url: "https://wsm.framgia.vn",
     url_sign_in_auth_server: "https://wsm.framgia.vn/users/sign_in",
     book: {
         default_star: 5,
@@ -51,6 +51,10 @@ var config = {
         "secret": 'fb0924c101f46fd7625a',
         "cluster": 'ap1',
         "encrypted": true
+    },
+    words : {
+        "up_vote" : 2,
+        "down_vote" : 1
     }
 };
 

@@ -606,12 +606,29 @@ router.post('/post-review/:id', urlencodedParser, (req, res, next) => {
             req.flash('info', 'Thanks for review');
                 res.redirect(`../../books/${req.params.id}`);
         } else {
-            console.log(error);
             req.flash('error', 'Can\'t add your review, something went wrong ');
             res.redirect('back');
         }
     })
     
+});
+
+router.get('/view-review/:id',localSession, (req, res, next) => {
+    request({
+        url: req.configs.api_base_url + 'books/review-details/' + req.params.id + '/' + req.session.user.id,
+        headers: objectHeaders.headers({'Authorization': req.session.access_token})
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            let data = JSON.parse(body);
+             res.render('books/review_details', {
+                 data : data,
+                 userId : req.session.user.id
+             });
+        } else {
+            req.flash('error', 'This review not availble');
+            res.redirect('back');
+        }
+    });
 });
 
 module.exports = router;

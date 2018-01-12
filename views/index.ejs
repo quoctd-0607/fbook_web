@@ -29,23 +29,33 @@
                                             <div class="media">
                                                 <% if (book.office.name == 'Tran Khat Chan') { %>
                                                     <span class="badge badge-1">
-                                                        <%= book.office.name %>
+                                                        <a href="/home?officeId=<%= book.office.id %>" class="office_on_books">
+                                                            <%= book.office.name %>
+                                                        </a>
                                                     </span>
                                                 <% } else if (book.office.name == 'Ha Noi Office') { %>
                                                     <span class="badge badge-2">
-                                                        <%= book.office.name %>
+                                                        <a href="/home?officeId=<%= book.office.id %>" class="office_on_books">
+                                                            <%= book.office.name %>
+                                                        </a>
                                                     </span>
                                                 <% } else if (book.office.name == 'Da Nang Office') { %>
                                                     <span class="badge badge-3">
-                                                        <%= book.office.name %>
+                                                        <a href="/home?officeId=<%= book.office.id %>" class="office_on_books">
+                                                            <%= book.office.name %>
+                                                        </a>
                                                     </span>
                                                 <% } else if (book.office.name == 'HCMC Office') { %>
                                                     <span class="badge badge-4">
-                                                        <%= book.office.name %>
+                                                        <a href="/home?officeId=<%= book.office.id %>" class="office_on_books">
+                                                            <%= book.office.name %>
+                                                        </a>
                                                     </span>
                                                 <% } else if (book.office.name == 'Handico Office') { %>
                                                     <span class="badge badge-5">
-                                                        <%= book.office.name %>
+                                                        <a href="/home?officeId=<%= book.office.id %>" class="office_on_books">
+                                                            <%= book.office.name %>
+                                                        </a>
                                                     </span>
                                                 <% } else { %>
                                                     <span class="badge badge-notify">
