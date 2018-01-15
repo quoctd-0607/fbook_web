@@ -133,3 +133,54 @@ form .error {
 section.content{
     min-height: 100vh !important;
 }
+.up-size {
+    font-size: 20px !important;
+}
+.label-red {
+    background-color: #fc4b6c !important;
+}
+.normal-white-space {
+    white-space: normal !important;
+    font-size: 12px !important;
+    width: 100% !important;
+}
+.unread-noti {
+    background: #f4f4f4 !important;
+    display: flex;
+}
+.noti-avatar {
+    width: 45px;
+    height: 45px;
+    margin-left: 10px;
+}
+.img-side {
+    align-self: center;
+}
+.noti-content {
+    width: 415px !important;
+}
+.notify-content {
+    display: block;
+    margin-bottom: 15px;
+}
+.size-100-percent {
+    font-size: 100% !important;
+}
+.padding-left-10 {
+    padding-right: 10px !important;
+}
+.flex-list {
+    display: flex !important;
+}
+.menu li:hover {
+    background: #f4f4f4 !important;
+}
+.info-color {
+    color: #389af0 !important;
+    cursor: pointer !important;
+}
+.loading-icon {
+    display: inline-block;
+    padding: 20px 0;
+    font-size: 25px;
+}
