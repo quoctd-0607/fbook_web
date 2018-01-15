@@ -70,11 +70,11 @@
                                                 </tr>
                                                 <tr>
                                                     <td><strong>Publish Date</strong></td>
-                                                    <td><%= data.current_book_info.publish_date %></td>
+                                                    <td><%= data.current_book_info.publish_date.slice(0,4) %></td>
                                                     <% if (Date.parse(data.current_book_info.publish_date) == Date.parse(data.publish_date)) { %>
                                                         <td>Not Change</td>
                                                     <% } else { %>
-                                                        <td><%= data.publish_date %></td>
+                                                        <td><%= data.publish_date.slice(0,4) %></td>
                                                     <% } %>
                                                 </tr>
                                                 <tr>

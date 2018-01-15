@@ -610,7 +610,7 @@ router.post('/post-review/:id', urlencodedParser, (req, res, next) => {
             res.redirect('back');
         }
     })
-    
+
 });
 
 router.get('/view-review/:id',localSession, (req, res, next) => {
@@ -619,11 +619,11 @@ router.get('/view-review/:id',localSession, (req, res, next) => {
         headers: objectHeaders.headers({'Authorization': req.session.access_token})
     }, function (error, response, body) {
         if (!error && response.statusCode === 200) {
-            let data = JSON.parse(body);
-             res.render('books/review_details', {
-                 data : data,
-                 userId : req.session.user.id
-             });
+            var data = JSON.parse(body);
+            res.render('books/review_details', {
+                data : data,
+                userId : req.session.user.id
+            });
         } else {
             req.flash('error', 'This review not availble');
             res.redirect('back');

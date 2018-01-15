@@ -34,7 +34,7 @@ Book.editBook = function () {
     formData.append('author', $('#author').val().trim());
     formData.append('category_id', $('#category').val().trim());
     formData.append('office_id', $('#office').val().trim());
-    formData.append('publish_date', $('#publish_date').val());
+    formData.append('publish_date', $('#publish_date').val() + '-01' + '-01');
     formData.append('description', $('#description').val().trim());
     formData.append('code', $('.edit_book_code').data('edit-book-code'));
     //Attach file
@@ -374,8 +374,9 @@ Book.ajaxSortBook = function (data) {
     });
 };
 
-$('#publish_date').datepicker({
-    format: 'yyyy-mm-dd'
+$('#publish_date').datetimepicker({
+    viewMode: 'years',
+    format: 'YYYY'
 });
 
 $('.loader').hide();
@@ -394,7 +395,7 @@ Book.addNew = function () {
     formData.append('author', $('#author').val().trim());
     formData.append('category_id', $('#category').val().trim());
     formData.append('office_id', $('#office').val().trim());
-    formData.append('publish_date', $('#publish_date').val());
+    formData.append('publish_date', $('#publish_date').val() + '-01' + '-01');
     formData.append('description', $('#description').val().trim());
 
     //Attach file
