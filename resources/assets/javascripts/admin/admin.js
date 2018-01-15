@@ -69,16 +69,23 @@ timeAGo = function ( date ) {
     return Math.floor(seconds) + ' seconds ago';
 };
 
+Pusher.logToConsole = true;
+var pusher = new Pusher(configs.pusher.key, {
+  cluster: configs.pusher.cluster,
+  encrypted: configs.pusher.encrypted
+});
+
+var channel = pusher.subscribe('channel_notification');
+channel.bind('App\\Events\\NotificationHandler', function(data) {
+    $('#notification_' + data.user_id).html(parseInt($('#notification_' + data.user_id).html()) + 1);
+    $('#notification_icon_' + data.user_id).html(parseInt($('#notification_icon_' + data.user_id).html())+1);
+    if(data.user_id == $('#get-user-id').html())
+    {
+        showNotify('info', data.messages, {icon: "glyphicon glyphicon-ok"}, {delay: 5000});
+    }
+});
+
 $(document).ready(function() {
-    $('.time_a_go').each(function() {
-        $(this).html(timeAGo($(this).html()));
-    });
-
-    $('._approve-btn').on('click', function() {
-        $(this).addClass('disabled');
-        $(this).html($(this).data('loading'));
-    });
-
     if(typeof(access_token) !== 'undefined') {
         $.ajax({
         url: API_PATH + 'notifications/count/user',
@@ -108,6 +115,15 @@ $(document).ready(function() {
             showNotify('danger', "Data Invalid", {icon: "glyphicon glyphicon-remove"}, {delay: 1000});
         });
     }
+
+    $('.time_a_go').each(function() {
+        $(this).html(timeAGo($(this).html()));
+    });
+
+    $('._approve-btn').on('click', function() {
+        $(this).addClass('disabled');
+        $(this).html($(this).data('loading'));
+    });
 
     $('.view-notify').on('click', function (e) {
         $.ajax({
