@@ -34,6 +34,7 @@ router.get('/', localSession, function (req, res, next) {
                     isHomePage: true,
                     info: req.flash('info'),
                     error: req.flash('error'),
+                    lang : req.session.lang
                 });
             } catch (errorJSONParse) {
                 res.redirect('home');
@@ -71,6 +72,12 @@ router.get('/all_office', localSession, function (req, res, next) {
             res.redirect('home');
         }
     });
+});
+
+router.get('/change-lang/:lang', function(req, res) {
+    res.cookie('lang', req.params.lang, { maxAge: 900000 , httpOnly: true});
+    req.session.lang = req.params.lang;
+    res.redirect('back');
 });
 
 module.exports = router;
