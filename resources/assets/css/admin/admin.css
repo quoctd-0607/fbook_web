@@ -184,3 +184,17 @@ section.content{
     padding: 20px 0;
     font-size: 25px;
 }
+.cursor-hover td:nth-child(2) {
+    width: 49% !important;
+}
+.box-custom {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: flex-end;
+}
+.tool-fix-width {
+    max-width: 400px !important;
+}
+.padding-select {
+    padding-right: 15px !important;
+}

@@ -320,4 +320,36 @@ router.post('/categories/update', authorize.isAdmin, function (req, res, next) {
     }
 });
 
+router.get('/users', authorize.isAdmin, function (req, res, next) {
+    var page = req.query.page ? req.query.page : 1;
+    request({
+        url: req.configs.api_base_url + 'admin/users?page=' + page,
+        headers: objectHeaders.headers({'Authorization': req.session.access_token})
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            try {
+                var data = JSON.parse(body);
+                var paginate = helper.paginate({
+                    total_record: data.items.total,
+                    current_page: page,
+                    link: `${req.configs.web_domain}:${req.configs.port}/admin/users?page={?}`
+                });
+                res.render('admin/users', {
+                    layout: 'admin/layout/admin_template',
+                    dataRequest: data,
+                    pageTitle: 'Admin Dashboard',
+                    paginate: paginate,
+                    info: req.flash('info'),
+                    error: req.flash('error'),
+                });
+            } catch (errorJSONParse) {
+                res.redirect('back');
+            }
+        } else {
+            req.flash('error', 'Something went wrong');
+            res.redirect('back');
+        }
+    });
+});
+
 module.exports = router;
