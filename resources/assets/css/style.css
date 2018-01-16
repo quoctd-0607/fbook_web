@@ -504,22 +504,22 @@ input:-webkit-autofill:focus {
     position: relative;
 }
 
-#no_comment{
+#no_comment {
     margin-top: 10vh;
     margin-bottom: 10vh;
 }
 
-.view_more{
+.view_more {
     color: #365899;
 }
 
-.vote_review{
+.vote_review {
     margin-top: 5vh;
     margin-bottom: 5vh;
     font-size: 5rem;
 }
 
-.btn_vote{
+.btn_vote {
     background-color: Transparent;
     background-repeat:no-repeat;
     border: none;
@@ -527,7 +527,7 @@ input:-webkit-autofill:focus {
     overflow: hidden;
     outline:none;
 }
-#btn_show_vote{
+#btn_show_vote {
     background-color: Transparent;
     background-repeat:no-repeat;
     border: none;
@@ -536,6 +536,30 @@ input:-webkit-autofill:focus {
     outline:none;
 }
 
-.btn_voted{
+.btn_voted {
     color: #5488c7;
+}
+
+.image-choose {
+    width:  25px !important;
+    height: 20px !important;
+}
+
+.image-flag-be {
+    width:  25px !important;
+}
+
+.text-i18n {
+    color: #333 !important;
+    padding-left: 15px !important;
+    margin-top: -15px;
+}
+
+.text-i18n span{
+    padding-left: 11px;
+}
+
+.icon-header {
+    padding-left: 7px !important;
+    padding-right: 7px !important;
 }

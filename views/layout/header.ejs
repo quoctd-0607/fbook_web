@@ -38,7 +38,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="/users/my_profile"> <span><i class="icofont icofont-user"></i></span> Profile</a>
+                                        <a href="/users/my_profile"> <span><i class="icofont icofont-user"></i></span><%= __('Profile') %></a>
                                     </li>
                                     <li>
                                         <a href="/books/add"> <span><i class="glyphicon glyphicon-share-alt"></i></span> Share books </a>
@@ -69,9 +69,9 @@
                     <ul class="nav navbar-nav nav-white text-uppercase">
                         <li class="active">
                             <% if (typeof user != 'undefined' && typeof user.office_id !== 'undefined' && user.office_id) { %>
-                                <a href="/home?officeId=<%= user.office_id %>">Home</a>
+                                <a href="/home?officeId=<%= user.office_id %>"><%= __('Home')%></a>
                             <% } else { %>
-                                <a href="/home">Home</a>
+                                <a href="/home"><%= __('Home') %></a>
                             <% } %>
                         </li>
                         <li>
@@ -96,10 +96,33 @@
                             </li>
                         <% } %>
                         <li>
-                            <a href="/users/fbook_app"><span><i class="icofont icofont-iphone nav-icon"></i></span>App</a>
+                            <a href="/users/fbook_app" class="icon-header"><span><i class="icofont icofont-iphone nav-icon"></i></span></a>
+                        </li>
+
+                        <li>
+                        <% if (typeof lang !== 'undefined' && lang == 'en') { %>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/english.png" class="image-flag-be"></span></a>
+                        <% } else if (typeof lang !== 'undefined' && lang == 'vi') { %>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/vietnam.png" class="image-flag-be"></span></a>
+                        <% } else if (typeof lang !== 'undefined' && lang == 'jp') { %>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/nhatban.png" class="image-flag-be"></span></a>
+                        <% } else { %>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/english.png" class="image-flag-be"></span></a>
+                        <% } %>
+                            <ul class="dropdown-menu language">
+                                <li>
+                                    <a href="/change-lang/vi" class="text-i18n" data-img="/images/vietnam.png"><img class="image-choose" src="/images/vietnam.png"/><span>VietNam </span></a>
+                                </li>
+                                <li>
+                                    <a href="/change-lang/en" class="text-i18n" data-img="/images/english.png"><img class="image-choose" src="/images/english.png"/><span>English</span></a>
+                                </li>
+                                <li>
+                                    <a href="/change-lang/jp" class="text-i18n" data-img="/images/nhatban.png"><img class="image-choose" src="/images/nhatban.png"/><span>日本語</span></a>
+                                </li>
+                            </ul>
                         </li>
                         <li data-toggle="tooltip" title="MORE TOOLS">
-                            <a href="https://wsm.framgia.vn/all-tools" target="_blank">
+                            <a href="https://wsm.framgia.vn/all-tools" target="_blank" class="icon-header">
                             <img src="/images/app_icon.png" class="icofont-fw nav-icon nav-moretoolicon"></a>
                         </li>
                         <% if (typeof user != 'undefined' && typeof user.name !== 'undefined' && user.name) { %>

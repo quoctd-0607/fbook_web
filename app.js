@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var flash = require('connect-flash');
 var configs = require('./configs/config');
+var i18n = require("i18n");
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -35,6 +36,7 @@ app.use(cookieParser());
 app.use(session({resave: true, saveUninitialized: true, secret: 'wemakeitawesome', cookie: { maxAge: 60000 * 30 }}));
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(i18n.init);
 
 // configs
 app.use(function (req, res, next) {
@@ -72,6 +74,12 @@ app.use(function (err, req, res, next) {
 });
 
 app.locals.configs = configs;
+
+i18n.configure({
+    locales:['en', 'vi', 'jp'],
+    directory: __dirname + '/locales',
+    cookie: 'lang',
+});
 
 getString = function (string, maxLength) {
     if (typeof string !== 'undefined' && string) {
