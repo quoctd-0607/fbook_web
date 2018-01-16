@@ -1,0 +1,76 @@
+<section class="content-header">
+    <h1>
+        Dashboard
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-11">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination pull-right">
+                    <%- paginate %>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10 offset-1">
+            <div class="box box-custom">
+                <div class="box-tools tool-fix-width">
+                    <form method="GET" action="">
+                        <div class="input-group input-group-sm">
+                            <select class="form-control pull-right padding-select">
+                                    <option>Search by: Staff Code</option>
+                                    <option>Search by: Email</option>
+                            </select>
+                            <input type="text" name="key_word" class="form-control pull-right" placeholder="Input...">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">User list</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <table class="table table-hover table-responsive">
+                        <tr>
+                            <th>Staff Code</th>
+                            <th>Mail</th>
+                            <th>Branch</th>
+                            <th class="text-center">Create Date</th>
+                            <th class="text-center">Book Own</th>
+                        </tr>
+                        <% if (dataRequest.items.data.length > 0) { %>
+                            <% dataRequest.items.data.forEach(function(data) { %>
+                            <tr class="cursor-hover">
+                                <td class="text-center"><%= data.employee_code %></td>
+                                <td><%= data.email %></td>
+                                <td><%= data.office.name %></td>
+                                <td class="text-center"><%= data.join_date %></td>
+                                <td class="text-center"><%= data.owners_count %></td>
+                            </tr>
+                            <% }) %>
+                        <% } %>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-11">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination pull-right">
+                    <%- paginate %>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
