@@ -631,4 +631,27 @@ router.get('/view-review/:id',localSession, (req, res, next) => {
     });
 });
 
+router.post('/review-details/comment', urlencodedParser , (req, res, next) => {
+    request.post({
+        url: req.configs.api_base_url + 'books/review-details/comment',
+        form: {
+            'item':
+            {
+                'userId' : req.body.review_user_id,
+                'reviewId': req.body.review_review_id,
+                'content':  req.body.review_content
+            }
+        },
+        headers: objectHeaders.headers({'Authorization': req.session.access_token})
+    }, (error, response, body) => {
+        if (!error && response.statusCode === 200) {
+            req.flash('info', 'Thanks for your comment');
+            res.redirect('back');
+        } else {
+            req.flash('error', 'Can\'t add your comment, something went wrong ');
+            res.redirect('back');
+        }
+    })
+});
+
 module.exports = router;
