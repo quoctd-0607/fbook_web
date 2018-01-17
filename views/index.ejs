@@ -87,11 +87,11 @@
                                                     <p>
                                                         <%- book.overview %>
                                                     </p>
-                                                    <a href="/books/<%= book.id %>" class="text-primary">View detail</a>
+                                                    <a href="/books/<%= book.id %>" class="text-primary"><%= __('View detail')%></a>
                                                 </div>
                                             </div>
                                     <div class="owners">
-                                        <strong> Shared by: </strong>
+                                        <strong><%= __('Shared by')%> : </strong>
                                         <% if (book.owners) { %>
                                             <% var countOwner = 0 %>
                                             <% book.owners.forEach(function (owner) { %>
@@ -121,9 +121,9 @@
             <div class="row">
                 <div class="col-xs-12 text-center">
                     <% if (typeof(officeId) === 'undefined') { %>
-                        <a href="/books/?field=<%= section.key %>&page=1" class="btn btn-warning btn-xs">More</a>
+                        <a href="/books/?field=<%= section.key %>&page=1" class="btn btn-warning btn-xs"><%= __('More')%></a>
                     <% } else { %>
-                        <a href="/books/?field=<%= section.key %>&page=1&officeId=<%= officeId %>" class="btn btn-warning btn-xs">More</a>
+                        <a href="/books/?field=<%= section.key %>&page=1&officeId=<%= officeId %>" class="btn btn-warning btn-xs"><%= __('More')%></a>
                     <% } %>
                 </div>
             </div>

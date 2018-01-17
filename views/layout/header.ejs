@@ -41,21 +41,21 @@
                                         <a href="/users/my_profile"> <span><i class="icofont icofont-user"></i></span><%= __('Profile') %></a>
                                     </li>
                                     <li>
-                                        <a href="/books/add"> <span><i class="glyphicon glyphicon-share-alt"></i></span> Share books </a>
+                                        <a href="/books/add"> <span><i class="glyphicon glyphicon-share-alt"></i></span><%= __('Share books')%></a>
                                     </li>
                                     <li>
-                                        <a href="/books/waiting_approve"> <span><i class="glyphicon glyphicon-ok"></i></span> Approve requests </a>
+                                        <a href="/books/waiting_approve"> <span><i class="glyphicon glyphicon-ok"></i></span><%= __('Approve requests')%> </a>
                                     </li>
                                     <li>
-                                        <a href="/users/my_books"> <span><i class="icofont icofont-read-book"></i></span> My Books</a>
+                                        <a href="/users/my_books"> <span><i class="icofont icofont-read-book"></i></span><%= __('My Books')%> </a>
                                     </li>
                                      <% if(user.role == 'admin') { %>
                                         <li>
-                                            <a href="/admin/waiting-request-edit-book"> <span><i class="icofont icofont-ui-settings"></i></span> Approve requests edit book</a>
+                                            <a href="/admin/waiting-request-edit-book"> <span><i class="icofont icofont-ui-settings"></i></span><%= __('Approve requests edit book')%> </a>
                                         </li>
                                     <% } %>
                                     <li>
-                                        <a href="/logout"> <span><i class="icofont icofont-logout"></i></span> Log Out</a>
+                                        <a href="/logout"> <span><i class="icofont icofont-logout"></i></span><%= __('Log Out')%> </a>
                                     </li>
                                 </ul>
                             </li>

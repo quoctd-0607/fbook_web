@@ -38,8 +38,8 @@
                     <div class="panel-heading">
                         <div class="panel-heading">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#search_internal">Search internal books</a></li>
-                                <li><a data-toggle="tab" href="#search_google_books">Search books with google books</a></li>
+                                <li class="active"><a data-toggle="tab" href="#search_internal"><%= __('Search internal books')%></a></li>
+                                <li><a data-toggle="tab" href="#search_google_books"><%= __('Search books with google books')%></a></li>
                             </ul>
                         </div>
                     </div>
@@ -48,9 +48,9 @@
                             <div class="tab-pane fade in active" id="search_internal">
                                 <div class="row event-list">
                                     <div class="search-result col-md-12">
-                                        <label class="radio-inline"><input type="radio" name="type-search" value="title" checked="true">Title</label>
-                                        <label class="radio-inline"><input type="radio" name="type-search" value="author">Author</label>
-                                        <label class="radio-inline"><input type="radio" name="type-search" value="description">Description</label>
+                                        <label class="radio-inline"><input type="radio" name="type-search" value="title" checked="true"><%= __('Title')%></label>
+                                        <label class="radio-inline"><input type="radio" name="type-search" value="author"><%= __('Author')%></label>
+                                        <label class="radio-inline"><input type="radio" name="type-search" value="description"><%= __('Description')%></label>
                                     </div>
                                     <div class="category-container col-md-12">
                                         <input type="text" id="search-book"/>
