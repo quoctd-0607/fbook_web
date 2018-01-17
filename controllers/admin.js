@@ -64,7 +64,7 @@ router.get('/', authorize.isAdmin, function (req, res, next) {
     }, (error, result) => {
         if (error) {
             req.flash('error', 'Please try again');
-            res.redirect('back');
+            return res.redirect('back');
         } else {
             res.render('admin/dashboard', {
                 layout: 'admin/layout/admin_template',
@@ -102,10 +102,10 @@ router.get('/waiting-request-edit-book', authorize.isAdmin, function (req, res, 
                     error: req.flash('error'),
                 });
             } catch (errorJSONParse) {
-                res.redirect('back');
+                return res.redirect('back');
             }
         } else {
-            res.redirect('back');
+            return res.redirect('back');
         }
     });
 });
@@ -119,17 +119,17 @@ router.post('/approve-update-request/:id', authorize.isAdmin, function (req, res
         if (!error && response.statusCode === 200) {
             try {
                 req.flash('info', 'Approve success');
-                res.redirect('back');
+                return res.redirect('back');
             } catch (errorJSONParse) {
-                res.redirect('back');
+                return res.redirect('back');
             }
         } else {
             if (response.statusCode == 401) {
                 req.flash('error', 'Please login to approve this book');
-                res.redirect('back');
+                return res.redirect('back');
             } else {
                 req.flash('error', JSON.parse(body).message.description);
-                res.redirect('back');
+                return res.redirect('back');
             }
         }
     });
@@ -158,11 +158,11 @@ router.get('/categories', authorize.isAdmin, function (req, res, next) {
                     error: req.flash('error'),
                 });
             } catch (errorJSONParse) {
-                res.redirect('back');
+                return res.redirect('back');
             }
         } else {
             req.flash('error', 'Something went wrong');
-            res.redirect('back');
+            return res.redirect('back');
         }
     });
 });
@@ -172,7 +172,7 @@ router.get('/categories/search', authorize.isAdmin, function (req, res, next) {
     var keyWord = req.query.key_word;
     if (!keyWord && keyWord.trim() !== '') {
         req.flash('error', 'Please input something to search');
-        res.redirect('back');
+        return res.redirect('back');
     }
     request.post({
         url: req.configs.api_base_url + 'admin/categories/search/',
@@ -199,10 +199,10 @@ router.get('/categories/search', authorize.isAdmin, function (req, res, next) {
                     error: req.flash('error'),
                 });
             } catch (errorJSONParse) {
-                res.redirect('back');
+                return res.redirect('back');
             }
         } else {
-            res.redirect('back');
+            return res.redirect('back');
         }
     })
 });
@@ -239,18 +239,18 @@ router.post('/categories/store', authorize.isAdmin, function (req, res, next) {
                 if (!error && response.statusCode === 200) {
                     try {
                         req.flash('info', 'Create category success');
-                        res.redirect('/admin/categories');
+                        return res.redirect('/admin/categories');
                     } catch (errorJSONParse) {
-                        res.redirect('back');
+                        return res.redirect('back');
                     }
                 } else if (response.statusCode === 422) {
                     var msg = JSON.parse(body);
                     req.flash('apiValidate', msg.message.description[0]);
                     req.flash('error', 'Data invalid');
-                    res.redirect('back');
+                    return res.redirect('back');
                 } else {
                     req.flash('error', 'Something went wrong');
-                    res.redirect('back');
+                    return res.redirect('back');
                 }
             });
         }
@@ -277,10 +277,10 @@ router.get('/categories/detail/:id', authorize.isAdmin, function (req, res, next
                     apiValidate: req.flash('apiValidate')
                 });
             } catch (errorJSONParse) {
-                res.redirect('back');
+                return res.redirect('back');
             }
         } else {
-            res.redirect('back');
+            return res.redirect('back');
         }
     });
 });
@@ -311,10 +311,10 @@ router.post('/categories/update', authorize.isAdmin, function (req, res, next) {
                 var msg = JSON.parse(body);
                 req.flash('apiValidate', msg.message.description[0]);
                 req.flash('error', 'Data invalid');
-                res.redirect('back');
+                return res.redirect('back');
             } else {
                 req.flash('error', 'Something went wrong');
-                res.redirect('back');
+                return res.redirect('back');
             }
         });
     }
@@ -343,11 +343,59 @@ router.get('/users', authorize.isAdmin, function (req, res, next) {
                     error: req.flash('error'),
                 });
             } catch (errorJSONParse) {
-                res.redirect('back');
+                return res.redirect('back');
             }
         } else {
             req.flash('error', 'Something went wrong');
-            res.redirect('back');
+            return res.redirect('back');
+        }
+    });
+});
+
+router.get('/users/search', authorize.isAdmin, function (req, res, next) {
+    var error = 0;
+    var page = (typeof(req.query.page) != 'undefined') ? req.query.page : 1;
+    var keyWord = (typeof(req.query.key_word) != 'undefined') ? req.query.key_word : '';
+    if (keyWord == '') {
+        req.flash('error', 'Please input something to search');
+        return res.redirect('/admin/users');
+    }
+    var filterType = (typeof(req.query.filter_type) != 'undefined') ? req.query.filter_type : '';
+    if (filterType == '') {
+        req.flash('error', 'Please choose a search type');
+        return res.redirect('/admin/users');
+    }
+    request.post({
+        url: req.configs.api_base_url + 'admin/users/search',
+        form: {
+            'key': keyWord,
+            'page': page,
+            'type': filterType
+        },
+        headers: objectHeaders.headers({'Authorization': req.session.access_token})
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            try {
+                var data = JSON.parse(body);
+                var paginate = helper.paginate({
+                    total_record: data.items.total,
+                    current_page: page,
+                    link: `${req.configs.web_domain}:${req.configs.port}/admin/users/search?filter_type=${filterType}&key_word=${keyWord}&page={?}`
+                });
+                res.render('admin/users', {
+                    layout: 'admin/layout/admin_template',
+                    dataRequest: data,
+                    pageTitle: 'Admin Dashboard',
+                    paginate: paginate,
+                    info: req.flash('info'),
+                    error: req.flash('error'),
+                });
+            } catch (errorJSONParse) {
+                return res.redirect('back');
+            }
+        } else {
+            req.flash('error', 'Something went wrong');
+            return res.redirect('/admin/users');
         }
     });
 });

@@ -323,6 +323,8 @@ $(document).ready(function() {
                 $('.diff-time').each(function() {
                     $(this).html(timeAGo($(this).html()));
                 });
+            } else {
+                $('#noti-list').html('');
             }
         }).fail(function (error) {
             showNotify('Data Invalid', 'danger', 1000);
