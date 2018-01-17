@@ -27,15 +27,15 @@ router.get('/', authorize.isAdmin, function (req, res, next) {
                 }
             });
         },
-        totalBook: (callback) => {
+        totalBookHaveOwner: (callback) => {
             request({
-                url: req.configs.api_base_url + 'admin/count/books',
+                url: req.configs.api_base_url + 'admin/count/books/have-owner',
                 headers: objectHeaders.headers({'Authorization': req.session.access_token})
             }, function (error, response, body) {
                 if (!error && response.statusCode === 200) {
                     try {
-                        var books = JSON.parse(body);
-                        callback(null, books);
+                        var bookHaveOwner = JSON.parse(body);
+                        callback(null, bookHaveOwner);
                     } catch (errorJSONParse) {
                         callback(null, null);
                     }
@@ -44,15 +44,15 @@ router.get('/', authorize.isAdmin, function (req, res, next) {
                 }
             });
         },
-        totalCategory: (callback) => {
+        totalUserHaveBook: (callback) => {
             request({
-                url: req.configs.api_base_url + 'admin/count/categories',
+                url: req.configs.api_base_url + 'admin/count/owners/have-book',
                 headers: objectHeaders.headers({'Authorization': req.session.access_token})
             }, function (error, response, body) {
                 if (!error && response.statusCode === 200) {
                     try {
-                        var categories = JSON.parse(body);
-                        callback(null, categories);
+                        var userHaveBook = JSON.parse(body);
+                        callback(null, userHaveBook);
                     } catch (errorJSONParse) {
                         callback(null, null);
                     }
@@ -69,8 +69,8 @@ router.get('/', authorize.isAdmin, function (req, res, next) {
             res.render('admin/dashboard', {
                 layout: 'admin/layout/admin_template',
                 totalUser: result.totalUser.item,
-                totalBook: result.totalBook.item,
-                totalCategory: result.totalCategory.item,
+                totalBookHaveOwner: result.totalBookHaveOwner.item,
+                totalUserHaveBook: result.totalUserHaveBook.item,
                 pageTitle: 'Admin Dashboard',
                 info: req.flash('info'),
                 error: req.flash('error'),
