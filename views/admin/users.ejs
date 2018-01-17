@@ -18,11 +18,11 @@
         <div class="col-10 offset-1">
             <div class="box box-custom">
                 <div class="box-tools tool-fix-width">
-                    <form method="GET" action="">
+                    <form method="GET" action="/admin/users/search">
                         <div class="input-group input-group-sm">
-                            <select class="form-control pull-right padding-select">
-                                    <option>Search by: Staff Code</option>
-                                    <option>Search by: Email</option>
+                            <select name="filter_type" class="form-control pull-right padding-select">
+                                    <option value="1">Search by: Staff Code</option>
+                                    <option value="2">Search by: Email</option>
                             </select>
                             <input type="text" name="key_word" class="form-control pull-right" placeholder="Input...">
                             <div class="input-group-btn">
