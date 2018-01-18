@@ -404,7 +404,7 @@ router.get('/:id', authorize.isAuthenticated, function(req, res, next) {
 
             res.render('users/profile', {
                 data: results.user.item,
-                pageTitle: results.user.item.id + ' profile',
+                pageTitle: results.user.item.name + ' profile',
                 categories: results.categories,
                 interestedCategoryIds: interestedCategoryIds,
                 categoryIds: categoryIds,

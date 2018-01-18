@@ -858,3 +858,14 @@
     color: #000;
     margin-left: 20px;
 }
+
+.review-comment {
+    font-style: italic;
+}
+
+.book_title {
+    color: #5b5b5b !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+

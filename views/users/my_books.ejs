@@ -22,7 +22,9 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <% if (book.image !== null) { %>
-                                            <img src="<%= book.image.web.thumbnail_path %>" class="media-object" alt="<%= book.title %>">
+                                            <a href="/books/<%= book.id %>" class="book_title">
+                                                <img src="<%= book.image.web.thumbnail_path %>" class="media-object" alt="<%= book.title %>">
+                                            </a>
                                         <% } else { %>
                                             <img src="/images/book_thumb_default.jpg" class="media-object" alt="<%= book.title %>">
                                         <% } %>
@@ -31,7 +33,9 @@
                                     <div class="media-body">
                                         <% if (typeof (book.title) != 'undefined' && book.title) { %>
                                             <h5 title="<%= book.title %>" data-toggle="tooltip">
-                                                <%= getString(book.title, configs.book.title_limit_characters) %>
+                                                <a href="/books/<%= book.id %>" class="book_title">
+                                                    <%= getString(book.title, configs.book.title_limit_characters) %>
+                                                </a>
                                             </h5>
                                         <% } else {%>
                                             <h6>No title</h6>
@@ -47,7 +51,6 @@
                                             <%= book.overview %>
                                         </p>
                                         <div class="pull-right">
-                                            <a href="/books/<%= book.id %>" class="btn btn-primary edit-book pull-right">View detail</a>
                                             <a href="/books/<%= book.id %>/approve-request" class="btn btn-primary edit-book btn-view-request">View all request <span class="btn-danger bnt-request"><%- book.users_waiting.length + book.users_returning.length %></span></a>
                                         </div>
                                     </div>
