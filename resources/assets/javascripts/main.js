@@ -289,4 +289,42 @@ jQuery(document).ready(function($) {
             });
         });
     });
+
+    $('.delete_comment_topright').click(function() {
+        let id = $(this).val();
+        $.ajax({
+            url: API_PATH + 'books/review-details/remove-comment/' + id,
+            contentType: 'application/json',
+            dataType: 'json',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': access_token,
+            },
+            type: 'DELETE',
+            data: {},
+        }).done(function(response) {
+            if (response.message.code == 200) {
+                $('#comment' + id).remove();
+                showNotify('success', "Delete comment successfull!", {
+                    icon: "glyphicon glyphicon-remove"
+                }, {
+                    delay: 1000
+                });
+            } else {
+                showNotify('danger', "Opp\'s something went wrong", {
+                    icon: "glyphicon glyphicon-remove"
+                }, {
+                    delay: 1000
+                });
+            }
+        }).fail(function(error) {
+            showNotify('danger', "Opp\'s something went wrong", {
+                icon: "glyphicon glyphicon-remove"
+            }, {
+                delay: 1000
+            });
+        });
+    });
+
 }(jQuery));

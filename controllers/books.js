@@ -606,14 +606,14 @@ router.post('/post-review/:id', urlencodedParser, (req, res, next) => {
             req.flash('info', 'Thanks for review');
                 res.redirect(`../../books/${req.params.id}`);
         } else {
-            req.flash('error', 'Can\'t add your review, something went wrong ');
+            req.flash('error', 'Please fillout all review\'s content');
             res.redirect('back');
         }
     })
 
 });
 
-router.get('/view-review/:id',localSession, (req, res, next) => {
+router.get('/view-review/:id', authorize.isAuthenticated, localSession, (req, res, next) => {
     request({
         url: req.configs.api_base_url + 'books/review-details/' + req.params.id + '/' + req.session.user.id,
         headers: objectHeaders.headers({'Authorization': req.session.access_token})
