@@ -190,8 +190,8 @@ Book.generateBookXhtml = function (book) {
             }
 
             xhtml += "<img data-toggle='tooltip'";
-            xhtml += "class='owner-image-home img-circle'";
-            xhtml += "title='" + owner.name + "' src='";
+            xhtml += " class='owner-image-home img-circle'";
+            xhtml += " title='" + owner.name + "' src='";
 
             if (owner && owner.avatar) {
                 xhtml += owner.avatar;
@@ -199,7 +199,7 @@ Book.generateBookXhtml = function (book) {
                 xhtml += '/images/user_default.png';
             }
 
-            xhtml += "'class='media-object author-photo img-thumbnail background--white' alt='library'>";
+            xhtml += " class='media-object author-photo img-thumbnail background--white' alt='library' onerror='this.src='imgBackUp(this)'>";
 
         })
     }
@@ -209,7 +209,6 @@ Book.generateBookXhtml = function (book) {
     xhtml += '</div>';
     xhtml += '<script src="/bower/bootstrap-star-rating/js/star-rating.js"></script>';
     xhtml += '<link href="/bower/bootstrap-star-rating/css/star-rating.css" rel="stylesheet" type="text/css">';
-    xhtml += '<link href="/bower/bootstrap-star-rating/css/theme-krajee-fa.css" rel="stylesheet" type="text/css">';
 
     return xhtml;
 };
@@ -303,9 +302,9 @@ Book.generateUserXhtml = function (user) {
     xhtml += '<div class="media-left">';
 
     if (user.avatar !== null) {
-        xhtml += '<img src="'+ user.avatar +'" class="media-object w-70-h-70" alt="library">';
+        xhtml += '<img src="'+ user.avatar +'" class="media-object w-70-h-70" alt="avatar">';
     } else {
-        xhtml += '<img src="/images/user/icon_user_default.png" class="media-object w-70-h-70" alt="library">';
+        xhtml += '<img src="/images/user/icon_user_default.png" class="media-object w-70-h-70" alt="avatar">';
     }
     xhtml += '</div>';
     xhtml += '<div class="media-body">';
@@ -383,7 +382,9 @@ $('.loader').hide();
 
 Book.addNew = function () {
     var scope = this;
-    if (!scope.checkAuthorized()) return false;
+    if (!scope.checkAuthorized()) {
+        return false;
+    }
 
     if (!$('#form-add-book').valid()) {
         return false;
@@ -444,7 +445,10 @@ Book.modalBooking = function () {
     var modalWantToRead = $('#modalWantToRead');
 
     elementBooking.on('click', function () {
-        if (!scope.checkAuthorized()) return false;
+        if (!scope.checkAuthorized()) {
+            return false;
+        }
+        
         var bookOffice = parseInt($(this).attr('data-office-id'));
         if (user.office_id && bookOffice !== user.office_id) {
             swal({
@@ -470,6 +474,7 @@ $('.add-owner').on('click', function(e) {
 
         return false;
     }
+
     var bookOffice = parseInt($(this).attr('data-office-id'));
     if (user.office_id && bookOffice !== user.office_id) {
         swal({
@@ -573,8 +578,7 @@ $('.btn-action').on('click', '.remove-owner', function (e) {
     });
 });
 
-function approveRequestWaiting(userId)
-{
+function approveRequestWaiting(userId) {
     swal({
         title: "Are you sure approve this request?",
         type: "info",
@@ -623,8 +627,7 @@ function approveRequestWaiting(userId)
     });
 }
 
-function approveRequestReturning(userId)
-{
+function approveRequestReturning(userId) {
     swal({
         title: "Are you sure approve this request?",
         type: "info",
@@ -671,8 +674,7 @@ function approveRequestReturning(userId)
     });
 }
 
-function unapproveRequestWaiting(userId)
-{
+function unapproveRequestWaiting(userId) {
     swal({
         title: "Are you sure unapprove this request?",
         type: "info",
@@ -721,8 +723,7 @@ function unapproveRequestWaiting(userId)
     });
 }
 
-function removeRequestWaiting(userId)
-{
+function removeRequestWaiting(userId) {
     swal({
         title: "Are you sure remove this request?",
         type: "info",
@@ -757,7 +758,6 @@ function removeRequestWaiting(userId)
         }).done(function (response) {
             if (response.message.status) {
                 $('.approve-waiting-area-' + userId).html('');
-
                 showNotify('success', 'Request removed', {icon: 'glyphicon glyphicon-ok'}, {delay: 3000});
             } else {
                 showNotify('danger', 'Remove request fail', {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});
@@ -768,8 +768,7 @@ function removeRequestWaiting(userId)
     });
 }
 
-function removeRequestUpdateBook(requestId)
-{
+function removeRequestUpdateBook(requestId) {
     swal({
         title: "Are you sure remove this request?",
         type: "info",
@@ -780,7 +779,7 @@ function removeRequestUpdateBook(requestId)
     },
     function() {
         $('#load' + requestId).addClass('disabled');
-        let loading = $('#load' + requestId).data('loading');
+        var loading = $('#load' + requestId).data('loading');
         $('#load' + requestId).html(loading);
         if (typeof(access_token) === 'undefined') {
             showNotify('danger', 'Approve request fail, Please login to continue', {icon: 'glyphicon glyphicon-remove'}, {delay: 3000});

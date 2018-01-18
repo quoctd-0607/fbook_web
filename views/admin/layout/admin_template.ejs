@@ -34,7 +34,7 @@
         <!-- Main-Stylesheets -->
         <link rel="stylesheet" href="/css/admin/admin.css">
         <% if(locals.appCss) { %>
-        <%- appCss %>
+            <%- appCss %>
         <% }%>
     </head>
     <body class="hold-transition skin-yellow sidebar-mini relative-postion">
@@ -56,8 +56,8 @@
         <!--End footer-->
 
         <!-- Vendor-JS -->
-        <script src="/bower/jquery/dist/jquery.min.js"></script>
-        <script src="/bower/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+        <script type="text/javascript" src="/bower/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/bower/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
         <script type="text/javascript">
             var API_PATH = "<%= configs.api_base_url %>";
             var access_token, user = null;
@@ -72,45 +72,44 @@
             $.fn.andSelf = function() {
                 return this.addBack.apply(this, arguments);
             }
-
         </script>
 
 
         <!-- Plugin-JS -->
-        <script src="/bower/jquery-ui/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/bower/jquery-ui/jquery-ui.min.js"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-        <script>
+        <script type="text/javascript">
             $.widget.bridge('uibutton', $.ui.button);
         </script>
-        <script src="/bower/popper.js/dist/umd/popper.min.js"></script>
-        <script src="/bower/bootstrap4/dist/js/bootstrap.min.js"></script>
-        <script src="/bower/Chart.js/Chart.min.js"></script>
-        <script src="/bower/jquery.sparkline/index.js"></script>
-        <script src="/bower/jquery-knob/dist/jquery.knob.min.js"></script>
-        <script src="/bower/moment/min/moment.min.js"></script>
-        <script src="/bower/bootstrap-daterangepicker/daterangepicker.js"></script>
-        <script src="/bower/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <script type="text/javascript" src="/bower/popper.js/dist/umd/popper.min.js"></script>
+        <script type="text/javascript" src="/bower/bootstrap4/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/bower/Chart.js/Chart.min.js"></script>
+        <script type="text/javascript" src="/bower/jquery.sparkline/index.js"></script>
+        <script type="text/javascript" src="/bower/jquery-knob/dist/jquery.knob.min.js"></script>
+        <script type="text/javascript" src="/bower/moment/min/moment.min.js"></script>
+        <script type="text/javascript" src="/bower/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <script type="text/javascript" src="/bower/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
         <script type="text/javascript" src="/bower/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="/bower/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.all.min.js"></script>
-        <script src="/bower/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-        <script src="/bower/fastclick/lib/fastclick.js"></script>
-        <script src="/bower/fox-adm-style/js/template.js"></script>
-        <script src="/bower/jquery-validation/dist/jquery.validate.min.js"></script>
-        <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
-        <script src="/javascripts/admin/admin.js"></script>
-        <% if (typeof info != 'undefined' && info != '') { %>
-        <script>
-            showNotify("<%= info %>", 'info', 3000);
-        </script>
+        <script type="text/javascript" src="/bower/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.all.min.js"></script>
+        <script type="text/javascript" src="/bower/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+        <script type="text/javascript" src="/bower/fastclick/lib/fastclick.js"></script>
+        <script type="text/javascript" src="/bower/fox-adm-style/js/template.js"></script>
+        <script type="text/javascript" src="/bower/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="https://js.pusher.com/4.1/pusher.min.js"></script>
+        <script type="text/javascript" src="/javascripts/admin/admin.js"></script>
+            <% if (typeof info != 'undefined' && info != '') { %>
+            <script> type="text/javascript"
+                showNotify("<%= info %>", 'info', 3000);
+            </script>
         <% } %>
         <% if (typeof error != 'undefined' && error != '') { %>
-        <script>
-            showNotify("<%= error %>", 'error', 3000);
-        </script>
+            <script type="text/javascript">
+                showNotify("<%= error %>", 'error', 3000);
+            </script>
         <% } %>
 
         <% if(locals.appjs) { %>
-        <%- appjs %>
+            <%- appjs %>
         <% } %>
     </body>
 </html>

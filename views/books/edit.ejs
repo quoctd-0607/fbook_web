@@ -97,7 +97,7 @@
                             <div class="edit-book">
                                 <div class="left-block-edit">
                                     <div class="propic-edit">
-                                        <img src="<%= image.web.large_path %>" alt="library" id="image-book-edit<%= image.id %>" key="<%= image.id %>">
+                                        <img src="<%= image.web.large_path %>" alt="book" id="image-book-edit<%= image.id %>" key="<%= image.id %>">
                                         <input type="file" name="edit-image-book" accept="Image/*" id="upload-picture<%= image.id %>" class="upload-picture" key="<%= image.id %>" data-type="<%= image.type %>"/>
                                         <a class="upload-new-pic" href="#" key="<%= image.id %>">
                                             <p>Edit image</p>
@@ -141,8 +141,8 @@
 </section>
 
 <%- contentFor('appjs') %>
-<script src="/javascripts/books/book.js" type="text/javascript"></script>
-<script src="/javascripts/books/suggestData.js" type="text/javascript"></script>
+<script type="text/javascript" src="/javascripts/books/book.js"></script>
+<script type="text/javascript" src="/javascripts/books/suggestData.js"></script>
 <script type="text/javascript">
     $('#form-edit-book').validate({
         highlight: function(element) {
@@ -182,5 +182,4 @@
             reader.readAsDataURL(this.files[0]);
         });
     });
-
 </script>

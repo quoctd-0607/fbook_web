@@ -5,12 +5,14 @@ $('.add-more-image').on('click', function (e) {
     key = parseInt($(this).attr('key'));
     next = i + 1;
     $('#btn-minus' + key).removeClass('hidden');
+
     var cloneUpload = $('#row-image' + key).clone(true, true).attr('id', 'row-image' + next);
     cloneUpload.find('#btn-plus' + key).attr('id', 'btn-plus' + next).attr('key', next).removeClass('hidden');
     cloneUpload.find('#btn-minus' + key).attr('id', 'btn-minus' + next).attr('key', next).removeClass('hidden');
     cloneUpload.find('#image' + key).attr('id', 'image' + next).attr('key', next).val('');
     cloneUpload.find('#pre-img' + key).attr('id', 'pre-img' + next).addClass('hidden').attr('src', '');
     $("#append-aria").before(cloneUpload);
+    
     $(this).addClass('hidden');
     i++;
     uploadImageCount++;

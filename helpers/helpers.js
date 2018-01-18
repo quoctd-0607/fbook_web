@@ -37,7 +37,7 @@ module.exports = {
             this.config.total_record = config.total_record;
         }
         if (config.current_page) {
-            this.config.current_page = config.current_page;
+            this.config.current_page = parseInt(config.current_page);
         }
       	return this.config;
     },

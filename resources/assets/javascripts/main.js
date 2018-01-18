@@ -56,18 +56,10 @@ jQuery(document).ready(function($) {
         animateOut: 'fadeOutRight',
         center: true,
         responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 2
-            },
-            992: {
-                items: 2
-            },
-            1500: {
-                items: 4
-            }
+            0: { items: 1 },
+            600: { items: 2 },
+            992: { items: 2 },
+            1500: { items: 4 }
         }
     });
     $('.bookslide_nav .testi_next').on('click', function() {
@@ -94,15 +86,9 @@ jQuery(document).ready(function($) {
         center: true,
         navText: ['<i class="icofont icofont-long-arrow-left"></i>', '<i class="icofont icofont-long-arrow-right"></i>'],
         responsive: {
-            0: {
-                items: 1,
-            },
-            600: {
-                items: 2
-            },
-            1000: {
-                items: 3
-            }
+            0: { items: 1 },
+            600: { items: 2 },
+            1000: { items: 3 }
         }
     });
     /* Gallery Slider Active
@@ -123,14 +109,14 @@ jQuery(document).ready(function($) {
 
     var showChar = 500;
     var ellipsestext = "...";
-    var moretext = "<div class='btn btn-success btn-showmore'>Show more</div>";
-    var lesstext = "<div class='btn btn-success btn-showmore'>Show less</div>";
+    var moretext = "Show more";
+    var lesstext = "Show less";
     $('.more').each(function() {
         var content = $(this).html();
         if (content.length > showChar) {
             var c = content.substr(0, showChar);
             var h = content.substr(showChar, content.length - showChar);
-            var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+            var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink btn btn-success btn-showmore">' + moretext + '</a></span>';
             $(this).html(html);
         }
     });

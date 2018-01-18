@@ -16,25 +16,25 @@
        <div class="row">
           <div class="col-md-1">
              <% if(data.items.current_vote == configs.words.up_vote ){ %>
-             <button class="btn_vote btn_voted up_vote" value="2">
-             <i class="icofont icofont-caret-up vote_review"></i>
-             </button>
+                <button class="btn_vote btn_voted up_vote" value="2">
+                    <i class="icofont icofont-caret-up vote_review"></i>
+                </button>
              <% }else{ %>
-             <button class="btn_vote up_vote" value="2">
-             <i class="icofont icofont-caret-up vote_review"></i>
-             </button>
+                <button class="btn_vote up_vote" value="2">
+                    <i class="icofont icofont-caret-up vote_review"></i>
+                </button>
              <% } %>
              <input type="hidden" id="review_data" value="<%= data.items.id %>">
              <input type="hidden" id="user_id<%= data.items.id %>" value="<%= userId %>">
              <span id="btn_show_vote"><%= data.items.up_vote - data.items.down_vote %></span>
              <% if(data.items.current_vote == configs.words.down_vote ){ %>
-             <button class="btn_vote btn_voted down_vote" value="1">
-             <i class="icofont icofont-caret-down vote_review"></i>
-             </button>
+                <button class="btn_vote btn_voted down_vote" value="1">
+                    <i class="icofont icofont-caret-down vote_review"></i>
+                </button>
              <% }else{ %>
-             <button class="btn_vote down_vote" value="1">
-             <i class="icofont icofont-caret-down vote_review"></i>
-             </button>
+                <button class="btn_vote down_vote" value="1">
+                    <i class="icofont icofont-caret-down vote_review"></i>
+                </button>
              <% } %>
           </div>
           <div class="col-xs-12 pull-right col-md-11 padding60 wow fadeInRight">
@@ -58,38 +58,36 @@
                 <div class="tab-pane fade in active" id="user_review">
                    <div class="row event-list">
                       <% if (data.items.comments.length > 0) { %>
-                      <% data.items.comments.forEach((comment) => { %>
-                      <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-9 revsdv" id="">
-                         <div class="event-item wow fadeInRight" id="comment<%= comment.id %>">
-                            <h4 class="show tip-left"><%= comment.created_at %></h4>
-                            <div class="well padding5 owner-clear relative-position">
-                               <div class="media">
-                                  <div class="media-left">
-                                     <a href="#">
-                                     <img src="/images/user/icon_user_default.png" class="media-object  w-70-h-70" alt="library">
-                                     </a> 
-                                  </div>
-                                  <div class="media-body">
-                                     <a href="#">
-                                        <h4 class="media-heading list-inline list-unstyled rating-star">
-                                           <%= comment.user.name %>                                                    
-                                        </h4>
-                                     </a>
-                                     <% if(userId == comment.user.id){ %>
-                                        <button type="button" class="delete_comment_topright" value="<%= comment.id %>" title="delete comment">X</button>
-                                     <% }%>
-                                     <p>
-                                        <%= comment.content %>
-                                     </p>
-                                  </div>
-                               </div>
+                        <% data.items.comments.forEach((comment) => { %>
+                        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-9 revsdv" id="">
+                            <div class="event-item wow fadeInRight" id="comment<%= comment.id %>">
+                                <h4 class="show tip-left"><%= comment.created_at %></h4>
+                                <div class="well padding5 owner-clear relative-position">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="javascript:void(0);">
+                                            <img src="/images/user/icon_user_default.png" class="media-object  w-70-h-70" alt="avatar">
+                                        </a> 
+                                    </div>
+                                    <div class="media-body">
+                                        <a href="#">
+                                            <h4 class="media-heading list-inline list-unstyled rating-star">
+                                                <%= comment.user.name %>                                                    
+                                            </h4>
+                                        </a>
+                                        <% if(userId == comment.user.id){ %>
+                                            <button type="button" class="delete_comment_topright" value="<%= comment.id %>" title="delete comment">X</button>
+                                        <% }%>
+                                        <p><%= comment.content %></p>
+                                    </div>
+                                </div>
+                                </div>
                             </div>
-                         </div>
-                      </div>
+                        </div>
                       <% })} else { %>
-                      <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-9 revsdv" id="no_comment">
-                         Not yet comment
-                      </div>
+                        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-9 revsdv" id="no_comment">
+                            Not yet comment
+                        </div>
                       <% } %>
                    </div>
                    <div class="row ">
