@@ -22,13 +22,13 @@ module.exports = {
         if (typeof req.session.user === 'undefined' || typeof req.session.access_token === 'undefined') {
             req.flash('error', 'Please login');
 
-            return res.redirect('back');
+            return res.redirect('/');
         }
 
         if (req.session.user.role != 'admin') {
             req.flash('error', 'Not Admin');
 
-            return res.redirect('back');
+            return res.redirect('/');
         }
 
         res.locals.user = req.session.user;

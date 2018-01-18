@@ -63,8 +63,8 @@ router.get('/', authorize.isAdmin, function (req, res, next) {
         }
     }, (error, result) => {
         if (error) {
-            req.flash('error', 'Please try again');
-            return res.redirect('back');
+            req.flash('error', 'Sorry, something went wrong');
+            return res.redirect('/');
         } else {
             res.render('admin/dashboard', {
                 layout: 'admin/layout/admin_template',
@@ -74,6 +74,7 @@ router.get('/', authorize.isAdmin, function (req, res, next) {
                 pageTitle: 'Admin Dashboard',
                 info: req.flash('info'),
                 error: req.flash('error'),
+                activeDasboard: true,
             });
         }
     });
@@ -100,12 +101,15 @@ router.get('/waiting-request-edit-book', authorize.isAdmin, function (req, res, 
                     pageTitle: 'Waiting Request Edit Book',
                     info: req.flash('info'),
                     error: req.flash('error'),
+                    activeRequest: true,
                 });
             } catch (errorJSONParse) {
-                return res.redirect('back');
+                req.flash('error', 'Unknown error');
+                return res.redirect('/admin');
             }
         } else {
-            return res.redirect('back');
+            req.flash('error', 'Sorry, something went wrong');
+            return res.redirect('/admin');
         }
     });
 });
@@ -119,17 +123,18 @@ router.post('/approve-update-request/:id', authorize.isAdmin, function (req, res
         if (!error && response.statusCode === 200) {
             try {
                 req.flash('info', 'Approve success');
-                return res.redirect('back');
+                return res.redirect('/admin/waiting-request-edit-book');
             } catch (errorJSONParse) {
-                return res.redirect('back');
+                req.flash('error', 'Unknown error');
+                return res.redirect('/admin/waiting-request-edit-book');
             }
         } else {
             if (response.statusCode == 401) {
                 req.flash('error', 'Please login to approve this book');
-                return res.redirect('back');
+                return res.redirect('/');
             } else {
-                req.flash('error', JSON.parse(body).message.description);
-                return res.redirect('back');
+                req.flash('error', 'Sorry, something went wrong');
+                return res.redirect('/admin/waiting-request-edit-book');
             }
         }
     });
@@ -156,23 +161,25 @@ router.get('/categories', authorize.isAdmin, function (req, res, next) {
                     paginate: paginate,
                     info: req.flash('info'),
                     error: req.flash('error'),
+                    activeCategory: true,
                 });
             } catch (errorJSONParse) {
-                return res.redirect('back');
+                req.flash('error', 'Unknown error');
+                return res.redirect('/admin');
             }
         } else {
-            req.flash('error', 'Something went wrong');
-            return res.redirect('back');
+            req.flash('error', 'Sorry, something went wrong');
+            return res.redirect('/admin');
         }
     });
 });
 
 router.get('/categories/search', authorize.isAdmin, function (req, res, next) {
     var page = req.query.page ? req.query.page : 1;
-    var keyWord = req.query.key_word;
-    if (!keyWord && keyWord.trim() !== '') {
+    var keyWord = (typeof(req.query.key_word) != 'undefined') ? req.query.key_word : '';
+    if (keyWord.trim() == '') {
         req.flash('error', 'Please input something to search');
-        return res.redirect('back');
+        return res.redirect('/admin/categories');
     }
     request.post({
         url: req.configs.api_base_url + 'admin/categories/search/',
@@ -197,12 +204,15 @@ router.get('/categories/search', authorize.isAdmin, function (req, res, next) {
                     paginate: paginate,
                     info: req.flash('info'),
                     error: req.flash('error'),
+                    activeCategory: true,
                 });
             } catch (errorJSONParse) {
-                return res.redirect('back');
+                req.flash('error', 'Unknown error');
+                return res.redirect('/admin/categories');
             }
         } else {
-            return res.redirect('back');
+            req.flash('error', 'Sorry, something went wrong');
+            return res.redirect('/admin/categories');
         }
     })
 });
@@ -214,7 +224,8 @@ router.get('/categories/create', authorize.isAdmin, function (req, res, next) {
         info: req.flash('info'),
         error: req.flash('error'),
         validate: req.flash('validate'),
-        apiValidate: req.flash('apiValidate')
+        apiValidate: req.flash('apiValidate'),
+        activeCategory: true
     });
 });
 
@@ -226,7 +237,7 @@ router.post('/categories/store', authorize.isAdmin, function (req, res, next) {
         if (!result.isEmpty()) {
             req.flash('validate', result.array());
             req.flash('error', 'Data invalid');
-            res.redirect('back');
+            res.redirect('/admin/categories/create');
         } else {
             request.post({
                 url: req.configs.api_base_url + 'admin/categories',
@@ -241,16 +252,16 @@ router.post('/categories/store', authorize.isAdmin, function (req, res, next) {
                         req.flash('info', 'Create category success');
                         return res.redirect('/admin/categories');
                     } catch (errorJSONParse) {
-                        return res.redirect('back');
+                        return res.redirect('/admin/categories/create');
                     }
                 } else if (response.statusCode === 422) {
                     var msg = JSON.parse(body);
                     req.flash('apiValidate', msg.message.description[0]);
                     req.flash('error', 'Data invalid');
-                    return res.redirect('back');
+                    return res.redirect('/admin/categories/create');
                 } else {
-                    req.flash('error', 'Something went wrong');
-                    return res.redirect('back');
+                    req.flash('error', 'Sorry, something went wrong');
+                    return res.redirect('/admin/categories/create');
                 }
             });
         }
@@ -274,13 +285,16 @@ router.get('/categories/detail/:id', authorize.isAdmin, function (req, res, next
                     info: req.flash('info'),
                     error: req.flash('error'),
                     validate: req.flash('validate'),
-                    apiValidate: req.flash('apiValidate')
+                    apiValidate: req.flash('apiValidate'),
+                    activeCategory: true,
                 });
             } catch (errorJSONParse) {
-                return res.redirect('back');
+                req.flash('error', 'Unknown error');
+                return res.redirect('/admin/categories');
             }
         } else {
-            return res.redirect('back');
+            req.flash('error', 'Something went wrong');
+            return res.redirect('/admin/categories');
         }
     });
 });
@@ -302,10 +316,10 @@ router.post('/categories/update', authorize.isAdmin, function (req, res, next) {
             if (!error && response.statusCode === 200) {
                 try {
                     req.flash('info', 'Update category success');
-                    res.redirect('back');
+                    res.redirect('/admin/categories');
                 } catch (errorJSONParse) {
-                    req.flash('error', 'Something went wrong');
-                    res.redirect('back');
+                    req.flash('error', 'Unknown error');
+                    res.redirect('/admin/categories');
                 }
             } else if (response.statusCode === 422) {
                 var msg = JSON.parse(body);
@@ -314,7 +328,7 @@ router.post('/categories/update', authorize.isAdmin, function (req, res, next) {
                 return res.redirect('back');
             } else {
                 req.flash('error', 'Something went wrong');
-                return res.redirect('back');
+                return res.redirect('/admin/categories');
             }
         });
     }
@@ -341,13 +355,15 @@ router.get('/users', authorize.isAdmin, function (req, res, next) {
                     paginate: paginate,
                     info: req.flash('info'),
                     error: req.flash('error'),
+                    activeUser: true,
                 });
             } catch (errorJSONParse) {
-                return res.redirect('back');
+                req.flash('error', 'Unknown error');
+                return res.redirect('/admin');
             }
         } else {
             req.flash('error', 'Something went wrong');
-            return res.redirect('back');
+            return res.redirect('/admin');
         }
     });
 });
@@ -356,12 +372,12 @@ router.get('/users/search', authorize.isAdmin, function (req, res, next) {
     var error = 0;
     var page = (typeof(req.query.page) != 'undefined') ? req.query.page : 1;
     var keyWord = (typeof(req.query.key_word) != 'undefined') ? req.query.key_word : '';
-    if (keyWord == '') {
+    if (keyWord.trim() == '') {
         req.flash('error', 'Please input something to search');
         return res.redirect('/admin/users');
     }
     var filterType = (typeof(req.query.filter_type) != 'undefined') ? req.query.filter_type : '';
-    if (filterType == '') {
+    if (filterType.trim() == '') {
         req.flash('error', 'Please choose a search type');
         return res.redirect('/admin/users');
     }
@@ -389,9 +405,11 @@ router.get('/users/search', authorize.isAdmin, function (req, res, next) {
                     paginate: paginate,
                     info: req.flash('info'),
                     error: req.flash('error'),
+                    activeUser: true,
                 });
             } catch (errorJSONParse) {
-                return res.redirect('back');
+                req.flash('error', 'Unknown error');
+                return res.redirect('/admin/users');
             }
         } else {
             req.flash('error', 'Something went wrong');
