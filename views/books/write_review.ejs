@@ -1,79 +1,71 @@
 <section class="relative fix gray-bg">
+    <div class="space-40"></div>
     <div class="container" id="write_post">
        <div class="row">
-          <div class="col-md-8">
-             <form action="/books/post-review/<%= book_current %>" method="post">
-                <div class="form-group">
-                   <label for="exampleInputEmail1">Review title</label>
-                   <input type="text" class="form-control" name="review_title" aria-describedby="emailHelp" placeholder="Title" required>
+            <div class="col-md-8">
+                <form action="/books/post-review/<%= book_current %>" method="post">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Rate this book: </label>
+                        <input id="rating-book" name="review_start" class="rating" data-min="0" data-max="5" data-step="1" data-size="xs" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Sumary: </label>
+                        <input type="text" class="form-control" name="review_title" aria-describedby="emailHelp" placeholder="Title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Review: </label>
+                        <textarea class="form-control" name="review_content" id="exampleFormControlTextarea1" rows="35" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <h4><%= data.item.title %> <span> (<%= data.item.count_view %> view)</span></h4>
+                <div class="space-10"></div>
+                <% if (data.item.author != 'undefined') { %>
+                    <p>Author: <span class="text-warning"><%= data.item.author %></span></p>
+                <% } else { %>
+                    <p>No Author</p>>
+                <% } %>
+                <div class="space-10"></div>
+                    <div class="col-md-12" id="review_img">
+                        <div class="book-list-photo">
+                            <% if (data.item.media.length) { %>
+                            <div class="book-list">
+                                <% data.item.media.forEach(function (image) { %>
+                                <div class="book_item">
+                                    <img src="<%= image.web.medium_path %>" alt="book">
+                                </div>
+                                <% }) %>
+                                <% if (data.item.media.length == 1) { %>
+                                <div class="book_item">
+                                    <img src="<%= data.item.media[0].web.medium_path %>" alt="book">
+                                </div>
+                                <% } %>
+                            </div>
+                        <% } else { %>
+                            <div class="book-list">
+                                <div class="book_item">
+                                    <img src="/images/book_default.jpg" alt="book">
+                                </div>
+                            </div>
+                        <% } %>
+                        </div>
+                        <div class="bookslide_nav">
+                        <i class="icofont icofont-long-arrow-left testi_prev"></i>
+                        <i class="icofont icofont-long-arrow-right testi_next"></i>
+                    </div>
                 </div>
-                <div class="form-group">
-                   <label for="exampleFormControlTextarea1">Example textarea</label>
-                   <textarea class="form-control" name="review_content" id="exampleFormControlTextarea1" rows="35" required></textarea>
+                <div class="col-md-12">
+                    <div class="space-40"></div>
+                    <h4>Description</h4>
+                    <div class="more fix-text"><%- data.item.description %></div>
                 </div>
-                <div class="form-group">
-                   <label for="exampleInputEmail1">Rate this book</label>
-                   <input id="rating-book" name="review_start" class="rating" data-min="0" data-max="5" data-step="1" data-size="xs" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-             </form>
-          </div>
-          <div class="col-md-4">
-             <div class="col-md-12" id="review_img">
-                <div class="book-list-photo">
-                   <% if (data.item.media.length) { %>
-                   <div class="book-list">
-                      <% data.item.media.forEach(function (image) { %>
-                      <div class="book_item">
-                         <img src="<%= image.web.medium_path %>" alt="book">
-                      </div>
-                      <% }) %>
-                      <% if (data.item.media.length == 1) { %>
-                      <div class="book_item">
-                         <img src="<%= data.item.media[0].web.medium_path %>" alt="book">
-                      </div>
-                      <% } %>
-                   </div>
-                   <% } else { %>
-                   <div class="book-list">
-                      <div class="book_item">
-                         <img src="/images/book_default.jpg" alt="book">
-                      </div>
-                   </div>
-                   <% } %>
-                </div>
-                <div class="bookslide_nav">
-                   <i class="icofont icofont-long-arrow-left testi_prev"></i>
-                   <i class="icofont icofont-long-arrow-right testi_next"></i>
-                </div>
-             </div>
-             <div class="col-md-12">
-                <h4 class="tip-left">Title</h4>
-                <p class="lead"><%= data.item.title %></p>
-                <div class="space-20"></div>
-                <h4 class="tip-left">Count view: <%= data.item.count_view %></h4>
-                <div class="space-20"></div>
-                <div>
-                   <h4 class="tip-left">Author</h4>
-                   <div class="media">
-                      <div class="media-left">
-                         <img src="<%= data.item.author ? '/images/user_default.png' : '/images/logo_framgia.png' %>"
-                            class="media-object author-photo img-thumbnail"
-                            alt="book">
-                      </div>
-                      <div class="media-body">
-                         <h5><%= data.item.author ? data.item.author : Framgia %></h5>
-                      </div>
-                   </div>
-                </div>
-                <div class="space-20"></div>
-                <h4 class="tip-left">Description</h4>
-                <div class="more fix-text"><%- data.item.description %></div>
-             </div>
-          </div>
+            </div>
        </div>
     </div>
  </section>
+
  <%- contentFor('appjs') %>
  <script type="text/javascript" src="/javascripts/books/book.js"></script>
  <script type="text/javascript">

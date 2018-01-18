@@ -189,10 +189,12 @@ input:-webkit-autofill:focus {
 }
 
 .bnt-request {
+    text-align: center;
     border-radius: 50%;
-    padding: 5px 12px;
-    font-size: 17px;
-    line-height: 1.3333333;
+    display: inline-block;
+    width: 24px;
+    line-height: 24px;
+    font-size: 14px;
     border-radius: 6
 }
 
@@ -503,8 +505,8 @@ input:-webkit-autofill:focus {
 }
 
 #no_comment{
-    margin-top: 10vh;
-    margin-bottom: 10vh;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .view_more {
@@ -518,20 +520,21 @@ input:-webkit-autofill:focus {
 }
 
 .btn_vote {
-    background-color: Transparent;
-    background-repeat:no-repeat;
+    background-color: transparent;
+    background-repeat: no-repeat;
     border: none;
-    cursor:pointer;
+    cursor: pointer;
     overflow: hidden;
-    outline:none;
+    outline: none;
 }
 #btn_show_vote {
-    background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
+    text-align: center;
+    font-weight: 500;
+    font-size: 24px;
+    cursor: pointer;
     overflow: hidden;
-    outline:none;
+    display: block;
+    width: 62px;
 }
 
 .btn_voted {
@@ -546,3 +549,4 @@ input:-webkit-autofill:focus {
     background: transparent;
     font-weight: 700;
 }
+

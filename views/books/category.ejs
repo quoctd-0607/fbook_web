@@ -8,7 +8,7 @@
                 <% if (books.items.category.data.length > 0) { %>
                 <div class="row">
                     <div class="pull-left col-xs-12 col-sm-5 col-md-6">
-                        <i>Books for <span class="text-primary">"<%= books.items.category.name %>"</span></i>
+                        <i>Books for <span class="btn btn-primary">"<%= books.items.category.name %>"</span></i>
                         <p><strong><%= books.items.category.data.length %></strong> of <strong><%= books.items.total %></strong> Book Found</p>
                     </div>
                     <div class="pull-right col-xs-12 col-sm-7 col-md-6">
@@ -85,7 +85,7 @@
                                         <p>
                                             <%= book.overview %>
                                         </p>
-                                        <a href="/books/<%= book.id %>" class="text-primary">View detail</a>
+                                        <a href="/books/<%= book.id %>" class="btn btn-primary">View detail</a>
                                     </div>
                                 </div>
                             </div>

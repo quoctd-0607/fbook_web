@@ -8,7 +8,7 @@
                 <% if (section.items.data.length > 0) { %>
                 <div class="row">
                     <div class="pull-left col-xs-12 col-sm-5 col-md-6">
-                        <i>Books for <span class="text-primary">"<%= field %>"</span></i>
+                        <i>Books for <span class="btn btn-primary">"<%= field %>"</span></i>
                         <p><strong><%= section.items.data.length %></strong> of <strong><%= section.items.total %></strong> Book Found</p>
                     </div>
                     <div class="pull-right col-xs-12 col-sm-7 col-md-6">
@@ -89,7 +89,7 @@
                                     <p>
                                         <%- book.overview %>
                                     </p>
-                                    <a href="/books/<%= book.id %>" class="text-primary">View detail</a>
+                                    <a href="/books/<%= book.id %>" class="btn btn-primary">View detail</a>
                                 </div>
                             </div>
                             <div class="owners">
