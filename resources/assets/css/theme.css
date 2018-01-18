@@ -391,7 +391,7 @@
     background-color: #32b73b;
 }
 
-.category-item.yellow a:hover {
+.category-item.yellow a {
     color: #ffffff;
 }
 
@@ -424,7 +424,7 @@
 .book-list-position {
     left: 0;
     position: absolute;
-    top: 50%;
+    top: 40%;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
 }
@@ -490,14 +490,20 @@
     background-color: #fec826;
 }
 
-.book-details-item {
-    padding: 0 0 0 35px;
+.book-details-item .book-title {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.book-details-item .book-title span {
+    font-size: 14px;
+    font-weight: initial;
 }
 
 .author-photo {
     background-color: #fec826;
     border: medium none;
-    max-width: 80px !important;
+    max-width: 46px !important;
     width: auto !important;
 }
 
@@ -821,8 +827,8 @@
 }
 
 .img-owner-detail {
-    width: 50px !important;
-    height: 50px;
+    width: 46px !important;
+    height: 46px !important;
 }
 
 .avatar {
@@ -837,4 +843,18 @@
     -webkit-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
+}
+
+#mainmenu .language img.image-choose {
+    width: 18px;
+    height: 12px;
+}
+
+#mainmenu .language li a {
+    padding: 5px 10px;
+}
+
+#mainmenu .language li a span {
+    color: #000;
+    margin-left: 20px;
 }

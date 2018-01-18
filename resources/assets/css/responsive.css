@@ -52,6 +52,9 @@
     #mainmenu {
         text-align: center;
     }
+    #mainmenu ul li a .active {
+        background: orange;
+    }
     .book-list-position {
         position: static;
         -webkit-transform: translate(0);

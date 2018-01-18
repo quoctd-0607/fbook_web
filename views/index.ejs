@@ -97,13 +97,16 @@
                                             <% book.owners.forEach(function (owner) { %>
                                                 <%  countOwner++;
                                                     if (countOwner == 6) {
-                                                        %> <strong> ... </strong> <%
-                                                        return;
-                                                    }
-                                                 %>
-                                                <img onclick="window.open('/users/<%= owner.id %>')" data-toggle="tooltip" title="<%= owner.name %>" class="owner-image-home img-circle" src="<%= (owner && owner.avatar) ? owner.avatar : '/images/user_default.png' %>"
-                                                         class="media-object author-photo img-thumbnail <%= owner ? '' : 'background--white' %>"
-                                                         alt="library">
+                                                        %> <strong> ... </strong> 
+                                                <% return; } %>
+                                                 <!--onerror="this.src='http://wsm.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png';" -->
+                                                <img onclick="window.open('/users/<%= owner.id %>')" 
+                                                        src="<%= (owner && owner.avatar) ? owner.avatar : '/images/user_default.png' %>"
+                                                        onerror="imgBackUp(this)" 
+                                                        data-toggle="tooltip" 
+                                                        title="<%= owner.name %>" 
+                                                        class="owner-image-home img-circle" 
+                                                        alt="avatar">
                                             <% }) %>
                                          <% } %>
                                     </div>

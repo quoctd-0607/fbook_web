@@ -233,16 +233,13 @@ input:-webkit-autofill:focus {
 }
 
 .btn-showmore {
-    min-width: 75px;
-    padding: 1px;
+    display: block;
+    padding: 3px;
+    right: 0;
 }
 
 .morecontent span {
     display: none;
-}
-
-.morelink {
-    display: block;
 }
 
 .dropdown-menu-notification {
@@ -381,6 +378,7 @@ input:-webkit-autofill:focus {
 }
 
 .edit-book {
+    margin-top: 6px !important;
     display: inline-block;
     height: 100%;
     width: 100%;

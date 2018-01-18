@@ -33,13 +33,11 @@ $(function () {
                 .addClass('state-icon ' + settings[$button.data('state')].icon);
             // Update the button's color
             if (isChecked) {
-                $button
-                    .removeClass('btn-default')
+                $button.removeClass('btn-default')
                     .addClass('btn-' + color + ' active');
             }
             else {
-                $button
-                    .removeClass('btn-' + color + ' active')
+                $button.removeClass('btn-' + color + ' active')
                     .addClass('btn-default');
             }
         }

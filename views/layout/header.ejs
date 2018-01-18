@@ -15,8 +15,8 @@
                     <% } else { %>
                         <a href="/home" class="navbar-left show">
                     <% } %>
-                        <img src="/images/icon.jpg" alt="library" class="icon-image">
-                        <span class="logo-text">FBook</span>
+                        <img src="/images/icon.jpg" alt="icon" class="icon-image">
+                        <span class="logo-text"> FBook</span>
                     </a>
                 </div>
                 <!--Toggle-button-->
@@ -29,16 +29,16 @@
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <% if (typeof user != 'undefined' && typeof user.avatar !== 'undefined' && user.avatar) { %>
-                                        <img src="<%= user.avatar %>" class="avatar" alt="library" /><span class="badge active-user-notification"></span>
+                                        <img src="<%= user.avatar %>" class="avatar" alt="avatar" /><span class="badge active-user-notification"></span>
                                         <div class="hidden" id="get-user-id"><%= user.id%></div>
                                     <% }
                                     else { %>
-                                        <img src="/images/user_default.png" class="img-circle img-thumbnail" alt="library" />
+                                        <img src="/images/user_default.png" class="img-circle img-thumbnail" alt="avatar" />
                                     <% } %>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="/users/my_profile"> <span><i class="icofont icofont-user"></i></span><%= __('Profile') %></a>
+                                        <a href="/users/my_profile"> <span><i class="icofont icofont-user"></i></span> <%= __('Profile') %></a>
                                     </li>
                                     <li>
                                         <a href="/books/add"> <span><i class="glyphicon glyphicon-share-alt"></i></span><%= __('Share books')%></a>
@@ -75,7 +75,7 @@
                             <% } %>
                         </li>
                         <li>
-                            <a href="https://goo.gl/forms/5GLWPJNUGJJR2J2l2" target="_blank">Feedback</a>
+                            <a target="_blank" href="https://goo.gl/forms/5GLWPJNUGJJR2J2l2">Feedback</a>
                         </li>
                         <% if (typeof(offices.items) !== 'undefined' && typeof(offices) !== 'undefined' && offices && offices.items) { %>
                             <li class="dropdown">
@@ -96,7 +96,7 @@
                             </li>
                         <% } %>
                         <li>
-                            <a href="/users/fbook_app" class="icon-header"><span><i class="icofont icofont-iphone nav-icon"></i></span></a>
+                            <a target="_blank" href="/users/fbook_app" class="icon-header"><span><i class="icofont icofont-iphone nav-icon"></i></span></a>
                         </li>
 
                         <li>
@@ -122,7 +122,7 @@
                             </ul>
                         </li>
                         <li data-toggle="tooltip" title="MORE TOOLS">
-                            <a href="https://wsm.framgia.vn/all-tools" target="_blank" class="icon-header">
+                            <a target="_blank" href="https://wsm.framgia.vn/all-tools" class="icon-header">
                             <img src="/images/app_icon.png" class="icofont-fw nav-icon nav-moretoolicon"></a>
                         </li>
                         <% if (typeof user != 'undefined' && typeof user.name !== 'undefined' && user.name) { %>

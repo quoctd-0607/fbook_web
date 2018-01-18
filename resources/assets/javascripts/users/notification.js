@@ -39,29 +39,23 @@ timeAGo = function ( date ) {
         return date;
     }
     if (interval == 1) {
-
         return interval + ' day ago';
     }
     if (interval > 1) {
-
         return interval + ' days ago';
     }
     interval = Math.floor( seconds / 3600 );
     if (interval == 1) {
-
         return interval + ' hour ago';
     }
     if (interval > 1) {
-
         return interval + ' hours ago';
     }
     interval = Math.floor( seconds / 60 );
     if (interval == 1) {
-
         return interval + ' minute ago';
     }
     if (interval > 1) {
-
         return interval + ' minutes ago';
     }
 

@@ -16,63 +16,64 @@
         <div class="row event-list">
             <div class="row">
                 <% if (books && books.items.data.length && books.items.total) { %>
-                <% books.items.data.forEach(function (book, index) { %>
-                <div class="col-xs-12 col-md-4 wow fadeInLeft" data-wow-delay="0.<%= index + 1 %>s">
-                    <div class="category-item well yellow">
-                        <div class="media">
-                            <div class="media-left">
-                                <% if (book.image !== null) { %>
-                                    <img src="<%= book.image.web.thumbnail_path %>" class="media-object" alt="<%= book.title %>">
-                                <% } else { %>
-                                    <img src="/images/book_thumb_default.jpg" class="media-object" alt="<%= book.title %>">
-                                <% } %>
-                                <a href="/books/<%= book.id %>/edit" class="text-primary edit-book">Edit</span></a>
-                            </div>
-                            <div class="media-body">
-                                <% if (typeof (book.title) != 'undefined' && book.title) { %>
-                                    <h5 title="<%= book.title %>" data-toggle="tooltip">
-                                        <%= getString(book.title, configs.book.title_limit_characters) %>
-                                    </h5>
-                                <% } else {%>
-                                    <h6>No title</h6>
-                                <% } %>
-                                <% if (typeof (book.author) != 'undefined' && book.author) { %>
-                                    <h6 title="<%= book.author %>">By <%= getString(book.author, configs.book.author_limit_characters) %></h6>
-                                <% } else {%>
-                                    <h6>By Framgia</h6>
-                                <% } %>
-                                <input id="rating-book" name="star" class="rating" data-min="0" data-max="5" value=<%= book.avg_star %> disabled="true" data-step="0.01" data-size="xs">
-                                <div class="space-10"></div>
-                                <p>
-                                    <%= book.overview %>
-                                </p>
-                                <div class="pull-right">
-                                    <a href="/books/<%= book.id %>" class="text-primary pull-right">View detail</a>
-                                    <a href="/books/<%= book.id %>/approve-request" class="text-primary btn-view-request">View all request <span class="btn-danger bnt-request"><%- book.users_waiting.length + book.users_returning.length %></span></a>
+                    <% books.items.data.forEach(function (book, index) { %>
+                        <div class="col-xs-12 col-md-4 wow fadeInLeft" data-wow-delay="0.<%= index + 1 %>s">
+                            <div class="category-item well yellow">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <% if (book.image !== null) { %>
+                                            <img src="<%= book.image.web.thumbnail_path %>" class="media-object" alt="<%= book.title %>">
+                                        <% } else { %>
+                                            <img src="/images/book_thumb_default.jpg" class="media-object" alt="<%= book.title %>">
+                                        <% } %>
+                                        <a href="/books/<%= book.id %>/edit" class="btn btn-primary edit-book">Edit</span></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <% if (typeof (book.title) != 'undefined' && book.title) { %>
+                                            <h5 title="<%= book.title %>" data-toggle="tooltip">
+                                                <%= getString(book.title, configs.book.title_limit_characters) %>
+                                            </h5>
+                                        <% } else {%>
+                                            <h6>No title</h6>
+                                        <% } %>
+                                        <% if (typeof (book.author) != 'undefined' && book.author) { %>
+                                            <h6 title="<%= book.author %>">By <%= getString(book.author, configs.book.author_limit_characters) %></h6>
+                                        <% } else {%>
+                                            <h6>By Framgia</h6>
+                                        <% } %>
+                                        <input id="rating-book" name="star" class="rating" data-min="0" data-max="5" value=<%= book.avg_star %> disabled="true" data-step="0.01" data-size="xs">
+                                        <div class="space-10"></div>
+                                        <p>
+                                            <%= book.overview %>
+                                        </p>
+                                        <div class="pull-right">
+                                            <a href="/books/<%= book.id %>" class="btn btn-primary edit-book pull-right">View detail</a>
+                                            <a href="/books/<%= book.id %>/approve-request" class="btn btn-primary edit-book btn-view-request">View all request <span class="btn-danger bnt-request"><%- book.users_waiting.length + book.users_returning.length %></span></a>
+                                        </div>
+                                    </div>
                                 </div>
+                                <% if (book.users_reading && book.users_reading.length) { %>
+                                    <div class="owners">
+                                        <strong> Keeped by: </strong>
+                                        <% book.users_reading.forEach(function (user, index) { %>
+                                            <% if (index == 6) {
+                                                    %> <strong> ... </strong> <%
+                                                    return;
+                                                }
+                                            %>
+                                            <img onclick="window.open('/users/<%= user.id %>')" 
+                                                data-toggle="tooltip" 
+                                                title="<%= user.name %>"
+                                                class="owner-image-home img-circle" 
+                                                src="<%= (user && user.avatar) ? user.avatar : '/images/user_default.png' %>"
+                                                alt="book">
+                                        <% }) %>
+                                    </div>
+                                <% } %>
                             </div>
                         </div>
-                        <% if (book.users_reading && book.users_reading.length) { %>
-                            <div class="owners">
-                                <strong> Keeped by: </strong>
-                                <% book.users_reading.forEach(function (user, index) { %>
-                                    <% if (index == 6) {
-                                            %> <strong> ... </strong> <%
-                                            return;
-                                        }
-                                    %>
-                                    <img onclick="window.open('/users/<%= user.id %>')" data-toggle="tooltip" title="<%= user.name %>"
-                                         class="owner-image-home img-circle" src="<%= (user && user.avatar) ? user.avatar : '/images/user_default.png' %>"
-                                         class="media-object author-photo img-thumbnail <%= user ? '' : 'background--white' %>"
-                                         alt="library">
-                                <% }) %>
-                            </div>
-                        <% } %>
-                    </div>
-                </div>
-                <% }) %>
-
-                <% } else { %>
+                    <% }) %>
+                <%} else { %>
                     <h5 class="text-center">No book in section </h5>
                 <% } %>
             </div>
@@ -91,18 +92,17 @@
 </section>
 
 <%- contentFor('appCss') %>
-<link href="/bower/bootstrap-star-rating/css/star-rating.css" rel="stylesheet" type="text/css">
-<link href="/bower/bootstrap-star-rating/css/theme-krajee-fa.css" rel="stylesheet" type="text/css">
-<link href="/bower/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+<link type="text/css" href="/bower/bootstrap-star-rating/css/star-rating.css" rel="stylesheet">
+<link type="text/css" href="/bower/sweetalert/dist/sweetalert.css" rel="stylesheet">
 
 <%- contentFor('appjs') %>
-<script src="/bower/bootstrap-star-rating/js/star-rating.js"></script>
-<script src="/javascripts/users/list_category.js" type="text/javascript"></script>
-<script src="/javascripts/users/interestedCategories.js" type="text/javascript"></script>
-<script src="/bower/sweetalert/dist/sweetalert.min.js"></script>
-<script src="/javascripts/users/follow.js" type="text/javascript"></script>
-<script src="/javascripts/books/book.js" type="text/javascript"></script>
-<script src="/javascripts/paginations/paginate.js" type="text/javascript"></script>
+<script type="text/javascript" src="/bower/bootstrap-star-rating/js/star-rating.js"></script>
+<script type="text/javascript" src="/javascripts/users/list_category.js"></script>
+<script type="text/javascript" src="/javascripts/users/interestedCategories.js"></script>
+<script type="text/javascript" src="/bower/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript" src="/javascripts/users/follow.js"></script>
+<script type="text/javascript" src="/javascripts/books/book.js"></script>
+<script type="text/javascript" src="/javascripts/paginations/paginate.js"></script>
 <script type="text/javascript">
     var totalPages = Math.ceil("<%= books.items.total %>"/"<%= books.items.per_page %>");
     var currentPage = parseInt("<%= books.items.current_page %>");
