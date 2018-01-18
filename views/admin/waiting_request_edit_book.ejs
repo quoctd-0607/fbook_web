@@ -68,18 +68,26 @@
                                                 </tr>
                                                 <tr>
                                                     <td><strong>Publish Date</strong></td>
-                                                    <td><%= data.current_book_info.publish_date.slice(0,4) %></td>
+                                                    <% if (data.current_book_info.publish_date != null) { %>
+                                                        <td><%= data.current_book_info.publish_date.slice(0,4) %></td>
+                                                    <% } else {%>
+                                                        <td>Unknown</td>
+                                                    <% } %>
                                                     <% if (Date.parse(data.current_book_info.publish_date) == Date.parse(data.publish_date)) { %>
                                                         <td>Not Change</td>
                                                     <% } else { %>
-                                                        <td><%= data.publish_date.slice(0,4) %></td>
+                                                        <% if (data.publish_date != null) { %>
+                                                            <td><%= data.publish_date.slice(0,4) %></td>
+                                                        <% } else { %>
+                                                            <td>Unknown</td>
+                                                        <% } %>
                                                     <% } %>
                                                 </tr>
                                                 <tr>
                                                     <td><strong>Category</strong></td>
                                                     <td><%= data.current_book_info.category.name %></td>
                                                     <% if (data.current_book_info.category.id == data.category.id) { %>
-                                                        <td>    Not Change</td>
+                                                        <td>Not Change</td>
                                                     <% } else { %>
                                                         <td><%= data.category.name %></td>
                                                     <% } %>
