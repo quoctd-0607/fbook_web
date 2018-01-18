@@ -504,7 +504,7 @@ input:-webkit-autofill:focus {
     position: relative;
 }
 
-#no_comment {
+#no_comment{
     margin-top: 10vh;
     margin-bottom: 10vh;
 }
@@ -540,26 +540,11 @@ input:-webkit-autofill:focus {
     color: #5488c7;
 }
 
-.image-choose {
-    width:  25px !important;
-    height: 20px !important;
-}
-
-.image-flag-be {
-    width:  25px !important;
-}
-
-.text-i18n {
-    color: #333 !important;
-    padding-left: 15px !important;
-    margin-top: -15px;
-}
-
-.text-i18n span{
-    padding-left: 11px;
-}
-
-.icon-header {
-    padding-left: 7px !important;
-    padding-right: 7px !important;
+.delete_comment_topright {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: none;
+    background: transparent;
+    font-weight: 700;
 }
