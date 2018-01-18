@@ -4,13 +4,21 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">NAVIGATION</li>
-            <li class="active">
+            <% if (typeof(activeDasboard) != 'undefined') { %>
+                <li class="active">
+            <% } else { %>
+                <li>
+            <% } %>
                 <a href="/admin">
                     <i class="fa fa-dashboard"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="treeview">
+            <% if (typeof(activeCategory) != 'undefined') { %>
+                <li class="treeview active">
+            <% } else { %>
+                <li class="treeview">
+            <% } %>
                 <a href="javascript:void(0)">
                 <i class="fa fa-th-list"></i>
                 <span>Category</span>
@@ -23,10 +31,24 @@
                     <li><a href="/admin/categories/create"><i class="fa fa-circle-o"></i>Create category</a></li>
                 </ul>
             </li>
-            <li>
+            <% if (typeof(activeRequest) != 'undefined') { %>
+                <li class="active">
+            <% } else { %>
+                <li>
+            <% } %>
                 <a href="/admin/waiting-request-edit-book">
                     <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
                     <span>Waiting request</span>
+                </a>
+            </li>
+            <% if (typeof(activeUser) != 'undefined') { %>
+                <li class="active">
+            <% } else { %>
+                <li>
+            <% } %>
+                <a href="/admin/users">
+                    <i class="fa fa-user-o" aria-hidden="true"></i>
+                    <span>User List</span>
                 </a>
             </li>
         </ul>
