@@ -834,8 +834,8 @@
 .avatar {
     display: inline-block;
     border-radius: 50% !important;
-    height: 70px;
-    width: 70px;
+    height: 60px;
+    width: 60px;
     padding: 4px;
     line-height: 1.42857143;
     background-color: #fff;
