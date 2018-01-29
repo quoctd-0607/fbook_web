@@ -76,7 +76,7 @@ app.use(function (err, req, res, next) {
 app.locals.configs = configs;
 
 i18n.configure({
-    locales:['en', 'vi', 'jp'],
+    locales:['vi', 'en', 'jp'],
     directory: __dirname + '/locales',
     cookie: 'lang',
 });

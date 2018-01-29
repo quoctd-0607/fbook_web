@@ -2,16 +2,16 @@
 <div class="space-100"></div>
 <div class="header-bg relative home-slide">
     <div class="item">
-        <img src="/images/slide/slide1.jpg" alt="slide">
+        <img src="/images/slide/slide1.jpg" alt="<%= __('slide') %>">
     </div>
     <div class="item">
-        <img src="/images/slide/slide2.jpg" alt="slide">
+        <img src="/images/slide/slide2.jpg" alt="<%= __('slide') %>">
     </div>
     <div class="item">
-        <img src="/images/slide/slide3.jpg" alt="slide">
+        <img src="/images/slide/slide3.jpg" alt="<%= __('slide') %>">
     </div>
     <div class="item">
-        <img src="/images/slide/slide4.jpg" alt="slide">
+        <img src="/images/slide/slide4.jpg" alt="<%= __('slide') %>">
     </div>
 </div>
 
@@ -20,8 +20,8 @@
         <div class="row wow fadeInUp">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
                 <div class="jumbotron">
-                    <h1 class="text-white">WELCOME TO THE BEST PLACE TO READ BOOKS</h1>
-                    <p class="text-white">Read, share and engage with great books</p>
+                    <h1 class="text-white text-uppercase"><%= __('Welcome to the best place to read books') %></h1>
+                    <p class="text-white"><%= __('Read, share and engage with great books') %></p>
                 </div>
                 <div class="title-bar white">
                     <ul class="list-inline list-unstyled">
@@ -38,8 +38,8 @@
                     <div class="panel-heading">
                         <div class="panel-heading">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#search_internal"><%= __('Search internal books')%></a></li>
-                                <li><a data-toggle="tab" href="#search_google_books"><%= __('Search books with google books')%></a></li>
+                                <li class="active"><a data-toggle="tab" href="#search_internal"><%= __('Search internal books') %></a></li>
+                                <li><a data-toggle="tab" href="#search_google_books"><%= __('Search books with google books') %></a></li>
                             </ul>
                         </div>
                     </div>
@@ -48,9 +48,9 @@
                             <div class="tab-pane fade in active" id="search_internal">
                                 <div class="row event-list">
                                     <div class="search-result col-md-12">
-                                        <label class="radio-inline"><input type="radio" name="type-search" value="title" checked="true"><%= __('Title')%></label>
-                                        <label class="radio-inline"><input type="radio" name="type-search" value="author"><%= __('Author')%></label>
-                                        <label class="radio-inline"><input type="radio" name="type-search" value="description"><%= __('Description')%></label>
+                                        <label class="radio-inline"><input type="radio" name="type-search" value="<%= __('Title') %>" checked="true"><%= __('Title') %></label>
+                                        <label class="radio-inline"><input type="radio" name="type-search" value="<%= __('Author') %>"><%= __('Author') %></label>
+                                        <label class="radio-inline"><input type="radio" name="type-search" value="<%= __('Description') %>"><%= __('Description') %></label>
                                     </div>
                                     <div class="category-container col-md-12">
                                         <input type="text" id="search-book"/>

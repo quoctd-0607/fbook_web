@@ -99,12 +99,12 @@
         <script type="text/javascript" src="/javascripts/admin/admin.js"></script>
             <% if (typeof info != 'undefined' && info != '') { %>
             <script> type="text/javascript"
-                showNotify("<%= info %>", 'info', 3000);
+                showNotify("<%= info %>", __('info'), 3000);
             </script>
         <% } %>
         <% if (typeof error != 'undefined' && error != '') { %>
             <script type="text/javascript">
-                showNotify("<%= error %>", 'error', 3000);
+                showNotify("<%= error %>", __('error'), 3000);
             </script>
         <% } %>
 

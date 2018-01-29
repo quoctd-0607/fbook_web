@@ -3,18 +3,18 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-md-10 pull-right">
-                <h3><i class="icofont icofont-book"></i> <%= field %> books</h3>
+                <h3><i class="icofont icofont-book"></i> <%= field %> <%= __('books') %></h3>
                 <div class="space-10"></div>
                 <% if (section.items.data.length > 0) { %>
                 <div class="row">
                     <div class="pull-left col-xs-12 col-sm-5 col-md-6">
-                        <i>Books for <span class="btn btn-primary">"<%= field %>"</span></i>
-                        <p><strong><%= section.items.data.length %></strong> of <strong><%= section.items.total %></strong> Book Found</p>
+                        <i><%= __('Books for') %> <span class="btn btn-primary">"<%= field %>"</span></i>
+                        <p><strong><%= section.items.data.length %></strong> <%= __('of') %> <strong><%= section.items.total %></strong> <%= __('Book Found') %></p>
                     </div>
                     <div class="pull-right col-xs-12 col-sm-7 col-md-6">
                         <form class="form-horizontal">
                             <div class="form-group">
-                                <label class="control-label col-xs-4" for="sort">Sort By <i class="icofont icofont-sort"></i></label>
+                                <label class="control-label col-xs-4" for="sort"><%= __('Sort By') %> <i class="icofont icofont-sort"></i></label>
                                 <div class="col-xs-6">
                                     <div class="form-group">
                                         <select name="sort" id="sort-book" class="form-control">
@@ -78,9 +78,9 @@
                                 </div>
                                 <div class="media-body">
                                     <h5 title="<%= book.title %>" data-toggle="tooltip">
-                                        <%= book.title ? getString(book.title, configs.book.title_limit_characters) : 'No title' %>
+                                        <%= book.title ? getString(book.title, configs.book.title_limit_characters) : __('No title') %>
                                     </h5>
-                                    <h6 title="<%= book.author %>" data-toggle="tooltip">By
+                                    <h6 title="<%= book.author %>" data-toggle="tooltip"><%= __('By') %>
                                         <%= book.author ? getString(book.author, configs.book.author_limit_characters) : 'Framgia' %>
                                     </h6>
                                     <div class="space-10"></div>
@@ -89,7 +89,7 @@
                                     <p>
                                         <%- book.overview %>
                                     </p>
-                                    <a href="/books/<%= book.id %>" class="btn btn-primary">View detail</a>
+                                    <a href="/books/<%= book.id %>" class="btn btn-primary"><%= __('View detail') %></a>
                                 </div>
                             </div>
                             <div class="owners">
@@ -105,7 +105,7 @@
                                         %>
                                         <img onclick="window.open('/users/<%= owner.id %>')"onerror="imgBackUp(this)" data-toggle="tooltip" title="<%= owner.name %>" class="owner-image-home img-circle" src="<%= (owner && owner.avatar) ? owner.avatar : '/images/user_default.png' %>"
                                              class="media-object author-photo img-thumbnail <%= owner ? '' : 'background--white' %>"
-                                             alt="book">
+                                             alt="<%= __('book') %>">
                                     <% }) %>
                                 <% } %>
                             </div>
@@ -113,7 +113,7 @@
                     </div>
                     <% }) %>
                     <% } else { %>
-                    <h4 class="text-center">No book</h4>
+                    <h4 class="text-center"><%= __('No book') %></h4>
                     <% } %>
                 </div>
                 <div class="space-60"></div>
@@ -131,10 +131,10 @@
             <!-- Sidebar-Start -->
             <div class="col-xs-12 col-md-2">
                 <aside>
-                    <h3><i class="icofont icofont-filter"></i> Filter By</h3>
+                    <h3><i class="icofont icofont-filter"></i> <%= __('Filter By') %></h3>
                     <div class="space-30"></div>
                     <div class="sigle-sidebar">
-                        <h4>Category</h4>
+                        <h4><%= __('Category') %></h4>
                         <hr>
                         <ul class="list-unstyled menu-tip category-sidebar">
                             <% categories.items.forEach(function (category, index) { %>
@@ -145,7 +145,7 @@
                                 <% } %>
                             <% }) %>
                         </ul>
-                        <a href="#" class="btn btn-primary btn-xs" id="btn-loadmore-category">See All</a>
+                        <a href="#" class="btn btn-primary btn-xs" id="btn-loadmore-category"><%= __('See All') %></a>
                     </div>
                 </aside>
             </div>

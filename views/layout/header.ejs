@@ -29,11 +29,11 @@
                             <li>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <% if (typeof user != 'undefined' && typeof user.avatar !== 'undefined' && user.avatar) { %>
-                                        <img src="<%= user.avatar %>" class="avatar" alt="avatar" /><span class="badge active-user-notification"></span>
+                                        <img src="<%= user.avatar %>" class="avatar" alt="<%= __('avatar') %>" /><span class="badge active-user-notification"></span>
                                         <div class="hidden" id="get-user-id"><%= user.id%></div>
                                     <% }
                                     else { %>
-                                        <img src="/images/user_default.png" class="img-circle img-thumbnail" alt="avatar" />
+                                        <img src="/images/user_default.png" class="img-circle img-thumbnail" alt="<%= __('avatar') %>" />
                                     <% } %>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -108,7 +108,7 @@
                         <% } %>
                             <ul class="dropdown-menu language">
                                 <li>
-                                    <a href="/change-lang/vi" class="text-i18n" data-img="/images/vietnam.png"><img class="image-choose" src="/images/vietnam.png"/><span>VietNam </span></a>
+                                    <a href="/change-lang/vi" class="text-i18n" data-img="/images/vietnam.png"><img class="image-choose" src="/images/vietnam.png"/><span>VietNam</span></a>
                                 </li>
                                 <li>
                                     <a href="/change-lang/en" class="text-i18n" data-img="/images/english.png"><img class="image-choose" src="/images/english.png"/><span>English</span></a>
@@ -118,12 +118,12 @@
                                 </li>
                             </ul>
                         </li>
-                        <li data-toggle="tooltip" title="MORE TOOLS">
+                        <li data-toggle="tooltip" title="<%= __('MORE TOOLS') %>">
                             <a target="_blank" href="https://wsm.framgia.vn/all-tools" class="icon-header">
                             <img src="/images/app_icon.png" class="icofont-fw nav-icon nav-moretoolicon"></a>
                         </li>
                         <% if (typeof user != 'undefined' && typeof user.name !== 'undefined' && user.name) { %>
-                            <li data-toggle="tooltip" title="NOTIFICATION">
+                            <li data-toggle="tooltip" title="<%= __('NOTIFICATIONS') %>">
                                 <a href="#" class="dropdown-toggle notification_onclick_icon dropdown-toggle" data-toggle="dropdown">
                                     <i class="icofont icofont-notification nav-icon"></i>
                                 </a>
@@ -132,12 +132,12 @@
                                     <div class="arrow-up-border"></div>
                                     <div class="arrow-up"></div>
                                     <div class="notifi-popup clearfix">
-                                        <span class="text-color-noti notifi-headers">Notifications</span>
-                                        <input type="button" class="button-seen" onclick="return mark_read_all_notifications()" value="Mark All as Read">
+                                        <span class="text-color-noti notifi-headers"> <%= __('Notifications') %> </span>
+                                        <input type="button" class="button-seen" onclick="return mark_read_all_notifications()" value="<%= __('Mark All as Read') %>">
                                     </div>
                                     <div id="box_dropdown_noti" class="scroll-dropdown-noti"></div>
                                     <li>
-                                        <a href="/notifications" class="text-color-noti dropdown-notification-footer clearfix">view all</a>
+                                        <a href="/notifications" class="text-color-noti dropdown-notification-footer clearfix"><%= __('view all') %></a>
                                     </li>
                                 </ul>
                             </li>
@@ -147,7 +147,7 @@
                         <% }
                         else { %>
                             <li>
-                                <a href="/login">Login with WSM</a>
+                                <a href="/login"><%= __('Login with WSM') %></a>
                             </li>
                         <% } %>
                     </ul>

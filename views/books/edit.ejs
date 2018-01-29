@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
-                <h2 class="text-danger">Form Request Edit Book To Admin</h2>
+                <h2 class="text-danger"><%= __('Form Request Edit Book To Admin') %></h2>
                 <div class="space-10"></div>
                 <div class="title-bar blue">
                     <ul class="list-inline list-unstyled">
@@ -24,12 +24,12 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-12">
                             <div class="form-group form-group-custom">
-                                <label for="title">Title</label>
+                                <label for="title"><%= __('Title') %></label>
                                 <div class="input-group">
                                     <input type="text" name="title" class="form-control bg-danger title-book title-book-custom" id="title" required="required" value="<%= book.item.title %>">
                                     <span class="input-group-btn">
                                         <button class="btn btn-secondary b-r-0 btn-success" id="fillSuggestData" type="button" data-toggle="tooltip" title="Import data book from google book">
-                                            <span class="glyphicon glyphicon-import custom-span-button"></span> Import from Google book
+                                            <span class="glyphicon glyphicon-import custom-span-button"></span> <%= __('Import from Google book') %>
                                         </button>
                                     </span>
                                 </div>
@@ -42,13 +42,13 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-6">
                             <div class="form-group">
-                                <label for="author">Author</label>
-                                <input type="text" id="author" name="author" class="form-control bg-danger b-r-0" placeholder="Enter your book author..." required="required" value="<%= book.item.author %>">
+                                <label for="author"><%= __('Author') %></label>
+                                <input type="text" id="author" name="author" class="form-control bg-danger b-r-0" placeholder="<%= __('Enter your book author...') %>" required="required" value="<%= book.item.author %>">
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6">
                             <div class="form-group">
-                                <label for="office">Office</label>
+                                <label for="office"><%= __('Office') %></label>
                                 <select id="office" name="office_id" class="form-control bg-danger b-r-0" required="required">
                                     <% offices.items.forEach(function (office) { %>
                                         <% if (book.item.office.id == office.id) { %>
@@ -64,7 +64,7 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-6">
                             <div class="form-group">
-                                <label for="category">Category</label>
+                                <label for="category"><%= __('Category') %></label>
                                 <select id="category" class="form-control bg-danger b-r-0" name="category_id" required="required">
                                     <% categories.items.forEach(function (category) { %>
                                         <% if (book.item.category.id == category.id) { %>
@@ -78,15 +78,15 @@
                         </div>
                         <div class="col-xs-12 col-sm-6">
                             <div class="form-group">
-                                <label for="publish_date">Publish date</label>
-                                <input type="text" id="publish_date" name="publish_date" class="form-control bg-danger b-r-0 datepicker" placeholder="Enter your book code..." value="<%= book.item.publish_date %>">
+                                <label for="publish_date"><%= __('Publish date') %></label>
+                                <input type="text" id="publish_date" name="publish_date" class="form-control bg-danger b-r-0 datepicker" placeholder="<%= __('Enter publish date') %>" value="<%= book.item.publish_date %>">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-12">
                             <div class="form-group">
-                                <label for="description">Description</label>
+                                <label for="description"><%= __('Description') %></label>
                                 <textarea name="description" id="description" cols="67" rows="8" required="required" class="form-control b-r-0"><%= book.item.description %></textarea>
                             </div>
                         </div>
@@ -100,14 +100,14 @@
                                         <img src="<%= image.web.large_path %>" alt="book" id="image-book-edit<%= image.id %>" key="<%= image.id %>">
                                         <input type="file" name="edit-image-book" accept="Image/*" id="upload-picture<%= image.id %>" class="upload-picture" key="<%= image.id %>" data-type="<%= image.type %>"/>
                                         <a class="upload-new-pic" href="#" key="<%= image.id %>">
-                                            <p>Edit image</p>
+                                            <p><%= __('Edit image') %></p>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         <% }) %>
                     </div>
-                    <p> Upload more image</p>
+                    <p> <%= __('Upload more image') %></p>
                     <div class="row upload-image" id="row-image1">
                         <div class="col-xs-12 col-sm-8">
                             <div class="form-group">
@@ -116,7 +116,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-4">
                             <span class="glyphicon glyphicon-plus btn-info btn-xs add-more-image" id="btn-plus1" key="1" data-toggle="tooltip" title="Add more image"></span>
-                            <span class="glyphicon glyphicon-minus btn-danger btn-xs clear-image hidden" id="btn-minus1" key="1" data-toggle="tooltip" title="Clear image"></span>
+                            <span class="glyphicon glyphicon-minus btn-danger btn-xs clear-image hidden" id="btn-minus1" key="1" data-toggle="tooltip" title="<%= __('Clear image') %>"></span>
                         </div>
                         <div class="col-xs-12 col-sm-6">
                             <img id="pre-img1" class="pre-img hidden" />
@@ -128,8 +128,8 @@
                         <div class="col-xs-12 col-sm-6">
                         <div class="edit_book_code" data-edit-book-code=<%= book.item.code %>></div>
                         <div class="edit_book_id" data-edit-book-id=<%= book.item.id %>></div>
-                            <button type="submit" class="btn btn-success btn-xs" id="btn-edit-book">
-                                <%= __('Edit Book') %>
+                            <button type="submit" class="btn btn-primary btn-xs b-r-0" id="btn-edit-book">
+                                <%= __('Update') %>
                             </button>
                         </div>
                     </div>
