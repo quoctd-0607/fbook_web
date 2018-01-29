@@ -868,4 +868,12 @@
     padding: 0 !important;
     margin: 0 !important;
 }
-
+.fix-detail{
+    position: relative;
+}
+.fix-detail-strim{
+    white-space: pre;
+}
+.morelink{
+    color: #0513f1;
+}
