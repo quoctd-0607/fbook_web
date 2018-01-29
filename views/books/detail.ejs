@@ -38,10 +38,12 @@
                         </div>
                     <% } %>
                 </div>
+                <% if (data.item.media.length > 1) { %>
                 <div class="bookslide_nav">
                     <i class="icofont icofont-long-arrow-left testi_prev"></i>
                     <i class="icofont icofont-long-arrow-right testi_next"></i>
                 </div>
+                <% } %>
             </div>
             <div class="col-xs-12 pull-right col-md-6 padding60 wow fadeInRight">
                 <div class="book-content">
@@ -175,7 +177,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row fix-detail-strim">
             <h4><%= __('Description') %></h4>
             <div class="more fix-text"><%- data.item.description %></div>
         </div>
