@@ -14,12 +14,12 @@
                 <div class="prcaption">
                     <div class="prbook">
                         <h4><div title="<%= book.title %>" data-toggle="tooltip" class="prbook-title"><%= getString(book.title, configs.book.title_limit_characters) %><br>
-                        <div title="<%= book.author %>" data-toggle="tooltip" class="text-muted small">By : <%= getString(book.author, configs.book.author_limit_characters) %></div>
+                        <div title="<%= book.author %>" data-toggle="tooltip" class="text-muted small"><%= __('By') %> : <%= getString(book.author, configs.book.author_limit_characters) %></div>
                         </div></h4>
                         <input id="rating-book" name="star" class="rating" data-min="0" data-max="5" value=<%= book.avg_star %> disabled="true" data-step="0.01" data-size="xs">
                         <div class="text-danger"><%= book.office.name %></div>
                         <% if (pageName == 'pageReading') { %>
-                            <div class="">Time started reading: <span class="time_a_go"><%= book.pivot.created_at %></span></div>
+                            <div class=""><%= __('Time started reading') %>: <span class="time_a_go"><%= book.pivot.created_at %></span></div>
                         <% } %>
                     </div>
                 </div>
@@ -35,14 +35,14 @@
                     <ul class="pagination">
                         <% if (Math.ceil(books.items.total / books.items.per_page) > 1
                         && books.items.current_page !== 1) { %>
-                            <li><a href="<%= currentUrl %>?<%= pageName %>=1">First</a></li>
+                            <li><a href="<%= currentUrl %>?<%= pageName %>=1"><%= __('First') %></a></li>
                         <% } else { %>
-                            <li class="disabled"><a href="javascript:void(0)">First</a></li>
+                            <li class="disabled"><a href="javascript:void(0)"><%= __('First') %></a></li>
                         <% } %>
                         <% if (books.items.prev_page) { %>
-                            <li><a href="<%= currentUrl %>?<%= pageName %>=<%= books.items.prev_page %>">Previous</a></li>
+                            <li><a href="<%= currentUrl %>?<%= pageName %>=<%= books.items.prev_page %>"><%= __('Previous') %></a></li>
                         <% } else { %>
-                            <li class="disabled"><a href="javascript:void(0)">Previous</a></li>
+                            <li class="disabled"><a href="javascript:void(0)"><%= __('Previous') %></a></li>
                         <% } %>
                         <% for (var i=0; i< Math.ceil(books.items.total / books.items.per_page); i++) { %>
                             <% if (books.items.current_page == (i + 1)) { %>
@@ -52,22 +52,22 @@
                             <% } %>
                         <% } %>
                         <% if (books.items.next_page) { %>
-                            <li><a href="<%= currentUrl %>?<%= pageName %>=<%= books.items.next_page %>">Next</a></li>
+                            <li><a href="<%= currentUrl %>?<%= pageName %>=<%= books.items.next_page %>"><%= __('Next') %></a></li>
                         <% } else { %>
-                            <li class="disabled"><a href="javascript:void(0)">Next</a></li>
+                            <li class="disabled"><a href="javascript:void(0)"><%= __('Next') %></a></li>
                         <% } %>
                         <% if (Math.ceil(books.items.total / books.items.per_page) > 1
                         && books.items.current_page !== Math.ceil(books.items.total / books.items.per_page)) { %>
-                            <li><a href="<%= currentUrl %>?<%= pageName %>=<%= Math.ceil(books.items.total / books.items.per_page) %>">Last</a></li>
+                            <li><a href="<%= currentUrl %>?<%= pageName %>=<%= Math.ceil(books.items.total / books.items.per_page) %>"><%= __('Last') %></a></li>
                         <% } else { %>
-                            <li class="disabled"><a href="javascript:void(0)">Last</a></li>
+                            <li class="disabled"><a href="javascript:void(0)"><%= __('Last') %></a></li>
                         <% } %>
                     </ul>
                  </div>
             </div>
         <% } %>
         <% } else { %>
-            <h5 class="text-center">No book in section </h5>
+            <h5 class="text-center"><%= __('No book in section') %> </h5>
         <% } %>
     </div>
 </div>

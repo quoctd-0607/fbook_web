@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
-                <h2><strong>Waiting approve</strong></h2>
+                <h2><strong><%= __('Waiting approve') %></strong></h2>
                 <div class="title-bar blue">
                     <ul class="list-inline list-unstyled">
                         <li><i class="icofont icofont-square"></i></li>
@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h5 title="<%= book.title %>" data-toggle="tooltip">
-                                        <%= book.title ? getString(book.title, configs.book.title_limit_characters) : 'No title' %>
+                                        <%= book.title ? getString(book.title, configs.book.title_limit_characters) : __('No title') %>
                                     </h5>
                                     <h6 title="<%= book.athor %>" data-toggle="tooltip">
                                         <%= book.author ? getString(book.title, configs.book.author_limit_characters) : 'Framgia' %>
@@ -54,7 +54,7 @@
                                         %>
                                         <img onclick="window.open('/users/<%= owner.id %>')"onerror="imgBackUp(this)" data-toggle="tooltip" title="<%= owner.name %>" class="owner-image-home img-circle" src="<%= (owner && owner.avatar) ? owner.avatar : '/images/user_default.png' %>"
                                              class="media-object author-photo img-thumbnail <%= owner ? '' : 'background--white' %>"
-                                             alt="book">
+                                             alt="<%= __('book') %>">
                                     <% }) %>
                                 <% } %>
                             </div>
@@ -62,7 +62,7 @@
                     </div>
                 <% }) %>
             <% } else { %>
-                <center><h4> No book waiting to approve </h4></center>
+                <center><h4> <%= __('No book waiting to approve') %> </h4></center>
             <% } %>
         </div>
         <% if (books.items.total > books.items.per_page) { %>
