@@ -5,6 +5,16 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var objectHeaders = require('../helpers/headers');
 var router = express.Router();
+var cookieParser = require('cookie-parser');
+var i18n = require("i18n");
+var callback = express();
+callback.use(cookieParser());
+callback.use(i18n.init);
+i18n.configure({
+    locales:['vi', 'en', 'jp'],
+    directory: __dirname + '/locales',
+    cookie: 'lang',
+});
 
 router.get('/', function(req, res, next) {
     if (!req.session.access_token) {
@@ -31,7 +41,7 @@ router.get('/', function(req, res, next) {
 
                                     req.session.user = user.item;
                                     req.session.office_id = user.item.office_id;
-                                    req.flash('info', 'Login success');
+                                    req.flash('info', i18n.__('Login success'));
                                     request({
                                         url: req.configs.api_base_url + 'offices',
                                         headers: objectHeaders.headers
