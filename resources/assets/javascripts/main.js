@@ -244,15 +244,21 @@ jQuery(document).ready(function($) {
                     }, {
                         delay: 1000
                     });
+                } else if (response.items.messages == 'owner_can_not_vote') {
+                    showNotify('danger', "You can not vote for your review!", {
+                        icon: "glyphicon glyphicon-remove"
+                    }, {
+                        delay: 1000
+                    });
                 } else if (response.items.messages == 'revote_success') {
                     if (status_id == 2) {
                         $('.up_vote').attr("style", "color: #5488c7;");
                         $('.down_vote').attr("style", "color: #A9A9A9;");
-                        $('#btn_show_vote').html(current_vote + 1);
+                        $('#btn_show_vote').html(current_vote + 2);
                     } else {
                         $('.down_vote').attr("style", "color: #5488c7;");
                         $('.up_vote').attr("style", "color: #A9A9A9;");
-                        $('#btn_show_vote').html(current_vote - 1);
+                        $('#btn_show_vote').html(current_vote - 2);
                     }
                     showNotify('success', "Thanks for your revote!", {
                         icon: "glyphicon glyphicon-remove"
