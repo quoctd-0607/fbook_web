@@ -7,6 +7,17 @@ var objectHeaders = require('../helpers/headers');
 var localSession = require('../middlewares/localSession');
 var authorize = require('../middlewares/authorize');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var i18n = require("i18n");
+var books = express();
+books.use(cookieParser());
+books.use(i18n.init);
+books.set('view engine', 'ejs');
+i18n.configure({
+    locales:['vi', 'en', 'jp'],
+    directory: __dirname + '/locales',
+    cookie: 'lang',
+});
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 router.get('/', localSession, function (req, res, next) {
@@ -237,7 +248,7 @@ router.get('/:id', localSession, function (req, res, next) {
                             var returningBookToOwner = null;
                             var messages = req.flash('errors');
                             var btnBooking = {
-                                'text': 'Want to Read',
+                                'text': i18n.__('Want to Read'),
                                 'status': req.configs.book_user.status.waiting
                             };
                             if (typeof req.session.user !== 'undefined') {
@@ -254,7 +265,7 @@ router.get('/:id', localSession, function (req, res, next) {
                                         data.item.owners.forEach (function (owner) {
                                             if (userReading.id === req.session.user.id) {
                                                 btnBooking = {
-                                                    'text': 'Want to Return',
+                                                    'text': i18n.__('Want to Return'),
                                                     'status': req.configs.book_user.status.returning
                                                 };
                                                 if (userReading.owner_id === owner.id) {
@@ -270,7 +281,7 @@ router.get('/:id', localSession, function (req, res, next) {
                                         data.item.owners.forEach (function (owner) {
                                             if (userWaiting.id === req.session.user.id) {
                                                 btnBooking = {
-                                                    'text': 'Cancel waiting this book',
+                                                    'text': i18n.__('Cancel waiting this book'),
                                                     'status': req.configs.book_user.status.cancel_waiting
                                                 };
                                                 if (userWaiting.owner_id === owner.id) {
@@ -286,7 +297,7 @@ router.get('/:id', localSession, function (req, res, next) {
                                         data.item.owners.forEach (function (owner) {
                                             if (userReturning.id === req.session.user.id) {
                                                 btnBooking = {
-                                                    'text': 'You are returning this book',
+                                                    'text': i18n.__('You are returning this book'),
                                                     'status': req.configs.book_user.status.returned
                                                 };
                                                 if (userReturning.owner_id === owner.id) {
@@ -476,7 +487,7 @@ router.post('/booking/:id', authorize.isAuthenticated, function (req, res, next)
                     }
                 } else {
                     if (response.statusCode === 401) {
-                        req.flash('error', 'Please login to booking this book');
+                        req.flash('error', i18n.__('Please login to booking this book'));
                         res.redirect('back');
                     } else if (response.statusCode === 500) {
                         req.flash('error', JSON.parse(body).message.description);

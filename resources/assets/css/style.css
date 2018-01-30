@@ -36,6 +36,21 @@
     margin-left: 15px;
 }
 
+.edit_comment_topright {
+    float: right;
+    background: transparent;
+    border: none;
+    font-size: 11px;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.color-777 {
+    color: #777 !important;
+}
+
 .aligncenter {
     display: block;
     margin: 0 auto 15px;
