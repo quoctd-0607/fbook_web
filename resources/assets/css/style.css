@@ -203,19 +203,6 @@ input:-webkit-autofill:focus {
     width: 97% ;
 }
 
-.bnt-request {
-    text-align: center;
-    border-radius: 50%;
-    display: inline-block;
-    width: 24px;
-    line-height: 24px;
-    font-size: 14px;
-    border-radius: 6
-}
-
-.btn-view-request {
-    float: right;
-}
 
 .click-notification:hover {
     background-color: #ffffff;
@@ -291,13 +278,12 @@ input:-webkit-autofill:focus {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 14px;
     border-radius: 4px;
 }
 
 .notifi-headers {
-    padding-left: 13px;
-    padding-right: 175px;
+    padding-right: 190px;
     font-weight: bold;
     text-transform: none;
 }
@@ -308,7 +294,7 @@ input:-webkit-autofill:focus {
     border-style: dashed dashed solid;
     border-width: 0 8px 8px;
     position: absolute;
-    right: 13px;
+    right: 20px;
     top: -8px;
     z-index: 1;
     height: 0;
@@ -320,7 +306,7 @@ input:-webkit-autofill:focus {
     border-style: dashed dashed solid;
     border-width: 0 9px 9px;
     position: absolute;
-    right: 12px;
+    right: 20px;
     top: -9px;
     z-index: 1;
     height: 0;
@@ -335,11 +321,13 @@ input:-webkit-autofill:focus {
 }
 
 .avatar-popup-noti {
-    height: 57px;
-    width: 57px;
+    height: 42px;
+    width: 42px;
     padding: 0px;
     margin-left: 5px;
     margin-top: 5px;
+    border: 2px solid #999;
+    border-radius: 20px;
 }
 
 .a-notification-dropdown {
@@ -354,8 +342,6 @@ input:-webkit-autofill:focus {
     font-weight: 500;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 300px;
-    height: 38px;
 }
 
 .time-ago-notification-dropdown {
@@ -371,7 +357,8 @@ input:-webkit-autofill:focus {
     margin-bottom: -5px;
     text-align: center;
     padding-top: 10px !important;
-    text-transform: none;
+    text-transform: uppercase;
+    font-size: 12px;
     font-weight: bold !important;
     color: #365899 !important;
 }
@@ -396,10 +383,10 @@ input:-webkit-autofill:focus {
 
 .edit-book {
     margin-top: 6px !important;
-    display: inline-block;
     height: 100%;
     width: 100%;
     background-color: white;
+    padding: 0;
 }
 
 .edit-book label {
@@ -501,10 +488,12 @@ input:-webkit-autofill:focus {
     margin-top: -15px;
 }
 .custom-vote {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
     display: flex;
     align-content: stretch;
     align-items: center;
-    float: right;
 }
 
 .delete-btn-topright {
@@ -526,6 +515,7 @@ input:-webkit-autofill:focus {
 
 .view_more {
     color: #365899;
+    font-size: 12px;
 }
 
 .vote_review {

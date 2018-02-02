@@ -39,13 +39,13 @@ $(document).ready(function() {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown fix-text'>" +
                                 data.user_send.name + " </span>" + "<span>" +
-                                "Waiting book request: " + content + ellipsestext +
+                                " Waiting book request: " + content + ellipsestext +
                                 "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + "</span>" + "<span>" +
-                                "Waiting book request: " + data.book.title + "</span>" +
+                                " Waiting book request: " + data.book.title + "</span>" +
                                 "</p>";
                         }
                         htmlModel +=
@@ -62,13 +62,13 @@ $(document).ready(function() {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + " </span>" + "<span>" +
-                                "Cancel book request: " + content + ellipsestext +
+                                " Cancel book request: " + content + ellipsestext +
                                 "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + "</span>" + "<span>" +
-                                "Cancel book request: " + data.book.title + "</span>" +
+                                " Cancel book request: " + data.book.title + "</span>" +
                                 "</p>";
                         }
                         htmlModel +=
@@ -83,13 +83,13 @@ $(document).ready(function() {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + " </span>" + "<span>" +
-                                " review book: " + content + ellipsestext + "</span>" +
+                                " Review book: " + content + ellipsestext + "</span>" +
                                 "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + "</span>" + "<span>" +
-                                " review book: " + data.book.title + "</span>" + "</p>";
+                                " Review book: " + data.book.title + "</span>" + "</p>";
                         }
                         htmlModel +=
                             "<span class='text-color-noti label label-warning lbl-waiting" +
@@ -103,13 +103,13 @@ $(document).ready(function() {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + " </span>" + "<span>" +
-                                " upvoted your review in book: " + content +
+                                " Upvoted your review in book: " + content +
                                 ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + "</span>" + "<span>" +
-                                " upvoted your review in book: " + data.book.title +
+                                " Upvoted your review in book: " + data.book.title +
                                 "</span>" + "</p>";
                         }
                         htmlModel +=
@@ -124,13 +124,13 @@ $(document).ready(function() {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + " </span>" + "<span>" +
-                                " downvoted your review in book: " + content +
+                                " Downvoted your review in book: " + content +
                                 ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + "</span>" + "<span>" +
-                                " downvoted your review in book: " + data.book.title +
+                                " Downvoted your review in book: " + data.book.title +
                                 "</span>" + "</p>";
                         }
                         htmlModel +=
@@ -145,13 +145,13 @@ $(document).ready(function() {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + " </span>" + " <span>" +
-                                "Returning book: " + content + ellipsestext + "</span>" +
+                                " Returning book: " + content + ellipsestext + "</span>" +
                                 "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + "</span>" + " <span>" +
-                                "Returning book: " + data.book.title + "</span>" +
+                                " Returning book: " + data.book.title + "</span>" +
                                 "</p>";
                         }
                         htmlModel +=
@@ -166,13 +166,13 @@ $(document).ready(function() {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + " </span>" + "<span>" +
-                                "Return done book: " + content + ellipsestext +
+                                " Return done book: " + content + ellipsestext +
                                 "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + "</span>" + "<span>" +
-                                "Return done book: " + data.book.title + "</span>" +
+                                " Return done book: " + data.book.title + "</span>" +
                                 "</p>";
                         }
                         htmlModel +=
@@ -187,13 +187,13 @@ $(document).ready(function() {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + " </span>" + "<span>" +
-                                "Return books successfully: " + content + ellipsestext +
+                                " Return books successfully: " + content + ellipsestext +
                                 "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + "</span>" + "<span>" +
-                                "Return books successfully: " + data.book.title +
+                                " Return books successfully: " + data.book.title +
                                 "</span>" + "</p>";
                         }
                         htmlModel +=
@@ -208,13 +208,13 @@ $(document).ready(function() {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + " </span>" + "<span>" +
-                                "Want to edit book: " + content + ellipsestext +
+                                " Want to edit book: " + content + ellipsestext +
                                 "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + "</span>" + "<span>" +
-                                "Want to edit book: " + data.book.title + "</span>" +
+                                " Want to edit book: " + data.book.title + "</span>" +
                                 "</p>";
                         }
                         htmlModel +=
@@ -229,13 +229,13 @@ $(document).ready(function() {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + " </span>" + "<span>" +
-                                "Approve your request edit book: " + content +
+                                " Requests edit book: " + content +
                                 ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + "</span>" + "<span>" +
-                                "Approve your request edit book: " + data.book.title +
+                                " Requests edit book: " + data.book.title +
                                 "</span>" + "</p>";
                         }
                         htmlModel +=
@@ -253,13 +253,13 @@ $(document).ready(function() {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + " </span>" + "<span>" +
-                                "Unapprove your request edit book: " + content +
+                                " Unapprove your request edit book: " + content +
                                 ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + "</span>" + "<span>" +
-                                "Unapprove your request edit book: " + data.book.title +
+                                " Unapprove your request edit book: " + data.book.title +
                                 "</span>" + "</p>";
                         }
                         htmlModel +=
@@ -275,13 +275,13 @@ $(document).ready(function() {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + " </span>" + "<span>" +
-                                "Accept your request waiting book: " + content +
+                                " Accept your request waiting book: " + content +
                                 ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + "</span>" + "<span>" +
-                                "Accept your request waiting book: " + data.book.title +
+                                " Accept your request waiting book: " + data.book.title +
                                 "</span>" + "</p>";
                         }
                         htmlModel +=

@@ -177,10 +177,10 @@ $(document).ready(function() {
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + "Review Book: " + content + ellipsestext + "</span>";
+                                        + data.user_send.name + " Review Book: " + content + ellipsestext + "</span>";
                         } else {
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + "Review Book: " + data.book.title + "</span>";
+                                        + data.user_send.name + " Review Book: " + data.book.title + "</span>";
                         }
                         htmlModel += '<span class="badge badge-warning size-100-percent' + data.user_send.id + '">review</span>';
                     } else if (data.type == configs.notification.returning) {
@@ -242,7 +242,7 @@ $(document).ready(function() {
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name +  "Approve your request edit book: " + content + ellipsestext + "</span>";
+                                        + data.user_send.name +  " Approve your request edit book: " + content + ellipsestext + "</span>";
                         } else {
                             htmlModel += '<span class="notify-content">'
                                         + data.user_send.name + " - Approve your request edit book: " + data.book.title + "</span>";

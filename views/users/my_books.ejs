@@ -22,20 +22,20 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <% if (book.image !== null) { %>
-                                            <a href="/books/<%= book.id %>" class="book_title">
-                                                <img src="<%= book.image.web.thumbnail_path %>" class="media-object" alt="<%= book.title %>">
-                                            </a>
+                                            <img src="<%= book.image.web.thumbnail_path %>" 
+                                                onclick="window.open('/books/<%= book.id %>', '_self')"
+                                                class="media-object" 
+                                                alt="<%= book.title %>">
                                         <% } else { %>
                                             <img src="/images/book_thumb_default.jpg" class="media-object" alt="<%= book.title %>">
                                         <% } %>
-                                        <a href="/books/<%= book.id %>/edit" class="btn btn-primary edit-book">Edit</span></a>
                                     </div>
                                     <div class="media-body">
                                         <% if (typeof (book.title) != 'undefined' && book.title) { %>
-                                            <h5 title="<%= book.title %>" data-toggle="tooltip">
-                                                <a href="/books/<%= book.id %>" class="book_title">
-                                                    <%= getString(book.title, configs.book.title_limit_characters) %>
-                                                </a>
+                                            <h5 title="<%= book.title %>" 
+                                                onclick="window.open('/books/<%= book.id %>', '_self')"
+                                                data-toggle="tooltip">
+                                                <%= getString(book.title, configs.book.title_limit_characters) %>
                                             </h5>
                                         <% } else {%>
                                             <h6>No title</h6>
@@ -47,13 +47,10 @@
                                         <% } %>
                                         <input id="rating-book" name="star" class="rating" data-min="0" data-max="5" value=<%= book.avg_star %> disabled="true" data-step="0.01" data-size="xs">
                                         <div class="space-10"></div>
-                                        <p>
-                                            <%= book.overview %>
-                                        </p>
-                                        <div class="pull-right">
-                                            <a href="/books/<%= book.id %>/approve-request" class="btn btn-primary edit-book btn-view-request">View all request <span class="btn-danger bnt-request"><%- book.users_waiting.length + book.users_returning.length %></span></a>
-                                        </div>
+                                        <p><%= book.overview %></p>
+                                        <a href="/books/<%= book.id %>/approve-request" class="media-button-customize">View all request (<%- book.users_waiting.length + book.users_returning.length %>)</a>
                                     </div>
+                                    <a href="/books/<%= book.id %>/edit" class="btn btn-primary edit-book">Edit</span></a>
                                 </div>
                                 <% if (book.users_reading && book.users_reading.length) { %>
                                     <div class="owners">

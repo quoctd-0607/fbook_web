@@ -38,10 +38,11 @@
                         </div>
                     <% } %>
                 </div>
-                <div class="bookslide_nav position-relative">
-                    <i class="glyphicon glyphicon-chevron-left testi_prev color-777"></i>
-                    <i class="glyphicon glyphicon-chevron-right testi_next color-777"></i>
-                </div>
+                <% if (data.item.media.length > 1) { %>
+                    <div class="bookslide_nav position-relative">
+                        <i class="glyphicon glyphicon-chevron-left testi_prev color-777"></i>
+                        <i class="glyphicon glyphicon-chevron-right testi_next color-777"></i>
+                    </div>
                 <% } %>
             </div>
             <div class="col-xs-12 pull-right col-md-6 padding60 wow fadeInRight">
@@ -49,10 +50,13 @@
                     <div class="book-details-item">
                         <div class="row">
                             <h4 class="book-title">
-                                <%= data.item.title %><span> (<%= data.item.count_view %> <%= __('views') %> )</span>
+                                <%= data.item.title %>
+                                <span> (<%= data.item.count_view %> <%= __('views') %> )</span>
                             </h4>
                             <% if (data.item.author != 'undefined') { %>
-                                <p class="text-warning"><%= data.item.author %></p>
+                                <p>
+                                    <h4 class="tip-left"><%= __('Author') %>: <span class="text-warning"><%= data.item.author %></span></h4>
+                                </p>
                             <% } else { %>
                                 <p><%= __('No Author') %></p>>
                             <% } %>
@@ -264,18 +268,18 @@
                                     }
                                 %>
                                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-9 revsdv" id="review<%= review.id %>">
-                                    <div class="event-item wow fadeInRight">
+                                    <div class="event-item wow fadeInRight comment-box">
                                         <h4 class="show tip-left"><%= review.created_at %></h4>
                                         <div class="well padding5 owner-clear relative-position">
                                             <div class="media">
                                                 <div class="media-left">
                                                     <% if (review.user.avatar !== null) { %>
-                                                    <a href="/users/<%= review.user.id %>">
-                                                        <img src="<%= review.user.avatar %>" class="media-object w-70-h-70" alt="avatar">
-                                                    </a>
+                                                        <a href="/users/<%= review.user.id %>" class="avatar">
+                                                            <img src="<%= review.user.avatar %>" class="media-object" alt="<%= __('Avatar') %>">
+                                                        </a>
                                                     <% } else { %>
                                                         <a href="/users/<%= review.user.id %>">
-                                                            <img src="/images/user/icon_user_default.png" class="media-object  w-70-h-70" alt="<%= __('avatar') %>">
+                                                            <img src="/images/user/icon_user_default.png" class="media-object  w-70-h-70" alt="<%= __('Avatar') %>">
                                                         </a>
                                                     <% } %>
                                                 </div>
@@ -284,15 +288,17 @@
                                                         <h4 class="media-heading list-inline list-unstyled rating-star">
                                                             <%= review.user.name %>
                                                             <% for (var i=0; i<review.star; i++) { %>
-                                                            <li class="active"><i class="icofont icofont-star"></i></li>
+                                                                <li class="active"><i class="icofont icofont-star"></i></li>
                                                             <% } %>
                                                         </h4>
                                                     </a>
                                                     <p>
                                                         <%= review.title %>
-                                                        <a href="/books/view-review/<%= review.id  %>" class="view_more">...<%= __('View More') %></a>
+                                                        <a href="/books/view-review/<%= review.id  %>" class="view_more">
+                                                            &nbsp;<%= __('View More') %>
+                                                        </a>
                                                         <% if( data.item.current_user_review !== null && review.user.id == data.item.current_user_review.user.id){ %>
-                                                            <button type="button" class="delete-btn-topright" value="<%= review.id %>" title="delete review">X</button>
+                                                            <button type="button" class="delete-btn-topright" value="<%= review.id %>" title="<%= __('Delete review') %>">X</button>
                                                         <% } %>
                                                         <div class="custom-vote">
                                                             <div>
@@ -319,7 +325,7 @@
                         <div class="row ">
                             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-9">
                                 <h4 class="m-bottom5">
-                                    <a href="/books/<%= book_current %>/review" class="btn btn-primary hover-btn-default m-0 b-r-0">
+                                    <a href="/books/<%= book_current %>/review" class="btn btn-primary hover-btn-default btn-customize">
                                         <% if(data.item.current_user_review !== null && data.detect !== null ){ %>
                                             <strong id="review_edit_btn"><%= __('Edit review') %></strong>
                                         <% }else{ %>
@@ -343,7 +349,7 @@
                                                 <div class="media-left owner-right">
                                                     <% if (owner.id === user.owner_id) { %>
                                                         <a href="/users/<%= owner.id %>">
-                                                            <img src="<%= owner.avatar ? owner.avatar : '/images/user/icon_user_default.png'%>" class="w-30-h-30" alt="<%= __('avatar') %>">
+                                                            <img src="<%= owner.avatar ? owner.avatar : '/images/user/icon_user_default.png'%>" class="w-30-h-30" alt="<%= __('Avatar') %>">
                                                             <%= owner.name %>
                                                         </a><strong>[<%= __('Owner this book') %>]</strong>
                                                     <% } %>
@@ -355,11 +361,11 @@
                                                 <div class="media-left">
                                                     <% if (user.avatar !== null) { %>
                                                         <a href="/users/<%= user.id %>">
-                                                            <img src="<%= user.avatar %>" class="media-object w-70-h-70" alt="<%= __('avatar') %>">
+                                                            <img src="<%= user.avatar %>" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
                                                         </a>
                                                     <% } else { %>
                                                         <a href="/users/<%= user.id %>">
-                                                            <img src="/images/user/icon_user_default.png" class="media-object w-70-h-70" alt="<%= __('avatar') %>">
+                                                            <img src="/images/user/icon_user_default.png" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
                                                         </a>
                                                     <% } %>
                                                 </div>
@@ -394,7 +400,7 @@
                                                 <div class="media-left owner-right">
                                                     <% if (owner.id === user.owner_id) { %>
                                                         <a href="/users/<%= owner.id %>">
-                                                            <img src="<%= owner.avatar ? owner.avatar : '/images/user/icon_user_default.png'%>" class="w-30-h-30" alt="<%= __('avatar') %>">
+                                                            <img src="<%= owner.avatar ? owner.avatar : '/images/user/icon_user_default.png'%>" class="w-30-h-30" alt="<%= __('Avatar') %>">
                                                             <%= owner.name %>
                                                         </a><strong>[<%= __('Owner this book') %>]</strong>
                                                     <% } %>
@@ -406,11 +412,11 @@
                                                 <div class="media-left">
                                                     <% if (user.avatar !== null) { %>
                                                         <a href="/users/<%= user.id %>">
-                                                            <img src="<%= user.avatar %>" class="media-object w-70-h-70" alt="<%= __('avatar') %>">
+                                                            <img src="<%= user.avatar %>" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
                                                         </a>
                                                     <% } else { %>
                                                         <a href="/users/<%= user.id %>">
-                                                            <img src="/images/user/icon_user_default.png" class="media-object w-70-h-70" alt="<%= __('avatar') %>">
+                                                            <img src="/images/user/icon_user_default.png" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
                                                         </a>
                                                     <% } %>
                                                 </div>
@@ -444,7 +450,7 @@
                                                <div class="media-left owner-right">
                                                    <% if (owner.id === user.owner_id) { %>
                                                        <a href="/users/<%= owner.id %>">
-                                                           <img src="<%= owner.avatar ? owner.avatar : '/images/user/icon_user_default.png'%>" class="w-30-h-30" alt="<%= __('avatar') %>">
+                                                           <img src="<%= owner.avatar ? owner.avatar : '/images/user/icon_user_default.png'%>" class="w-30-h-30" alt="<%= __('Avatar') %>">
                                                            <%= owner.name %>
                                                        </a><strong>[<%= __('Owner this book') %>]</strong>
                                                    <% } %>
@@ -456,11 +462,11 @@
                                                <div class="media-left">
                                                    <% if (user.avatar !== null) { %>
                                                        <a href="/users/<%= user.id %>">
-                                                           <img src="<%= user.avatar %>" class="media-object w-70-h-70" alt="<%= __('avatar') %>">
+                                                           <img src="<%= user.avatar %>" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
                                                        </a>
                                                    <% } else { %>
                                                        <a href="/users/<%= user.id %>">
-                                                           <img src="/images/user/icon_user_default.png" class="media-object w-70-h-70" alt="<%= __('avatar') %>">
+                                                           <img src="/images/user/icon_user_default.png" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
                                                        </a>
                                                    <% } %>
                                                </div>
@@ -494,7 +500,7 @@
                                                <div class="media-left owner-right">
                                                    <% if (owner.id === user.owner_id) { %>
                                                        <a href="/users/<%= owner.id %>">
-                                                           <img src="<%= owner.avatar ? owner.avatar : '/images/user/icon_user_default.png'%>" class="w-30-h-30" alt="<%= __('avatar') %>">
+                                                           <img src="<%= owner.avatar ? owner.avatar : '/images/user/icon_user_default.png'%>" class="w-30-h-30" alt="<%= __('Avatar') %>">
                                                            <%= owner.name %>
                                                        </a><strong>[<%= __('Owner this book') %>]</strong>
                                                    <% } %>
@@ -506,11 +512,11 @@
                                                <div class="media-left">
                                                    <% if (user.avatar !== null) { %>
                                                        <a href="/users/<%= user.id %>">
-                                                           <img src="<%= user.avatar %>" class="media-object w-70-h-70" alt="<%= __('avatar') %>">
+                                                           <img src="<%= user.avatar %>" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
                                                        </a>
                                                    <% } else { %>
                                                        <a href="/users/<%= user.id %>">
-                                                           <img src="/images/user/icon_user_default.png" class="media-object w-70-h-70" alt="<%= __('avatar') %>">
+                                                           <img src="/images/user/icon_user_default.png" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
                                                        </a>
                                                    <% } %>
                                                </div>

@@ -69,11 +69,15 @@
                                         </span>
                                     <% } %>
                                     <div class="media-left">
-                                        <img class="media-object" alt="Framgia book"
+                                        <img class="media-object" 
+                                            onclick="window.open('/books/<%= book.id %>', '_self')"
+                                            alt="Framgia book"
                                             src="<%= book.image ? book.image.web.thumbnail_path : '/images/book_thumb_default.jpg' %>">
                                     </div>
                                     <div class="media-body">
-                                        <h5 title="<%= book.title %>" data-toggle="tooltip">
+                                        <h5 title="<%= book.title %>" 
+                                            data-toggle="tooltip" 
+                                            onclick="window.open('/books/<%= book.id %>', '_self')">
                                             <%= book.title ? getString(book.title, configs.book.title_limit_characters) : __('No title') %>
                                         </h5>
                                         <h6 title="<%= book.author %>" data-toggle="tooltip"><%= __('By') %>
@@ -85,7 +89,6 @@
                                         <p>
                                             <%= book.overview %>
                                         </p>
-                                        <a href="/books/<%= book.id %>" class="btn btn-primary"><%= __('View detail') %></a>
                                     </div>
                                 </div>
                             </div>
