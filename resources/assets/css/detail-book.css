@@ -1,12 +1,15 @@
 /*Time for the CSS*/
-* {margin: 0; padding: 0;}
-.slider{
+* {
+    margin: 0; 
+    padding: 0;
+}
+.slider {
     /*Instead of height we will use padding*/
     padding-top: 320px; /*That helps bring the labels down*/
     margin: 100px auto;
 }
 /*Last thing remaining is to add transitions*/
-.slider>img{
+.slider>img {
     position: absolute;
     left: 60px; top: 5px;
     transition: all 0.5s;
@@ -27,7 +30,7 @@
     /*Default style = low opacity*/
     opacity: 0.6;
 }
-.slider label img{
+.slider label img {
     display: block;
 }
 /*Time to add the click effects*/
@@ -51,51 +54,48 @@ On click the images will be displayed at normal size to complete the effect
 /*Clicking on any thumbnail now should activate the image related to it*/
 
 /*We are done :)*/
-.book-detail{
+.book-detail {
     margin-bottom: 50px;
 }
-.tip-left::before{
+.tip-left::before {
     font-size: 10px;
 }
-.btn{
+.btn {
     margin: 0px;
 }
-h2{
+h2 {
     color: #000;
 }
-.author-photo{
+.author-photo {
     height: 35px;
 }
 .lead{
     margin-bottom: 10px;
 }
-h1, h2, h3, h4, h5, h6{
+h1, h2, h3, h4, h5, h6 {
     margin: 0 0 0 0px;
 }
-.top{
+.top {
     margin-bottom: 50px;
 }
 .picture{
     width: 90px;
 }
-.rating_book_style{
+.rating_book_style {
     font-size: 1em;
 }
-.category-item.well{
-    height: 250px;
-}
-.h6_title{
+.h6_title {
     font-size: 13px;
 }
-.button_style{
+.button_style {
     padding-top: 60px;
     float: right;
     padding-right: 25px;
 }
-.p_style{
+.p_style {
     margin-left: 70px;
 }
-.book-content{
+.book-content {
     border-right: 1px solid #eee;
 }
 .position-relative {

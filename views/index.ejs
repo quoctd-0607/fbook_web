@@ -26,70 +26,79 @@
                         <% if (countOwner > 0 ) { %>
                             <div class="col-xs-12 col-md-4 wow fadeInLeft" data-wow-delay="0.1s" data-wow-offset="50">
                                 <div class="category-item well yellow">
-                                            <div class="media">
-                                                <% if (book.office.name == 'Tran Khat Chan') { %>
-                                                    <span class="badge badge-1">
-                                                        <a href="/home?officeId=<%= book.office.id %>" class="office_on_books">
-                                                            <%= book.office.name %>
-                                                        </a>
-                                                    </span>
-                                                <% } else if (book.office.name == 'Ha Noi Office') { %>
-                                                    <span class="badge badge-2">
-                                                        <a href="/home?officeId=<%= book.office.id %>" class="office_on_books">
-                                                            <%= book.office.name %>
-                                                        </a>
-                                                    </span>
-                                                <% } else if (book.office.name == 'Da Nang Office') { %>
-                                                    <span class="badge badge-3">
-                                                        <a href="/home?officeId=<%= book.office.id %>" class="office_on_books">
-                                                            <%= book.office.name %>
-                                                        </a>
-                                                    </span>
-                                                <% } else if (book.office.name == 'HCMC Office') { %>
-                                                    <span class="badge badge-4">
-                                                        <a href="/home?officeId=<%= book.office.id %>" class="office_on_books">
-                                                            <%= book.office.name %>
-                                                        </a>
-                                                    </span>
-                                                <% } else if (book.office.name == 'Handico Office') { %>
-                                                    <span class="badge badge-5">
-                                                        <a href="/home?officeId=<%= book.office.id %>" class="office_on_books">
-                                                            <%= book.office.name %>
-                                                        </a>
-                                                    </span>
-                                                <% } else { %>
-                                                    <span class="badge badge-notify">
-                                                        <%= book.office.name %>
-                                                    </span>
-                                                <% } %>
-                                                <div class="media-left">
-                                                    <% if (book.image && book.image.web.thumbnail_path !== undefined) { %>
-                                                        <img onclick="window.open('/books/<%= book.id %>', '_self')" src="<%= book.image.web.thumbnail_path %>" class="media-object img-avatar-book" alt="<%= book.title %>">
-                                                    <% } else { %>
-                                                        <img onclick="window.open('/books/<%= book.id %>', '_self', '_self')" src="/images/book_thumb_default.jpg" class="media-object img-avatar-book" alt="<%= book.title %>">
-                                                    <% } %>
-                                                </div>
-                                                <div class="media-body">
-                                                    <% if (typeof (book.title) != 'undefined' && book.title) {%>
-                                                        <h5 title="<%= book.title %>" data-toggle="tooltip">
-                                                            <%= getString(book.title, configs.book.title_limit_characters) %>
-                                                        </h5>
-                                                    <% } else {%>
-                                                        <h5><%= __('No title') %></h5>
-                                                    <% } %>
-                                                    <% if (typeof (book.author) != 'undefined' && book.author) { %>
-                                                        <h6 title="<%= book.author %>" data-toggle="tooltip"><%= __('By') %> <%= getString(book.author, configs.book.author_limit_characters) %></h6>
-                                                    <% } else {%>
-                                                        <h6><%= __('By') %> Framgia</h6>
-                                                    <% } %>
-                                                    <input id="rating-book" name="star" class="rating" data-min="0" data-max="5" value=<%= book.avg_star %> disabled="true" data-step="0.01" data-size="xs">
-                                                    <div class="space-10"></div>
-                                                    <p>
-                                                        <%- book.overview %>
-                                                    </p>
-                                                    <a href="/books/<%= book.id %>" class="btn btn-primary"><%= __('View detail')%></a>
-                                                </div>
-                                            </div>
+                                    <div class="media">
+                                        <% if (book.office.name == 'Tran Khat Chan') { %>
+                                            <span class="badge badge-1">
+                                                <a href="/home?officeId=<%= book.office.id %>" class="office_on_books">
+                                                    <%= book.office.name %>
+                                                </a>
+                                            </span>
+                                        <% } else if (book.office.name == 'Ha Noi Office') { %>
+                                            <span class="badge badge-2">
+                                                <a href="/home?officeId=<%= book.office.id %>" class="office_on_books">
+                                                    <%= book.office.name %>
+                                                </a>
+                                            </span>
+                                        <% } else if (book.office.name == 'Da Nang Office') { %>
+                                            <span class="badge badge-3">
+                                                <a href="/home?officeId=<%= book.office.id %>" class="office_on_books">
+                                                    <%= book.office.name %>
+                                                </a>
+                                            </span>
+                                        <% } else if (book.office.name == 'HCMC Office') { %>
+                                            <span class="badge badge-4">
+                                                <a href="/home?officeId=<%= book.office.id %>" class="office_on_books">
+                                                    <%= book.office.name %>
+                                                </a>
+                                            </span>
+                                        <% } else if (book.office.name == 'Handico Office') { %>
+                                            <span class="badge badge-5">
+                                                <a href="/home?officeId=<%= book.office.id %>" class="office_on_books">
+                                                    <%= book.office.name %>
+                                                </a>
+                                            </span>
+                                        <% } else { %>
+                                            <span class="badge badge-notify">
+                                                <%= book.office.name %>
+                                            </span>
+                                        <% } %>
+                                        <div class="media-left">
+                                            <% if (book.image && book.image.web.thumbnail_path !== undefined) { %>
+                                                <img onclick="window.open('/books/<%= book.id %>', '_self')" 
+                                                    src="<%= book.image.web.thumbnail_path %>" 
+                                                    class="media-object img-avatar-book" 
+                                                    alt="<%= book.title %>">
+                                            <% } else { %>
+                                                <img onclick="window.open('/books/<%= book.id %>', '_self')" 
+                                                    src="/images/book_thumb_default.jpg" 
+                                                    class="media-object img-avatar-book" 
+                                                    alt="<%= book.title %>">
+                                            <% } %>
+                                        </div>
+                                        <div class="media-body">
+                                            <% if (typeof (book.title) != 'undefined' && book.title) {%>
+                                                <h5 title="<%= book.title %>" 
+                                                    onclick="window.open('/books/<%= book.id %>', '_self')"
+                                                    data-toggle="tooltip">
+                                                    <%= getString(book.title, configs.book.title_limit_characters) %>
+                                                </h5>
+                                            <% } else {%>
+                                                <a href="/books/<%= book.id %>" target="_self">
+                                                    <h5><%= __('No title') %></h5>
+                                                </a>
+                                            <% } %>
+                                            <% if (typeof (book.author) != 'undefined' && book.author) { %>
+                                                <h6 title="<%= book.author %>" data-toggle="tooltip"><%= __('By') %> <%= getString(book.author, configs.book.author_limit_characters) %></h6>
+                                            <% } else {%>
+                                                <h6><%= __('By') %> Framgia</h6>
+                                            <% } %>
+                                            <input id="rating-book" name="star" class="rating" data-min="0" data-max="5" value=<%= book.avg_star %> disabled="true" data-step="0.01" data-size="xs">
+                                            <div class="space-10"></div>
+                                            <p>
+                                                <%- book.overview %>
+                                            </p>
+                                        </div>
+                                    </div>
                                     <div class="owners">
                                         <strong><%= __('Shared by')%> : </strong>
                                         <% if (book.owners) { %>
@@ -99,14 +108,13 @@
                                                     if (countOwner == 6) {
                                                         %> <strong> ... </strong> 
                                                 <% return; } %>
-                                                 <!--onerror="this.src='http://wsm.framgia.vn//assets/user_avatar_default-bc6c6c40940226d6cf0c35571663cd8d231a387d5ab1921239c2bd19653987b2.png';" -->
                                                 <img onclick="window.open('/users/<%= owner.id %>')" 
                                                         src="<%= (owner && owner.avatar) ? owner.avatar : '/images/user_default.png' %>"
                                                         onerror="imgBackUp(this)" 
                                                         data-toggle="tooltip" 
                                                         title="<%= owner.name %>" 
                                                         class="owner-image-home img-circle" 
-                                                        alt="<%= __('avatar') %>">
+                                                        alt="<%= __('Avatar') %>">
                                             <% }) %>
                                          <% } %>
                                     </div>
@@ -120,13 +128,12 @@
             <% } %>
         </div>
         <% if (section.data.length > 0) { %>
-            <div class="space-20"></div>
             <div class="row">
                 <div class="col-xs-12 text-center">
                     <% if (typeof(officeId) === 'undefined') { %>
-                        <a href="/books/?field=<%= section.key %>&page=1" class="btn btn-warning btn-xs"><%= __('More')%></a>
+                        <a href="/books/?field=<%= section.key %>&page=1" class="btn btn-warning btn-xs uppercase"><%= __('More')%></a>
                     <% } else { %>
-                        <a href="/books/?field=<%= section.key %>&page=1&officeId=<%= officeId %>" class="btn btn-warning btn-xs"><%= __('More')%></a>
+                        <a href="/books/?field=<%= section.key %>&page=1&officeId=<%= officeId %>" class="btn btn-warning btn-xs uppercase"><%= __('More')%></a>
                     <% } %>
                 </div>
             </div>

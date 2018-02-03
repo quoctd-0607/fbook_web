@@ -176,7 +176,7 @@
 .nav.navbar-nav.nav-white li a {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
     color: #ffffff;
-    padding: 20px;
+    padding: 10px 20px;
 }
 
 
@@ -225,10 +225,10 @@
 }
 
 .active-user {
-    height: 60px;
+    height: 42px;
+    width: 42px;
     margin-right: 40px;
     position: relative;
-    width: 60px;
 }
 
 .active-user::before {
@@ -238,7 +238,7 @@
     content: "";
     height: 10px;
     position: absolute;
-    right: 10px;
+    right: 4px;
     top: 0;
     width: 10px;
 }
@@ -247,8 +247,32 @@
     background-color: #fec826;
 }
 
+.nav.navbar-nav.nav-white ul.language li a {
+    padding: 5px 10px;
+}
+.nav.navbar-nav.nav-white ul.language li a img {
+    width: 20px;
+    height: 15px;
+}
+.nav.navbar-nav.nav-white ul.language li a span {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+.nav.navbar-nav.nav-white ul.info-office li a {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+.nav.navbar-nav.nav-white ul.info-user li a {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.reponsive-menu {
+    padding: 4px;
+}
+
 .mainmenu-area {
-    padding: 20px 0;
+    padding: 10px 0;
     -webkit-transition: 0.3s;
     transition: 0.3s;
 }
@@ -264,25 +288,6 @@
 
 #mainmenu li.active a {
     color: #fec826;
-}
-
-#mainmenu li a::after {
-    bottom: 0;
-    content: "\f0e2";
-    font-family: icofont;
-    font-size: 10px;
-    left: 50%;
-    position: absolute;
-    -webkit-transform: translateX(-50%) rotate(45deg);
-    transform: translateX(-50%) rotate(45deg);
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
-    opacity: 0;
-}
-
-#mainmenu li a:hover::after,
-#mainmenu li.active a::after {
-    opacity: 1;
 }
 
 .gray-bg {
@@ -330,13 +335,20 @@
     width: 20px;
 }
 
+a.media-button-customize {
+    color: #337ab7 !important;
+}
+
 .category-item.well {
     background-color: #ffffff;
-    padding: 30px 8px;
+    padding: 30px 8px 0 8px;
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.3);
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
     border: 2px solid #d6d6d6;
+}
+.category-item.well .media-left {
+    padding: 2px;
 }
 
 .category-item.well:hover {
@@ -362,11 +374,7 @@
 }
 
 .category-item a {
-    border-radius: 2px;
-    display: auto;
-    margin: auto;
-    min-width: 150px;
-    padding: 0.6em 1em;
+    color: #fff;
 }
 
 .category-item.blue .category_icon {
@@ -391,9 +399,6 @@
     background-color: #32b73b;
 }
 
-.category-item.yellow a {
-    color: #ffffff;
-}
 
 .category-item.green .category_icon {
     background-color: #4bbd49;
@@ -440,7 +445,7 @@
     content: "\f0e2";
     display: inline-block;
     font-family: icofont;
-    font-size: 16px;
+    font-size: 12px;
     left: -25px;
     position: absolute;
     top: 0;
@@ -450,6 +455,17 @@
 
 .tip-left {
     position: relative;
+    font-size: 12px;
+    font-style: italic;
+    margin: 0 0 5px 0 !important;
+}
+.comment-box .well {
+    height: 100px;
+}
+.comment-box .avatar img {
+    width: 64px !important;
+    height: 64px !important;
+    border-radius: 30px !important;
 }
 
 .rating-star li {
@@ -493,11 +509,13 @@
 .book-details-item .book-title {
     font-size: 24px;
     font-weight: 500;
+    text-transform: uppercase;
 }
 
 .book-details-item .book-title span {
     font-size: 14px;
-    font-weight: initial;
+    font-weight: normal;
+    text-transform: lowercase;
 }
 
 .author-photo {
@@ -774,20 +792,19 @@
 }
 
 .active-notification {
-    display: inline-block;
-    min-width: 13px;
-    padding: 4px 7px;
-    font-size: 17px;
-    top: 1px;
-    right: 3px;
+    display: block;
+    top: 4px;
+    right: 4px;
     position: absolute;
     line-height: 1;
     color: #fff;
     text-align: center;
     white-space: nowrap;
-    vertical-align: middle;
     background-color: #f40303;
-    border-radius: 19px;
+    border-radius: 20px;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 10px;
 }
 
 .badge-1 {
@@ -832,11 +849,14 @@
 }
 
 .avatar {
+    overflow: hidden;
+    display: block;
+}
+.avatar img {
     display: inline-block;
     border-radius: 50% !important;
-    height: 60px;
-    width: 60px;
-    padding: 4px;
+    height: 42px;
+    width: 42px;
     line-height: 1.42857143;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -845,18 +865,10 @@
     transition: all .2s ease-in-out;
 }
 
-#mainmenu .language img.image-choose {
-    width: 18px;
-    height: 12px;
-}
-
-#mainmenu .language li a {
-    padding: 5px 10px;
-}
-
 #mainmenu .language li a span {
     color: #000;
     margin-left: 20px;
+    padding: 0;
 }
 
 .review-comment {
@@ -876,4 +888,9 @@
 }
 .morelink{
     color: #0513f1;
+}
+
+
+.uppercase {
+    text-transform: uppercase;
 }

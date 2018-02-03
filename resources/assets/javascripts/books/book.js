@@ -166,17 +166,16 @@ Book.generateBookXhtml = function (book) {
         xhtml += '<span class="badge badge-notify">' + book.office.name + '</span>';
     }
     xhtml += '<div class="media-left">';
-    xhtml += '<img src="'+ thumbnailPath +'" class="media-object" alt="Framgia Book">';
+    xhtml += '<img src="'+ thumbnailPath +'" onclick="window.open(\'/books/' + book.id + '\', \'_self\')" class="media-object" alt="Framgia Book">';
     xhtml += '</div>';
     xhtml += '<div class="media-body">';
-    xhtml += '<h5 title="'+ bookTitle +'">' + bookTitle + '</h5>';
+    xhtml += '<h5 title="'+ bookTitle +'" onclick="window.open(\'/books/' + book.id + '\', \'_self\')">' + bookTitle + '</h5>';
     xhtml += '<h6 title="'+ bookAuthor +'">' + bookAuthor + '</h6>';
     xhtml += '<div class="space-10"></div>';
     xhtml += '<input id="rating-book" name="star" class="rating" disabled="true" value="' + book.avg_star + '"data-size="xs">';
     xhtml += '</ul>';
     xhtml += '<div class="space-10"></div>';
     xhtml += '<p>'+ book.overview +'</p>';
-    xhtml += '<a href="/books/'+ book.id +'" class="text-primary">View detail</a>';
     xhtml += '</div>';
     xhtml += '</div>';
     xhtml += "<div class='owners'> <strong> Shared by: </strong>";

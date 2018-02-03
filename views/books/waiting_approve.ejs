@@ -21,11 +21,15 @@
                         <div class="category-item well yellow">
                             <div class="media">
                                 <div class="media-left">
-                                    <img onclick="window.open('/books/<%= book.id %>', '_self')" src="<%= book.image ? book.image.web.thumbnail_path : '/images/book_thumb_default.jpg' %>"
-                                        class="media-object img-avatar-book" alt="<%= book.title %>">
+                                    <img onclick="window.open('/books/<%= book.id %>', '_self')" 
+                                        src="<%= book.image ? book.image.web.thumbnail_path : '/images/book_thumb_default.jpg' %>"
+                                        class="media-object img-avatar-book" 
+                                        alt="<%= book.title %>">
                                 </div>
                                 <div class="media-body">
-                                    <h5 title="<%= book.title %>" data-toggle="tooltip">
+                                    <h5 title="<%= book.title %>" 
+                                        onclick="window.open('/books/<%= book.id %>', '_self')"
+                                        data-toggle="tooltip">
                                         <%= book.title ? getString(book.title, configs.book.title_limit_characters) : __('No title') %>
                                     </h5>
                                     <h6 title="<%= book.athor %>" data-toggle="tooltip">
@@ -36,10 +40,8 @@
                                     <p>
                                         <%- book.overview %>
                                     </p>
+                                    <a href="/books/<%= book.id %>/approve-request" class="media-button-customize">View all request (<%- book.users_waiting.length + book.users_returning.length %>)</a>
                                 </div>
-                            </div>
-                            <div class="pull-right">
-                                <a href="/books/<%= book.id %>/approve-request" class="btn btn-primary btn-view-request">View all request <span class="btn-danger bnt-request"><%- book.users_waiting.length + book.users_returning.length %></span></a>
                             </div>
                             <div class="owners">
                                 <strong> Shared by: </strong>
@@ -52,9 +54,14 @@
                                                 return;
                                             }
                                         %>
-                                        <img onclick="window.open('/users/<%= owner.id %>')"onerror="imgBackUp(this)" data-toggle="tooltip" title="<%= owner.name %>" class="owner-image-home img-circle" src="<%= (owner && owner.avatar) ? owner.avatar : '/images/user_default.png' %>"
-                                             class="media-object author-photo img-thumbnail <%= owner ? '' : 'background--white' %>"
-                                             alt="<%= __('book') %>">
+                                        <img onclick="window.open('/users/<%= owner.id %>')" 
+                                            onerror="imgBackUp(this)" 
+                                            data-toggle="tooltip" 
+                                            title="<%= owner.name %>" 
+                                            class="owner-image-home img-circle" 
+                                            src="<%= (owner && owner.avatar) ? owner.avatar : '/images/user_default.png' %>"
+                                            class="media-object author-photo img-thumbnail <%= owner ? '' : 'background--white' %>"
+                                            alt="<%= __('book') %>">
                                     <% }) %>
                                 <% } %>
                             </div>

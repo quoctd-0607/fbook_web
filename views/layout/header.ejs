@@ -1,13 +1,13 @@
 <header class="relative" id="sc1">
     <!-- Mainmenu-markup-start -->
     <div class="mainmenu-area navbar-fixed-top navbar-header-custom" data-spy="affix" data-offset-top="10">
-        <nav class="navbar">
+        <nav class="navbar reponsive-menu">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainmenu">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span> 
                     </button>
                     <!--Logo-->
                     <% if (typeof user != 'undefined' && typeof user.office_id !== 'undefined' && user.office_id) { %>
@@ -27,16 +27,16 @@
                     <div class="active-user navbar-left active">
                         <ul class="list-unstyled">
                             <li>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown">
                                     <% if (typeof user != 'undefined' && typeof user.avatar !== 'undefined' && user.avatar) { %>
-                                        <img src="<%= user.avatar %>" class="avatar" alt="<%= __('avatar') %>" /><span class="badge active-user-notification"></span>
+                                        <img src="<%= user.avatar %>" alt="<%= __('Avatar') %>" /><span class="badge active-user-notification"></span>
                                         <div class="hidden" id="get-user-id"><%= user.id%></div>
                                     <% }
                                     else { %>
-                                        <img src="/images/user_default.png" class="img-circle img-thumbnail" alt="<%= __('avatar') %>" />
+                                        <img src="/images/user_default.png" class="img-circle img-thumbnail" alt="<%= __('Avatar') %>" />
                                     <% } %>
                                 </a>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu info-user">
                                     <li>
                                         <a href="/users/my_profile"> <span><i class="icofont icofont-user"></i></span> <%= __('Profile') %></a>
                                     </li>
@@ -44,14 +44,14 @@
                                         <a href="/books/add"> <span><i class="glyphicon glyphicon-share-alt"></i></span> <%= __('Share books')%></a>
                                     </li>
                                     <li>
-                                        <a href="/books/waiting_approve"> <span><i class="glyphicon glyphicon-ok"></i></span> <%= __('Approve requests')%> </a>
+                                        <a href="/books/waiting_approve"> <span><i class="glyphicon glyphicon-ok"></i></span> <%= __('Requests borrow book')%> </a>
                                     </li>
                                     <li>
                                         <a href="/users/my_books"> <span><i class="icofont icofont-read-book"></i></span> <%= __('My Books')%> </a>
                                     </li>
                                      <% if(user.role == 'admin') { %>
                                         <li>
-                                            <a href="/admin/waiting-request-edit-book"> <span><i class="icofont icofont-ui-settings"></i></span> <%= __('Approve requests edit book')%> </a>
+                                            <a href="/admin/waiting-request-edit-book"> <span><i class="icofont icofont-ui-settings"></i></span> <%= __('Requests edit book')%> </a>
                                         </li>
                                     <% } %>
                                     <li>
@@ -67,7 +67,7 @@
                 <!--Mainmenu list-->
                 <div class="navbar-right in fade" id="mainmenu">
                     <ul class="nav navbar-nav nav-white text-uppercase">
-                        <li class="active">
+                        <li class="active" title="<%= __('Home Page') %>">
                             <% if (typeof user != 'undefined' && typeof user.office_id !== 'undefined' && user.office_id) { %>
                                 <a href="/home?officeId=<%= user.office_id %>"><%= __('Home')%></a>
                             <% } else { %>
@@ -75,7 +75,7 @@
                             <% } %>
                         </li>
                         <% if (typeof(offices.items) !== 'undefined' && typeof(offices) !== 'undefined' && offices && offices.items) { %>
-                            <li class="dropdown">
+                            <li class="dropdown" title="<%= __('Office') %>">
                                 <% offices.items.forEach(function(office) { %>
                                     <% if (typeof(officeId) !== 'undefined' && officeId == office.id) { %>
                                         <a href="#" class="dropdown-toggle opacity-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= office.area %><span class="caret"></span></a>
@@ -84,7 +84,7 @@
                                 <% if (typeof(officeId) === 'undefined') { %>
                                     <a href="#" class="dropdown-toggle opacity-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Framgia<span class="caret"></span></a>
                                 <% } %>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu info-office">
                                     <li><a href="/home/all_office" class="office-dropdow-a">Framgia</a></li>
                                     <% offices.items.forEach(function(office) { %>
                                         <li><a href="/home?officeId=<%= office.id %>" class="office-dropdow-a"><%= office.area %></a></li>
@@ -92,20 +92,18 @@
                                 </ul>
                             </li>
                         <% } %>
-                        <li>
+                        <li title="<%= __('Mobile') %>">
                             <a target="_blank" href="/users/fbook_app" class="icon-header"><span><i class="icofont icofont-iphone nav-icon"></i></span></a>
                         </li>
 
-                        <li>
-                        <% if (typeof lang !== 'undefined' && lang == 'en') { %>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/english.png" class="image-flag-be"></span></a>
-                        <% } else if (typeof lang !== 'undefined' && lang == 'vi') { %>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/vietnam.png" class="image-flag-be"></span></a>
-                        <% } else if (typeof lang !== 'undefined' && lang == 'jp') { %>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/nhatban.png" class="image-flag-be"></span></a>
-                        <% } else { %>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/english.png" class="image-flag-be"></span></a>
-                        <% } %>
+                        <li title="<%= __('Language') %>">
+                            <% if (typeof lang !== 'undefined' && lang == 'en') { %>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/english.png" class="image-flag-be"></span></a>
+                            <% } else if (typeof lang !== 'undefined' && lang == 'vi') { %>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/vietnam.png" class="image-flag-be"></span></a>
+                            <% } else { %>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/english.png" class="image-flag-be"></span></a>
+                            <% } %>
                             <ul class="dropdown-menu language">
                                 <li>
                                     <a href="/change-lang/vi" class="text-i18n" data-img="/images/vietnam.png"><img class="image-choose" src="/images/vietnam.png"/><span>VietNam</span></a>
@@ -113,17 +111,14 @@
                                 <li>
                                     <a href="/change-lang/en" class="text-i18n" data-img="/images/english.png"><img class="image-choose" src="/images/english.png"/><span>English</span></a>
                                 </li>
-                                <li>
-                                    <a href="/change-lang/jp" class="text-i18n" data-img="/images/nhatban.png"><img class="image-choose" src="/images/nhatban.png"/><span>日本語</span></a>
-                                </li>
                             </ul>
                         </li>
-                        <li data-toggle="tooltip" title="<%= __('MORE TOOLS') %>">
+                        <li data-toggle="tooltip" title="<%= __('More tools') %>">
                             <a target="_blank" href="https://wsm.framgia.vn/all-tools" class="icon-header">
                             <img src="/images/app_icon.png" class="icofont-fw nav-icon nav-moretoolicon"></a>
                         </li>
                         <% if (typeof user != 'undefined' && typeof user.name !== 'undefined' && user.name) { %>
-                            <li data-toggle="tooltip" title="<%= __('NOTIFICATIONS') %>">
+                            <li data-toggle="tooltip" title="<%= __('Notifications') %>">
                                 <a href="#" class="dropdown-toggle notification_onclick_icon dropdown-toggle" data-toggle="dropdown">
                                     <i class="icofont icofont-notification nav-icon"></i>
                                 </a>
@@ -142,7 +137,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#"><%= user.name %></a>
+                                <a href="javascript:void(0);"><%= user.name %></a>
                             </li>
                         <% }
                         else { %>

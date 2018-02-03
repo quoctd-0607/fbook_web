@@ -71,13 +71,21 @@
                                 <% } %>
                                 <div class="media-left">
                                     <% if (book.image && book.image.web.thumbnail_path !== undefined) { %>
-                                        <img onclick="window.open('/books/<%= book.id %>', '_self')" src="<%= book.image.web.thumbnail_path %>" class="media-object img-avatar-book" alt="<%= book.title %>">
+                                        <img onclick="window.open('/books/<%= book.id %>', '_self')" 
+                                            src="<%= book.image.web.thumbnail_path %>" 
+                                            class="media-object img-avatar-book" 
+                                            alt="<%= book.title %>">
                                     <% } else { %>
-                                        <img onclick="window.open('/books/<%= book.id %>', '_self', '_self')" src="/images/book_thumb_default.jpg" class="media-object img-avatar-book" alt="<%= book.title %>">
+                                        <img onclick="window.open('/books/<%= book.id %>', '_self')" 
+                                            src="/images/book_thumb_default.jpg" 
+                                            class="media-object img-avatar-book" 
+                                            alt="<%= book.title %>">
                                     <% } %>
                                 </div>
                                 <div class="media-body">
-                                    <h5 title="<%= book.title %>" data-toggle="tooltip">
+                                    <h5 title="<%= book.title %>" 
+                                        onclick="window.open('/books/<%= book.id %>', '_self')"
+                                        data-toggle="tooltip">
                                         <%= book.title ? getString(book.title, configs.book.title_limit_characters) : __('No title') %>
                                     </h5>
                                     <h6 title="<%= book.author %>" data-toggle="tooltip"><%= __('By') %>
@@ -89,7 +97,6 @@
                                     <p>
                                         <%- book.overview %>
                                     </p>
-                                    <a href="/books/<%= book.id %>" class="btn btn-primary"><%= __('View detail') %></a>
                                 </div>
                             </div>
                             <div class="owners">
