@@ -569,6 +569,7 @@ router.get('/:id/edit', authorize.isAuthenticated, function (req, res, next) {
     });
 });
 
+//write new review
 router.get('/:id/review', authorize.isAuthenticated, (req, res, next) => {
     {
         request({
@@ -585,7 +586,8 @@ router.get('/:id/review', authorize.isAuthenticated, (req, res, next) => {
                         messages: messages,
                         error: req.flash('error'),
                         info: req.flash('info'),
-                        book_current : req.params.id
+                        book_current : req.params.id,
+                        userId: req.session.user.id
                     });
                 } catch (errorJSONParse) {
                     req.flash('error', 'Don\'t allow show this book');
@@ -640,7 +642,7 @@ router.get('/view-review/:id', authorize.isAuthenticated, localSession, (req, re
                 userId : req.session.user.id
             });
         } else {
-            req.flash('error', 'This review not availble');
+            req.flash('error', 'This review not available');
             res.redirect('back');
         }
     });
@@ -663,7 +665,7 @@ router.post('/review-details/comment', urlencodedParser , (req, res, next) => {
             req.flash('info', 'Thanks for your comment');
             res.redirect('back');
         } else {
-            req.flash('error', 'Can\'t add your comment, something went wrong ');
+            req.flash('error', 'Can\'t add your comment, something went wrong');
             res.redirect('back');
         }
     })

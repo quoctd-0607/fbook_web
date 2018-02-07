@@ -4,19 +4,37 @@
        <div class="row">
             <div class="col-md-8">
                 <form action="/books/post-review/<%= book_current %>" method="post">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1"><%= __('Rate this book') %>: </label>
-                        <input id="rating-book" name="review_start" class="rating" data-min="0" data-max="5" data-step="1" data-size="xs" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1"><%= __('Summary') %>: </label>
-                        <input type="text" class="form-control" name="review_title" aria-describedby="emailHelp" placeholder="Title" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1"><%= __('Review') %>: </label>
-                        <textarea class="form-control" name="review_content" id="exampleFormControlTextarea1" rows="35" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary"><%= __('Submit') %></button>
+                    <% var count = 0 %>
+                        <% data.item.reviews_detail.forEach(function (review) {
+                            if (review.user.id == userId) { %>
+                                <% count++ %>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1"><%= __('Rate this book') %>: </label>
+                                    <input id="rating-book" name="review_start" class="rating" data-min="0" data-max="5" data-step="1" data-size="xs" required value="<%= review.star %>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1"><%= __('Summary') %>: </label>
+                                    <input type="text" class="form-control" name="review_title" aria-describedby="emailHelp" placeholder="Title" required value="<%= review.title %>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1"><%= __('Review') %>: </label>
+                                    <textarea class="form-control" name="review_content" id="exampleFormControlTextarea1" rows="35" required><%= review.content %></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary"><%= __('Update review') %></button>
+                            <% }
+                        }) %>
+                        <% if (count == 0) { %>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"><%= __('Rate this book') %>: </label>
+                                <input id="rating-book" name="review_start" class="rating" data-min="0" data-max="5" data-step="1" data-size="xs" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"><%= __('Summary') %>: </label>
+                                <input type="text" class="form-control" name="review_title" aria-describedby="emailHelp" placeholder="Title" required>
+                            </div>
+                            <textarea class="form-control" name="review_content" id="exampleFormControlTextarea1" rows="35" required></textarea>
+                            <button type="submit" class="btn btn-primary"><%= __('Submit') %></button>
+                        <% } %>
                 </form>
             </div>
             <div class="col-md-4">
