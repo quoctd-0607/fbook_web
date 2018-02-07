@@ -95,14 +95,13 @@
                         <li title="<%= __('Mobile') %>">
                             <a target="_blank" href="/users/fbook_app" class="icon-header"><span><i class="icofont icofont-iphone nav-icon"></i></span></a>
                         </li>
-
                         <li title="<%= __('Language') %>">
                             <% if (typeof lang !== 'undefined' && lang == 'en') { %>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/english.png" class="image-flag-be"></span></a>
                             <% } else if (typeof lang !== 'undefined' && lang == 'vi') { %>
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/vietnam.png" class="image-flag-be"></span></a>
                             <% } else { %>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/english.png" class="image-flag-be"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/vietnam.png" class="image-flag-be"></span></a>
                             <% } %>
                             <ul class="dropdown-menu language">
                                 <li>

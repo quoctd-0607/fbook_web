@@ -21,7 +21,7 @@ jQuery(document).ready(function($) {
     /* Scroll to top
     ===================*/
     $.scrollUp({
-        scrollText: '<i class="icofont icofont-long-arrow-up"></i>',
+        scrollText: '<i class="glyphicon glyphicon-chevron-up"></i>',
         easingType: 'linear',
         scrollSpeed: 900,
         animation: 'fade'

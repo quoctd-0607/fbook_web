@@ -74,7 +74,7 @@
                                                         <%= comment.created_at %>                          
                                                     </p>
                                                     <% if(userId == comment.user.id) { %>
-                                                        <button type="button" class="edit_comment_topright" value="<%= comment.id %>" title="<%= __('edit comment') %>"><span class="glyphicon glyphicon-pencil"></span></button>
+                                                        <a href="/books/review-details/edit-comment/<%= comment.id %>"><button type="button" class="edit_comment_topright" value="<%= comment.id %>" title="<%= __('edit comment') %>"><span class="glyphicon glyphicon-pencil"></span></button></a>
                                                         <button type="button" class="delete_comment_topright" value="<%= comment.id %>" title="<%= __('delete comment') %>">X</button>
                                                     <% }%>
                                                     <p><%= comment.content %></p>
