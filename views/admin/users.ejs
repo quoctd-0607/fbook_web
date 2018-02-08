@@ -1,5 +1,5 @@
 <section class="content-header">
-    <h1>User infomation</h1>
+    <h1><%= __('User infomation') %></h1>
 </section>
 <!-- Main content -->
 <section class="content">
@@ -19,8 +19,8 @@
                     <form method="GET" action="/admin/users/search">
                         <div class="input-group input-group-sm">
                             <select name="filter_type" class="form-control pull-right padding-select">
-                                    <option value="1">Search by: Staff Code</option>
-                                    <option value="2">Search by: Email</option>
+                                    <option value="1"><%= __('Search by') %>: <%= __('Staff Code') %></option>
+                                    <option value="2"><%= __('Search by') %>: <%= __('Email') %></option>
                             </select>
                             <input type="text" name="key_word" class="form-control pull-right" placeholder="Input...">
                             <div class="input-group-btn">
@@ -32,17 +32,17 @@
             </div>
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">User list</h3>
+                    <h3 class="box-title"><%= __('User list') %></h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body no-padding">
                     <table class="table table-hover table-responsive">
                         <tr>
-                            <th>Staff Code</th>
-                            <th>Mail</th>
-                            <th>Branch</th>
-                            <th class="text-center">Create Date</th>
-                            <th class="text-center">Book Own</th>
+                            <th><%= __('Staff Code') %></th>
+                            <th><%= __('Email') %></th>
+                            <th><%= __('Branch') %></th>
+                            <th class="text-center"><%= __('Create Date') %></th>
+                            <th class="text-center"><%= __('Book Own') %></th>
                         </tr>
                         <% if (dataRequest.items.data.length > 0) { %>
                             <% dataRequest.items.data.forEach(function(data) { %>

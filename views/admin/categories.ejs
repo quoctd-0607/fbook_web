@@ -1,5 +1,5 @@
 <section class="content-header">
-    <h1>Categoties</h1>
+    <h1><%= __('Categories') %></h1>
 </section>
 <!-- Main content -->
 <section class="content">
@@ -16,11 +16,11 @@
         <div class="col-10 offset-1">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Category list</h3>
+                    <h3 class="box-title"><%= __('Category list') %></h3>
                     <div class="box-tools">
                         <form method="GET" action="/admin/categories/search">
                         <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="key_word" class="form-control pull-right" placeholder="Search by name">
+                            <input type="text" name="key_word" class="form-control pull-right" placeholder="<%= __('Search by name') %>">
                             <div class="input-group-btn">
                                 <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                             </div>
@@ -32,9 +32,9 @@
                 <div class="box-body no-padding">
                     <table class="table table-hover table-responsive">
                         <tr>
-                            <th class="width-30-percent">Name</th>
-                            <th class="width-55-percent">Description</th>
-                            <th class="width-15-percent text-center">Total Book</th>
+                            <th class="width-30-percent"><%= __('Name') %></th>
+                            <th class="width-55-percent"><%= __('Description') %></th>
+                            <th class="width-15-percent text-center"><%= __('Total Book') %></th>
                         </tr>
                         <% if (dataRequest.items.data.length > 0) { %>
                             <% dataRequest.items.data.forEach(function(data) { %>
