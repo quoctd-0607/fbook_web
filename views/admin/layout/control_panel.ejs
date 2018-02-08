@@ -51,6 +51,16 @@
                     <span>User List</span>
                 </a>
             </li>
+            <% if (typeof(activeBook) != 'undefined') { %>
+                <li class="active">
+            <% } else { %>
+                <li>
+            <% } %>
+                <a href="/admin/books">
+                    <i class="fa fa-book"   ></i>
+                    <span><%= __('Book List') %></span>
+                </a>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

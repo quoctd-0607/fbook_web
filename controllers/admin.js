@@ -418,4 +418,38 @@ router.get('/users/search', authorize.isAdmin, function (req, res, next) {
     });
 });
 
+router.get('/books', authorize.isAdmin, function (req, res, next) {
+    var page = req.query.page ? req.query.page : 1;
+    request({
+        url: req.configs.api_base_url + 'admin/books?page=' + page,
+        headers: objectHeaders.headers({'Authorization': req.session.access_token})
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            try {
+                var data = JSON.parse(body);
+                var paginate = helper.paginate({
+                    total_record: data.items.total,
+                    current_page: page,
+                    link: `${req.configs.web_domain}:${req.configs.port}/admin/books?page={?}`
+                });
+                res.render('admin/books', {
+                    layout: 'admin/layout/admin_template',
+                    dataRequest: data,
+                    pageTitle: 'Admin Dashboard',
+                    paginate: paginate,
+                    info: req.flash('info'),
+                    error: req.flash('error'),
+                    activeBook: true,
+                });
+            } catch (errorJSONParse) {
+                req.flash('error', 'Unknown error');
+                return res.redirect('/admin');
+            }
+        } else {
+            req.flash('error', 'Something went wrong');
+            return res.redirect('/admin');
+        }
+    });
+});
+
 module.exports = router;
