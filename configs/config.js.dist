@@ -57,6 +57,11 @@ var config = {
     words : {
         "up_vote" : 2,
         "down_vote" : 1
+    },
+    search: {
+        "title": "title",
+        "author": "author",
+        "description": "description"
     }
 };
 
