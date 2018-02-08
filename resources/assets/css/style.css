@@ -36,6 +36,11 @@
     margin-left: 15px;
 }
 
+.display-book {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
 .edit_comment_topright {
     float: right;
     background: transparent;

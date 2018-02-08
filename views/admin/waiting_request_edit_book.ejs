@@ -1,5 +1,5 @@
 <section class="content-header">
-    <h1>Waiting Request Edit Book</h1>
+    <h1><%= __('Waiting Request Edit Book') %></h1>
 </section>
 <!-- Main content -->
 <section class="content">
@@ -13,15 +13,15 @@
                                 <span class="time timer"><i class="fa fa-clock-o"></i> <span class="time_a_go"><%= data.created_at %></span></span>
                                 <h3 class="timeline-header">
                                     <a href="/books/<%= data.current_book_info.id %>/approve-request">
-                                        <%= data.user_request.name %> </a> <span class="label label-warning">Waiting</span>
+                                        <%= data.user_request.name %> </a> <span class="label label-warning"><%= __('Waiting') %></span>
                                 </h3>
                                 <div class="timeline-body">
-                                        Waiting Book: <strong><%= data.current_book_info.title %></strong>
+                                        <%= __('Waiting Books') %>: <strong><%= data.current_book_info.title %></strong>
                                 </div>
                                 <div class="timeline-footer text-right">
-                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal<%= data.id %>" class="btn btn-primary btn-lg font-size-14">View Detail</a>
+                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal<%= data.id %>" class="btn btn-primary btn-lg font-size-14"><%= __('View detail') %></a>
                                     <a id="load<%= data.id %>" onClick="removeRequestUpdateBook(<%= data.id %>);" data-loading="<i class='fa fa-circle-o-notch fa-spin'></i> Removing"  href="javascript:void(0)" class="btn btn-danger btn-lg font-size-14">
-                                        Decline
+                                        <%= __('Decline') %>
                                     </a>
                                 </div>
                             </div>
@@ -29,74 +29,74 @@
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title" id="myLargeModalLabel">Edit book detail</h4>
+                                            <h4 class="modal-title" id="myLargeModalLabel"><%= __('Edit book detail') %></h4>
                                             <button type="button" class="close close-btn " data-dismiss="modal" aria-hidden="true">×</button>
                                         </div>
                                         <div class="modal-body">
                                             <table class="table table-bordered table-responsive">
                                                 <tr>
                                                     <th></th>
-                                                    <th class="text-center">Before Change</th>
-                                                    <th class="text-center">After Change</th>
+                                                    <th class="text-center"><%= __('Before Change') %></th>
+                                                    <th class="text-center"><%= __('After Change') %></th>
                                                 </tr>
                                                 <tr>
-                                                    <td><strong>Title</strong></td>
+                                                    <td><strong><%= __('Title') %></strong></td>
                                                     <td><%= data.current_book_info.title %></td>
                                                     <% if (data.current_book_info.title == data.title) { %>
-                                                        <td>Not Change</td>
+                                                        <td><%= __('Not Change') %></td>
                                                     <% } else { %>
                                                         <td><%= data.title %>></td>
                                                     <% } %>
                                                 </tr>
                                                 <tr>
-                                                    <td><strong>Description</strong></td>
+                                                    <td><strong><%= __('Description') %></strong></td>
                                                     <td><%= data.current_book_info.description %></td>
                                                     <% if (data.current_book_info.description == data.description) { %>
-                                                        <td>Not Change</td>
+                                                        <td><%= __('Not Change') %></td>
                                                     <% } else { %>
                                                         <td><%= data.description %></td>
                                                     <% } %>
                                                 </tr>
                                                 <tr>
-                                                    <td><strong>Author</strong></td>
+                                                    <td><strong><%= __('Author') %></strong></td>
                                                     <td><%= data.current_book_info.author %></td>
                                                     <% if (data.current_book_info.author == data.author) { %>
-                                                        <td>Not Change</td>
+                                                        <td><%= __('Not Change') %></td>
                                                     <% } else { %>
                                                         <td><%= data.author %></td>
                                                     <% } %>
                                                 </tr>
                                                 <tr>
-                                                    <td><strong>Publish Date</strong></td>
+                                                    <td><strong><%= __('Publish Date') %></strong></td>
                                                     <% if (data.current_book_info.publish_date != null) { %>
                                                         <td><%= data.current_book_info.publish_date.slice(0,4) %></td>
                                                     <% } else {%>
-                                                        <td>Unknown</td>
+                                                        <td><%= __('Unknown') %></td>
                                                     <% } %>
                                                     <% if (Date.parse(data.current_book_info.publish_date) == Date.parse(data.publish_date)) { %>
-                                                        <td>Not Change</td>
+                                                        <td><%= __('Not Change') %></td>
                                                     <% } else { %>
                                                         <% if (data.publish_date != null) { %>
                                                             <td><%= data.publish_date.slice(0,4) %></td>
                                                         <% } else { %>
-                                                            <td>Unknown</td>
+                                                            <td><%= __('Unknown') %></td>
                                                         <% } %>
                                                     <% } %>
                                                 </tr>
                                                 <tr>
-                                                    <td><strong>Category</strong></td>
+                                                    <td><strong><%= __('Category') %></strong></td>
                                                     <td><%= data.current_book_info.category.name %></td>
                                                     <% if (data.current_book_info.category.id == data.category.id) { %>
-                                                        <td>Not Change</td>
+                                                        <td><%= __('Not Change') %></td>
                                                     <% } else { %>
                                                         <td><%= data.category.name %></td>
                                                     <% } %>
                                                 </tr>
                                                 <tr>
-                                                    <td><strong>Office</strong></td>
+                                                    <td><strong><%= __('Office') %></strong></td>
                                                     <td><%= data.current_book_info.office.name %></td>
                                                     <% if (data.current_book_info.office.id == data.office.id) { %>
-                                                        <td>Not Change</td>
+                                                        <td><%= __('Not Change') %></td>
                                                     <% } else { %>
                                                         <td><%= data.office.name %></td>
                                                     <% } %>
@@ -105,21 +105,21 @@
                                                     <% data.current_book_info.media.forEach(function(old_data,index) { %>
                                                     <tr>
                                                         <% var check = 0 %>
-                                                        <td><strong>Image <%= index +1 %></strong></td>
+                                                        <td><strong><%= __('Image') %> <%= index +1 %></strong></td>
                                                         <% data.update_media.forEach(function(new_data) { %>
                                                             <% if (old_data.id == new_data.media_id ) {%>
                                                             <% check = 1 %>
                                                                 <td class="padding-15px">
-                                                                    <img class="image-responsive" src="<%= old_data.web.medium_path %>" alt="book">
+                                                                    <img class="image-responsive" src="<%= old_data.web.medium_path %>" alt="<%= __('book') %>">
                                                                 </td>
                                                                 <td class="padding-15px">
-                                                                    <img class="image-responsive" src="<%= new_data.web.medium_path%>" alt="book">
+                                                                    <img class="image-responsive" src="<%= new_data.web.medium_path%>" alt="<%= __('book') %>">
                                                                 </td>
                                                             <% } %>
                                                         <% }) %>
                                                         <% if (check != 1) {%>
-                                                            <td class="padding-15px"><img src="<%= old_data.web.medium_path %>" alt="book"></td>
-                                                            <td>Not change</td>
+                                                            <td class="padding-15px"><img src="<%= old_data.web.medium_path %>" alt="<%= __('book') %>"></td>
+                                                            <td><%= __('Not Change') %></td>
                                                         <% } %>
                                                     </tr>
                                                     <% }) %>
@@ -128,10 +128,10 @@
                                                     <% data.update_media.forEach(function(new_data) { %>
                                                         <tr>
                                                             <% if (new_data.media_id == null) { %>
-                                                                <td class="theme">New Image</td>
+                                                                <td class="theme"><%= __('New Image') %></td>
                                                                 <td></td>
                                                                 <td class="padding-15px">
-                                                                    <img class="image-responsive" src="<%= new_data.web.medium_path%>" alt="book">
+                                                                    <img class="image-responsive" src="<%= new_data.web.medium_path%>" alt="<%= __('book') %>">
                                                                 </td>
                                                             <% } %>
                                                         </tr>
@@ -141,8 +141,8 @@
                                         </div>
                                         <div class="modal-footer padding-15 text-right">
                                             <form action="/admin/approve-update-request/<%= data.id %>" method="post" name="form-approve-update-request">
-                                                <button type="submit" data-loading="<i class='fa fa-circle-o-notch fa-spin'></i> Approving" class="btn btn-primary waves-effect text-left btn-lg font-size-14 _approve-btn">Approve</button>
-                                                <a href="javascript:void(0)" class="btn btn-default waves-effect text-left btn-lg font-size-14" data-dismiss="modal">Close</a>
+                                                <button type="submit" data-loading="<i class='fa fa-circle-o-notch fa-spin'></i> Approving" class="btn btn-primary waves-effect text-left btn-lg font-size-14 _approve-btn"><%= __('Approve') %></button>
+                                                <a href="javascript:void(0)" class="btn btn-default waves-effect text-left btn-lg font-size-14" data-dismiss="modal"><%= __('Close') %></a>
                                             </form>
                                         </div>
                                     </div>
@@ -153,7 +153,7 @@
                     <% }) %>
                 </ul>
             <% } else { %>
-                <h3 class="empty-text">Waiting request is empty</h3>
+                <h3 class="empty-text"><%= __('Waiting request is empty') %></h3>
             <% } %>
         </div>
     </div>

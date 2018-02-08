@@ -1,46 +1,92 @@
 <section class="relative fix gray-bg">
-    <div class="container">
-        <div class="space-30"></div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
-                <h4><%= data.items.title %></h4>
-                <div class="space-10"></div>
-                <div class="title-bar blue">
-                    <ul class="list-inline list-unstyled">
-                        <li><i class="icofont icofont-square"></i></li>
-                        <li><i class="icofont icofont-square"></i></li>
-                    </ul>
+    <div class="container display-book">
+        <div class="col-md-8">
+            <div class="space-30"></div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
+                    <h4><%= data.items.title %></h4>
+                    <div class="space-10"></div>
+                    <div class="title-bar blue">
+                        <ul class="list-inline list-unstyled">
+                            <li><i class="icofont icofont-square"></i></li>
+                            <li><i class="icofont icofont-square"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    <% if(data.items.current_vote == configs.words.up_vote ) { %>
+                        <button class="btn_vote btn_voted up_vote" value="2">
+                            <i class="icofont icofont-caret-up vote_review"></i>
+                        </button>
+                    <% } else { %>
+                        <button class="btn_vote up_vote" value="2">
+                            <i class="icofont icofont-caret-up vote_review"></i>
+                        </button>
+                    <% } %>
+                    <input type="hidden" id="review_data" value="<%= data.items.id %>">
+                    <input type="hidden" id="user_id<%= data.items.id %>" value="<%= userId %>">
+                    <span id="btn_show_vote"><%= data.items.up_vote - data.items.down_vote %></span>
+                    <% if(data.items.current_vote == configs.words.down_vote ) { %>
+                        <button class="btn_vote btn_voted down_vote" value="1">
+                            <i class="icofont icofont-caret-down vote_review"></i>
+                        </button>
+                    <% }else{ %>
+                        <button class="btn_vote down_vote" value="1">
+                            <i class="icofont icofont-caret-down vote_review"></i>
+                        </button>
+                    <% } %>
+                </div>
+                <div class="col-xs-12 pull-right col-md-11 padding60 wow fadeInRight">
+                    <div class="book-content">
+                        <%- data.items.content %>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-1">
-                <% if(data.items.current_vote == configs.words.up_vote ) { %>
-                    <button class="btn_vote btn_voted up_vote" value="2">
-                        <i class="icofont icofont-caret-up vote_review"></i>
-                    </button>
-                <% } else { %>
-                    <button class="btn_vote up_vote" value="2">
-                        <i class="icofont icofont-caret-up vote_review"></i>
-                    </button>
-                <% } %>
-                <input type="hidden" id="review_data" value="<%= data.items.id %>">
-                <input type="hidden" id="user_id<%= data.items.id %>" value="<%= userId %>">
-                <span id="btn_show_vote"><%= data.items.up_vote - data.items.down_vote %></span>
-                <% if(data.items.current_vote == configs.words.down_vote ) { %>
-                    <button class="btn_vote btn_voted down_vote" value="1">
-                        <i class="icofont icofont-caret-down vote_review"></i>
-                    </button>
-                <% }else{ %>
-                    <button class="btn_vote down_vote" value="1">
-                        <i class="icofont icofont-caret-down vote_review"></i>
-                    </button>
-                <% } %>
-            </div>
-            <div class="col-xs-12 pull-right col-md-11 padding60 wow fadeInRight">
-                <div class="book-content">
-                    <%- data.items.content %>
+        <div class="col-md-4">
+            <h4><%= data.items.book.title %> <span> (<%= data.items.book.count_view %> view)</span></h4>
+            <div class="space-10"></div>
+            <% if (data.items.book.author != 'undefined') { %>
+                <p><%= __('Author') %>: <span class="text-warning"><%= data.items.book.author %></span></p>
+            <% } else { %>
+                <p><%= __('No Author') %></p>>
+            <% } %>
+            <div class="space-10"></div>
+            <div class="col-md-12" id="review_img">
+                <div class="book-list-photo">
+                    <% if (data.items.media) { %>
+                    <a href="#">ddd</a>
+                    <div class="book-list">
+                        <% data.items.media.forEach(function (image) { %>
+                        <div class="book_item">
+                            <img src="<%= image.web.medium_path %>" alt="<%= __('book') %>">
+                        </div>
+                        <% }) %>
+                        <% if (data.items.media.length == 1) { %>
+                        <div class="book_item">
+                            <img src="<%= data.items.media[0].web.medium_path %>" alt="<%= __('book') %>">
+                        </div>
+                        <% } %>
+                    </div>
+                    <% } else { %>
+                        <div class="book-list">
+                            <div class="book_item">
+                                <img src="/images/book_default.jpg" alt="<%= __('book') %>">
+                            </div>
+                        </div>
+                    <% } %>
                 </div>
+                <div class="bookslide_nav">
+                    <i class="icofont icofont-long-arrow-left testi_prev"></i>
+                    <i class="icofont icofont-long-arrow-right testi_next"></i>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="space-40"></div>
+                <h4><%= __('Description') %></h4>
+                <div class="more fix-text"><%- data.items.book.description %></div>
             </div>
         </div>
     </div>

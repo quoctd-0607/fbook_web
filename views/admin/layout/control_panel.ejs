@@ -3,7 +3,7 @@
     <section class="sidebar">
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">NAVIGATION</li>
+            <li class="header"><%= __('Navigation') %></li>
             <% if (typeof(activeDasboard) != 'undefined') { %>
                 <li class="active">
             <% } else { %>
@@ -11,7 +11,7 @@
             <% } %>
                 <a href="/admin">
                     <i class="fa fa-dashboard"></i>
-                    <span>Dashboard</span>
+                    <span><%= __('Dashboard') %></span>
                 </a>
             </li>
             <% if (typeof(activeCategory) != 'undefined') { %>
@@ -27,8 +27,8 @@
                 </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/admin/categories"><i class="fa fa-circle-o"></i>Category list</a></li>
-                    <li><a href="/admin/categories/create"><i class="fa fa-circle-o"></i>Create category</a></li>
+                    <li><a href="/admin/categories"><i class="fa fa-circle-o"></i><%= __('Category list') %></a></li>
+                    <li><a href="/admin/categories/create"><i class="fa fa-circle-o"></i><%= __('Create category') %></a></li>
                 </ul>
             </li>
             <% if (typeof(activeRequest) != 'undefined') { %>
@@ -38,7 +38,7 @@
             <% } %>
                 <a href="/admin/waiting-request-edit-book">
                     <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-                    <span>Waiting request</span>
+                    <span><%= ('Waiting request') %></span>
                 </a>
             </li>
             <% if (typeof(activeUser) != 'undefined') { %>
@@ -48,7 +48,7 @@
             <% } %>
                 <a href="/admin/users">
                     <i class="fa fa-user-o" aria-hidden="true"></i>
-                    <span>User List</span>
+                    <span><%= __('User List') %></span>
                 </a>
             </li>
             <% if (typeof(activeBook) != 'undefined') { %>
