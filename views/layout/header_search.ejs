@@ -48,9 +48,9 @@
                             <div class="tab-pane fade in active" id="search_internal">
                                 <div class="row event-list">
                                     <div class="search-result col-md-12">
-                                        <label class="radio-inline"><input type="radio" name="type-search" value="<%= __('Title') %>" checked="true"><%= __('Title') %></label>
-                                        <label class="radio-inline"><input type="radio" name="type-search" value="<%= __('Author') %>"><%= __('Author') %></label>
-                                        <label class="radio-inline"><input type="radio" name="type-search" value="<%= __('Description') %>"><%= __('Description') %></label>
+                                        <label class="radio-inline"><input type="radio" name="type-search" value="<%= configs.search.title %>" checked="true"><%= __('Title') %></label>
+                                        <label class="radio-inline"><input type="radio" name="type-search" value="<%= configs.search.author %>"><%= __('Author') %></label>
+                                        <label class="radio-inline"><input type="radio" name="type-search" value="<%= configs.search.description %>"><%= __('Description') %></label>
                                     </div>
                                     <div class="category-container col-md-12">
                                         <input type="text" id="search-book"/>
