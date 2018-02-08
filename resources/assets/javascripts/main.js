@@ -319,4 +319,51 @@ jQuery(document).ready(function($) {
         });
     });
 
+    $(function () {
+        $('.edit_comment_topright').on('click', function() {
+            var id = $(this).attr('data-comment-id');
+            var userId = $(this).attr('data-user-id');
+            var reviewId = $(this).attr('data-review-id');
+            var content = $(this).attr('data-comment-content');
+            var edit = $(this);
+            var form = '';
+            form += '<form class="comment-update" method="POST">'
+            form += '<input type="hidden" name="reviewId" class="review_id" value=' + reviewId +'>'
+            form += '<input type="hidden" name="userId" class="user_id" value=' + userId +'>'
+            form += '<input type="hidden" name="id" class="comment_id" value=' + id +'>'
+            form += '<textarea name="content" class="content_update form-control">' + content + '</textarea>'
+            form += '<button type="button" class="btn btn-primary hover-btn-default edit-comment">Edit</button>'
+            form += '</form>';
+            edit.parents('.event-item').find('.content-comment').html(form);
+        });
+
+        $('body').on('click', '.edit-comment', function(e) {
+            var data = $('.comment-update').serializeFormJSON();
+            $.ajax({
+                url: API_PATH + 'books/review-details/editcomment',
+                headers: {'Accept': 'application/json', 'Authorization': access_token},
+                method: 'POST',
+                dataType: 'json',
+                data: data
+            }).done(function(response) {
+                $("#edit_comment_topright" + data['id']).attr('data-comment-content', data['content']);
+                $(".comment-update").remove();
+                $('#content-comment-' + data['id']).html('<p>' + data['content'] + '</p>');
+                showNotify(
+                    'success', 
+                    'Edit comment successfull!', 
+                    {icon: 'glyphicon glyphicon-remove'}, 
+                    {delay: 3000});
+            }).fail(function(error) {
+                showNotify(
+                    'danger', 
+                    'Opp\'s something went wrong', 
+                    {icon: 'glyphicon glyphicon-remove'}, 
+                    {delay: 3000}
+                );
+            });
+        });
+    });
+
+
 }(jQuery));
