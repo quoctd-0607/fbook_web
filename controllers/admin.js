@@ -452,4 +452,55 @@ router.get('/books', authorize.isAdmin, function (req, res, next) {
     });
 });
 
+router.get('/books/search', authorize.isAdmin, function (req, res, next) {
+    var error = 0;
+    var page = (typeof(req.query.page) != 'undefined') ? req.query.page : 1;
+    var keyWord = (typeof(req.query.key_word) != 'undefined') ? req.query.key_word : '';
+    if (keyWord.trim() == '') {
+        req.flash('error', 'Please input something to search');
+        return res.redirect('/admin/books');
+    }
+    var filterType = (typeof(req.query.filter_type) != 'undefined') ? req.query.filter_type : '';
+    if (filterType.trim() == '') {
+        req.flash('error', 'Please choose a search type');
+        return res.redirect('/admin/books');
+    }
+    
+    request.post({
+        url: req.configs.api_base_url + 'admin/books/search',
+        form: {
+            'key': keyWord,
+            'page': page,
+            'type': filterType
+        },
+        headers: objectHeaders.headers({'Authorization': req.session.access_token})
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            try {
+                var data = JSON.parse(body);
+                var paginate = helper.paginate({
+                    total_record: data.items.total,
+                    current_page: page,
+                    link: `${req.configs.web_domain}:${req.configs.port}/admin/books/search?filter_type=${filterType}&key_word=${keyWord}&page={?}`
+                });
+                res.render('admin/books', {
+                    layout: 'admin/layout/admin_template',
+                    dataRequest: data,
+                    pageTitle: 'Admin Dashboard',
+                    paginate: paginate,
+                    info: req.flash('info'),
+                    error: req.flash('error'),
+                    activeBook: true,
+                });
+            } catch (errorJSONParse) {
+                req.flash('error', 'Unknown error');
+                return res.redirect('/admin/books');
+            }
+        } else {
+            req.flash('error', 'Something went wrong');
+            return res.redirect('/admin/books');
+        }
+    });
+});
+
 module.exports = router;
