@@ -32,10 +32,10 @@
     "By": "Bởi",
     "Cancel waiting this book": "Hủy chờ đọc sách",
     "Categories": "Danh mục",
-    "Category Detail": "Chi tiết danh mục",
+     "Category Detail": "Chi tiết danh mục",
     "Category list": "Danh sách danh mục",
-    "Category's description...": "Mô tả danh mục...",
-    "Category's name...": "Tên danh mục...",
+    "Category is description...": "Mô tả danh mục...",
+    "Category is name...": "Tên danh mục...",
     "Category": "Danh mục",
     "View detail": "Xem chi tiết",
     "Choose the time you want to borrow this book": "Chọn thời gian bạn muốn mượn sách",
@@ -195,7 +195,5 @@
     "You have": "Bạn có",
     "Your Book": "Sách Của Bạn",
     "Your comment": "Bình luận của tôi",
-    "All Book": "Toàn bộ sách",
-    "Dành cho Framgia-ers những người mong muốn chia sẻ sách và thảo luận đọc sách.": "Dành cho Framgia-ers những người mong muốn chia sẻ sách và thảo luận đọc sách.",
-    "Book List": "Book List"
+    "All Book": "Toàn bộ sách"
 }
