@@ -15,30 +15,13 @@
                 </a>
             </li>
             <% if (typeof(activeCategory) != 'undefined') { %>
-                <li class="treeview active">
-            <% } else { %>
-                <li class="treeview">
-            <% } %>
-                <a href="javascript:void(0)">
-                <i class="fa fa-th-list"></i>
-                <span>Category</span>
-                <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-                </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="/admin/categories"><i class="fa fa-circle-o"></i><%= __('Category list') %></a></li>
-                    <li><a href="/admin/categories/create"><i class="fa fa-circle-o"></i><%= __('Create category') %></a></li>
-                </ul>
-            </li>
-            <% if (typeof(activeRequest) != 'undefined') { %>
                 <li class="active">
             <% } else { %>
                 <li>
             <% } %>
-                <a href="/admin/waiting-request-edit-book">
-                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-                    <span><%= ('Waiting request') %></span>
+                <a href="/admin/categories">
+                    <i class="fa fa-user-o" aria-hidden="true"></i>
+                    <span><%= __('Category manager') %></span>
                 </a>
             </li>
             <% if (typeof(activeUser) != 'undefined') { %>
@@ -48,18 +31,25 @@
             <% } %>
                 <a href="/admin/users">
                     <i class="fa fa-user-o" aria-hidden="true"></i>
-                    <span><%= __('User List') %></span>
+                    <span><%= __('User manager') %></span>
                 </a>
             </li>
             <% if (typeof(activeBook) != 'undefined') { %>
-                <li class="active">
+                <li class="treeview active">
             <% } else { %>
-                <li>
+                <li class="treeview">
             <% } %>
-                <a href="/admin/books">
-                    <i class="fa fa-book"   ></i>
-                    <span><%= __('Book List') %></span>
+                <a href="javascript:void(0)">
+                <i class="fa fa-th-list"></i>
+                <span><%= __('Book manager') %></span>
+                <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+                </span>
                 </a>
+                <ul class="treeview-menu">
+                    <li><a href="/admin/books"><i class="fa fa-book"></i><%= __('Book manager') %></a></li>
+                    <li><a href="/admin/waiting-request-edit-book"><i class="fa fa-paper-plane-o"></i><%= __('Waiting request') %></a></li>
+                </ul>
             </li>
         </ul>
     </section>
