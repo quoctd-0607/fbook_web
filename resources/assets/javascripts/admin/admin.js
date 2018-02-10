@@ -78,6 +78,7 @@ channel.bind('App\\Events\\NotificationHandler', function(data) {
 });
 
 $(document).ready(function() {
+    "use strict";
     if(typeof(access_token) !== 'undefined') {
         $.ajax({
             url: API_PATH + 'notifications/count/user',
@@ -322,6 +323,42 @@ $(document).ready(function() {
             }
         }).fail(function (error) {
             showNotify('Data Invalid', 'danger', 1000);
+        });
+    });
+
+    $('.delete_book').on('click', function() {
+        var id = $(this).val();
+        $.ajax({
+            url: API_PATH + 'admin/books/delete/' + id,
+            contentType: 'application/json',
+            dataType: 'json',
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
+            type: 'DELETE',
+            data: {},
+        }).done(function(response) {
+            if (response.message.code == 200) {
+                $('#book' + id).remove();
+                showNotify(
+                    'success', 
+                    'Delete book successfull!', 
+                    {icon: 'glyphicon glyphicon-remove'}, 
+                    {delay: 3000}
+                );
+            } else {
+                showNotify(
+                    'danger', 
+                    'Opp\'s something went wrong', 
+                    {icon: 'glyphicon glyphicon-remove'}, 
+                    {delay: 3000}
+                );
+            }
+        }).fail(function(error) {
+            showNotify(
+                'danger', 
+                'Opp\'s something went wrong', 
+                {icon: 'glyphicon glyphicon-remove'}, 
+                {delay: 3000}
+            );
         });
     });
 });

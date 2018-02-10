@@ -44,16 +44,22 @@
                             <th><%= __('Branch') %></th>
                             <th><%= __('Total Page') %></th>
                             <th class="text-center"><%= __('Create Date') %></th>
+                            <th></th>
                         </tr>
                         <% if (dataRequest.items.data.length > 0) { %>
                             <% dataRequest.items.data.forEach(function(data) { %>
-                            <tr class="cursor-hover">
+                            <tr class="cursor-hover" id="book<%= data.id %>">
                                 <td class="text-center"><%= data.title %></td>
-                                <td><%= data.description %></td>
+                                <td>
+                                    <%= data.description.substring(0, 100) %> . . .
+                                </td>
                                 <td><%= data.author %></td>
                                 <td><%= data.office.name %></td>
                                 <td><%= data.total_page %></td>
                                 <td class="text-center"><%= data.created_at %></td>
+                                <td>
+                                    <button type="button" class="delete_book" value="<%= data.id %>" title="<%= __('Delete book') %>"><i class="fa fa-trash-o"></i></button>
+                                </td>
                             </tr>
                             <% }) %>
                         <% } %>
