@@ -326,39 +326,51 @@ $(document).ready(function() {
         });
     });
 
-    $('.delete_book').on('click', function() {
+    $('.delete_book').on('click', function(e) {
+        e.preventDefault();
         var id = $(this).val();
-        $.ajax({
-            url: API_PATH + 'admin/books/delete/' + id,
-            contentType: 'application/json',
-            dataType: 'json',
-            headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
-            type: 'DELETE',
-            data: {},
-        }).done(function(response) {
-            if (response.message.code == 200) {
-                $('#book' + id).remove();
-                showNotify(
-                    'success', 
-                    'Delete book successfull!', 
-                    {icon: 'glyphicon glyphicon-remove'}, 
-                    {delay: 3000}
-                );
-            } else {
+        swal({
+            title: "Are you sure delete",
+            type: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes",
+            closeOnConfirm: true
+        },
+        function() {
+
+            $.ajax({
+                url: API_PATH + 'admin/books/delete/' + id,
+                contentType: 'application/json',
+                dataType: 'json',
+                headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
+                type: 'DELETE',
+                data: {},
+            }).done(function(response) {
+                if (response.message.code == 200) {
+                    $('#book' + id).remove();
+                    showNotify(
+                        'success', 
+                        'Delete book successfull!', 
+                        {icon: 'glyphicon glyphicon-remove'}, 
+                        {delay: 3000}
+                    );
+                } else {
+                    showNotify(
+                        'danger', 
+                        'Opp\'s something went wrong', 
+                        {icon: 'glyphicon glyphicon-remove'}, 
+                        {delay: 3000}
+                    );
+                }
+            }).fail(function(error) {
                 showNotify(
                     'danger', 
                     'Opp\'s something went wrong', 
                     {icon: 'glyphicon glyphicon-remove'}, 
                     {delay: 3000}
                 );
-            }
-        }).fail(function(error) {
-            showNotify(
-                'danger', 
-                'Opp\'s something went wrong', 
-                {icon: 'glyphicon glyphicon-remove'}, 
-                {delay: 3000}
-            );
+            });
         });
     });
 });
