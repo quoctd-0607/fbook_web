@@ -44,6 +44,23 @@ router.get('/', authorize.isAdmin, function (req, res, next) {
                 }
             });
         },
+        totalBook: (callback) => {
+            request({
+                url: req.configs.api_base_url + 'admin/count/books',
+                headers: objectHeaders.headers({'Authorization': req.session.access_token})
+            }, function (error, response, body) {
+                if (!error && response.statusCode === 200) {
+                    try {
+                        var countAllBook = JSON.parse(body);
+                        callback(null, countAllBook);
+                    } catch (errorJSONParse) {
+                        callback(null, null);
+                    }
+                } else {
+                    callback(null, 0);
+                }
+            });
+        },
         totalUserHaveBook: (callback) => {
             request({
                 url: req.configs.api_base_url + 'admin/count/owners/have-book',
@@ -71,6 +88,7 @@ router.get('/', authorize.isAdmin, function (req, res, next) {
                 totalUser: result.totalUser.item,
                 totalBookHaveOwner: result.totalBookHaveOwner.item,
                 totalUserHaveBook: result.totalUserHaveBook.item,
+                totalBook: result.totalBook.item,
                 pageTitle: 'Admin Dashboard',
                 info: req.flash('info'),
                 error: req.flash('error'),
