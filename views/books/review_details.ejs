@@ -99,7 +99,17 @@
                                                         <%= comment.created_at %>                          
                                                     </p>
                                                     <% if(userId == comment.user.id) { %>
-                                                        <button type="button" class="edit_comment_topright" id="edit_comment_topright<%= comment.id %>" data-comment-content = "<%= comment.content %>" data-user-id = "<%= comment.user.id %>" data-comment-id = "<%= comment.id %>" data-review-id = "<%= data.items.id %>" value="<%= comment.id %>" title="<%= __('edit comment') %>"><span class="glyphicon glyphicon-pencil"></span></button>
+                                                        <button type="button" 
+                                                            class="edit_comment_topright" 
+                                                            id="edit_comment_topright<%= comment.id %>" 
+                                                            data-comment-content="<%= comment.content %>" 
+                                                            data-user-id="<%= comment.user.id %>" 
+                                                            data-comment-id="<%= comment.id %>" 
+                                                            data-review-id="<%= data.items.id %>" 
+                                                            value="<%= comment.id %>" 
+                                                            title="<%= __('edit comment') %>">
+                                                        <span class="glyphicon glyphicon-pencil"></span>
+                                                    </button>
                                                         <button type="button" class="delete_comment_topright" value="<%= comment.id %>" title="<%= __('delete comment') %>">X</button>
                                                     <% }%>
                                                     <div class="content-comment" id="content-comment-<%= comment.id %>">

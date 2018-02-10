@@ -221,7 +221,7 @@ router.get('/:id', localSession, function (req, res, next) {
             if (typeof req.session.book_detail_key === 'undefined') {
                 request({
                     url: req.configs.api_base_url + 'books/' + req.params.id + '/increase-view',
-                    headers: objectHeaders.headers
+                    headers: objectHeaders.headers({'Authorization': req.session.access_token})
                 }, function (error, response, body) {
                     if (!error && response.statusCode === 200) {
                         try {
@@ -237,7 +237,7 @@ router.get('/:id', localSession, function (req, res, next) {
             } else {
                 request({
                     url: req.configs.api_base_url + 'books/' + req.params.id,
-                    headers: objectHeaders.headers
+                    headers: objectHeaders.headers({'Authorization': req.session.access_token})
                 }, function (error, response, body) {
                     if (!error && response.statusCode === 200) {
                         try {

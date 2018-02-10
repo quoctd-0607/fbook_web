@@ -50,14 +50,32 @@
     background-color: #4a9fe9;
 }
 /********************************************************************/
-.media-object{
+.media-object {
     border-radius: 50%;
     padding-top: 0px;
 }
-.notificaiton-box{
+
+.notificaiton-box {
     border: none;
     border-radius: 0px;
 }
-.style_col .col-xs-12{
+.notificaiton-box .media-left {
+    padding: 8px;
+}
+.notificaiton-box .media-body .time_a_go {
+    font-size: 12px;
+    font-style: italic;
+}
+.notificaiton-box .media-heading span {
+    font-size: 12px;
+}
+.notificaiton-box img {
+    width: 64px !important;
+    height: 64px !important;
+    border-radius: 30px !important;
+}
+
+
+.style_col .col-xs-12 {
     padding-left: 0px;
 }

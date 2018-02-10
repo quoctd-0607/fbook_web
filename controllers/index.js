@@ -34,7 +34,7 @@ router.get('/', localSession, function (req, res, next) {
                     isHomePage: true,
                     info: req.flash('info'),
                     error: req.flash('error'),
-                    lang : req.session.lang
+                    lang: req.session.lang
                 });
             } catch (errorJSONParse) {
                 res.redirect('home');
