@@ -34,9 +34,9 @@
     "Categories": "Categories",
     "Category Detail": "Category Detail",
     "Category list": "Category list",
-    "Category": "Category",
     "Category's description...": "Category's description...",
     "Category's name...": "Category's name...",
+    "Category": "Category",
     "Choose the time you want to borrow this book": "Choose the time you want to borrow this book",
     "Clear image": "Clear image",
     "Close": "Close",
@@ -49,6 +49,7 @@
     "Create new category": "Create new category",
     "Dashboard": "Dashboard",
     "Decline": "Decline",
+    "Delete book": "Delete book",
     "delete comment": "Delete comment",
     "Delete review": "Delete review",
     "Description": "Description",
@@ -193,5 +194,6 @@
     "You can": "You can",
     "You have": "You have",
     "Your Book": "Your Book",
-    "Your comment": "Your comment"
+    "Your comment": "Your comment",
+    "All Book":"All Book"
 }
