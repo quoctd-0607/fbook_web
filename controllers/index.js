@@ -4,6 +4,12 @@ var request = require('request');
 var objectHeaders = require('../helpers/headers');
 var localSession = require('../middlewares/localSession');
 var async = require('async');
+var cookieParser = require('cookie-parser');
+var i18n = require('i18n');
+var index = express();
+index.use(cookieParser());
+index.use(i18n.init);
+index.set('view engine', 'ejs');
 
 router.get('/', localSession, function (req, res, next) {
     var url = req.configs.api_base_url + 'home/';
@@ -30,11 +36,11 @@ router.get('/', localSession, function (req, res, next) {
                 res.render('index', {
                     data: data,
                     officeId: officeId,
-                    pageTitle: 'Home',
+                    pageTitle: res.__('Home'),
                     isHomePage: true,
                     info: req.flash('info'),
                     error: req.flash('error'),
-                    lang: req.session.lang
+                    lang : req.session.lang
                 });
             } catch (errorJSONParse) {
                 res.redirect('home');
@@ -60,7 +66,7 @@ router.get('/all_office', localSession, function (req, res, next) {
                 res.render('index', {
                     data: data,
                     officeId: officeId,
-                    pageTitle: 'Home',
+                    pageTitle: res.__('Home'),
                     isHomePage: true,
                     info: req.flash('info'),
                     error: req.flash('error'),

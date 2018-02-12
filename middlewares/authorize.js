@@ -2,12 +2,17 @@ var request = require('request');
 var express = require('express');
 var session = require('express-session');
 var objectHeaders = require('../helpers/headers');
+var cookieParser = require('cookie-parser');
+var i18n = require('i18n');
 var app = express();
+app.use(cookieParser());
+app.use(i18n.init);
+app.set('view engine', 'ejs');
 
 module.exports = {
     isAuthenticated: function (req, res, next) {
         if (typeof req.session.user === 'undefined' || typeof req.session.access_token === 'undefined') {
-            req.flash('error', 'Please login');
+            req.flash('error', res.__('Please login'));
 
             return res.redirect('back');
         }
@@ -20,13 +25,13 @@ module.exports = {
     },
     isAdmin: function (req, res, next) {
         if (typeof req.session.user === 'undefined' || typeof req.session.access_token === 'undefined') {
-            req.flash('error', 'Please login');
+            req.flash('error', res.__('Please login'));
 
             return res.redirect('/');
         }
 
         if (req.session.user.role != 'admin') {
-            req.flash('error', 'Not Admin');
+            req.flash('error', res.__('Not Admin'));
 
             return res.redirect('/');
         }

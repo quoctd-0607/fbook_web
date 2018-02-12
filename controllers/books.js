@@ -8,7 +8,7 @@ var localSession = require('../middlewares/localSession');
 var authorize = require('../middlewares/authorize');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var i18n = require("i18n");
+var i18n = require('i18n');
 var books = express();
 books.use(cookieParser());
 books.use(i18n.init);
@@ -21,7 +21,7 @@ router.get('/', localSession, function (req, res, next) {
 
     req.getValidationResult().then(function (result) {
         if (!result.isEmpty()) {
-            res.status(400).send('There have been validation errors: ' + util.inspect(result.array()));
+            res.status(400).send(res.__('There have been validation errors: ') + util.inspect(result.array()));
             return;
         } else {
             var page = req.query.page ? req.query.page : 1;
@@ -162,7 +162,7 @@ router.get('/waiting_approve', authorize.isAuthenticated, function (req, res, ne
                 var books = JSON.parse(body);
                 res.render('books/waiting_approve', {
                     books: books,
-                    pageTitle: 'Home',
+                    pageTitle: res.__('Home'),
                     info: req.flash('info'),
                     error: req.flash('error'),
                 });
@@ -179,7 +179,7 @@ router.get('/:id/approve-request', authorize.isAuthenticated, function (req, res
     req.checkParams('id', 'Invalid id').notEmpty().isInt();
     req.getValidationResult().then(function (result) {
         if (!result.isEmpty()) {
-            res.status(400).send('There have been validation errors: ' + util.inspect(result.array()));
+            res.status(400).send(res.__('There have been validation errors: ') + util.inspect(result.array()));
             return;
         } else {
             request({
@@ -195,11 +195,11 @@ router.get('/:id/approve-request', authorize.isAuthenticated, function (req, res
                             pageTitle: 'Approve requests'
                         });
                     } catch (errorJSONParse) {
-                        req.flash('error', 'Don\'t allow show approve request page');
+                        req.flash('error', res.__('Don\'t allow show approve request page'));
                         res.redirect('back');
                     }
                 } else {
-                    req.flash('error', 'Don\'t allow show approve request page');
+                    req.flash('error', res.__('Don\'t allow show approve request page'));
                     res.redirect('back');
                 }
             });
@@ -211,7 +211,7 @@ router.get('/:id', localSession, function (req, res, next) {
     req.checkParams('id', 'Invalid id').notEmpty().isInt();
     req.getValidationResult().then(function (result) {
         if (!result.isEmpty()) {
-            res.status(400).send('There have been validation errors: ' + util.inspect(result.array()));
+            res.status(400).send(res.__('There have been validation errors: ') + util.inspect(result.array()));
             return;
         } else {
             if (typeof req.session.book_detail_key === 'undefined') {
@@ -244,7 +244,7 @@ router.get('/:id', localSession, function (req, res, next) {
                             var returningBookToOwner = null;
                             var messages = req.flash('errors');
                             var btnBooking = {
-                                'text': i18n.__('Want to Read'),
+                                'text': res.__('Want to Read'),
                                 'status': req.configs.book_user.status.waiting
                             };
                             if (typeof req.session.user !== 'undefined') {
@@ -261,7 +261,7 @@ router.get('/:id', localSession, function (req, res, next) {
                                         data.item.owners.forEach (function (owner) {
                                             if (userReading.id === req.session.user.id) {
                                                 btnBooking = {
-                                                    'text': i18n.__('Want to Return'),
+                                                    'text': res.__('Want to Return'),
                                                     'status': req.configs.book_user.status.returning
                                                 };
                                                 if (userReading.owner_id === owner.id) {
@@ -277,7 +277,7 @@ router.get('/:id', localSession, function (req, res, next) {
                                         data.item.owners.forEach (function (owner) {
                                             if (userWaiting.id === req.session.user.id) {
                                                 btnBooking = {
-                                                    'text': i18n.__('Cancel waiting this book'),
+                                                    'text': res.__('Cancel waiting this book'),
                                                     'status': req.configs.book_user.status.cancel_waiting
                                                 };
                                                 if (userWaiting.owner_id === owner.id) {
@@ -293,7 +293,7 @@ router.get('/:id', localSession, function (req, res, next) {
                                         data.item.owners.forEach (function (owner) {
                                             if (userReturning.id === req.session.user.id) {
                                                 btnBooking = {
-                                                    'text': i18n.__('You are returning this book'),
+                                                    'text': res.__('You are returning this book'),
                                                     'status': req.configs.book_user.status.returned
                                                 };
                                                 if (userReturning.owner_id === owner.id) {
@@ -321,11 +321,11 @@ router.get('/:id', localSession, function (req, res, next) {
                                 book_current : req.params.id
                             });
                         } catch (errorJSONParse) {
-                            req.flash('error', 'Sorry, something went wrong');
+                            req.flash('error', res.__('Sorry, something went wrong'));
                             res.redirect('back');
                         }
                     } else {
-                        req.flash('error', 'sorry, something went wrong');
+                        req.flash('error', res.__('Sorry, something went wrong'));
                         res.redirect('back');
                     }
                 });
@@ -340,7 +340,7 @@ router.get('/category/:category_id', localSession, function (req, res, next) {
     var page = req.query.page ? req.query.page : 1;
     req.getValidationResult().then(function (result) {
         if (!result.isEmpty()) {
-            res.status(400).send('There have been validation errors: ' + util.inspect(result.array()));
+            res.status(400).send(res.__('There have been validation errors: ') + util.inspect(result.array()));
             return;
         } else {
             async.parallel({
@@ -432,17 +432,17 @@ router.post('/review/:id', authorize.isAuthenticated, function (req, res, next) 
             }, function (error, response, body) {
                 if (!error && response.statusCode === 200) {
                     try {
-                        req.flash('info', 'Thank for your review');
+                        req.flash('info', res.__('Thank for your review'));
                         res.redirect('back');
                     } catch (errorJSONParse) {
                         res.redirect('back');
                     }
                 } else {
                     if (response.statusCode == 401) {
-                        req.flash('error', 'Please login to review this book');
+                        req.flash('error', res.__('Please login to review this book'));
                         res.redirect('back');
                     } else {
-                        req.flash('error', 'Don\'t allow review this book');
+                        req.flash('error', res.__('Don\'t allow review this book'));
                         res.redirect('back');
                     }
                 }
@@ -476,20 +476,20 @@ router.post('/booking/:id', authorize.isAuthenticated, function (req, res, next)
             }, function (error, response, body) {
                 if (!error && response.statusCode === 200) {
                     try {
-                        req.flash('info', 'Booking success');
+                        req.flash('info', res.__('Booking success'));
                         res.redirect('back');
                     } catch (errorJSONParse) {
                         res.redirect('back');
                     }
                 } else {
                     if (response.statusCode === 401) {
-                        req.flash('error', i18n.__('Please login to booking this book'));
+                        req.flash('error', res.__('Please login to booking this book'));
                         res.redirect('back');
                     } else if (response.statusCode === 500) {
                         req.flash('error', JSON.parse(body).message.description);
                         res.redirect('back');
                     } else {
-                        req.flash('error', 'Don\'t allow booking this book');
+                        req.flash('error', res.__('Don\'t allow booking this book'));
                         res.redirect('back');
                     }
                 }
@@ -586,11 +586,11 @@ router.get('/:id/review', authorize.isAuthenticated, (req, res, next) => {
                         userId: req.session.user.id
                     });
                 } catch (errorJSONParse) {
-                    req.flash('error', 'Don\'t allow show this book');
+                    req.flash('error', res.__('Don\'t allow show this book'));
                     res.redirect('back');
                 }
             } else {
-                req.flash('error', 'Don\'t allow show this book');
+                req.flash('error', res.__('Don\'t allow show this book'));
                 res.redirect('back');
             }
         });
@@ -612,10 +612,10 @@ router.post('/post-review/:id', urlencodedParser, (req, res, next) => {
         headers: objectHeaders.headers({'Authorization': req.session.access_token})
     }, (error, response, body) => {
         if (!error && response.statusCode === 200) {
-            req.flash('info', 'Thanks for review');
+            req.flash('info', res.__('Thanks for review'));
                 res.redirect(`../../books/${req.params.id}`);
         } else {
-            req.flash('error', 'Please fillout all review\'s content');
+            req.flash('error', res.__('Please fillout all review\'s content'));
             res.redirect('back');
         }
     })
@@ -638,7 +638,7 @@ router.get('/view-review/:id', authorize.isAuthenticated, localSession, (req, re
                 userId : req.session.user.id
             });
         } else {
-            req.flash('error', 'This review not available');
+            req.flash('error', res.__('This review not available'));
             res.redirect('back');
         }
     });
@@ -658,10 +658,10 @@ router.post('/review-details/comment', urlencodedParser , (req, res, next) => {
         headers: objectHeaders.headers({'Authorization': req.session.access_token})
     }, (error, response, body) => {
         if (!error && response.statusCode === 200) {
-            req.flash('info', 'Thanks for your comment');
+            req.flash('info', res.__('Thanks for your comment'));
             res.redirect('back');
         } else {
-            req.flash('error', 'Can\'t add your comment, something went wrong');
+            req.flash('error', res.__('Can\'t add your comment, something went wrong'));
             res.redirect('back');
         }
     })

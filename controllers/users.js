@@ -5,6 +5,12 @@ var objectHeaders = require('../helpers/headers');
 var authorize = require('../middlewares/authorize');
 var localSession = require('../middlewares/localSession');
 var async = require('async');
+var cookieParser = require('cookie-parser');
+var i18n = require('i18n');
+var users = express();
+users.use(cookieParser());
+users.use(i18n.init);
+users.set('view engine', 'ejs');
 
 router.get('/my_profile', authorize.isAuthenticated, function(req, res, next) {
     var pageReading = req.query.pageReading ? req.query.pageReading : 1;
@@ -171,7 +177,7 @@ router.get('/my_profile', authorize.isAuthenticated, function(req, res, next) {
         }
     }, function (err, results) {
         if (err || !results.user) {
-            req.flash('error', 'You can\'t view user profile');
+            req.flash('error', res.__('You can\'t view user profile'));
 
             return res.redirect('../home');
         } else {
@@ -186,7 +192,7 @@ router.get('/my_profile', authorize.isAuthenticated, function(req, res, next) {
 
             res.render('users/current_user_profile', {
                 data: results.user.item,
-                pageTitle: 'My profile',
+                pageTitle: res.__('My profile'),
                 categories: results.categories,
                 interestedCategoryIds: interestedCategoryIds,
                 officeId: results.user.item.office_id,
@@ -223,7 +229,7 @@ router.get('/my_books', authorize.isAuthenticated, function (req, res, next) {
                 var books = JSON.parse(body);
                 res.render('users/my_books.ejs', {
                     books: books,
-                    pageTitle: 'My Books',
+                    pageTitle: res.__('My Books'),
                     pageName: 'My books',
                     info: req.flash('info'),
                     error: req.flash('error'),
@@ -389,7 +395,7 @@ router.get('/:id', authorize.isAuthenticated, function(req, res, next) {
         }
     }, function (err, results) {
         if (err || !results.user) {
-            req.flash('error', 'You can\'t view user profile');
+            req.flash('error', res.__('You can\'t view user profile'));
 
             return res.redirect('../home');
         } else {
