@@ -11,7 +11,7 @@
     "Add": "Thêm",
     "Admin Dashboard": "Bảng điều khiển quản trị",
     "After Change": "Sau thay đổi",
-    "All Book":"Toàn bộ sách",
+    "All Book": "Toàn bộ sách",
     "Approve returning-returned requests": "Chấp nhận yêu cầu trả sách",
     "Approve success": "Duyệt thành công",
     "Approve waiting-reading requests": "Chấp nhận yêu cầu chờ đọc",
@@ -228,5 +228,6 @@
     "You can\\'t view user profile": "Bạn không thể xem thông tin người dùng",
     "You have": "Bạn có",
     "Your Book": "Sách Của Bạn",
-    "Your comment": "Bình luận của tôi"
+    "Your comment": "Bình luận của tôi",
+    "Muốn đọc": "Muốn đọc"
 }

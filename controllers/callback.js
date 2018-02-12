@@ -10,11 +10,7 @@ var i18n = require("i18n");
 var callback = express();
 callback.use(cookieParser());
 callback.use(i18n.init);
-i18n.configure({
-    locales:['vi', 'en', 'jp'],
-    directory: __dirname + '/locales',
-    cookie: 'lang',
-});
+callback.set('view engine', 'ejs');
 
 router.get('/', function(req, res, next) {
     if (!req.session.access_token) {
@@ -41,7 +37,7 @@ router.get('/', function(req, res, next) {
 
                                     req.session.user = user.item;
                                     req.session.office_id = user.item.office_id;
-                                    req.flash('info', i18n.__('Login success'));
+                                    req.flash('info', res.__('Login success'));
                                     request({
                                         url: req.configs.api_base_url + 'offices',
                                         headers: objectHeaders.headers
@@ -65,30 +61,30 @@ router.get('/', function(req, res, next) {
                                                     res.redirect('back');
                                                 }
                                             } catch (errorJSONParse) {
-                                                req.flash('error', 'Can\'t load offices');
+                                                req.flash('error', res.__('Can\'t load offices'));
                                                 res.redirect('back');
                                             }
                                         } else {
-                                            req.flash('error', 'Can\'t load offices');
+                                            req.flash('error', res.__('Can\'t load offices'));
                                             res.redirect('back');
                                         }
                                     });
                                 } catch (errsorJSONParse) {
-                                    req.flash('error', 'Login fail');
+                                    req.flash('error', res.__('Login fail'));
                                     res.redirect('home');
                                 }
                             } else {
-                                req.flash('error', 'Login fail');
+                                req.flash('error', res.__('Login fail'));
                                 res.redirect('home');
                             }
                         });
                     }
                 } catch (errorJSONParse) {
-                    req.flash('error', 'Login fail');
+                    req.flash('error', res.__('Login fail'));
                     res.redirect('home');
                 }
             } else {
-                req.flash('error', 'Login fail');
+                req.flash('error', res.__('Login fail'));
                 res.redirect('home');
             }
         });

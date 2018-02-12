@@ -6,6 +6,12 @@ var async = require('async');
 var objectHeaders = require('../helpers/headers');
 var localSession = require('../middlewares/localSession');
 var authorize = require('../middlewares/authorize');
+var cookieParser = require('cookie-parser');
+var i18n = require('i18n');
+var notifications = express();
+notifications.use(cookieParser());
+notifications.use(i18n.init);
+notifications.set('view engine', 'ejs');
 
 router.get('/', authorize.isAuthenticated, function (req, res, next) {
     var page = req.query.page ? req.query.page : 1;
@@ -18,7 +24,7 @@ router.get('/', authorize.isAuthenticated, function (req, res, next) {
                 var dataNoti = JSON.parse(body);
                 res.render('users/notifications', {
                     dataNoti: dataNoti,
-                    pageTitle: 'Notifications',
+                    pageTitle: res.__('Notifications'),
                     info: req.flash('info'),
                     error: req.flash('error'),
                 });

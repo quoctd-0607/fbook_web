@@ -7,6 +7,12 @@ var objectHeaders = require('../helpers/headers');
 var localSession = require('../middlewares/localSession');
 var authorize = require('../middlewares/authorize');
 var helper = require('../helpers/helpers');
+var cookieParser = require('cookie-parser');
+var i18n = require('i18n');
+var admin = express();
+admin.use(cookieParser());
+admin.use(i18n.init);
+admin.set('view engine', 'ejs');
 
 router.get('/', authorize.isAdmin, function (req, res, next) {
     async.parallel({
@@ -80,7 +86,7 @@ router.get('/', authorize.isAdmin, function (req, res, next) {
         }
     }, (error, result) => {
         if (error) {
-            req.flash('error', 'Sorry, something went wrong');
+            req.flash('error', res.__('Sorry, something went wrong'));
             return res.redirect('/');
         } else {
             res.render('admin/dashboard', {
@@ -89,7 +95,7 @@ router.get('/', authorize.isAdmin, function (req, res, next) {
                 totalBookHaveOwner: result.totalBookHaveOwner.item,
                 totalUserHaveBook: result.totalUserHaveBook.item,
                 totalBook: result.totalBook.item,
-                pageTitle: 'Admin Dashboard',
+                pageTitle: res.__('Admin Dashboard'),
                 info: req.flash('info'),
                 error: req.flash('error'),
                 activeDasboard: true,
@@ -116,17 +122,17 @@ router.get('/waiting-request-edit-book', authorize.isAdmin, function (req, res, 
                     layout: 'admin/layout/admin_template',
                     dataRequest: data,
                     paginate: pagination,
-                    pageTitle: 'Waiting Request Edit Book',
+                    pageTitle: res.__('Waiting Request Edit Book'),
                     info: req.flash('info'),
                     error: req.flash('error'),
                     activeRequest: true,
                 });
             } catch (errorJSONParse) {
-                req.flash('error', 'Unknown error');
+                req.flash('error', res.__('Unknown error'));
                 return res.redirect('/admin');
             }
         } else {
-            req.flash('error', 'Sorry, something went wrong');
+            req.flash('error', res.__('Sorry, something went wrong'));
             return res.redirect('/admin');
         }
     });
@@ -140,18 +146,18 @@ router.post('/approve-update-request/:id', authorize.isAdmin, function (req, res
     }, function (error, response, body) {
         if (!error && response.statusCode === 200) {
             try {
-                req.flash('info', 'Approve success');
+                req.flash('info', res.__('Approve success'));
                 return res.redirect('/admin/waiting-request-edit-book');
             } catch (errorJSONParse) {
-                req.flash('error', 'Unknown error');
+                req.flash('error', res.__('Unknown error'));
                 return res.redirect('/admin/waiting-request-edit-book');
             }
         } else {
             if (response.statusCode == 401) {
-                req.flash('error', 'Please login to approve this book');
+                req.flash('error', res.__('Please login to approve this book'));
                 return res.redirect('/');
             } else {
-                req.flash('error', 'Sorry, something went wrong');
+                req.flash('error', res.__('Sorry, something went wrong'));
                 return res.redirect('/admin/waiting-request-edit-book');
             }
         }
@@ -175,18 +181,18 @@ router.get('/categories', authorize.isAdmin, function (req, res, next) {
                 res.render('admin/categories', {
                     layout: 'admin/layout/admin_template',
                     dataRequest: data,
-                    pageTitle: 'Admin Dashboard',
+                    pageTitle: res.__('Admin Dashboard'),
                     paginate: paginate,
                     info: req.flash('info'),
                     error: req.flash('error'),
                     activeCategory: true,
                 });
             } catch (errorJSONParse) {
-                req.flash('error', 'Unknown error');
+                req.flash('error', res.__('Unknown error'));
                 return res.redirect('/admin');
             }
         } else {
-            req.flash('error', 'Sorry, something went wrong');
+            req.flash('error', res.__('Sorry, something went wrong'));
             return res.redirect('/admin');
         }
     });
@@ -196,7 +202,7 @@ router.get('/categories/search', authorize.isAdmin, function (req, res, next) {
     var page = req.query.page ? req.query.page : 1;
     var keyWord = (typeof(req.query.key_word) != 'undefined') ? req.query.key_word : '';
     if (keyWord.trim() == '') {
-        req.flash('error', 'Please input something to search');
+        req.flash('error', res.__('Please input something to search'));
         return res.redirect('/admin/categories');
     }
     request.post({
@@ -218,18 +224,18 @@ router.get('/categories/search', authorize.isAdmin, function (req, res, next) {
                 res.render('admin/categories', {
                     layout: 'admin/layout/admin_template',
                     dataRequest: data,
-                    pageTitle: 'Admin Dashboard',
+                    pageTitle: res.__('Admin Dashboard'),
                     paginate: paginate,
                     info: req.flash('info'),
                     error: req.flash('error'),
                     activeCategory: true,
                 });
             } catch (errorJSONParse) {
-                req.flash('error', 'Unknown error');
+                req.flash('error', res.__('Unknown error'));
                 return res.redirect('/admin/categories');
             }
         } else {
-            req.flash('error', 'Sorry, something went wrong');
+            req.flash('error', res.__('Sorry, something went wrong'));
             return res.redirect('/admin/categories');
         }
     })
@@ -238,7 +244,7 @@ router.get('/categories/search', authorize.isAdmin, function (req, res, next) {
 router.get('/categories/create', authorize.isAdmin, function (req, res, next) {
     res.render('admin/create_category', {
         layout: 'admin/layout/admin_template',
-        pageTitle: 'Create category',
+        pageTitle: res.__('Create category'),
         info: req.flash('info'),
         error: req.flash('error'),
         validate: req.flash('validate'),
@@ -254,7 +260,7 @@ router.post('/categories/store', authorize.isAdmin, function (req, res, next) {
     req.getValidationResult().then(function (result) {
         if (!result.isEmpty()) {
             req.flash('validate', result.array());
-            req.flash('error', 'Data invalid');
+            req.flash('error', res.__('Data invalid'));
             res.redirect('/admin/categories/create');
         } else {
             request.post({
@@ -267,7 +273,7 @@ router.post('/categories/store', authorize.isAdmin, function (req, res, next) {
             }, function (error, response, body) {
                 if (!error && response.statusCode === 200) {
                     try {
-                        req.flash('info', 'Create category success');
+                        req.flash('info', res.__('Create category success'));
                         return res.redirect('/admin/categories');
                     } catch (errorJSONParse) {
                         return res.redirect('/admin/categories/create');
@@ -275,10 +281,10 @@ router.post('/categories/store', authorize.isAdmin, function (req, res, next) {
                 } else if (response.statusCode === 422) {
                     var msg = JSON.parse(body);
                     req.flash('apiValidate', msg.message.description[0]);
-                    req.flash('error', 'Data invalid');
+                    req.flash('error', res.__('Data invalid'));
                     return res.redirect('/admin/categories/create');
                 } else {
-                    req.flash('error', 'Sorry, something went wrong');
+                    req.flash('error', res.__('Sorry, something went wrong'));
                     return res.redirect('/admin/categories/create');
                 }
             });
@@ -298,7 +304,7 @@ router.get('/categories/detail/:id', authorize.isAdmin, function (req, res, next
                 var data = JSON.parse(body);
                 res.render('admin/edit_category', {
                     layout: 'admin/layout/admin_template',
-                    pageTitle: 'Edit category',
+                    pageTitle: res.__('Edit category'),
                     category: data,
                     info: req.flash('info'),
                     error: req.flash('error'),
@@ -307,11 +313,11 @@ router.get('/categories/detail/:id', authorize.isAdmin, function (req, res, next
                     activeCategory: true,
                 });
             } catch (errorJSONParse) {
-                req.flash('error', 'Unknown error');
+                req.flash('error', res.__('Unknown error'));
                 return res.redirect('/admin/categories');
             }
         } else {
-            req.flash('error', 'Something went wrong');
+            req.flash('error', res.__('Sorry, something went wrong'));
             return res.redirect('/admin/categories');
         }
     });
@@ -320,7 +326,7 @@ router.get('/categories/detail/:id', authorize.isAdmin, function (req, res, next
 router.post('/categories/update', authorize.isAdmin, function (req, res, next) {
     var categoryId = req.body.id;
     if (!categoryId || categoryId == '') {
-        req.flash('error', 'Category data misssing');
+        req.flash('error', res.__('Category data misssing'));
         res.redirect('back')
     } else {
         request.put({
@@ -333,19 +339,19 @@ router.post('/categories/update', authorize.isAdmin, function (req, res, next) {
         }, function (error, response, body) {
             if (!error && response.statusCode === 200) {
                 try {
-                    req.flash('info', 'Update category success');
+                    req.flash('info', res.__('Update category success'));
                     res.redirect('/admin/categories');
                 } catch (errorJSONParse) {
-                    req.flash('error', 'Unknown error');
+                    req.flash('error', res.__('Unknown error'));
                     res.redirect('/admin/categories');
                 }
             } else if (response.statusCode === 422) {
                 var msg = JSON.parse(body);
                 req.flash('apiValidate', msg.message.description[0]);
-                req.flash('error', 'Data invalid');
+                req.flash('error', res.__('Data invalid'));
                 return res.redirect('back');
             } else {
-                req.flash('error', 'Something went wrong');
+                req.flash('error', res.__('Sorry, something went wrong'));
                 return res.redirect('/admin/categories');
             }
         });
@@ -369,18 +375,18 @@ router.get('/users', authorize.isAdmin, function (req, res, next) {
                 res.render('admin/users', {
                     layout: 'admin/layout/admin_template',
                     dataRequest: data,
-                    pageTitle: 'Admin Dashboard',
+                    pageTitle: res.__('Admin Dashboard'),
                     paginate: paginate,
                     info: req.flash('info'),
                     error: req.flash('error'),
                     activeUser: true,
                 });
             } catch (errorJSONParse) {
-                req.flash('error', 'Unknown error');
+                req.flash('error', res.__('Unknown error'));
                 return res.redirect('/admin');
             }
         } else {
-            req.flash('error', 'Something went wrong');
+            req.flash('error', res.__('Sorry, something went wrong'));
             return res.redirect('/admin');
         }
     });
@@ -391,12 +397,12 @@ router.get('/users/search', authorize.isAdmin, function (req, res, next) {
     var page = (typeof(req.query.page) != 'undefined') ? req.query.page : 1;
     var keyWord = (typeof(req.query.key_word) != 'undefined') ? req.query.key_word : '';
     if (keyWord.trim() == '') {
-        req.flash('error', 'Please input something to search');
+        req.flash('error', res.__('Please input something to search'));
         return res.redirect('/admin/users');
     }
     var filterType = (typeof(req.query.filter_type) != 'undefined') ? req.query.filter_type : '';
     if (filterType.trim() == '') {
-        req.flash('error', 'Please choose a search type');
+        req.flash('error', res.__('Please choose a search type'));
         return res.redirect('/admin/users');
     }
     request.post({
@@ -419,18 +425,18 @@ router.get('/users/search', authorize.isAdmin, function (req, res, next) {
                 res.render('admin/users', {
                     layout: 'admin/layout/admin_template',
                     dataRequest: data,
-                    pageTitle: 'Admin Dashboard',
+                    pageTitle: res.__('Admin Dashboard'),
                     paginate: paginate,
                     info: req.flash('info'),
                     error: req.flash('error'),
                     activeUser: true,
                 });
             } catch (errorJSONParse) {
-                req.flash('error', 'Unknown error');
+                req.flash('error', res.__('Unknown error'));
                 return res.redirect('/admin/users');
             }
         } else {
-            req.flash('error', 'Something went wrong');
+            req.flash('error', res.__('Sorry, something went wrong'));
             return res.redirect('/admin/users');
         }
     });
@@ -453,18 +459,18 @@ router.get('/books', authorize.isAdmin, function (req, res, next) {
                 res.render('admin/books', {
                     layout: 'admin/layout/admin_template',
                     dataRequest: data,
-                    pageTitle: 'Admin Dashboard',
+                    pageTitle: res.__('Admin Dashboard'),
                     paginate: paginate,
                     info: req.flash('info'),
                     error: req.flash('error'),
                     activeBook: true,
                 });
             } catch (errorJSONParse) {
-                req.flash('error', 'Unknown error');
+                req.flash('error', res.__('Unknown error'));
                 return res.redirect('/admin');
             }
         } else {
-            req.flash('error', 'Something went wrong');
+            req.flash('error', res.__('Sorry, something went wrong'));
             return res.redirect('/admin');
         }
     });
@@ -475,12 +481,12 @@ router.get('/books/search', authorize.isAdmin, function (req, res, next) {
     var page = (typeof(req.query.page) != 'undefined') ? req.query.page : 1;
     var keyWord = (typeof(req.query.key_word) != 'undefined') ? req.query.key_word : '';
     if (keyWord.trim() == '') {
-        req.flash('error', 'Please input something to search');
+        req.flash('error', res.__('Please input something to search'));
         return res.redirect('/admin/books');
     }
     var filterType = (typeof(req.query.filter_type) != 'undefined') ? req.query.filter_type : '';
     if (filterType.trim() == '') {
-        req.flash('error', 'Please choose a search type');
+        req.flash('error', res.__('Please choose a search type'));
         return res.redirect('/admin/books');
     }
     
@@ -504,18 +510,18 @@ router.get('/books/search', authorize.isAdmin, function (req, res, next) {
                 res.render('admin/books', {
                     layout: 'admin/layout/admin_template',
                     dataRequest: data,
-                    pageTitle: 'Admin Dashboard',
+                    pageTitle: res.__('Admin Dashboard'),
                     paginate: paginate,
                     info: req.flash('info'),
                     error: req.flash('error'),
                     activeBook: true,
                 });
             } catch (errorJSONParse) {
-                req.flash('error', 'Unknown error');
+                req.flash('error', res.__('Unknown error'));
                 return res.redirect('/admin/books');
             }
         } else {
-            req.flash('error', 'Something went wrong');
+            req.flash('error', res.__('Something went wrong'));
             return res.redirect('/admin/books');
         }
     });
