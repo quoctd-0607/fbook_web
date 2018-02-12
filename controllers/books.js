@@ -13,11 +13,7 @@ var books = express();
 books.use(cookieParser());
 books.use(i18n.init);
 books.set('view engine', 'ejs');
-i18n.configure({
-    locales:['vi', 'en', 'jp'],
-    directory: __dirname + '/locales',
-    cookie: 'lang',
-});
+
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 router.get('/', localSession, function (req, res, next) {
