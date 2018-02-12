@@ -1,5 +1,5 @@
-$(function () {
-    $('.button-checkbox').each(function () {
+$(function ($) {
+    $('.button-checkbox').each(function (e) {
         // Settings
         var $widget = $(this),
             $button = $widget.find('button'),
@@ -14,33 +14,31 @@ $(function () {
                 }
             };
         // Event Handlers
-        $button.on('click', function () {
+        $button.on('click', function (e) {
             $checkbox.prop('checked', !$checkbox.is(':checked'));
             $checkbox.triggerHandler('change');
             updateDisplay();
         });
-        $checkbox.on('change', function () {
+        $checkbox.on('change', function (e) {
             updateDisplay();
         });
+
         // Actions
         function updateDisplay() {
             var isChecked = $checkbox.is(':checked');
             // Set the button's state
-            $button.data('state', (isChecked) ? "on" : "off");
+            $button.data('state', (isChecked) ? 'on' : 'off');
             // Set the button's icon
-            $button.find('.state-icon')
-                .removeClass()
-                .addClass('state-icon ' + settings[$button.data('state')].icon);
+            $button.find('.state-icon').removeClass().addClass('state-icon ' + settings[$button.data('state')].icon);
             // Update the button's color
             if (isChecked) {
-                $button.removeClass('btn-default')
-                    .addClass('btn-' + color + ' active');
+                $button.removeClass('btn-default').addClass('btn-' + color + ' active');
             }
             else {
-                $button.removeClass('btn-' + color + ' active')
-                    .addClass('btn-default');
+                $button.removeClass('btn-' + color + ' active').addClass('btn-default');
             }
         }
+
         // Initialization
         function init() {
             updateDisplay();
@@ -51,4 +49,4 @@ $(function () {
         }
         init();
     });
-});
+}(jQuery));

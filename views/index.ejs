@@ -1,6 +1,6 @@
 <% data.items.forEach(function (section, key) { %>
 <!--Begin section-->
-<section id="section<%= key%>" class="gray-bg">
+<section id="section<%= key %>" class="gray-bg">
     <div class="space-40"></div>
     <div class="container">
         <div class="row">
@@ -16,14 +16,14 @@
         </div>
         <div class="space-20"></div>
         <div class="row">
-            <% if (section.data.length > 0 ) { %>
+            <% if (section.data.length > 0) { %>
                 <% section.data.forEach(function (book, index) { %>
                     <% if (book.owners) { %>
                         <% var countOwner = 0 %>
                         <% book.owners.forEach(function (owner) { %>
                             <% countOwner++ %>
                         <% }) %>
-                        <% if (countOwner > 0 ) { %>
+                        <% if (countOwner > 0) { %>
                             <div class="col-xs-12 col-md-4 wow fadeInLeft" data-wow-delay="0.1s" data-wow-offset="50">
                                 <div class="category-item well yellow">
                                     <div class="media">

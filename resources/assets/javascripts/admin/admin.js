@@ -1,66 +1,76 @@
-function showNotify(message, messageType, timer) {
-    $.toast({
-        heading: 'Notification',
-        text: message,
-        position: 'top-right',
-        loaderBg: '#ff6849',
-        icon: messageType,
-        hideAfter: timer
-    });
+if (typeof showNotify === 'undefined') {
+    function showNotify(message, messageType, timer) {
+        $.toast({
+            heading: 'Notification',
+            text: message,
+            position: 'top-right',
+            loaderBg: '#ff6849',
+            icon: messageType,
+            hideAfter: timer
+        });
+    }
 }
 
-function markAsRead() {
-    $.ajax({
-        url: API_PATH + 'notifications/update/all',
-        contentType: 'application/json',
-        dataType: 'json',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': access_token,
-        },
-        type: 'POST',
-        data: {},
-    }).done(function (response) {
-        if (response.message.code == 200) {
-            $('.count_Notifications').html(0);
-        } else {
-            showNotify('Data Invalid', 'danger', 1000);
+if (typeof markAsRead === 'undefined') {
+    function markAsRead() {
+        $.ajax({
+            url: API_PATH + 'notifications/update/all',
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
+            type: 'POST',
+            data: {},
+        }).done(function (response) {
+            if (response.message.code == 200) {
+                $('.count_Notifications').html(0);
+            } else {
+                showNotify(
+                    'danger', 
+                    'Data Invalid', 
+                    {icon: 'glyphicon glyphicon-remove'}, 
+                    {delay: 3000}
+                );
+            }
+        }).fail(function (error) {
+            showNotify(
+                'danger', 
+                'Data Invalid', 
+                {icon: 'glyphicon glyphicon-remove'}, 
+                {delay: 3000}
+            );
+        });
+    };
+}
+
+if (typeof timeAGo === 'undefined') {
+    function timeAGo (date) {
+        var seconds = Math.floor(( Date.parse(new Date()) - Date.parse(date) ) / 1000 );
+        interval = Math.floor( seconds / 86400 );
+        if (interval > 30) {
+            return date;
         }
-    }).fail(function (error) {
-        showNotify('Data Invalid', 'danger', 1000);
-    });
-};
+        if (interval == 1) {
+            return interval + ' day ago';
+        }
+        if (interval > 1) {
+            return interval + ' days ago';
+        }
+        interval = Math.floor( seconds / 3600 );
+        if (interval == 1) {
+            return interval + ' hour ago';
+        }
+        if (interval > 1) {
+            return interval + ' hours ago';
+        }
+        interval = Math.floor( seconds / 60 );
+        if (interval == 1) {
+            return interval + ' minute ago';
+        }
+        if (interval > 1) {
+            return interval + ' minutes ago';
+        }
 
-timeAGo = function ( date ) {
-    var seconds = Math.floor(( Date.parse(new Date()) - Date.parse(date) ) / 1000 );
-    interval = Math.floor( seconds / 86400 );
-    if (interval > 30) {
-        return date;
-    }
-    if (interval == 1) {
-        return interval + ' day ago';
-    }
-    if (interval > 1) {
-        return interval + ' days ago';
-    }
-    interval = Math.floor( seconds / 3600 );
-    if (interval == 1) {
-        return interval + ' hour ago';
-    }
-    if (interval > 1) {
-        return interval + ' hours ago';
-    }
-    interval = Math.floor( seconds / 60 );
-    if (interval == 1) {
-        return interval + ' minute ago';
-    }
-    if (interval > 1) {
-        return interval + ' minutes ago';
-    }
-
-    return Math.floor(seconds) + ' seconds ago';
-};
+        return Math.floor(seconds) + ' seconds ago';
+    };
+}
 
 Pusher.logToConsole = false;
 var pusher = new Pusher(configs.pusher.key, {
@@ -73,22 +83,21 @@ channel.bind('App\\Events\\NotificationHandler', function(data) {
     $('#notification_' + data.user_id).html(parseInt($('#notification_' + data.user_id).html()) + 1);
     $('#notification_icon_' + data.user_id).html(parseInt($('#notification_icon_' + data.user_id).html())+1);
     if(data.user_id == $('#get-user-id').html()) {
-        showNotify('info', data.messages, {icon: "glyphicon glyphicon-ok"}, {delay: 5000});
+        showNotify(
+            'info', 
+            data.messages, 
+            {icon: 'glyphicon glyphicon-ok'}, 
+            {delay: 3000}
+        );
     }
 });
 
-$(document).ready(function() {
-    "use strict";
+
+$(function ($) {
     if(typeof(access_token) !== 'undefined') {
         $.ajax({
             url: API_PATH + 'notifications/count/user',
-            contentType: 'application/json',
-            dataType: 'json',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': access_token,
-            },
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
             type: 'GET',
             data: {},
         }).done(function (response) {
@@ -99,10 +108,20 @@ $(document).ready(function() {
                     $('.count_Notifications').html(response.item.count);
                 }
             } else {
-                showNotify('danger', "Data Invalid", {icon: "glyphicon glyphicon-remove"}, {delay: 1000});
+                showNotify(
+                    'danger', 
+                    'Data Invalid', 
+                    {icon: 'glyphicon glyphicon-remove'}, 
+                    {delay: 3000}
+                );
             }
         }).fail(function (error) {
-            showNotify('danger', "Data Invalid", {icon: "glyphicon glyphicon-remove"}, {delay: 1000});
+            showNotify(
+                'danger', 
+                'Data Invalid', 
+                {icon: 'glyphicon glyphicon-remove'}, 
+                {delay: 1000}
+            );
         });
     }
 
@@ -115,16 +134,10 @@ $(document).ready(function() {
         $(this).html($(this).data('loading'));
     });
 
-    $('.view-notify').on('click', function (e) {
+    $('body').on('click', '.view-notify', function (e) {
         $.ajax({
             url: API_PATH + 'notifications/dropdown',
-            contentType: 'application/json',
-            dataType: 'json',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': access_token,
-            },
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
             type: 'GET',
             data: JSON.stringify(),
         }).done(function (response) {
@@ -290,13 +303,7 @@ $(document).ready(function() {
                         var notificationId = $(this).data('notification-id');
                         $.ajax({
                             url: API_PATH + 'notification/update/' + notificationId,
-                            contentType: 'application/json',
-                            dataType: 'json',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json',
-                                'Authorization': access_token,
-                            },
+                            headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
                             type: 'GET',
                             data: {},
                         }).done(function (response) {
@@ -308,10 +315,20 @@ $(document).ready(function() {
                                     }
                                 }
                             } else {
-                                showNotify('Data Invalid', 'danger', 1000);
+                                showNotify(
+                                    'danger', 
+                                    'Data Invalid', 
+                                    {icon: 'glyphicon glyphicon-remove'}, 
+                                    {delay: 3000}
+                                );
                             }
                         }).fail(function (error) {
-                            showNotify('Data Invalid', 'danger', 1000);
+                            showNotify(
+                                'danger', 
+                                'Data Invalid', 
+                                {icon: 'glyphicon glyphicon-remove'}, 
+                                {delay: 3000}
+                            );
                         });
                     })
                 });
@@ -322,7 +339,12 @@ $(document).ready(function() {
                 $('#noti-list').html('');
             }
         }).fail(function (error) {
-            showNotify('Data Invalid', 'danger', 1000);
+            showNotify(
+                'danger', 
+                'Opp\'s something went wrong', 
+                {icon: 'glyphicon glyphicon-remove'}, 
+                {delay: 3000}
+            );
         });
     });
 
@@ -373,4 +395,4 @@ $(document).ready(function() {
             });
         });
     });
-});
+}(jQuery));

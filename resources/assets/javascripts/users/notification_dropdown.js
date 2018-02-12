@@ -1,14 +1,9 @@
-$(document).ready(function() {
+
+$(function ($) {
     $('.notification_onclick_icon').on('click', function(e) {
         $.ajax({
             url: API_PATH + 'notifications/dropdown',
-            contentType: 'application/json',
-            dataType: 'json',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': access_token,
-            },
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
             type: 'GET',
             data: JSON.stringify(),
         }).done(function(response) {
@@ -19,17 +14,13 @@ $(document).ready(function() {
                 htmlModel = "<div class=''>"
                 response.items.notification.data.forEach(function(data) {
                     if (data.viewed == configs.notification.not_view) {
-                        htmlModel +=
-                            "<div class='noSeen notificaiton-item click-notification clearfix'>";
+                        htmlModel += "<div class='noSeen notificaiton-item click-notification clearfix'>";
                     } else {
-                        htmlModel +=
-                            "<div class='seen notificaiton-item click-notification clearfix'>";
+                        htmlModel += "<div class='seen notificaiton-item click-notification clearfix'>";
                     }
                     htmlModel += "<div class='media-left'>";
-                    htmlModel += "<img src='" + data.user_send.avatar +
-                        "' class='avatar avatar-popup-noti' alt='library'/></div>";
-                    htmlModel +=
-                        "<div  class='noti-body-popup media-body media-body-notification'>";
+                    htmlModel += "<img src='" + data.user_send.avatar + "' class='avatar avatar-popup-noti' alt='library'/></div>";
+                    htmlModel += "<div  class='noti-body-popup media-body media-body-notification'>";
                     if (data.type == configs.notification.waiting) {
                         htmlModel += "<a href='/books/" + data.book.id +
                             "/approve-request' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
@@ -297,49 +288,38 @@ $(document).ready(function() {
                 $('#box_dropdown_noti').html(htmlModel);
 
                 $('.notification_onclick').each(function(e) {
-                    $(this).on('click', function() {
+                    $(this).on('click', function(e) {
                         var notificationId = $(this).data('notification-id');
                         $.ajax({
-                            url: API_PATH + 'notification/update/' +
-                                notificationId,
+                            url: API_PATH + 'notification/update/' + notificationId,
                             contentType: 'application/json',
                             dataType: 'json',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json',
-                                'Authorization': access_token,
-                            },
+                            headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
                             type: 'GET',
                             data: {},
                         }).done(function(response) {
                             if (response.message.code == 200) {
-                                if ($('.count_Notifications').html() >
-                                    0) {
+                                if ($('.count_Notifications').html() > 0) {
                                     $('.count_Notifications').html(
-                                        parseInt($(
-                                            '.count_Notifications'
-                                        ).html()) - 1);
-                                    if ($('#get-notify-view' +
-                                            notificationId).html() == 1) {
-                                        $('.count_Notifications').html(
-                                            parseInt($(
-                                                '.count_Notifications'
-                                            ).html()) + 1);
+                                        parseInt($('.count_Notifications').html()) - 1);
+                                    if ($('#get-notify-view' + notificationId).html() == 1) {
+                                        $('.count_Notifications').html(parseInt($('.count_Notifications').html()) + 1);
                                     }
                                 }
                             } else {
-                                showNotify('danger', 'Data Invalid', {
-                                    icon: 'glyphicon glyphicon-remove'
-                                }, {
-                                    delay: 1000
-                                });
+                                showNotify(
+                                    'danger', 
+                                    'Data Invalid', 
+                                    {icon: 'glyphicon glyphicon-remove'}, 
+                                    {delay: 3000}
+                                );
                             }
                         }).fail(function(error) {
-                            showNotify('danger', 'Data Invalid', {
-                                icon: 'glyphicon glyphicon-remove'
-                            }, {
-                                delay: 1000
-                            });
+                            showNotify(
+                                'danger', 
+                                'Data Invalid', 
+                                {icon: 'glyphicon glyphicon-remove'}, 
+                                {delay: 3000});
                         });
                     })
                 });
@@ -348,11 +328,12 @@ $(document).ready(function() {
                 });
             }
         }).fail(function(error) {
-            showNotify('danger', "Data Invalid", {
-                icon: "glyphicon glyphicon-remove"
-            }, {
-                delay: 1000
-            });
+            showNotify(
+                'danger', 
+                'Data Invalid', 
+                {icon: 'glyphicon glyphicon-remove'}, 
+                {delay: 1000}
+            );
         });
     });
-});
+}(jQuery));

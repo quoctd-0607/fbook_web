@@ -1,6 +1,8 @@
-jQuery(document).ready(function($) {
+
+$(function ($) {
     "use strict";
-    $('.mainmenu-area a[href*="#"]:not([href="#"])').on('click', function() {
+
+    $('.mainmenu-area a[href*="#"]:not([href="#"])').on('click', function(e) {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
             var target = $(this.hash);
             target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
@@ -13,11 +15,13 @@ jQuery(document).ready(function($) {
         }
     });
     $(".carousel-inner .item:first-child").addClass("active");
+
     /*WoW js Active
     =================*/
     new WOW().init({
         mobile: false,
     });
+
     /* Scroll to top
     ===================*/
     $.scrollUp({
@@ -35,7 +39,7 @@ jQuery(document).ready(function($) {
     });
 
     //Header Background Slider
-    $(".home-slide").responsiveSlides({
+    $('.home-slide').responsiveSlides({
         auto: true, // Boolean: Animate automatically, true or false
         speed: 600, // Integer: Speed of the transition, in milliseconds
         timeout: 4000, // Integer: Time between slide transitions, in milliseconds
@@ -62,10 +66,10 @@ jQuery(document).ready(function($) {
             1500: { items: 4 }
         }
     });
-    $('.bookslide_nav .testi_next').on('click', function() {
+    $('.bookslide_nav .testi_next').on('click', function(e) {
         book_slide.trigger('next.owl.carousel');
     });
-    $('.bookslide_nav .testi_prev').on('click', function() {
+    $('.bookslide_nav .testi_prev').on('click', function(e) {
         book_slide.trigger('prev.owl.carousel');
     });
 
@@ -91,6 +95,7 @@ jQuery(document).ready(function($) {
             1000: { items: 3 }
         }
     });
+
     /* Gallery Slider Active
     =============================*/
     $('.testimonial-slide').owlCarousel({
@@ -121,7 +126,7 @@ jQuery(document).ready(function($) {
         }
     });
 
-    $('.morelink').click(function() {
+    $('.morelink').on('click', function(e) {
         if ($(this).hasClass("less")) {
             $(this).removeClass("less");
             $(this).html(moretext);
@@ -135,94 +140,50 @@ jQuery(document).ready(function($) {
         return false;
     });
 
-    if (typeof(access_token) !== 'undefined') {
-        $.ajax({
-            url: API_PATH + 'notifications/count/user',
-            contentType: 'application/json',
-            dataType: 'json',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': access_token,
-            },
-            type: 'GET',
-            data: {},
-        }).done(function(response) {
-            if (response.message.code == 200) {
-                if (response.item.count == 0) {
-                    $('.count_Notifications').html(0);
-                } else {
-                    $('.count_Notifications').html(response.item.count);
-                }
-            } else {
-                showNotify('danger', "Data Invalid", {
-                    icon: "glyphicon glyphicon-remove"
-                }, {
-                    delay: 1000
-                });
-            }
-        }).fail(function(error) {
-            showNotify('danger', "Data Invalid", {
-                icon: "glyphicon glyphicon-remove"
-            }, {
-                delay: 1000
-            });
-        });
-    }
-
-    $('.delete-btn-topright').click(function() {
-        let reviewId = $(this).val();
+    $('.delete-btn-topright').on('click', function(e) {
+        var reviewId = $(this).val();
         $.ajax({
             url: API_PATH + 'reviews/delete/' + reviewId,
-            contentType: 'application/json',
-            dataType: 'json',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': access_token,
-            },
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
             type: 'DELETE',
             data: {},
         }).done(function(response) {
             if (response.message.code == 200) {
-                showNotify('success', "Delete review successfull!", {
-                    icon: "glyphicon glyphicon-remove"
-                }, {
-                    delay: 1000
-                });
+                showNotify(
+                    'success', 
+                    'Delete review successfull!', 
+                    {icon: 'glyphicon glyphicon-remove'}, 
+                    {delay: 3000}
+                );
                 $('#review' + reviewId).remove();
                 $('#review_edit_btn').html('Add review');
             } else {
-                showNotify('danger', "Opp\'s something went wrong", {
-                    icon: "glyphicon glyphicon-remove"
-                }, {
-                    delay: 1000
-                });
+                showNotify(
+                    'danger', 
+                    'Opp\'s something went wrong', 
+                    {icon: 'glyphicon glyphicon-remove'}, 
+                    {delay: 3000}
+                );
             }
         }).fail(function(error) {
-            showNotify('danger', "Opp\'s something went wrong", {
-                icon: "glyphicon glyphicon-remove"
-            }, {
-                delay: 1000
-            });
+            showNotify(
+                'danger', 
+                'Opp\'s something went wrong', 
+                {icon: 'glyphicon glyphicon-remove'}, 
+                {delay: 3000}
+            );
         });
     });
 
-    $('.btn_vote').click(function() {
-        let review_id = $('#review_data').val();
-        let user_id = $('#user_id' + review_id).val();
-        let status_id = $(this).val();
-        let current_vote = parseInt($('#btn_show_vote').text());
+    $('.btn_vote').on('click', function(e) {
+        var review_id = $('#review_data').val();
+        var user_id = $('#user_id' + review_id).val();
+        var status_id = $(this).val();
+        var current_vote = parseInt($('#btn_show_vote').text());
 
         $.ajax({
             url: API_PATH + 'books/vote',
-            contentType: 'application/json',
-            dataType: 'json',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': access_token,
-            },
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
             type: 'POST',
             data: JSON.stringify({
                 reviewId: review_id,
@@ -233,137 +194,119 @@ jQuery(document).ready(function($) {
             if (response.message.code == 200) {
                 if (response.items.messages == 'vote_success') {
                     if (status_id == 2) {
-                        $('.up_vote').attr("style", "color: #5488c7;");
+                        $('.up_vote').attr('style', 'color: #5488c7;');
                         $('#btn_show_vote').html(current_vote + 1);
                     } else {
-                        $('.down_vote').attr("style", "color: #5488c7;");
+                        $('.down_vote').attr('style', 'color: #5488c7;');
                         $('#btn_show_vote').html(current_vote - 1);
                     }
-                    showNotify('success', "Thanks for your vote!", {
-                        icon: "glyphicon glyphicon-remove"
-                    }, {
-                        delay: 1000
-                    });
+                    showNotify('success', 'Thanks for your vote!', 
+                        {icon: 'glyphicon glyphicon-remove'}, 
+                        {delay: 3000});
                 } else if (response.items.messages == 'owner_can_not_vote') {
-                    showNotify('danger', "You can not vote for your review!", {
-                        icon: "glyphicon glyphicon-remove"
-                    }, {
-                        delay: 1000
-                    });
+                    showNotify(
+                        'danger', 
+                        'You can not vote for your review!', 
+                        {icon: 'glyphicon glyphicon-remove'}, 
+                        {delay: 3000}
+                    );
                 } else if (response.items.messages == 'revote_success') {
                     if (status_id == 2) {
-                        $('.up_vote').attr("style", "color: #5488c7;");
-                        $('.down_vote').attr("style", "color: #A9A9A9;");
+                        $('.up_vote').attr('style', 'color: #5488c7;');
+                        $('.down_vote').attr('style', 'color: #A9A9A9;');
                         $('#btn_show_vote').html(current_vote + 2);
                     } else {
-                        $('.down_vote').attr("style", "color: #5488c7;");
-                        $('.up_vote').attr("style", "color: #A9A9A9;");
+                        $('.down_vote').attr('style', 'color: #5488c7;');
+                        $('.up_vote').attr('style', 'color: #A9A9A9;');
                         $('#btn_show_vote').html(current_vote - 2);
                     }
-                    showNotify('success', "Thanks for your revote!", {
-                        icon: "glyphicon glyphicon-remove"
-                    }, {
-                        delay: 1000
-                    });
+                    showNotify(
+                        'success', 
+                        'Thanks for your revote!', 
+                        {icon: 'glyphicon glyphicon-remove'}, 
+                        {delay: 3000}
+                    );
                 } else {
-                    showNotify('danger', "Your just up or down vote once!", {
-                        icon: "glyphicon glyphicon-remove"
-                    }, {
-                        delay: 1000
-                    });
+                    showNotify(
+                        'danger', 
+                        'Your just up or down vote once!', 
+                        {icon: 'glyphicon glyphicon-remove'}, 
+                        {delay: 1000}
+                    );
                 }
             }
         }).fail(function(error) {
-            showNotify('danger', "Opp\'s something went wrong", {
-                icon: "glyphicon glyphicon-remove"
-            }, {
-                delay: 1000
-            });
+            showNotify(
+                'danger', 
+                'Opp\'s something went wrong', 
+                {icon: 'glyphicon glyphicon-remove'}, 
+                {delay: 3000}
+            );
         });
     });
 
-    $('.delete_comment_topright').click(function() {
-        let id = $(this).val();
+    $('.delete_comment_topright').on('click', function(e) {
+        var id = $(this).val();
         $.ajax({
             url: API_PATH + 'books/review-details/remove-comment/' + id,
-            contentType: 'application/json',
-            dataType: 'json',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': access_token,
-            },
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
             type: 'DELETE',
             data: {},
         }).done(function(response) {
             if (response.message.code == 200) {
                 $('#comment' + id).remove();
-                showNotify('success', "Delete comment successfull!", {
-                    icon: "glyphicon glyphicon-remove"
-                }, {
-                    delay: 1000
-                });
-            } else {
-                showNotify('danger', "Opp\'s something went wrong", {
-                    icon: "glyphicon glyphicon-remove"
-                }, {
-                    delay: 1000
-                });
-            }
-        }).fail(function(error) {
-            showNotify('danger', "Opp\'s something went wrong", {
-                icon: "glyphicon glyphicon-remove"
-            }, {
-                delay: 1000
-            });
-        });
-    });
-
-    $(function () {
-        $('.edit_comment_topright').on('click', function() {
-            var id = $(this).attr('data-comment-id');
-            var userId = $(this).attr('data-user-id');
-            var reviewId = $(this).attr('data-review-id');
-            var content = $(this).attr('data-comment-content');
-            var edit = $(this);
-            var form = '';
-            form += '<form class="comment-update" method="POST">'
-            form += '<input type="hidden" name="reviewId" class="review_id" value=' + reviewId +'>'
-            form += '<input type="hidden" name="userId" class="user_id" value=' + userId +'>'
-            form += '<input type="hidden" name="id" class="comment_id" value=' + id +'>'
-            form += '<textarea name="content" class="content_update form-control">' + content + '</textarea>'
-            form += '<button type="button" class="btn btn-primary hover-btn-default edit-comment">Edit</button>'
-            form += '</form>';
-            edit.parents('.event-item').find('.content-comment').html(form);
-        });
-
-        $('body').on('click', '.edit-comment', function(e) {
-            var data = $('.comment-update').serializeFormJSON();
-            $.ajax({
-                url: API_PATH + 'books/review-details/editcomment',
-                headers: {'Accept': 'application/json', 'Authorization': access_token},
-                method: 'POST',
-                dataType: 'json',
-                data: data
-            }).done(function(response) {
-                $("#edit_comment_topright" + data['id']).attr('data-comment-content', data['content']);
-                $(".comment-update").remove();
-                $('#content-comment-' + data['id']).html('<p>' + data['content'] + '</p>');
                 showNotify(
                     'success', 
-                    'Edit comment successfull!', 
-                    {icon: 'glyphicon glyphicon-remove'}, 
-                    {delay: 3000});
-            }).fail(function(error) {
+                    'Delete comment successfull!', 
+                    {icon: "glyphicon glyphicon-remove"}, 
+                    {delay: 3000}
+                );
+            } else {
                 showNotify(
                     'danger', 
                     'Opp\'s something went wrong', 
                     {icon: 'glyphicon glyphicon-remove'}, 
                     {delay: 3000}
                 );
-            });
+            }
+        }).fail(function(error) {
+            showNotify(
+                'danger', 
+                'Opp\'s something went wrong', 
+                {icon: 'glyphicon glyphicon-remove'}, 
+                {delay: 3000}
+            );
         });
     });
 
-
+    if (typeof(access_token) !== 'undefined') {
+        $.ajax({
+            url: API_PATH + 'notifications/count/user',
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
+            type: 'GET',
+            data: {},
+        }).done(function(response) {
+            if (response.message.code == 200) {
+                if (response.item.count == 0) {
+                    $('.count_Notifications').html(0);
+                } else {
+                    $('.count_Notifications').html(response.item.count);
+                }
+            } else {
+                showNotify(
+                    'danger', 
+                    'Data Invalid', 
+                    {icon: 'glyphicon glyphicon-remove'}, 
+                    {delay: 1000}
+                );
+            }
+        }).fail(function(error) {
+            showNotify(
+                'danger', 
+                'Data Invalid', {
+                icon: 'glyphicon glyphicon-remove'}, 
+                {delay: 1000}
+            );
+        });
+    }
 }(jQuery));
