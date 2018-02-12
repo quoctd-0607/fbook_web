@@ -4,8 +4,8 @@
     <div class="wrap_content">
         <div class="prcover prgreen-bg">
             <div class="space-25"></div>
-            <h1 class="text-white prhellofont">Hello there</h1>
-            <h1 class="text-white">I'm <%= data.name %></h1>
+            <h1 class="text-white prhellofont"><%= __('Hello there') %></h1>
+            <h1 class="text-white"><%= __("I\\'m") %> <%= data.name %></h1>
         </div>
         <div class="prheadline">
             <div class="pravatar"><a href="/users/<%= data.id%>" class=""><% if (typeof data.avatar != 'undefined' && data.avatar) { %>
@@ -21,11 +21,11 @@
                         isTabActived = true;
                     %>
                         <li class="active">
-                            <a data-toggle="tab" href="#sharing_books">Sharing Books</a>
+                            <a data-toggle="tab" href="#sharing_books"><%= __('Sharing Books') %></a>
                         </li>
                     <% } else { %>
                         <li>
-                            <a data-toggle="tab" href="#sharing_books">Sharing Books</a>
+                            <a data-toggle="tab" href="#sharing_books"><%= __('Sharing Books') %></a>
                         </li>
                     <% } %>
 
@@ -33,11 +33,11 @@
                         isTabActived = true;
                     %>
                         <li class="active">
-                            <a data-toggle="tab" href="#reading_books">Reading Books</a>
+                            <a data-toggle="tab" href="#reading_books"><%= __('Reading Books') %></a>
                         </li>
                     <% } else { %>
                         <li>
-                            <a data-toggle="tab" href="#reading_books">Reading Books</a>
+                            <a data-toggle="tab" href="#reading_books"><%= __('Reading Books') %></a>
                         </li>
                     <% } %>
 
@@ -45,11 +45,11 @@
                         isTabActived = true;
                     %>
                         <li class="active">
-                            <a data-toggle="tab" href="#waiting_books">Waiting Books</a>
+                            <a data-toggle="tab" href="#waiting_books"><%= __('Waiting Books') %></a>
                         </li>
                     <% } else { %>
                         <li>
-                            <a data-toggle="tab" href="#waiting_books">Waiting Books</a>
+                            <a data-toggle="tab" href="#waiting_books"><%= __('Waiting Books') %></a>
                         </li>
                     <% } %>
 
@@ -57,11 +57,11 @@
                         isTabActived = true;
                     %>
                         <li class="active">
-                            <a data-toggle="tab" href="#done_books">Returned Books</a>
+                            <a data-toggle="tab" href="#done_books"><%= __('Returned Books') %></a>
                         </li>
                     <% } else { %>
                         <li>
-                            <a data-toggle="tab" href="#done_books">Returned Books</a>
+                            <a data-toggle="tab" href="#done_books"><%= __('Returned Books') %></a>
                         </li>
                     <% } %>
 
@@ -69,11 +69,11 @@
                         isTabActived = true;
                     %>
                         <li class="active">
-                            <a data-toggle="tab" href="#reviewed_books">Reviewed Books</a>
+                            <a data-toggle="tab" href="#reviewed_books"><%= __('Suggest Books') %></a>
                         </li>
                     <% } else { %>
                         <li>
-                            <a data-toggle="tab" href="#reviewed_books">Reviewed Books</a>
+                            <a data-toggle="tab" href="#reviewed_books"><%= __('Suggest Books') %></a>
                         </li>
                     <% } %>
                 </ul>
@@ -85,12 +85,12 @@
                 <!--left col-->
                 <div class="text-center"><h2><strong><%= data.name %></strong></h2>
                 <% if (userId === user.id) { %>
-                    <a href="/books/add"><i class="glyphicon glyphicon-share-alt"></i> Share book</a>
+                    <a href="/books/add"><i class="glyphicon glyphicon-share-alt"></i> <%= __('Share books') %></a>
                 <% } else { %>
                     <% if (follow.isFollow === true) { %>
-                        <button type="button" class="btn-follow btn btn-primary">Following</button>
+                        <button type="button" class="btn-follow btn btn-primary"><%= __('Following') %></button>
                     <% } else { %>
-                        <button type="button" class="btn-follow btn btn-success">Follow</button>
+                        <button type="button" class="btn-follow btn btn-success"><%= __('Follow') %></button>
                     <% } %>
                 <% } %>
                 </div>
@@ -98,15 +98,15 @@
                 <div class="">
                     <div class="book-content book-content-profile">
                         <div class="book-details-item">
-                            <h4 class="tip-left">Email: </h4>
+                            <h4 class="tip-left"><%= __('Email') %>: </h4>
                             <p class=""><%= data.email %></p>
-                            <h4 class="tip-left">Phone: </h4>
+                            <h4 class="tip-left"><%= __('Phone') %>: </h4>
                             <p class=""><%= data.phone %></p>
-                            <h4 class="tip-left">Code: </h4>
+                            <h4 class="tip-left"><%= __('Code') %>: </h4>
                             <p class=""><%= data.code %></p>
-                            <h4 class="tip-left">Position: </h4>
+                            <h4 class="tip-left"><%= __('Position') %>: </h4>
                             <p class=""><%= data.position %></p>
-                            <h4 class="tip-left">Workspace: </h4>
+                            <h4 class="tip-left"><%= __('Workspace') %>: </h4>
                             <% if (typeof(offices.items) !== 'undefined' && typeof(data.office_id) !== 'undefined' && data.office_id && offices.items) { %>
                                 <% offices.items.forEach(function(office) { %>
                                     <% if (office.id == data.office_id) { %>
@@ -115,10 +115,10 @@
                                 <% }) %>
                             <% } %>
 
-                            <h4 class="">Follower: </h4>
-                            <p class=""><a href="" data-toggle="modal" data-target="#followed"><%= follow.countFollowed %> people</a></p>
-                            <h4 class="">Following: </h4>
-                            <p class=""><a href="" data-toggle="modal" data-target="#following"><%= follow.countFollowing %> people</a></p>
+                            <h4 class=""><%= __('Follower') %>: </h4>
+                            <p class=""><a href="" data-toggle="modal" data-target="#followed"><%= follow.countFollowed %> <%= __('people') %></a></p>
+                            <h4 class=""><%= __('Following') %>: </h4>
+                            <p class=""><a href="" data-toggle="modal" data-target="#following"><%= follow.countFollowing %> <%= __('people') %></a></p>
                         </div>
                     </div>
                     <div class="modal fade" id="followed" role="dialog">
@@ -126,15 +126,15 @@
                             <div class="modal-content">
                                 <div class="modal-header prgreen-bg">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title text-white">Followed by: </h4>
+                                    <h4 class="modal-title text-white"><%= __('Followed by') %>: </h4>
                                 </div>
                                 <div class="modal-body">
                                     <% follow.followedBy.forEach(function (user) { %>
                                         <div class="row show-more">
                                             <div class="col-sm-3"><a onclick="window.open('/users/<%= user.id %>')"><% if (typeof data.avatar != 'undefined' && user.avatar) { %>
-                                            <img class= "img-circle img-responsive follow-avatar" src="<%= user.avatar %>" alt="avatar">
+                                            <img class= "img-circle img-responsive follow-avatar" src="<%= user.avatar %>" alt="<%= __('Avatar') %>">
                                             <% } else { %>
-                                                <img class="img-circle img-responsive follow-avatar" src="/images/user_default.png" alt="avatar">
+                                                <img class="img-circle img-responsive follow-avatar" src="/images/user_default.png" alt="<%= __('Avatar') %>">
                                             <% } %></a>
                                             </div>
                                             <div class="col-sm-9">
@@ -144,7 +144,7 @@
                                     <% }) %>
                                 </div>
                                 <% if (follow.countFollowed > 8) { %>
-                                    <button class="btn btn-info" id="load-more-user">Load More</button>
+                                    <button class="btn btn-info" id="load-more-user"><%= __('Load More') %></button>
                                 <% } %>
                             </div>
                         </div>
@@ -154,15 +154,15 @@
                             <div class="modal-content">
                                 <div class="modal-header prgreen-bg">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title text-white">Following: </h4>
+                                    <h4 class="modal-title text-white"><%= __('Following') %>: </h4>
                                 </div>
                                 <div class="modal-body">
                                     <% follow.following.forEach(function (user) { %>
                                         <div class="row show-more">
                                             <div class="col-sm-3"><a onclick="window.open('/users/<%= user.id %>')"><% if (typeof data.avatar != 'undefined' && user.avatar) { %>
-                                            <img class= "img-circle img-responsive follow-avatar" src="<%= user.avatar %>" alt="avatar">
+                                            <img class= "img-circle img-responsive follow-avatar" src="<%= user.avatar %>" alt="<%= __('Avatar') %>">
                                             <% } else { %>
-                                                <img class="img-circle img-responsive follow-avatar" src="/images/user_default.png" alt="avatar">
+                                                <img class="img-circle img-responsive follow-avatar" src="/images/user_default.png" alt="<%= __('Avatar') %>">
                                             <% } %></a>
                                             </div>
                                             <div class="col-sm-9">
@@ -172,7 +172,7 @@
                                     <% }) %>
                                 </div>
                                 <% if (follow.countFollowing > 8) { %>
-                                    <button class="btn btn-info" id="load-more-user">Load More</button>
+                                    <button class="btn btn-info" id="load-more-user"><%= __('Load More') %></button>
                                 <% } %>
                             </div>
                         </div>

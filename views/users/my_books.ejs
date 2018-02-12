@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
-                <h2><strong>My books</strong></h2>
+                <h2><strong><%= __('My Books') %></strong></h2>
                 <div class="title-bar blue">
                     <ul class="list-inline list-unstyled">
                         <li><i class="icofont icofont-square"></i></li>
@@ -38,23 +38,23 @@
                                                 <%= getString(book.title, configs.book.title_limit_characters) %>
                                             </h5>
                                         <% } else {%>
-                                            <h6>No title</h6>
+                                            <h6><%= __('No title') %></h6>
                                         <% } %>
                                         <% if (typeof (book.author) != 'undefined' && book.author) { %>
                                             <h6 title="<%= book.author %>">By <%= getString(book.author, configs.book.author_limit_characters) %></h6>
                                         <% } else {%>
-                                            <h6>By Framgia</h6>
+                                            <h6><%= __('By') %> Framgia</h6>
                                         <% } %>
                                         <input id="rating-book" name="star" class="rating" data-min="0" data-max="5" value=<%= book.avg_star %> disabled="true" data-step="0.01" data-size="xs">
                                         <div class="space-10"></div>
                                         <p><%= book.overview %></p>
                                         <a href="/books/<%= book.id %>/approve-request" class="media-button-customize">View all request (<%- book.users_waiting.length + book.users_returning.length %>)</a>
                                     </div>
-                                    <a href="/books/<%= book.id %>/edit" class="btn btn-primary edit-book">Edit</span></a>
+                                    <a href="/books/<%= book.id %>/edit" class="btn btn-primary edit-book"><%= __('Edit') %></span></a>
                                 </div>
                                 <% if (book.users_reading && book.users_reading.length) { %>
                                     <div class="owners">
-                                        <strong> Keeped by: </strong>
+                                        <strong> <%= __('Keeped by') %>: </strong>
                                         <% book.users_reading.forEach(function (user, index) { %>
                                             <% if (index == 6) {
                                                     %> <strong> ... </strong> <%
@@ -66,7 +66,7 @@
                                                 title="<%= user.name %>"
                                                 class="owner-image-home img-circle" 
                                                 src="<%= (user && user.avatar) ? user.avatar : '/images/user_default.png' %>"
-                                                alt="book">
+                                                alt="<%= __('book') %>">
                                         <% }) %>
                                     </div>
                                 <% } %>
@@ -74,7 +74,7 @@
                         </div>
                     <% }) %>
                 <%} else { %>
-                    <h5 class="text-center">No book in section </h5>
+                    <h5 class="text-center"><%= __('No book in section') %> </h5>
                 <% } %>
             </div>
         </div>
