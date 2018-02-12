@@ -40,6 +40,8 @@
     <%- body %>
 
     <%- include footer.ejs %>
+    <script type="text/javascript" src="/bower/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/bower/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
         if (typeof imgBackUp === 'undefined') {
@@ -62,9 +64,25 @@
                 $.notify(option, setting);
             }
         }
+
+        if (localStorage.getItem('lang') === null) {
+            document.getElementById('myImage').src = "/images/vietnam.png";
+        } else {
+            switch (localStorage.getItem('lang')) {
+                case 'en':
+                    $('#myImage').attr('src', '/images/english.png');
+                    break;
+                case 'vi':
+                    $('#myImage').attr('src', '/images/vietnam.png');
+                    break;
+                case 'jp':
+                    $('#myImage').attr('src', '/images/nhatban.png');
+                    break;
+                default:
+                    $('#myImage').attr('src', '/images/english.png');
+            }
+        }
     </script>
-    <script type="text/javascript" src="/bower/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="/bower/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         var API_PATH = "<%= configs.api_base_url %>";
         var access_token, user = null;

@@ -96,24 +96,16 @@
                             <a target="_blank" href="/users/fbook_app" class="icon-header"><span><i class="icofont icofont-iphone nav-icon"></i></span></a>
                         </li>
                         <li title="<%= __('Language') %>">
-                            <% if (typeof lang !== 'undefined' && lang == 'en') { %>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/english.png" class="image-flag-be"></span></a>
-                            <% } else if (typeof lang !== 'undefined' && lang == 'vi') { %>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/vietnam.png" class="image-flag-be"></span></a>
-                            <% } else if (typeof lang !== 'undefined' && lang == 'jp') { %>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/nhatban.png" class="image-flag-be"></span></a>
-                            <% } else { %>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/vietnam.png" class="image-flag-be"></span></a>
-                            <% } %>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/english.png" class="image-flag-be" id="myImage"></span></a>
                             <ul class="dropdown-menu language">
                                 <li>
-                                    <a href="/change-lang/vi" class="text-i18n" data-img="/images/vietnam.png"><img class="image-choose" src="/images/vietnam.png"/><span>VietNam</span></a>
+                                    <a href="/change-lang/vi" class="text-i18n" data-img="/images/vietnam.png" onclick="localStorage.setItem('lang', 'vi');"><img class="image-choose" src="/images/vietnam.png"/><span>VietNam</span></a>
                                 </li>
                                 <li>
-                                    <a href="/change-lang/en" class="text-i18n" data-img="/images/english.png"><img class="image-choose" src="/images/english.png"/><span>English</span></a>
+                                    <a href="/change-lang/en" class="text-i18n" data-img="/images/english.png" onclick="localStorage.setItem('lang', 'en');"><img class="image-choose" src="/images/english.png"/><span>English</span></a>
                                 </li>
                                 <li>
-                                    <a href="/change-lang/jp" class="text-i18n" data-img="/images/nhatban.png"><img class="image-choose" src="/images/nhatban.png"/><span>日本語</span></a>
+                                    <a href="/change-lang/jp" class="text-i18n" data-img="/images/nhatban.png" onclick="localStorage.setItem('lang', 'jp');"><img class="image-choose" src="/images/nhatban.png"/><span>日本語</span></a>
                                 </li>
                             </ul>
                         </li>
