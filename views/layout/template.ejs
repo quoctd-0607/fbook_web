@@ -33,7 +33,6 @@
         <%- appCss %>
     <% }%>
 </head>
-
 <body data-spy="scroll" data-target="#mainmenu" data-offset="50">
     <%- include header.ejs %>
     
@@ -65,10 +64,33 @@
             }
         }
 
-        if (localStorage.getItem('lang') === null) {
-            document.getElementById('myImage').src = "/images/vietnam.png";
+        function getCookie(cname) {
+            var name = cname + '=';
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for(var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return '';
+        }
+
+        function setLanguage(lang) {
+            var language = getCookie("language");
+            document.cookie = 'language=' + lang +';max-age=9000';
+        }
+
+        var lang = getCookie('language');
+
+        if (lang === null) {
+            $('#myImage').attr('src', '/images/english.png');
         } else {
-            switch (localStorage.getItem('lang')) {
+            switch (lang) {
                 case 'en':
                     $('#myImage').attr('src', '/images/english.png');
                     break;
