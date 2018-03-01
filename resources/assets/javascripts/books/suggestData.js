@@ -18,12 +18,22 @@ $(function ($) {
             suggestDataBooksInternal();
         }, 500);
     });
+
+    var delay = (function() {
+        var timer = 0;
+        return function(callback, ms) {
+            clearTimeout (timer);
+            timer = setTimeout(callback, ms);
+        };
+    })();
 }(jQuery));
 
-if (typeof suggestDataBooks === 'undefined') { 
+if (typeof suggestDataBooks === 'undefined') {
     function suggestDataBooks() {
         $.ajax({
             url: API_PATH + 'search-books-detail/' + $('.suggestedTitle option:selected' ).val(),
+            contentType: 'application/json',
+            dataType: 'json',
             headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
             type: 'GET',
         }).done(function (response) {
@@ -74,6 +84,8 @@ if (typeof suggestTitleBooks === 'undefined') {
         $('#data-suggest-book').empty();
         $.ajax({
             url: API_PATH + 'search-books?q=' + $('#title').val(),
+            contentType: 'application/json',
+            dataType: 'json',
             headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
             type: 'GET',
         }).done(function (response) {
@@ -117,13 +129,16 @@ if (typeof suggestTitleBooks === 'undefined') {
     }
 }
 
+
 if (typeof suggestDataBooksInternal === 'undefined') {
     function suggestDataBooksInternal() {
-        if ($('.title-book').val() == '') {if ($('.title-book').val() == '') {
+        if ($('.title-book').val() == '') {
             $('#data-suggest-book').empty();
         } else {
             $.ajax({
                 url: API_PATH + 'search',
+                contentType: 'application/json',
+                dataType: 'json',
                 headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
                 type: 'POST',
                 data: JSON.stringify({
@@ -150,11 +165,27 @@ if (typeof suggestDataBooksInternal === 'undefined') {
     }
 }
 
+Date.prototype.formattedDate = function (pattern) {
+    formattedDate = pattern.replace('yyyy', this.getFullYear().toString());
+
+    var mm = (this.getMonth() + 1).toString();
+    mm = mm.length > 1 ? mm : '0' + mm;
+    formattedDate = formattedDate.replace('mm', mm);
+
+    var dd = this.getDate().toString();
+    dd = dd.length > 1 ? dd : '0' + dd;
+    formattedDate = formattedDate.replace('dd', dd);
+
+    return formattedDate;
+};
+
 if (typeof fillDataBookInternal === 'undefined') {
     function fillDataBookInternal(bookId) {
         $('#data-suggest-book').empty();
         $.ajax({
             url: API_PATH + 'books/' + bookId,
+            contentType: 'application/json',
+            dataType: 'json',
             headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
             type: 'GET',
         }).done(function (response) {
@@ -198,26 +229,4 @@ if (typeof fillDataBookInternal === 'undefined') {
             );
         });
     }
-}
-
-var delay = (function() {
-    var timer = 0;
-    return function(callback, ms) {
-        clearTimeout (timer);
-        timer = setTimeout(callback, ms);
-    };
-})();
-
-Date.prototype.formattedDate = function (pattern) {
-    formattedDate = pattern.replace('yyyy', this.getFullYear().toString());
-
-    var mm = (this.getMonth() + 1).toString();
-    mm = mm.length > 1 ? mm : '0' + mm;
-    formattedDate = formattedDate.replace('mm', mm);
-
-    var dd = this.getDate().toString();
-    dd = dd.length > 1 ? dd : '0' + dd;
-    formattedDate = formattedDate.replace('dd', dd);
-
-    return formattedDate;
 }
