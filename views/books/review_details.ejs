@@ -111,11 +111,11 @@
                                             <div class="media">
                                                 <div class="media-left">
                                                     <% if (user.avatar !== null) { %>
-                                                        <a href="/users/<%= user.id %>">
-                                                            <img src="<%= user.avatar %>" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
+                                                        <a href="/users/<%= comment.user.id %>">
+                                                            <img src="<%= comment.user.avatar %>" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
                                                         </a>
                                                     <% } else { %>
-                                                        <a href="/users/<%= user.id %>">
+                                                        <a href="/users/<%= comment.user.id %>">
                                                             <img src="/images/user/icon_user_default.png" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
                                                         </a>
                                                     <% } %>
