@@ -18,7 +18,7 @@
                                                         <div class="notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -29,9 +29,9 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('waiting') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Waiting') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Waiting book request:') %></span> 
+                                                                            <span><%= __('Waiting book request') %>: </span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -43,7 +43,7 @@
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -54,9 +54,9 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('cancel') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Cancel') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Cancel book request:') %></span> 
+                                                                            <span><%= __('Cancel book request') %>: </span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -68,7 +68,7 @@
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -79,9 +79,9 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('review') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Review') %></span>
                                                                         <p class="notification-p"> 
-                                                                            <span><%= __('Review Book:') %></span> 
+                                                                            <span><%= __('Review Book') %>: </span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -93,7 +93,7 @@
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -106,7 +106,7 @@
                                                                         </h4>
                                                                         <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('upvoted') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('upvoted your review in book:') %></span> 
+                                                                            <span><%= __('upvoted your review in book') %>:</span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -118,7 +118,7 @@
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -129,9 +129,9 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('downvoted') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Downvoted') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('downvoted your review in book:') %></span> 
+                                                                            <span><%= __('Downvoted your review in book') %>: </span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -143,7 +143,7 @@
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -156,7 +156,7 @@
                                                                         </h4>
                                                                         <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('returning') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Returning book:') %></span> 
+                                                                            <span><%= __('Returning book') %>: </span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -168,7 +168,7 @@
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right"><span class="time_a_go"><%= data.created_at %></span></h4>
@@ -179,7 +179,7 @@
                                                                         </h4>
                                                                         <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('returned') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Return done book:') %></span> 
+                                                                            <span><%= __('Return done book') %>: </span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -191,7 +191,7 @@
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -202,9 +202,9 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('approve returning') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Approve returning') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Return books successfully:') %></span> 
+                                                                            <span><%= __('Return books successfully') %>: </span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -216,7 +216,7 @@
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -227,9 +227,9 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('approve waiting') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Approve waiting') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Accept your request waiting book:') %></span> 
+                                                                            <span><%= __('Accept your request waiting book') %>: </span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -241,7 +241,7 @@
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -252,9 +252,9 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Request edit book') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Requests edit book') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Want to edit book:') %></span> 
+                                                                            <span><%= __('Want to edit book') %>: </span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -266,7 +266,7 @@
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right"><span class="time_a_go"><%= data.created_at %></span></h4>
@@ -275,9 +275,9 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('approve request edit book') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Approve request edit book') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Requests edit book:') %></span> 
+                                                                            <span><%= __('Requests edit book') %>: </span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -289,7 +289,7 @@
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right"><span class="time_a_go"><%= data.created_at %></span></h4>
@@ -298,9 +298,9 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('unapprove request edit book') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Unapprove request edit book') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Unapprove your request edit book:') %></span> 
+                                                                            <span><%= __('Unapprove your request edit book') %>: </span>
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -312,7 +312,7 @@
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -323,9 +323,9 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('approve waiting') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Approve waiting') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Accept your request unapprove book:') %></span> 
+                                                                            <span><%= __('Accept your request unapprove book') %>: </span>
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -339,7 +339,7 @@
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -350,9 +350,9 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('waiting') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Waiting') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Waiting Book:') %></span> 
+                                                                            <span><%= __('Waiting Book') %>:</span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -364,7 +364,7 @@
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -375,9 +375,9 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('cancel') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Cancel') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Cancel book request:') %></span> 
+                                                                            <span><%= __('Cancel book request') %>:</span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -389,7 +389,7 @@
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -400,7 +400,7 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('review') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Review') %></span>
                                                                         <p class="notification-p">
                                                                             <span><%= __('Review Book:') %></span> 
                                                                             <span><%= data.book.title %></span>
@@ -414,7 +414,7 @@
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -427,7 +427,7 @@
                                                                         </h4>
                                                                         <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('upvoted') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('upvoted your review in book:') %></span> 
+                                                                            <span><%= __('upvoted your review in book') %>:</span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -439,7 +439,7 @@
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -450,9 +450,9 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('downvoted') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Downvoted') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('downvoted your review in book:') %></span> 
+                                                                            <span><%= __('Downvoted your review in book') %>:</span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -464,7 +464,7 @@
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -475,7 +475,7 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('returned') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Returned') %></span>
                                                                         <p class="notification-p">
                                                                             <span><%= __('Return done book:') %></span> 
                                                                             <span><%= data.book.title %></span>
@@ -489,7 +489,7 @@
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -500,9 +500,9 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('returning') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Returning') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Returning book:') %></span> 
+                                                                            <span><%= __('Returning book') %>:</span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -514,7 +514,7 @@
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -525,7 +525,7 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('approve returning') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Approve returning') %></span>
                                                                         <p class="notification-p">
                                                                             <span><%= __('Return books successfully:') %></span> 
                                                                             <span><%= data.book.title %></span>
@@ -539,7 +539,7 @@
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -550,9 +550,9 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('approve waiting') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Approve waiting') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Accept your request waiting book:') %></span> 
+                                                                            <span><%= __('Accept your request waiting book') %>:</span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -564,7 +564,7 @@
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -577,7 +577,7 @@
                                                                         </h4>
                                                                         <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('approve waiting') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Accept your request waiting edit book:') %></span> 
+                                                                            <span><%= __('Accept your request waiting edit book') %>:</span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -589,7 +589,7 @@
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -600,9 +600,9 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('approve request edit book') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Approve request edit book') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Accept your request edit book:') %></span> 
+                                                                            <span><%= __('Accept your request edit book') %>:</span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -614,7 +614,7 @@
                                                         <div class=" notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -625,9 +625,9 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('unapprove request edit book') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Unapprove request edit book') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Unapprove your request edit book:') %></span> 
+                                                                            <span><%= __('Unapprove your request edit book') %>:</span> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -639,7 +639,7 @@
                                                         <div class=" notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
-                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="show text-danger pull-right">
@@ -650,7 +650,7 @@
                                                                             <%= data.user_send.name %> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
-                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('approve waiting') %></span>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Approve waiting') %></span>
                                                                         <p class="notification-p">
                                                                             <span><%= __('Accept your request unapprove book:') %></span> 
                                                                             <span><%= data.book.title %></span>
@@ -687,7 +687,7 @@
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
-                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                         </div>
                                                         <div class="media-body">
                                                             <a href="/books/<%= data.book.id %>/approve-request" class="notification_onclick" data-notification-id="<%= data.id %>">
@@ -695,7 +695,7 @@
                                                                     <%= data.user_send.name %>
                                                                 </h4>
                                                                 <p class="notification-p">
-                                                                    <%= __('Waiting Book:') %> <%= data.book.title %>
+                                                                    <%= __('Waiting Book') %>: <%= data.book.title %>
                                                                 </p>
                                                             </a>
                                                         </div>
@@ -706,7 +706,7 @@
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
-                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                         </div>
                                                         <div class="media-body">
                                                             <a href="#" class="notification_onclick" data-notification-id="<%= data.id %>">
@@ -714,7 +714,7 @@
                                                                     <%= data.user_send.name %>
                                                                 </h4>
                                                                 <p class="notification-p">
-                                                                    <%= __('Cancel book request:') %> <%= data.book.title %>
+                                                                    <%= __('Cancel book request') %>: <%= data.book.title %>
                                                                 </p>
                                                             </a>
                                                         </div>
@@ -725,7 +725,7 @@
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
-                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                         </div>
                                                         <div class="media-body">
                                                             <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
@@ -733,7 +733,7 @@
                                                                     <%= data.user_send.name %>
                                                                 </h4>
                                                                 <p class="notification-p">
-                                                                    <%= __('Review Book:') %> <%= data.book.title %>
+                                                                    <%= __('Review Book') %>: <%= data.book.title %>
                                                                 </p>
                                                             </a>
                                                         </div>
@@ -744,7 +744,7 @@
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
-                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                         </div>
                                                         <div class="media-body">
                                                             <a href="/books/<%= data.book.id %>/approve-request %>" class="notification_onclick" data-notification-id="<%= data.id %>">
@@ -752,7 +752,7 @@
                                                                     <%= data.user_send.name %>
                                                                 </h4>
                                                                 <p class="notification-p">
-                                                                    <%= __('Returning book:') %> <%= data.book.title %>
+                                                                    <%= __('Returning book') %>: <%= data.book.title %>
                                                                 </p>
                                                             </a>
                                                         </div>
@@ -763,7 +763,7 @@
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
-                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                         </div>
                                                         <div class="media-body">
                                                             <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
@@ -771,7 +771,7 @@
                                                                     <%= data.user_send.name %>
                                                                 </h4>
                                                                 <p class="notification-p">
-                                                                    <%= __('Return books successfully:') %> <%= data.book.title %>
+                                                                    <%= __('Return books successfully') %>: <%= data.book.title %>
                                                                 </p>
                                                             </a>
                                                         </div>
@@ -782,7 +782,7 @@
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
-                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object " alt="avatar">
+                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object " alt="<%= __('Avatar') %>">
                                                         </div>
                                                         <div class="media-body">
                                                             <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
@@ -790,7 +790,7 @@
                                                                     <%= data.user_send.name %>
                                                                 </h4>
                                                                 <p class="notification-p">
-                                                                    <%= __('Accept your request waiting book:') %> <%= data.book.title %>
+                                                                    <%= __('Accept your request waiting book') %>: <%= data.book.title %>
                                                                 </p>
                                                             </a>
                                                         </div>
@@ -801,7 +801,7 @@
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
-                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                         </div>
                                                         <div class="media-body">
                                                             <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
@@ -809,7 +809,7 @@
                                                                     <%= data.user_send.name %>
                                                                 </h4>
                                                                 <p class="notification-p">
-                                                                    <%= data.user_send.name %> <%= __('Add Book:') %> <%= data.book.title %>
+                                                                    <%= data.user_send.name %> <%= __('Add book') %>: <%= data.book.title %>
                                                                 </p>
                                                             </a>
                                                         </div>
@@ -820,7 +820,7 @@
                                                 <div class=" notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
-                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="avatar">
+                                                            <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                         </div>
                                                         <div class="media-body">
                                                             <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
@@ -828,7 +828,7 @@
                                                                     <%= data.user_send.name %>
                                                                 </h4>
                                                                 <p class="notification-p">
-                                                                    <%= data.user_send.name %> <%= __('Remove Book:') %> <%= data.book.title %>
+                                                                    <%= data.user_send.name %> <%= __('Remove Book') %>: <%= data.book.title %>
                                                                 </p>
                                                             </a>
                                                         </div>

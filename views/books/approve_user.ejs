@@ -140,9 +140,9 @@
                                                         <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Waiting') %></span>
                                                         <span class="text-success"><%= __('Time want to borrow') %>:
                                                             <% if (user.pivot.days_to_read == 1) { %>
-                                                                <%= user.pivot.days_to_read %> day
+                                                                <%= user.pivot.days_to_read %> <%= __('day') %>
                                                             <% } else { %>
-                                                                <%= user.pivot.days_to_read %> days
+                                                                <%= user.pivot.days_to_read %> <%= __('days') %>
                                                             <% } %>
                                                         </span>
                                                     </div>

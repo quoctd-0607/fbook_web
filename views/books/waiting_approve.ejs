@@ -40,11 +40,11 @@
                                     <p>
                                         <%- book.overview %>
                                     </p>
-                                    <a href="/books/<%= book.id %>/approve-request" class="media-button-customize">View all request (<%- book.users_waiting.length + book.users_returning.length %>)</a>
+                                    <a href="/books/<%= book.id %>/approve-request" class="media-button-customize"><%= __('View all request')%> (<%- book.users_waiting.length + book.users_returning.length %>)</a>
                                 </div>
                             </div>
                             <div class="owners">
-                                <strong> Shared by: </strong>
+                                <strong> <%= __('Shared by') %>: </strong>
                                 <% if (book.owners) { %>
                                     <% var countOwner = 0 %>
                                     <% book.owners.forEach(function (owner) { %>
