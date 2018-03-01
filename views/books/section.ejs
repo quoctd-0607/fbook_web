@@ -3,10 +3,10 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-md-9 pull-right">
-                <h3><i class="icofont icofont-book"></i> <%= field %> <%= __('books') %></h3>
+                <h3><i class="icofont icofont-book"></i> <%= __(field + ' ' +'books') %></h3>
                 <div class="row">
                     <div class="pull-left col-xs-12 col-sm-7 col-md-7">
-                        <h4><i><%= __('Books for') %> <span class="">"<%= field %>"</span></i></h4>
+                        <h4><i><%= __('Books for') %> <span class="">"<%= __(field) %>"</span></i></h4>
                     </div>
                     <div class="pull-right col-xs-12 col-sm-5 col-md-5">
                         <form class="form-horizontal">
@@ -15,14 +15,14 @@
                                 <div class="col-xs-5">
                                     <div class="form-group">
                                         <select name="sort" id="sort-book" class="form-control">
-                                            <optgroup label="Order By Desc" data-order-by="desc">
+                                            <optgroup label="<%= __('Order By Desc') %>" data-order-by="desc">
                                             <% sortBookBy.items.forEach(function (condition) { %>
-                                                <option value="<%= condition.field %>"><%= condition.text %></option>
+                                                <option value="<%= condition.field %>"><%= __(condition.text) %></option>
                                             <% }) %>
                                             </optgroup>
-                                            <optgroup label="Order By Asc"  data-order-by="asc">
+                                            <optgroup label="<%= __('Order By Asc') %>"  data-order-by="asc">
                                             <% sortBookBy.items.forEach(function (condition) { %>
-                                                <option value="<%= condition.field %>"><%= condition.text %></option>
+                                                <option value="<%= condition.field %>"><%= __(condition.text) %></option>
                                             <% }) %>
                                             </optgroup>
                                         </select>
@@ -98,7 +98,7 @@
                                 </div>
                             </div>
                             <div class="owners">
-                                <strong> Shared by: </strong>
+                                <strong> <%= __('Shared by') %>: </strong>
                                 <% if (book.owners) { %>
                                     <% var countOwner = 0 %>
                                     <% book.owners.forEach(function (owner) { %>

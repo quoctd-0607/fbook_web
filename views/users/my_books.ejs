@@ -41,14 +41,14 @@
                                             <h6><%= __('No title') %></h6>
                                         <% } %>
                                         <% if (typeof (book.author) != 'undefined' && book.author) { %>
-                                            <h6 title="<%= book.author %>">By <%= getString(book.author, configs.book.author_limit_characters) %></h6>
+                                            <h6 title="<%= book.author %>"><%= __('By') %> <%= getString(book.author, configs.book.author_limit_characters) %></h6>
                                         <% } else {%>
                                             <h6><%= __('By') %> Framgia</h6>
                                         <% } %>
                                         <input id="rating-book" name="star" class="rating" data-min="0" data-max="5" value=<%= book.avg_star %> disabled="true" data-step="0.01" data-size="xs">
                                         <div class="space-10"></div>
                                         <p><%= book.overview %></p>
-                                        <a href="/books/<%= book.id %>/approve-request" class="media-button-customize">View all request (<%- book.users_waiting.length + book.users_returning.length %>)</a>
+                                        <a href="/books/<%= book.id %>/approve-request" class="media-button-customize"><%= __('View all request')%> (<%- book.users_waiting.length + book.users_returning.length %>)</a>
                                     </div>
                                     <a href="/books/<%= book.id %>/edit" class="btn btn-primary edit-book"><%= __('Edit') %></span></a>
                                 </div>
