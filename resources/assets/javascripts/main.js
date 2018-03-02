@@ -1,11 +1,3 @@
-var express = require('express');
-var i18n = require('i18n');
-var request = require('request');
-var cookieParser = require('cookie-parser');
-var admin = express();
-admin.use(cookieParser());
-admin.use(i18n.init);
-
 $(function ($) {
     "use strict";
 
@@ -121,7 +113,7 @@ $(function ($) {
 
     var showChar = 500;
     var ellipsestext = "...";
-    var moretext = res.__('Show more');
+    var moretext = 'Show more';
     var lesstext = "Show less";
     $('.more').each(function() {
         var content = $(this).html();

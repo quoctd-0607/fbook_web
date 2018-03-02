@@ -83,7 +83,7 @@ $(function ($) {
                                 " Review book: " + data.book.title + "</span>" + "</p>";
                         }
                         htmlModel +=
-                            "<span class='text-color-noti label label-warning lbl-waiting" +
+                            "<span class='text-color-noti label label-primary lbl-waiting" +
                             data.user_send.id + "'>review</span>";
                     } else if (data.type == configs.notification.up_vote) {
                         htmlModel += "<a href='/books/" + data.book.id +
@@ -104,7 +104,7 @@ $(function ($) {
                                 "</span>" + "</p>";
                         }
                         htmlModel +=
-                            "<span class='text-color-noti label label-warning lbl-waiting" +
+                            "<span class='text-color-noti label label-success lbl-waiting" +
                             data.user_send.id + "'>UpVote</span>";
                     } else if (data.type == configs.notification.down_vote) {
                         htmlModel += "<a href='/books/" + data.book.id +
@@ -125,7 +125,7 @@ $(function ($) {
                                 "</span>" + "</p>";
                         }
                         htmlModel +=
-                            "<span class='text-color-noti label label-warning lbl-waiting" +
+                            "<span class='text-color-noti label label-danger lbl-waiting" +
                             data.user_send.id + "'>DownVote</span>";
                     } else if (data.type == configs.notification.returning) {
                         htmlModel += "<a href='/books/" + data.book.id +
@@ -167,7 +167,7 @@ $(function ($) {
                                 "</p>";
                         }
                         htmlModel +=
-                            "<span class='text-color-noti label label-warning lbl-waiting" +
+                            "<span class='text-color-noti label label-success lbl-waiting" +
                             data.user_send.id + "'>returned</span>";
                     } else if (data.type == configs.notification.approve_returning) {
                         htmlModel += "<a href='/books/" + data.book.id +
@@ -188,7 +188,7 @@ $(function ($) {
                                 "</span>" + "</p>";
                         }
                         htmlModel +=
-                            "<span class='text-color-noti label label-warning lbl-waiting" +
+                            "<span class='text-color-noti label label-primary lbl-waiting" +
                             data.user_send.id + "'>approve_returning</span>";
                     } else if (data.type == configs.notification.request_edit_book) {
                         htmlModel += "<a href='/admin/waiting-request-edit-book" +
@@ -230,7 +230,7 @@ $(function ($) {
                                 "</span>" + "</p>";
                         }
                         htmlModel +=
-                            "<span class='text-color-noti label label-warning lbl-waiting" +
+                            "<span class='text-color-noti label label-success lbl-waiting" +
                             data.user_send.id +
                             "'>approve request edit book</span>";
                     } else if (data.type == configs.notification.delete_request_update_book) {
@@ -254,7 +254,7 @@ $(function ($) {
                                 "</span>" + "</p>";
                         }
                         htmlModel +=
-                            "<span class='text-color-noti label label-warning lbl-waiting" +
+                            "<span class='text-color-noti label label-danger lbl-waiting" +
                             data.user_send.id +
                             "'>unapprove request edit books</span>";
                     } else if (data.type == configs.notification.approve_waiting) {
