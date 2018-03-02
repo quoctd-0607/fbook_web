@@ -201,20 +201,21 @@ Book.generateBookXhtml = function (book) {
 
     if (book.owners) {
         var countOwner = 0;
-        book.owners.forEach(function (index, owner) {
-            if (index === 6) {
+        book.owners.forEach(function (owner) {
+            countOwner++;
+            if (countOwner === 6) {
                 xhtml += '<strong> ... </strong>';
                 return;
             }
 
             xhtml += "<img data-toggle='tooltip'";
             xhtml += " class='owner-image-home img-circle'";
-            xhtml += " title='" + owner.name + "' src='";
+            xhtml += " title='" + owner.name + "'";
 
             if (owner && owner.avatar) {
-                xhtml += owner.avatar;
+                xhtml += " src='" + owner.avatar + "'";
             } else {
-                xhtml += '/images/user_default.png';
+                xhtml += " src='/images/user_default.png'";
             }
 
             xhtml += " class='media-object author-photo img-thumbnail background--white' alt='library' onerror='this.src='imgBackUp(this)'>";
