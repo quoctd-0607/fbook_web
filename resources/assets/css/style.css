@@ -65,6 +65,14 @@
     width: 25px;
 }
 
+.book-details-item {
+    padding: 0px 20px;
+}
+
+.book-details-item > p {
+    text-align: justify;
+}
+
 a {
     color: #5d5d5d;
     -webkit-transition: 0.3s;
