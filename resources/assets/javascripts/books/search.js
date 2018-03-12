@@ -50,7 +50,7 @@ if (typeof searchBooks === 'undefined') {
                         $('#data-search').append('<li><a href="/books/'+ book.id +'">' + book.title + '</a></li>');
                     });
                 } else {
-                    $('#data-search').append('<li><a href="#">Not found</a></li>');
+                    $('#data-search').append('<li><a href="#">' + i18n['Not found'] + '</a></li>');
                 }
             }).fail(function (error) {
                 $('#data-search').empty();
@@ -78,7 +78,7 @@ if (typeof searchBooksGoogle === 'undefined') {
                         );
                     });
                 } else {
-                    $('#data-search-google').append('<li><a href="#">Not found</a></li>');
+                    $('#data-search-google').append('<li><a href="#">' + i18n['Not found'] + '</a></li>');
                 }
             }).fail(function (error) {
                 $('#data-search-googles').empty();

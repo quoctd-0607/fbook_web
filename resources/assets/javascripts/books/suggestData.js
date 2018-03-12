@@ -56,23 +56,23 @@ if (typeof suggestDataBooks === 'undefined') {
 
                 showNotify(
                     'success', 
-                    'Suggest data filled', 
+                    i18n['Suggest data filled'],
                     {icon: 'glyphicon glyphicon-ok'}, 
                     {delay: 3000}
                 );
             } else {
                 showNotify(
-                    'danger', 
-                    'Don \'t have suggest data books', 
-                    {icon: 'glyphicon glyphicon-remove'}, 
+                    'danger',
+                    i18n['Don \'t have suggest data books'],
+                    {icon: 'glyphicon glyphicon-remove'},
                     {delay: 3000}
                 );
             }
         }).fail(function (error) {
             showNotify(
-                'danger', 
-                'Don \'t have suggest data books', 
-                {icon: 'glyphicon glyphicon-remove'}, 
+                'danger',
+                i18n['Don \'t have suggest data books'],
+                {icon: 'glyphicon glyphicon-remove'},
                 {delay: 3000}
             );
         });
@@ -112,16 +112,16 @@ if (typeof suggestTitleBooks === 'undefined') {
                 $('#myModal').modal('toggle');
             } else {
                 showNotify(
-                    'danger', 
-                    'Don \'t have suggest data books', 
-                    {icon: 'glyphicon glyphicon-remove'}, 
+                    'danger',
+                    i18n['Don \'t have suggest data books'],
+                    {icon: 'glyphicon glyphicon-remove'},
                     {delay: 3000}
                 );
             }
         }).fail(function (error) {
             showNotify(
                 'danger', 
-                'Don \'t have suggest data books', 
+                i18n['Don \'t have suggest data books'],
                 {icon: 'glyphicon glyphicon-remove'}, 
                 {delay: 3000}
             );
@@ -207,24 +207,24 @@ if (typeof fillDataBookInternal === 'undefined') {
                 }
 
                 showNotify(
-                    'success', 
-                    'Suggest internal data filled', 
-                    {icon: 'glyphicon glyphicon-ok'}, 
+                    'success',
+                    i18n['Suggest internal data filled'],
+                    {icon: 'glyphicon glyphicon-ok'},
                     {delay: 3000}
                 );
             } else {
                 showNotify(
-                    'danger', 
-                    'Don \'t have suggest internal data books', 
-                    {icon: 'glyphicon glyphicon-remove'}, 
+                    'danger',
+                    i18n['Don \'t have suggest internal data books'],
+                    {icon: 'glyphicon glyphicon-remove'},
                     {delay: 3000}
                 );
             }
         }).fail(function (error) {
             showNotify(
-                'danger', 
-                'Don \'t have suggest internal data books', 
-                {icon: 'glyphicon glyphicon-remove'}, 
+                'danger',
+                i18n['Don \'t have suggest internal data books'],
+                {icon: 'glyphicon glyphicon-remove'},
                 {delay: 3000}
             );
         });

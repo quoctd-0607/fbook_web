@@ -7,9 +7,9 @@ $(function ($) {
         var userName = $('.hide-userId').attr('user-name');
 
         if (isFollow == 'unfollow') {
-            var title = 'Are you sure Follow \"'  + userName + '\" ?';
+            var title = i18n['Are you sure Follow'] + ' \"'  + userName + '\" ?';
         } else {
-            var title = 'Are you sure Unfollow \"' + userName + '\" ?';
+            var title = i18n['Are you sure Unfollow'] + ' \"' + userName + '\" ?';
         }
 
         swal({
@@ -22,9 +22,9 @@ $(function ($) {
         }, function() {
             if (typeof(access_token) === 'undefined') {
                 showNotify(
-                    'danger', 
-                    'Follow fail', 
-                    {icon: 'glyphicon glyphicon-remove'}, 
+                    'danger',
+                    i18n['Follow fail'],
+                    {icon: 'glyphicon glyphicon-remove'},
                     {delay: 3000}
                 );
 
@@ -44,8 +44,8 @@ $(function ($) {
                 if (response.message.code == 200) {
                     if (isFollow == 'unfollow') {
                         showNotify(
-                            'success', 
-                            'Follow success', 
+                            'success',
+                            i18n['Follow success'],
                             {icon: 'glyphicon glyphicon-ok'}, 
                             {delay: 3000}
                         );
@@ -54,8 +54,8 @@ $(function ($) {
                         $('.hide-userId').attr('follow', 'follow');
                     } else {
                         showNotify(
-                            'success', 
-                            'Unfollow success', 
+                            'success',
+                            i18n['Unfollow success'],
                             {icon: 'glyphicon glyphicon-ok'}, 
                             {delay: 3000}
                         );
@@ -66,7 +66,7 @@ $(function ($) {
                 } else {
                     showNotify(
                         'danger', 
-                        'Follow fail', 
+                        i18n['Follow fail'],
                         {icon: 'glyphicon glyphicon-remove'}, 
                         {delay: 3000}
                     );
@@ -74,7 +74,7 @@ $(function ($) {
             }).fail(function (error) {
                 showNotify(
                     'danger', 
-                    'Follow fail', 
+                    i18n['Follow fail'],
                     {icon: 'glyphicon glyphicon-remove'}, 
                     {delay: 3000}
                 );

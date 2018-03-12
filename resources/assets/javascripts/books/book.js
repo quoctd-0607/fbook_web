@@ -13,7 +13,7 @@ Book.checkAuthorized = function () {
     if (typeof(access_token) === 'undefined' || typeof(user) === 'undefined') {
         showNotify(
             'danger', 
-            'Please login before action', 
+            i18n['Please login before action'], 
             {icon: 'glyphicon glyphicon-remove'}, 
             {delay: 3000}
         );
@@ -85,7 +85,7 @@ Book.editBook = function () {
                     msg += err;
                 });
             } else {
-                msg = 'Can\'t load more';
+                msg = i18n['Can\'t load more'];
             }
 
             showNotify(
@@ -99,7 +99,7 @@ Book.editBook = function () {
         $('.loader').hide();
         showNotify(
             'danger', 
-            'number of images no larger than 3', 
+            i18n['number of images no larger than 3'], 
             {icon: 'glyphicon glyphicon-remove'}, 
             {delay: 3000}
         );
@@ -143,7 +143,7 @@ Book.loadMoreBook = function (data) {
                 msg += err;
             });
         } else {
-            msg = 'Can\'t load more';
+            msg = i18n['Can\'t load more'];
         }
 
         showNotify(
@@ -197,7 +197,7 @@ Book.generateBookXhtml = function (book) {
     xhtml += '<p>'+ book.overview +'</p>';
     xhtml += '</div>';
     xhtml += '</div>';
-    xhtml += "<div class='owners'> <strong> Shared by: </strong>";
+    xhtml += "<div class='owners'> <strong> " + i18n['Shared by'] + ": </strong>";
 
     if (book.owners) {
         var countOwner = 0;
@@ -233,18 +233,18 @@ Book.generateBookXhtml = function (book) {
 
 Book.return = function (data) {
     swal({
-        title: 'Are you sure return this book?',
+        title: i18n['Are you sure return this book?'],
         type: 'info',
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
-        confirmButtonText: 'Yes',
+        confirmButtonText: i18n['Yes'],
         closeOnConfirm: true
     },
     function() {
         if (typeof(access_token) === 'undefined' || typeof(user) === 'undefined') {
             showNotify(
                 'danger', 
-                'Return fail, Please login to continue', 
+                i18n['Return fail, Please login to continue'],
                 {icon: 'glyphicon glyphicon-remove'}, 
                 {delay: 3000}
             );
@@ -269,7 +269,7 @@ Book.return = function (data) {
             window.location.reload();
             showNotify(
                 'success', 
-                'Return success', 
+                i18n['Return success'], 
                 {icon: 'glyphicon glyphicon-ok'}, 
                 {delay: 1000}
             );
@@ -277,7 +277,7 @@ Book.return = function (data) {
             window.location.reload();
             showNotify(
                 'danger', 
-                'Return errors', 
+                i18n['Return errors'], 
                 {icon: 'glyphicon glyphicon-remove'}, 
                 {delay: 1000}
             );
@@ -291,14 +291,14 @@ Book.cancel = function (data) {
         type: 'info',
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
-        confirmButtonText: 'Yes',
+        confirmButtonText: i18n['Yes'],
         closeOnConfirm: true
     },
     function() {
         if (typeof(access_token) === 'undefined' || typeof(user) === 'undefined') {
             showNotify(
                 'danger', 
-                'Cancel fail, Please login to continue', 
+                i18n['Cancel fail, Please login to continue'], 
                 {icon: 'glyphicon glyphicon-remove'}, 
                 {delay: 3000}
             );
@@ -323,7 +323,7 @@ Book.cancel = function (data) {
             window.location.reload();
             showNotify(
                 'success', 
-                'Cancel waiting success', 
+                i18n['Cancel waiting success'],
                 {icon: 'glyphicon glyphicon-ok'}, 
                 {delay: 1000}
             );
@@ -331,7 +331,7 @@ Book.cancel = function (data) {
             window.location.reload();
             showNotify(
                 'danger', 
-                'Cancel waiting errors', 
+                i18n['Cancel waiting errors'], 
                 {icon: 'glyphicon glyphicon-remove'}, 
                 {delay: 1000}
             );
@@ -405,7 +405,7 @@ Book.ajaxSortBook = function (data) {
 
             showNotify(
                 'success', 
-                'Sort books success', 
+                i18n['Sort books success'], 
                 {icon: 'glyphicon glyphicon-ok'}, 
                 {delay: 2000}
             );
@@ -417,7 +417,7 @@ Book.ajaxSortBook = function (data) {
                 msg += err;
             });
         } else {
-            msg = 'Can\'t load more';
+            msg = i18n['Can\'t load more'];
         }
 
         showNotify(
@@ -480,7 +480,7 @@ Book.addNew = function () {
                 msg += err;
             });
         } else {
-            msg = 'Can\'t load more';
+            msg = i18n['Can\'t load more'];
         }
 
         showNotify(
@@ -505,11 +505,11 @@ Book.modalBooking = function () {
         var bookOffice = parseInt($(this).attr('data-office-id'));
         if (user.office_id && bookOffice !== user.office_id) {
             swal({
-                title: 'The book is not in the your workspace. Want to read book ?',
+                title: i18n['The book is not in the your workspace. Want to read book?'],
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#DD6B55',
-                confirmButtonText: 'Yes',
+                confirmButtonText: i18n['Yes'],
                 closeOnConfirm: true
             }, function () {
                 modalWantToRead.modal('show');
@@ -532,9 +532,9 @@ $(function ($) {
     $('.add-owner').on('click', function(e) {
         if (typeof(access_token) === 'undefined' || typeof(user) === 'undefined') {
             showNotify(
-                'danger', 
-                'Please login before action', 
-                {icon: 'glyphicon glyphicon-remove'}, 
+                'danger',
+                i18n['Please login before action'],
+                {icon: 'glyphicon glyphicon-remove'},
                 {delay: 3000}
             );
 
@@ -544,29 +544,29 @@ $(function ($) {
         var bookOffice = parseInt($(this).attr('data-office-id'));
         if (user.office_id && bookOffice !== user.office_id) {
             swal({
-                title: 'The book is not in the your workspace. Are you sure you want to share this book ?',
+                title: i18n['The book is not in the your workspace. Are you sure you want to share this book?'],
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#DD6B55',
-                confirmButtonText: 'Yes',
+                confirmButtonText: i18n['Yes'],
                 closeOnConfirm: true
             }, function () {
                 window.location.href = '/books/add';
             });
         } else {
             swal({
-                title: 'Are you sure you want to share this book?',
+                title: i18n['Are you sure you want to share this book?'],
                 type: 'info',
                 showCancelButton: true,
                 confirmButtonColor: '#DD6B55',
-                confirmButtonText: 'Yes',
+                confirmButtonText: i18n['Yes'],
                 closeOnConfirm: true
             },
             function() {
                 if (typeof(access_token) === 'undefined' || typeof(user) === 'undefined') {
                     showNotify(
                         'danger', 
-                        'Add owner fail, Please login to continue', 
+                        i18n['Add owner fail, Please login to continue'],
                         {icon: 'glyphicon glyphicon-remove'}, 
                         {delay: 3000}
                     );
@@ -597,14 +597,14 @@ $(function ($) {
 
                         showNotify(
                             'success', 
-                            'Add owner success', 
+                            i18n['Add owner success'],
                             {icon: 'glyphicon glyphicon-ok'}, 
                             {delay: 3000}
                         );
                     } else {
                         showNotify(
                             'danger', 
-                            'Add owner fail', 
+                            i18n['Add owner fail'],
                             {icon: 'glyphicon glyphicon-remove'}, 
                             {delay: 3000}
                         );
@@ -623,18 +623,18 @@ $(function ($) {
 
     $('.btn-action').on('click', '.remove-owner', function (e) {
         swal({
-            title: 'Are you sure remove owner this book?',
+            title: i18n['Are you sure remove owner this book?'],
             type: 'info',
             showCancelButton: true,
             confirmButtonColor: '#DD6B55',
-            confirmButtonText: 'Yes',
+            confirmButtonText: i18n['Yes'],
             closeOnConfirm: true
         },
         function() {
             if (typeof(access_token) === 'undefined' || typeof(user) === 'undefined') {
                 showNotify(
                     'danger', 
-                    'Add owner fail, Please login to continue', 
+                    i18n['Add owner fail, Please login to continue'],
                     {icon: 'glyphicon glyphicon-remove'}, 
                     {delay: 3000}
                 );
@@ -659,14 +659,14 @@ $(function ($) {
 
                     showNotify(
                         'success', 
-                        'Remove owner success', 
+                        i18n['Remove owner success'],
                         {icon: 'glyphicon glyphicon-ok'}, 
                         {delay: 3000}
                     );
                 } else {
                     showNotify(
                         'danger', 
-                        'Remove owner fail', 
+                        i18n['Remove owner fail'], 
                         {icon: 'glyphicon glyphicon-remove'}, 
                         {delay: 3000}
                     );
@@ -686,19 +686,19 @@ $(function ($) {
 if (typeof approveRequestWaiting === 'undefined') {
     function approveRequestWaiting(userId) {
         swal({
-            title: 'Are you sure approve this request?',
+            title: i18n['Are you sure approve this request?'],
             type: 'info',
             showCancelButton: true,
             confirmButtonColor: '#DD6B55',
-            confirmButtonText: 'Yes',
+            confirmButtonText: i18n['Yes'],
             closeOnConfirm: true
         },
         function() {
             if (typeof(access_token) === 'undefined') {
                 showNotify(
                     'danger', 
-                    'Approve request fail, Please login to continue', 
-                    {icon: 'glyphicon glyphicon-remove'}, 
+                    i18n['Approve request fail, Please login to continue'],
+                    {icon: 'glyphicon glyphicon-remove'},
                     {delay: 3000}
                 );
 
@@ -726,23 +726,23 @@ if (typeof approveRequestWaiting === 'undefined') {
 
                     showNotify(
                         'success', 
-                        'Request approved', 
-                        {icon: 'glyphicon glyphicon-ok'}, 
+                        i18n['Request approved'],
+                        {icon: 'glyphicon glyphicon-ok'},
                         {delay: 3000}
                     );
                 } else {
                     showNotify(
-                        'danger', 
-                        'Approve request fail', 
-                        {icon: 'glyphicon glyphicon-remove'}, 
+                        'danger',
+                        i18n['Approve request fail'],
+                        {icon: 'glyphicon glyphicon-remove'},
                         {delay: 3000}
                     );
                 }
             }).fail(function (error) {
                 showNotify(
-                    'danger', 
-                    error.responseJSON.message.description, 
-                    {icon: 'glyphicon glyphicon-remove'}, 
+                    'danger',
+                    error.responseJSON.message.description,
+                    {icon: 'glyphicon glyphicon-remove'},
                     {delay: 3000}
                 );
             });
@@ -753,19 +753,19 @@ if (typeof approveRequestWaiting === 'undefined') {
 if (typeof approveRequestReturning === 'undefined') {
     function approveRequestReturning(userId) {
         swal({
-            title: 'Are you sure approve this request?',
+            title: i18n['Are you sure approve this request?'],
             type: 'info',
             showCancelButton: true,
             confirmButtonColor: '#DD6B55',
-            confirmButtonText: 'Yes',
+            confirmButtonText: i18n['Yes'],
             closeOnConfirm: true
         },
         function() {
             if (typeof(access_token) === 'undefined') {
                 showNotify(
-                    'danger', 
-                    'Approve request fail, Please login to continue', 
-                    {icon: 'glyphicon glyphicon-remove'}, 
+                    'danger',
+                    i18n['Approve request fail, Please login to continue'],
+                    {icon: 'glyphicon glyphicon-remove'},
                     {delay: 3000}
                 );
 
@@ -790,24 +790,24 @@ if (typeof approveRequestReturning === 'undefined') {
                     $('.btn-approve-returning' + userId).remove();
 
                     showNotify(
-                        'success', 
-                        'Request approved', 
-                        {icon: 'glyphicon glyphicon-ok'}, 
+                        'success',
+                        i18n['Request approved'],
+                        {icon: 'glyphicon glyphicon-ok'},
                         {delay: 3000}
                     );
                 } else {
                     showNotify(
-                        'danger', 
-                        'Approve request fail', 
-                        {icon: 'glyphicon glyphicon-remove'}, 
+                        'danger',
+                        i18n['Approve request fail'],
+                        {icon: 'glyphicon glyphicon-remove'},
                         {delay: 3000}
                     );
                 }
             }).fail(function (error) {
                 showNotify(
                     'danger', 
-                    error.responseJSON.message.description, 
-                    {icon: 'glyphicon glyphicon-remove'}, 
+                    error.responseJSON.message.description,
+                    {icon: 'glyphicon glyphicon-remove'},
                     {delay: 3000}
                 );
             });
@@ -818,18 +818,18 @@ if (typeof approveRequestReturning === 'undefined') {
 if (typeof unapproveRequestWaiting === 'undefined') {
     function unapproveRequestWaiting(userId) {
         swal({
-            title: 'Are you sure unapprove this request?',
+            title: i18n['Are you sure unapprove this request?'],
             type: 'info',
             showCancelButton: true,
             confirmButtonColor: '#DD6B55',
-            confirmButtonText: 'Yes',
+            confirmButtonText: i18n['Yes'],
             closeOnConfirm: true
         },
         function() {
             if (typeof(access_token) === 'undefined') {
                 showNotify(
                     'danger', 
-                    'Approve request fail, Please login to continue', 
+                    i18n['Approve request fail, Please login to continue'],
                     {icon: 'glyphicon glyphicon-remove'}, 
                     {delay: 3000}
                 );
@@ -857,24 +857,24 @@ if (typeof unapproveRequestWaiting === 'undefined') {
                     $('.btn.hidden').removeClass('hidden');
 
                     showNotify(
-                        'success', 
-                        'Request unapproved', 
-                        {icon: 'glyphicon glyphicon-ok'}, 
+                        'success',
+                        i18n['Request unapproved'],
+                        {icon: 'glyphicon glyphicon-ok'},
                         {delay: 3000}
                     );
                 } else {
                     showNotify(
-                        'danger', 
-                        'Unapprove request fail', 
-                        {icon: 'glyphicon glyphicon-remove'}, 
+                        'danger',
+                        i18n['Unapprove request fail'],
+                        {icon: 'glyphicon glyphicon-remove'},
                         {delay: 3000}
                     );
                 }
             }).fail(function (error) {
                 showNotify(
-                    'danger', 
-                    error.responseJSON.message.description, 
-                    {icon: 'glyphicon glyphicon-remove'}, 
+                    'danger',
+                    error.responseJSON.message.description,
+                    {icon: 'glyphicon glyphicon-remove'},
                     {delay: 3000}
                 );
             });
@@ -885,19 +885,19 @@ if (typeof unapproveRequestWaiting === 'undefined') {
 if (typeof removeRequestWaiting === 'undefined') {
     function removeRequestWaiting(userId) {
         swal({
-            title: 'Are you sure remove this request?',
+            title: i18n['Are you sure remove this request?'],
             type: 'info',
             showCancelButton: true,
             confirmButtonColor: '#DD6B55',
-            confirmButtonText: 'Yes',
+            confirmButtonText: i18n['Yes'],
             closeOnConfirm: true
         },
         function() {
             if (typeof(access_token) === 'undefined') {
                 showNotify(
-                    'danger', 
-                    'Approve request fail, Please login to continue', 
-                    {icon: 'glyphicon glyphicon-remove'}, 
+                    'danger',
+                    i18n['Approve request fail, Please login to continue'],
+                    {icon: 'glyphicon glyphicon-remove'},
                     {delay: 3000}
                 );
 
@@ -921,15 +921,15 @@ if (typeof removeRequestWaiting === 'undefined') {
                     $('.approve-waiting-area-' + userId).html('');
 
                     showNotify(
-                        'success', 
-                        'Request removed', 
-                        {icon: 'glyphicon glyphicon-ok'}, 
+                        'success',
+                        i18n['Request removed'],
+                        {icon: 'glyphicon glyphicon-ok'},
                         {delay: 3000}
                     );
                 } else {
                     showNotify(
-                        'danger', 
-                        'Remove request fail', 
+                        'danger',
+                        i18n['Remove request fail'],
                         {icon: 'glyphicon glyphicon-remove'},
                         {delay: 3000}
                     );
@@ -949,11 +949,11 @@ if (typeof removeRequestWaiting === 'undefined') {
 if (typeof removeRequestUpdateBook === 'undefined') {
     function removeRequestUpdateBook(requestId) {
         swal({
-            title: 'Are you sure remove this request?',
+            title: i18n['Are you sure remove this request?'],
             type: 'info',
             showCancelButton: true,
             confirmButtonColor: '#DD6B55',
-            confirmButtonText: 'Yes',
+            confirmButtonText: i18n['Yes'],
             closeOnConfirm: true
         },
         function() {
@@ -962,9 +962,9 @@ if (typeof removeRequestUpdateBook === 'undefined') {
             $('#load' + requestId).html(loading);
             if (typeof(access_token) === 'undefined') {
                 showNotify(
-                    'danger', 
-                    'Approve request fail, Please login to continue', 
-                    {icon: 'glyphicon glyphicon-remove'}, 
+                    'danger',
+                    i18n['Approve request fail, Please login to continue'],
+                    {icon: 'glyphicon glyphicon-remove'},
                     {delay: 3000}
                 );
             }
@@ -984,16 +984,16 @@ if (typeof removeRequestUpdateBook === 'undefined') {
                     if (response.message.status) {
                         $('#req' + requestId).remove();
                         showNotify(
-                            'success', 
-                            'Request removed', 
-                            {icon: 'glyphicon glyphicon-ok'}, 
+                            'success',
+                            i18n['Request removed'],
+                            {icon: 'glyphicon glyphicon-ok'},
                             {delay: 3000}
                         );
                     } else {
                         showNotify(
-                            'danger', 
-                            'Remove request fail',
-                            {icon: 'glyphicon glyphicon-remove'}, 
+                            'danger',
+                            i18n['Remove request fail'],
+                            {icon: 'glyphicon glyphicon-remove'},
                             {delay: 3000}
                         );
                     }
