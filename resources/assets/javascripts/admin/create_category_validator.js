@@ -7,8 +7,8 @@ $('#create-category').validate({
     },
     messages: {
         name: {
-            required: 'Name field is required',
-            minLength: 'Name must have more than 2 characters'
+            required: i18n['Name field is required'],
+            minLength: i18n['Name must have more than 2 characters']
         }
     }
 });

@@ -23,17 +23,17 @@ if (typeof markAsRead === 'undefined') {
                 $('.count_Notifications').html(0);
             } else {
                 showNotify(
-                    'danger', 
-                    'Data Invalid', 
-                    {icon: 'glyphicon glyphicon-remove'}, 
+                    'danger',
+                    i18n['Data Invalid'],
+                    {icon: 'glyphicon glyphicon-remove'},
                     {delay: 3000}
                 );
             }
         }).fail(function (error) {
             showNotify(
-                'danger', 
-                'Data Invalid', 
-                {icon: 'glyphicon glyphicon-remove'}, 
+                'danger',
+                i18n['Data Invalid'],
+                {icon: 'glyphicon glyphicon-remove'},
                 {delay: 3000}
             );
         });
@@ -48,27 +48,27 @@ if (typeof timeAGo === 'undefined') {
             return date;
         }
         if (interval == 1) {
-            return interval + ' day ago';
+            return interval + ' ' + i18n['day ago'];
         }
         if (interval > 1) {
-            return interval + ' days ago';
+            return interval + ' ' + i18n['days ago'];
         }
         interval = Math.floor( seconds / 3600 );
         if (interval == 1) {
-            return interval + ' hour ago';
+            return interval + ' ' + i18n['hour ago'];
         }
         if (interval > 1) {
-            return interval + ' hours ago';
+            return interval + ' ' + i18n['hour ago'];
         }
         interval = Math.floor( seconds / 60 );
         if (interval == 1) {
-            return interval + ' minute ago';
+            return interval + ' ' + i18n['minute ago'];
         }
         if (interval > 1) {
-            return interval + ' minutes ago';
+            return interval + ' ' + i18n['minute ago'];
         }
 
-        return Math.floor(seconds) + ' seconds ago';
+        return Math.floor(seconds) + ' ' + i18n['seconds ago'];
     };
 }
 
@@ -110,7 +110,7 @@ $(function ($) {
             } else {
                 showNotify(
                     'danger', 
-                    'Data Invalid', 
+                    i18n['Data Invalid'],
                     {icon: 'glyphicon glyphicon-remove'}, 
                     {delay: 3000}
                 );
@@ -118,7 +118,7 @@ $(function ($) {
         }).fail(function (error) {
             showNotify(
                 'danger', 
-                'Data Invalid', 
+                i18n['Data Invalid'], 
                 {icon: 'glyphicon glyphicon-remove'}, 
                 {delay: 1000}
             );
@@ -165,12 +165,12 @@ $(function ($) {
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + " - Waiting book request: " + content + ellipsestext + "</span>";
+                                        + data.user_send.name + " - " + i18n['Waiting book request'] +": " + content + ellipsestext + "</span>";
                         } else {
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + " - Waiting book request: " + data.book.title + "</span>";
+                                        + data.user_send.name + " - " + i18n['Waiting book request'] +": " + data.book.title + "</span>";
                         }
-                        htmlModel += '<span class="badge badge-warning size-100-percent' + data.user_send.id + '">waiting</span>';
+                        htmlModel += '<span class="badge badge-warning size-100-percent' + data.user_send.id + '">' + i18n['waiting'] + '</span>';
                     } else if (data.type == configs.notification.cancel) {//
                             htmlModel += "<a href='javascript:void(0)' class='normal-white-space' data-notification-id='"
                                         + data.id + "'>";
@@ -178,12 +178,12 @@ $(function ($) {
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + " - Cancel book request: " + content + ellipsestext + "</span>";
+                                        + data.user_send.name + " - " + i18n['Cancel book request'] + ": " + content + ellipsestext + "</span>";
                         } else {
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + " - Cancel book request: " + data.book.title + "</span>";
+                                        + data.user_send.name + " - " + i18n['Cancel book request'] + ": " + data.book.title + "</span>";
                         }
-                        htmlModel += '<span class="badge badge-warning size-100-percent' + data.user_send.id + '">cancel</span>';
+                        htmlModel += '<span class="badge badge-warning size-100-percent' + data.user_send.id + '">' + i18n['cancel'] + '</span>';
                     } else if (data.type == configs.notification.review) {//
                             htmlModel += "<a href='/books/" + data.book.id
                                         + "' class='normal-white-space' data-notification-id='"
@@ -191,12 +191,12 @@ $(function ($) {
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + " Review Book: " + content + ellipsestext + "</span>";
+                                        + data.user_send.name + " " + i18n['Review Book'] + ": " + content + ellipsestext + "</span>";
                         } else {
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + " Review Book: " + data.book.title + "</span>";
+                                        + data.user_send.name + " " + i18n['Review Book'] + ": " + data.book.title + "</span>";
                         }
-                        htmlModel += '<span class="badge badge-warning size-100-percent' + data.user_send.id + '">review</span>';
+                        htmlModel += '<span class="badge badge-warning size-100-percent' + data.user_send.id + '">' + i18n['review'] + '</span>';
                     } else if (data.type == configs.notification.returning) {
                             htmlModel += "<a href='/books/" + data.book.id
                                         + "/approve-request' class='normal-white-space' data-notification-id='"
@@ -204,12 +204,12 @@ $(function ($) {
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + " - Returning book: " + content + ellipsestext + "</span>";
+                                        + data.user_send.name + " " + i18n['Returning book'] + ": " + content + ellipsestext + "</span>";
                         } else {
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + " - Returning book: " + data.book.title + "</span>";
+                                        + data.user_send.name + " " + i18n['Returning book'] + ": " + data.book.title + "</span>";
                         }
-                        htmlModel += '<span class="badge badge-warning size-100-percent' + data.user_send.id + '">returning</span>';
+                        htmlModel += '<span class="badge badge-warning size-100-percent' + data.user_send.id + '">' + i18n['returning'] + '</span>';
                     } else if (data.type == configs.notification.returned) {
                         htmlModel += "<a href='/books/" + data.book.id
                             + "/approve-request' class='normal-white-space' data-notification-id='"
@@ -217,12 +217,12 @@ $(function ($) {
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + " - Return done book: " + content + ellipsestext + "</span>";
+                                        + data.user_send.name + " " + i18n['Return done book'] + ": " + content + ellipsestext + "</span>";
                         } else {
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + " - Return done book: " + data.book.title + "</span>";
+                                        + data.user_send.name + " " + i18n['Return done book'] + ": " + data.book.title + "</span>";
                         }
-                        htmlModel += '<span class="badge badge-warning size-100-percent' + data.user_send.id + '">returned</span>';
+                        htmlModel += '<span class="badge badge-warning size-100-percent' + data.user_send.id + '">' + i18n['returned'] +'</span>';
                     } else if (data.type == configs.notification.approve_returning) {
                             htmlModel += "<a href='/books/" + data.book.id
                                         + "' class='normal-white-space' data-notification-id='"
@@ -230,12 +230,12 @@ $(function ($) {
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + "- Return books successfully: " + content + ellipsestext + "</span>";
+                                        + data.user_send.name + " " + i18n['Return books successfully'] + ": " + content + ellipsestext + "</span>";
                         } else {
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + " - Return books successfully: " + data.book.title + "</span>";
+                                        + data.user_send.name + " " + i18n['Return books successfully'] + ": " + data.book.title + "</span>";
                         }
-                        htmlModel += '<span class="badge badge-warning size-100-percent' + data.user_send.id + '">approve_returning</span>';
+                        htmlModel += '<span class="badge badge-warning size-100-percent' + data.user_send.id + '">' + i18n['approve returning'] + '</span>';
                     } else if (data.type == configs.notification.request_edit_book) {
                             htmlModel += "<a href='/admin/waiting-request-edit-book"
                                         + "' class='normal-white-space' data-notification-id='"
@@ -243,12 +243,12 @@ $(function ($) {
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + " - Want to edit book: " + content + ellipsestext + "</span>";
+                                        + data.user_send.name + " - " + i18n['Want to edit book'] + ": " + content + ellipsestext + "</span>";
                         } else {
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + " - Want to edit book: " + data.book.title + "</span>";
+                                        + data.user_send.name + " - " + i18n['Want to edit book'] + ": " + data.book.title + "</span>";
                         }
-                        htmlModel += '<span class="badge badge-warning size-100-percent' + data.user_send.id + '">request edit book</span>';
+                        htmlModel += '<span class="badge badge-warning size-100-percent' + data.user_send.id + '">' + i18n['request edit book'] + '</span>';
                     } else if (data.type == configs.notification.approve_request_update_book) {
                             htmlModel += "<a href='/books/" + data.book.id
                                         + "' class='normal-white-space' data-notification-id='"
@@ -256,13 +256,13 @@ $(function ($) {
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name +  " Approve your request edit book: " + content + ellipsestext + "</span>";
+                                        + data.user_send.name + " - " + i18n['Approve your request edit book'] + ": " + content + ellipsestext + "</span>";
                         } else {
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + " - Approve your request edit book: " + data.book.title + "</span>";
+                                        + data.user_send.name + " - " + i18n['Approve your request edit book'] + ": " + data.book.title + "</span>";
                         }
                         htmlModel += '<span class="badge badge-warning size-100-percent' + data.user_send.id
-                                    + '">approve request edit book</span>';
+                                    + '">' + i18n['approve request edit book'] + '</span>';
                     } else if (data.type == configs.notification.delete_request_update_book) {
                             htmlModel += "<a href='#"
                                         + "' class='normal-white-space' data-notification-id='"
@@ -271,13 +271,13 @@ $(function ($) {
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + " - Unapprove your request edit book: " + content + ellipsestext + "</span>";
+                                        + data.user_send.name + " - " + i18n['Unapprove your request edit book'] + ": " + content + ellipsestext + "</span>";
                         } else {
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + " - Unapprove your request edit book: " + data.book.title + "</span>";
+                                        + data.user_send.name + " - " + i18n['Unapprove your request edit book'] + ": " + data.book.title + "</span>";
                         }
                         htmlModel += '<span class="badge badge-warning size-100-percent' + data.user_send.id
-                                    + '">unapprove request edit books</span>';
+                                    + '">' + i18n['Unapprove your request edit book'] + '</span>';
                     } else if (data.type == configs.notification.approve_waiting) {
                             htmlModel += "<a href='/books/" + data.book.id
                                         + "' class='normal-white-space' data-notification-id='"
@@ -285,13 +285,13 @@ $(function ($) {
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name +  " - Accept your request waiting book: " + content + ellipsestext + "</span>";
+                                        + data.user_send.name + " - " + i18n['Accept your request waiting book'] + ": " + content + ellipsestext + "</span>";
                         } else {
                             htmlModel += '<span class="notify-content">'
-                                        + data.user_send.name + " - Accept your request waiting book: " + data.book.title + "</span>";
+                                        + data.user_send.name + " - " + i18n['Accept your request waiting book'] + ": " + data.book.title + "</span>";
                         }
                         htmlModel += '<span class="badge badge-warning size-100-percent' + data.user_send.id
-                                    + '">approve_waiting</span>';
+                                    + '">' + i18n['approve waiting'] + '</span>';
                     }
                     htmlModel += '<span class="pull-right padding-left-10 diff-time">' + data.created_at + '</span></a></li>';
                 });
@@ -316,17 +316,17 @@ $(function ($) {
                                 }
                             } else {
                                 showNotify(
-                                    'danger', 
-                                    'Data Invalid', 
-                                    {icon: 'glyphicon glyphicon-remove'}, 
+                                    'danger',
+                                    i18n['Data Invalid'],
+                                    {icon: 'glyphicon glyphicon-remove'},
                                     {delay: 3000}
                                 );
                             }
                         }).fail(function (error) {
                             showNotify(
-                                'danger', 
-                                'Data Invalid', 
-                                {icon: 'glyphicon glyphicon-remove'}, 
+                                'danger',
+                                i18n['Data Invalid'],
+                                {icon: 'glyphicon glyphicon-remove'},
                                 {delay: 3000}
                             );
                         });
@@ -340,9 +340,9 @@ $(function ($) {
             }
         }).fail(function (error) {
             showNotify(
-                'danger', 
-                'Opp\'s something went wrong', 
-                {icon: 'glyphicon glyphicon-remove'}, 
+                'danger',
+                i18n['Opp\'s something went wrong'],
+                {icon: 'glyphicon glyphicon-remove'},
                 {delay: 3000}
             );
         });
@@ -352,11 +352,11 @@ $(function ($) {
         e.preventDefault();
         var id = $(this).val();
         swal({
-            title: "Are you sure delete",
+            title: i18n['Are you sure delete'],
             type: "info",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes",
+            confirmButtonText: i18n['Yes'],
             closeOnConfirm: true
         },
         function() {
@@ -373,23 +373,23 @@ $(function ($) {
                     $('#book' + id).remove();
                     showNotify(
                         'success', 
-                        'Delete book successfull!', 
-                        {icon: 'glyphicon glyphicon-remove'}, 
+                        i18n['Delete book successfull!'], 
+                        {icon: 'glyphicon glyphicon-remove'},
                         {delay: 3000}
                     );
                 } else {
                     showNotify(
                         'danger', 
-                        'Opp\'s something went wrong', 
-                        {icon: 'glyphicon glyphicon-remove'}, 
+                        i18n['Opp\'s something went wrong'],
+                        {icon: 'glyphicon glyphicon-remove'},
                         {delay: 3000}
                     );
                 }
             }).fail(function(error) {
                 showNotify(
                     'danger', 
-                    'Opp\'s something went wrong', 
-                    {icon: 'glyphicon glyphicon-remove'}, 
+                    i18n['Opp\'s something went wrong'],
+                    {icon: 'glyphicon glyphicon-remove'},
                     {delay: 3000}
                 );
             });

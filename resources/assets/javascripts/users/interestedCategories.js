@@ -7,7 +7,7 @@ $(function ($) {
         if (typeof(access_token) === 'undefined') {
             showNotify(
                 'danger', 
-                'Update interested categories fail', 
+                i18n['Update interested categories fail'], 
                 {icon: 'glyphicon glyphicon-remove'}, 
                 {delay: 3000}
             );
@@ -33,24 +33,24 @@ $(function ($) {
         }).done(function (response) {
             if (response.message.code == 200) {
                 showNotify(
-                    'success', 
-                    'Update interested categories success', 
-                    {icon: 'glyphicon glyphicon-ok'}, 
+                    'success',
+                    i18n['Update interested categories success'],
+                    {icon: 'glyphicon glyphicon-ok'},
                     {delay: 1000}
                 );
             } else {
                 showNotify(
-                    'danger', 
-                    'Update interested categories fail', 
-                    {icon: 'glyphicon glyphicon-remove'}, 
+                    'danger',
+                    i18n['Update interested categories fail'],
+                    {icon: 'glyphicon glyphicon-remove'},
                     {delay: 1000}
                 );
             }
         }).fail(function (error) {
             showNotify(
-                'danger', 
-                'Update interested categories fail', 
-                {icon: 'glyphicon glyphicon-remove'}, 
+                'danger',
+                i18n['Update interested categories fail'],
+                {icon: 'glyphicon glyphicon-remove'},
                 {delay: 1000}
             );
         });

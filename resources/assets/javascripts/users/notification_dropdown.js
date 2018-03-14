@@ -29,19 +29,17 @@ $(function ($) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown fix-text'>" +
-                                data.user_send.name + " </span>" + "<span>" +
-                                " Waiting book request: " + content + ellipsestext +
+                                data.user_send.name + " </span>" + "<span> " + i18n['Waiting book request'] +": " + content + ellipsestext +
                                 "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + "</span>" + "<span>" +
-                                " Waiting book request: " + data.book.title + "</span>" +
+                                data.user_send.name + " </span>" + "<span> " + i18n['Waiting book request'] +": " + data.book.title + "</span>" +
                                 "</p>";
                         }
                         htmlModel +=
                             "<span class='text-color-noti label label-warning lbl-waiting" +
-                            data.user_send.id + "'>waiting</span>";
+                            data.user_send.id + "'>" + i18n['waiting'] + "</span>";
                     } else if (data.type == configs.notification.cancel) {
                         htmlModel +=
                             "<a href='#' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
@@ -52,19 +50,17 @@ $(function ($) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + " </span>" + "<span>" +
-                                " Cancel book request: " + content + ellipsestext +
+                                data.user_send.name + " </span>" + "<span>" + i18n['Cancel book request'] + ": " + content + ellipsestext +
                                 "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + "</span>" + "<span>" +
-                                " Cancel book request: " + data.book.title + "</span>" +
+                                data.user_send.name + "</span>" + "<span>" + i18n['Cancel book request'] + ": " + data.book.title + "</span>" +
                                 "</p>";
                         }
                         htmlModel +=
                             "<span class='text-color-noti label label-warning lbl-waiting" +
-                            data.user_send.id + "'>cancel</span>";
+                            data.user_send.id + "'>" + i18n['cancel'] + "</span>";
                     } else if (data.type == configs.notification.review) {
                         htmlModel += "<a href='/books/" + data.book.id +
                             "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
@@ -73,18 +69,16 @@ $(function ($) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + " </span>" + "<span>" +
-                                " Review book: " + content + ellipsestext + "</span>" +
+                                data.user_send.name + " </span>" + "<span> " + i18n['Review Book'] + ": " + content + ellipsestext + "</span>" +
                                 "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + "</span>" + "<span>" +
-                                " Review book: " + data.book.title + "</span>" + "</p>";
+                                data.user_send.name + "</span>" + "<span> " + i18n['Review Book'] + ": " + data.book.title + "</span>" + "</p>";
                         }
                         htmlModel +=
                             "<span class='text-color-noti label label-primary lbl-waiting" +
-                            data.user_send.id + "'>review</span>";
+                            data.user_send.id + "'>" + i18n['review'] + "</span>";
                     } else if (data.type == configs.notification.up_vote) {
                         htmlModel += "<a href='/books/" + data.book.id +
                             "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
@@ -93,19 +87,19 @@ $(function ($) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + " </span>" + "<span>" +
-                                " Upvoted your review in book: " + content +
+                                data.user_send.name + " </span>" + "<span> " +
+                                i18n['Upvoted your review in book'] + ": " + content +
                                 ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + "</span>" + "<span>" +
-                                " Upvoted your review in book: " + data.book.title +
+                                data.user_send.name + "</span>" + "<span> " +
+                                i18n['Upvoted your review in book'] + ": " + data.book.title +
                                 "</span>" + "</p>";
                         }
                         htmlModel +=
                             "<span class='text-color-noti label label-success lbl-waiting" +
-                            data.user_send.id + "'>UpVote</span>";
+                            data.user_send.id + "'>" + i18n['UpVote'] + "</span>";
                     } else if (data.type == configs.notification.down_vote) {
                         htmlModel += "<a href='/books/" + data.book.id +
                             "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
@@ -114,19 +108,19 @@ $(function ($) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + " </span>" + "<span>" +
-                                " Downvoted your review in book: " + content +
+                                data.user_send.name + " </span>" + "<span> " +
+                                i18n['Downvoted your review in book'] + ": " + content +
                                 ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + "</span>" + "<span>" +
-                                " Downvoted your review in book: " + data.book.title +
+                                data.user_send.name + "</span>" + "<span> " +
+                                i18n['Downvoted your review in book'] + ": " + data.book.title +
                                 "</span>" + "</p>";
                         }
                         htmlModel +=
                             "<span class='text-color-noti label label-danger lbl-waiting" +
-                            data.user_send.id + "'>DownVote</span>";
+                            data.user_send.id + "'>" + i18n['DownVote'] + "</span>";
                     } else if (data.type == configs.notification.returning) {
                         htmlModel += "<a href='/books/" + data.book.id +
                             "/approve-request' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
@@ -135,19 +129,19 @@ $(function ($) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + " </span>" + " <span>" +
-                                " Returning book: " + content + ellipsestext + "</span>" +
+                                data.user_send.name + " </span>" + " <span> " +
+                                i18n['Returning book'] + ": " + content + ellipsestext + "</span>" +
                                 "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + "</span>" + " <span>" +
-                                " Returning book: " + data.book.title + "</span>" +
+                                data.user_send.name + "</span>" + " <span> " +
+                                i18n['Returning book'] + data.book.title + "</span>" +
                                 "</p>";
                         }
                         htmlModel +=
                             "<span class='text-color-noti label label-warning lbl-waiting" +
-                            data.user_send.id + "'>returning</span>";
+                            data.user_send.id + "'>" + i18n['returning'] + "</span>";
                     } else if (data.type == configs.notification.returned) {
                         htmlModel += "<a href='/books/" + data.book.id +
                             "/approve-request' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
@@ -156,19 +150,19 @@ $(function ($) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + " </span>" + "<span>" +
-                                " Return done book: " + content + ellipsestext +
+                                data.user_send.name + " </span>" + "<span> " +
+                                i18n['Return done book'] + ": " + content + ellipsestext +
                                 "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + "</span>" + "<span>" +
-                                " Return done book: " + data.book.title + "</span>" +
+                                data.user_send.name + "</span>" + "<span> " +
+                                i18n['Return done book'] + ": " + data.book.title + "</span>" +
                                 "</p>";
                         }
                         htmlModel +=
                             "<span class='text-color-noti label label-success lbl-waiting" +
-                            data.user_send.id + "'>returned</span>";
+                            data.user_send.id + "'>" + i18n['returned'] + "</span>";
                     } else if (data.type == configs.notification.approve_returning) {
                         htmlModel += "<a href='/books/" + data.book.id +
                             "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
@@ -177,19 +171,19 @@ $(function ($) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + " </span>" + "<span>" +
-                                " Return books successfully: " + content + ellipsestext +
+                                data.user_send.name + " </span>" + "<span> " +
+                                i18n['Return books successfully'] + ": " + content + ellipsestext +
                                 "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + "</span>" + "<span>" +
-                                " Return books successfully: " + data.book.title +
+                                data.user_send.name + "</span>" + "<span> " +
+                                i18n['Return books successfully'] + ": " + data.book.title +
                                 "</span>" + "</p>";
                         }
                         htmlModel +=
                             "<span class='text-color-noti label label-primary lbl-waiting" +
-                            data.user_send.id + "'>approve_returning</span>";
+                            data.user_send.id + "'>" + i18n['approve returning'] + "</span>";
                     } else if (data.type == configs.notification.request_edit_book) {
                         htmlModel += "<a href='/admin/waiting-request-edit-book" +
                             "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
@@ -198,19 +192,19 @@ $(function ($) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + " </span>" + "<span>" +
-                                " Want to edit book: " + content + ellipsestext +
+                                data.user_send.name + " </span>" + "<span> " +
+                                i18n['Want to edit book'] + ": " + content + ellipsestext +
                                 "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + "</span>" + "<span>" +
-                                " Want to edit book: " + data.book.title + "</span>" +
+                                data.user_send.name + "</span>" + "<span> " +
+                                i18n['Want to edit book'] + ": " + data.book.title + "</span>" +
                                 "</p>";
                         }
                         htmlModel +=
                             "<span class='text-color-noti label label-warning lbl-waiting" +
-                            data.user_send.id + "'>request edit book</span>";
+                            data.user_send.id + "'>" + i18n['request edit book'] + "</span>";
                     } else if (data.type == configs.notification.approve_request_update_book) {
                         htmlModel += "<a href='/books/" + data.book.id +
                             "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
@@ -219,20 +213,20 @@ $(function ($) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + " </span>" + "<span>" +
-                                " Requests edit book: " + content +
+                                data.user_send.name + " </span>" + "<span> " +
+                                i18n['Requests edit book'] + ": " + content +
                                 ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + "</span>" + "<span>" +
-                                " Requests edit book: " + data.book.title +
+                                data.user_send.name + "</span>" + "<span> " +
+                                i18n['Requests edit book'] + ": " + data.book.title +
                                 "</span>" + "</p>";
                         }
                         htmlModel +=
                             "<span class='text-color-noti label label-success lbl-waiting" +
                             data.user_send.id +
-                            "'>approve request edit book</span>";
+                            "'>" + i18n['approve request edit book'] + "</span>";
                     } else if (data.type == configs.notification.delete_request_update_book) {
                         htmlModel += "<a href='#" +
                             "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
@@ -243,20 +237,20 @@ $(function ($) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + " </span>" + "<span>" +
-                                " Unapprove your request edit book: " + content +
+                                data.user_send.name + " </span>" + "<span> " +
+                                i18n['Unapprove your request edit book'] + ": " + content +
                                 ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + "</span>" + "<span>" +
-                                " Unapprove your request edit book: " + data.book.title +
+                                data.user_send.name + "</span>" + "<span> " +
+                                i18n['Unapprove your request edit book'] + ": " + data.book.title +
                                 "</span>" + "</p>";
                         }
                         htmlModel +=
                             "<span class='text-color-noti label label-danger lbl-waiting" +
                             data.user_send.id +
-                            "'>unapprove request edit books</span>";
+                            "'>" + i18n['Unapprove your request edit book'] + "</span>";
                     } else if (data.type == configs.notification.approve_waiting) {
                         htmlModel += "<a href='/books/" + data.book.id +
                             "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
@@ -265,20 +259,20 @@ $(function ($) {
                             var content = data.book.title.substr(0, showChar);
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + " </span>" + "<span>" +
-                                " Accept your request waiting book: " + content +
+                                data.user_send.name + " </span>" + "<span> " +
+                                i18n['Accept your request waiting book'] + ": " + content +
                                 ellipsestext + "</span>" + "</p>";
                         } else {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
-                                data.user_send.name + "</span>" + "<span>" +
-                                " Accept your request waiting book: " + data.book.title +
+                                data.user_send.name + "</span>" + "<span> " +
+                                i18n['Accept your request waiting book'] + ": " + data.book.title +
                                 "</span>" + "</p>";
                         }
                         htmlModel +=
                             "<span class='text-color-noti label label-warning lbl-waiting" +
                             data.user_send.id +
-                            "'>approve_waiting</span>";
+                            "'>" + i18n['approve waiting'] + "</span>";
                     }
                     htmlModel +=
                         "<p class='show text-danger pull-right time-ago-notification-dropdown'><span class='time_a_go'>" +
@@ -308,17 +302,17 @@ $(function ($) {
                                 }
                             } else {
                                 showNotify(
-                                    'danger', 
-                                    'Data Invalid', 
-                                    {icon: 'glyphicon glyphicon-remove'}, 
+                                    'danger',
+                                    i18n['Data Invalid'],
+                                    {icon: 'glyphicon glyphicon-remove'},
                                     {delay: 3000}
                                 );
                             }
                         }).fail(function(error) {
                             showNotify(
-                                'danger', 
-                                'Data Invalid', 
-                                {icon: 'glyphicon glyphicon-remove'}, 
+                                'danger',
+                                i18n['Data Invalid'],
+                                {icon: 'glyphicon glyphicon-remove'},
                                 {delay: 3000});
                         });
                     })
@@ -329,9 +323,9 @@ $(function ($) {
             }
         }).fail(function(error) {
             showNotify(
-                'danger', 
-                'Data Invalid', 
-                {icon: 'glyphicon glyphicon-remove'}, 
+                'danger',
+                i18n['Data Invalid'],
+                {icon: 'glyphicon glyphicon-remove'},
                 {delay: 1000}
             );
         });

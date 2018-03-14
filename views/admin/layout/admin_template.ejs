@@ -37,6 +37,26 @@
         <% if(locals.appCss) { %>
             <%- appCss %>
         <% }%>
+        <script type="text/javascript">
+        var i18n;
+        function readTextFile(file)
+        {
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function ()
+            {
+                if(rawFile.readyState === 4)
+                {
+                    if(rawFile.status === 200 || rawFile.status == 0)
+                    {
+                        var allText = rawFile.responseText;
+                        i18n = JSON.parse(allText);
+                    }
+                }
+            }
+            rawFile.send(null);
+        }
+    </script>
     </head>
     <body class="hold-transition skin-black sidebar-mini relative-postion">
 
@@ -81,6 +101,48 @@
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
         <script type="text/javascript">
             $.widget.bridge('uibutton', $.ui.button);
+            function getCookie(cname) {
+                var name = cname + '=';
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for(var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return '';
+            }
+            var lang = getCookie('language');
+            if (lang === undefined || lang === null) {
+                $('#myImage').attr('src', '/images/vietnam.png');
+                readTextFile('/javascripts/i18n/vi.json');
+
+            } else {
+                langText = '';
+                console.log('lang: ' + lang);
+                switch (lang) {
+                    case 'en':
+                        readTextFile('/javascripts/i18n/en.json');
+                        langText = '/images/english.png';
+                        break;
+                    case 'vi':
+                        readTextFile('/javascripts/i18n/vi.json');
+                        langText = '/images/vietnam.png';
+                        break;
+                    case 'jp':
+                        readTextFile('/javascripts/i18n/jp.json');
+                        langText = '/images/nhatban.png';
+                        break;
+                    default:
+                        readTextFile('/javascripts/i18n/vi.json');
+                        langText = '/images/vietnam.png';
+                        break;
+                }
+            }
         </script>
         <script type="text/javascript" src="/bower/popper.js/dist/umd/popper.min.js"></script>
         <script type="text/javascript" src="/bower/bootstrap4/dist/js/bootstrap.min.js"></script>

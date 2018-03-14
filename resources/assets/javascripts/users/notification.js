@@ -15,15 +15,15 @@ $(function ($) {
             } else {
                 showNotify(
                     'danger', 
-                    'Data Invalid', 
+                    i18n['Data Invalid'],
                     {icon: 'glyphicon glyphicon-remove'}, 
                     {delay: 3000}
                 );
             }
         }).fail(function (error) {
             showNotify(
-                'danger', 
-                'Data Invalid', 
+                'danger',
+                i18n['Data Invalid'],
                 {icon: 'glyphicon glyphicon-remove'}, 
                 {delay: 3000}
             );
@@ -44,29 +44,29 @@ if (typeof timeAGo === 'undefined') {
             return date;
         }
         if (interval == 1) {
-            return interval + ' day ago';
+            return interval + ' ' + i18n['day ago'];
         }
         if (interval > 1) {
-            return interval + ' days ago';
+            return interval + ' ' + i18n['days ago'];
         }
 
         interval = Math.floor( seconds / 3600 );
         if (interval == 1) {
-            return interval + ' hour ago';
+            return interval + ' ' + i18n['hour ago'];
         }
         if (interval > 1) {
-            return interval + ' hours ago';
+            return interval + ' ' + i18n['hour ago'];
         }
         
         interval = Math.floor( seconds / 60 );
         if (interval == 1) {
-            return interval + ' minute ago';
+            return interval + ' ' + i18n['minute ago'];
         }
         if (interval > 1) {
-            return interval + ' minutes ago';
+            return interval + ' ' + i18n['minute ago'];
         }
 
-        return Math.floor(seconds) + ' seconds ago';
+        return Math.floor(seconds) + ' ' + i18n['seconds ago'];
     };
 }
 
@@ -82,17 +82,17 @@ if (typeof mark_read_all_notifications === 'undefined') {
                 $('.count_Notifications').html(0);
             } else {
                 showNotify(
-                    'danger', 
-                    'Data Invalid', 
-                    {icon: 'glyphicon glyphicon-remove'}, 
+                    'danger',
+                    i18n['Data Invalid'],
+                    {icon: 'glyphicon glyphicon-remove'},
                     {delay: 1000}
                 );
             }
         }).fail(function (error) {
             showNotify(
-                'danger', 
-                'Data Invalid', 
-                {icon: 'glyphicon glyphicon-remove'}, 
+                'danger',
+                i18n['Data Invalid'],
+                {icon: 'glyphicon glyphicon-remove'},
                 {delay: 1000}
             );
         });

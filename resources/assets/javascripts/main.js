@@ -112,9 +112,9 @@ $(function ($) {
     $('.wow').parent('div').addClass('fix');
 
     var showChar = 500;
-    var ellipsestext = "...";
-    var moretext = 'Show more';
-    var lesstext = "Show less";
+    var ellipsestext = '...';
+    var moretext = i18n['Show more'];
+    var lesstext = i18n['Show less'];
     $('.more').each(function() {
         var content = $(this).html();
         if (content.length > showChar) {
@@ -150,7 +150,7 @@ $(function ($) {
             if (response.message.code == 200) {
                 showNotify(
                     'success', 
-                    'Delete review successfull!', 
+                    i18n['Delete review successfull!'], 
                     {icon: 'glyphicon glyphicon-remove'}, 
                     {delay: 3000}
                 );
@@ -159,7 +159,7 @@ $(function ($) {
             } else {
                 showNotify(
                     'danger', 
-                    'Opp\'s something went wrong', 
+                    i18n['Opp\'s something went wrong'], 
                     {icon: 'glyphicon glyphicon-remove'}, 
                     {delay: 3000}
                 );
@@ -167,7 +167,7 @@ $(function ($) {
         }).fail(function(error) {
             showNotify(
                 'danger', 
-                'Opp\'s something went wrong', 
+                i18n['Opp\'s something went wrong'], 
                 {icon: 'glyphicon glyphicon-remove'}, 
                 {delay: 3000}
             );
@@ -199,13 +199,13 @@ $(function ($) {
                         $('.down_vote').attr('style', 'color: #5488c7;');
                         $('#btn_show_vote').html(current_vote - 1);
                     }
-                    showNotify('success', 'Thanks for your vote!', 
+                    showNotify('success', i18n['Thanks for your vote!'], 
                         {icon: 'glyphicon glyphicon-remove'}, 
                         {delay: 3000});
                 } else if (response.items.messages == 'owner_can_not_vote') {
                     showNotify(
                         'danger', 
-                        'You can not vote for your review!', 
+                        i18n['You can not vote for your review!'], 
                         {icon: 'glyphicon glyphicon-remove'}, 
                         {delay: 3000}
                     );
@@ -221,14 +221,14 @@ $(function ($) {
                     }
                     showNotify(
                         'success', 
-                        'Thanks for your revote!', 
+                        i18n['Thanks for your revote!'], 
                         {icon: 'glyphicon glyphicon-remove'}, 
                         {delay: 3000}
                     );
                 } else {
                     showNotify(
                         'danger', 
-                        'Your just up or down vote once!', 
+                        i18n['Your just up or down vote once!'], 
                         {icon: 'glyphicon glyphicon-remove'}, 
                         {delay: 1000}
                     );
@@ -237,7 +237,7 @@ $(function ($) {
         }).fail(function(error) {
             showNotify(
                 'danger', 
-                'Opp\'s something went wrong', 
+                i18n['Opp\'s something went wrong'], 
                 {icon: 'glyphicon glyphicon-remove'}, 
                 {delay: 3000}
             );
@@ -256,14 +256,14 @@ $(function ($) {
                 $('#comment' + id).remove();
                 showNotify(
                     'success', 
-                    'Delete comment successfull!', 
+                    i18n['Delete comment successfull!'], 
                     {icon: "glyphicon glyphicon-remove"}, 
                     {delay: 3000}
                 );
             } else {
                 showNotify(
                     'danger', 
-                    'Opp\'s something went wrong', 
+                    i18n['Opp\'s something went wrong'], 
                     {icon: 'glyphicon glyphicon-remove'}, 
                     {delay: 3000}
                 );
@@ -271,7 +271,7 @@ $(function ($) {
         }).fail(function(error) {
             showNotify(
                 'danger', 
-                'Opp\'s something went wrong', 
+                i18n['Opp\'s something went wrong'], 
                 {icon: 'glyphicon glyphicon-remove'}, 
                 {delay: 3000}
             );
@@ -309,13 +309,13 @@ $(function ($) {
             $('#content-comment-' + data['id']).html('<p>' + data['content'] + '</p>');
             showNotify(
                 'success', 
-                'Edit comment successfull!', 
+                i18n['Edit comment successfull!'], 
                 {icon: 'glyphicon glyphicon-remove'}, 
                 {delay: 3000});
         }).fail(function(error) {
             showNotify(
                 'danger', 
-                'Opp\'s something went wrong', 
+                i18n['Opp\'s something went wrong'], 
                 {icon: 'glyphicon glyphicon-remove'}, 
                 {delay: 3000}
             );
@@ -338,7 +338,7 @@ $(function ($) {
             } else {
                 showNotify(
                     'danger', 
-                    'Data Invalid', 
+                    i18n['Data Invalid'], 
                     {icon: 'glyphicon glyphicon-remove'}, 
                     {delay: 1000}
                 );
@@ -346,7 +346,7 @@ $(function ($) {
         }).fail(function(error) {
             showNotify(
                 'danger', 
-                'Data Invalid', {
+                i18n['Data Invalid'], {
                 icon: 'glyphicon glyphicon-remove'}, 
                 {delay: 1000}
             );

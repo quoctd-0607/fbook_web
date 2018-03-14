@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -32,16 +32,31 @@
     <% if(locals.appCss) { %>
         <%- appCss %>
     <% }%>
-</head>
-<body data-spy="scroll" data-target="#mainmenu" data-offset="50">
-    <%- include header.ejs %>
-    
-    <%- body %>
 
-    <%- include footer.ejs %>
     <script type="text/javascript" src="/bower/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="/bower/bootstrap/dist/js/bootstrap.min.js"></script>
-
+    <script type="text/javascript">
+        var i18n;
+        function readTextFile(file)
+        {
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function ()
+            {
+                if(rawFile.readyState === 4)
+                {
+                    if(rawFile.status === 200 || rawFile.status == 0)
+                    {
+                        var allText = rawFile.responseText;
+                        i18n = JSON.parse(allText);
+                    }
+                }
+            }
+            rawFile.send(null);
+        }
+    </script>
+</head>
+<body data-spy="scroll" data-target="#mainmenu" data-offset="50">
     <script type="text/javascript">
         if (typeof imgBackUp === 'undefined') {
             function imgBackUp(e) {
@@ -64,6 +79,8 @@
             }
         }
 
+        //$.i18n.debug = true;
+
         function getCookie(cname) {
             var name = cname + '=';
             var decodedCookie = decodeURIComponent(document.cookie);
@@ -79,33 +96,36 @@
             }
             return '';
         }
-
+        var lang = getCookie('language');
+        // var abc = {};
         function setLanguage(lang) {
-            var language = getCookie("language");
             document.cookie = 'language=' + lang +';max-age=9000';
         }
 
-        var lang = getCookie('language');
+        if (lang === undefined || lang === null) {
+            $('#myImage').attr('src', '/images/vietnam.png');
+            readTextFile('/javascripts/i18n/vi.json');
 
-        if (lang === null) {
-            $('#myImage').attr('src', '/images/english.png');
         } else {
+            langText = '';
+            console.log('lang: ' + lang);
             switch (lang) {
                 case 'en':
-                    $('#myImage').attr('src', '/images/english.png');
+                    langText = '/images/english.png';
                     break;
                 case 'vi':
-                    $('#myImage').attr('src', '/images/vietnam.png');
+                    langText = '/images/vietnam.png';
                     break;
                 case 'jp':
-                    $('#myImage').attr('src', '/images/nhatban.png');
+                    langText = '/images/nhatban.png';
                     break;
                 default:
-                    $('#myImage').attr('src', '/images/english.png');
+                    langText = '/images/vietnam.png';
+                    break;
             }
+            readTextFile('/javascripts/i18n/' + lang + '.json');
         }
-    </script>
-    <script type="text/javascript">
+
         var API_PATH = "<%= configs.api_base_url %>";
         var access_token, user = null;
 
@@ -120,6 +140,13 @@
             return this.addBack.apply(this, arguments);
         }
     </script>
+
+    <%- include header.ejs %>
+    
+    <%- body %>
+
+    <%- include footer.ejs %>
+
     <!-- Plugin-JS -->
     <script type="text/javascript" src="/bower/ResponsiveSlides/responsiveslides.min.js"></script>
     <script type="text/javascript" src="/bower/cardslider/dist/js/jquery.cardslider.min.js"></script>
@@ -142,7 +169,6 @@
     <script type="text/javascript" src="/javascripts/books/upload_image.js"></script>
     <script type="text/javascript" src="/javascripts/plugins.js"></script>
     <script type="text/javascript" src="/javascripts/main.js"></script>
-    
     <% if (locals.appjs) { %>
         <%- appjs %>
     <% } %>
@@ -157,5 +183,11 @@
             showNotify('danger', '<%= error %>', {icon: 'glyphicon glyphicon-remove'}, {delay: 2000})
         </script>
     <% } %>
+    <script type="text/javascript">
+        $('.text-i18n').on('click', function() {
+            setLanguage($(this).data('lang'));
+        });
+        $('#myImage').attr('src', langText);
+    </script>
 </body>
 </html>
