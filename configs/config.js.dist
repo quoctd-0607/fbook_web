@@ -9,8 +9,8 @@ var config = {
     url_sign_in_auth_server: "https://wsm.framgia.vn/users/sign_in",
     book: {
         default_star: 5,
-        title_limit_characters: 30,
-        author_limit_characters: 20,
+        title_limit_characters: 15,
+        author_limit_characters: 15,
         status: {
             "unavailable" : 'unavailable',
             "available": 'available'

@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="media-body">
                                         <% if (typeof (book.title) != 'undefined' && book.title) { %>
-                                            <h5 title="<%= book.title %>" 
+                                            <h5 class="title" title="<%= book.title %>" 
                                                 onclick="window.open('/books/<%= book.id %>', '_self')"
                                                 data-toggle="tooltip">
                                                 <%= getString(book.title, configs.book.title_limit_characters) %>
@@ -47,29 +47,27 @@
                                         <% } %>
                                         <input id="rating-book" name="star" class="rating" data-min="0" data-max="5" value=<%= book.avg_star %> disabled="true" data-step="0.01" data-size="xs">
                                         <div class="space-10"></div>
-                                        <p><%= book.overview %></p>
-                                        <a href="/books/<%= book.id %>/approve-request" class="media-button-customize"><%= __('View all request')%> (<%- book.users_waiting.length + book.users_returning.length %>)</a>
+                                        <p><%= getString(book.overview, configs.book.author_limit_characters) %></p>
+                                        <p><a href="/books/<%= book.id %>/approve-request" class="media-button-customize"><%= __('View all request')%> (<%- book.users_waiting.length + book.users_returning.length %>)</a></p>
+                                        <% if (book.users_reading && book.users_reading.length) { %>
+                                                <strong> <%= __('Keeped by') %>: </strong>
+                                                <% book.users_reading.forEach(function (user, index) { %>
+                                                    <% if (index == 6) {
+                                                            %> <strong> ... </strong> <%
+                                                            return;
+                                                        }
+                                                    %>
+                                                    <img onclick="window.open('/users/<%= user.id %>')" 
+                                                        data-toggle="tooltip" 
+                                                        title="<%= user.name %>"
+                                                        class="owner-image-home img-circle" 
+                                                        src="<%= (user && user.avatar) ? user.avatar : '/images/user_default.png' %>"
+                                                        alt="<%= __('book') %>">
+                                                <% }) %>
+                                        <% } %>
                                     </div>
                                     <a href="/books/<%= book.id %>/edit" class="btn btn-primary edit-book"><%= __('Edit') %></span></a>
                                 </div>
-                                <% if (book.users_reading && book.users_reading.length) { %>
-                                    <div class="owners">
-                                        <strong> <%= __('Keeped by') %>: </strong>
-                                        <% book.users_reading.forEach(function (user, index) { %>
-                                            <% if (index == 6) {
-                                                    %> <strong> ... </strong> <%
-                                                    return;
-                                                }
-                                            %>
-                                            <img onclick="window.open('/users/<%= user.id %>')" 
-                                                data-toggle="tooltip" 
-                                                title="<%= user.name %>"
-                                                class="owner-image-home img-circle" 
-                                                src="<%= (user && user.avatar) ? user.avatar : '/images/user_default.png' %>"
-                                                alt="<%= __('book') %>">
-                                        <% }) %>
-                                    </div>
-                                <% } %>
                             </div>
                         </div>
                     <% }) %>
