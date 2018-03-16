@@ -85,9 +85,27 @@
                                     <a href="#" class="dropdown-toggle opacity-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Framgia<span class="caret"></span></a>
                                 <% } %>
                                 <ul class="dropdown-menu info-office">
-                                    <li><a href="/home/all_office" class="office-dropdow-a">Framgia</a></li>
+                                    <li id="wp-6"><a href="/home/all_office" class="office-dropdow-a">Framgia</a></li>
                                     <% offices.items.forEach(function(office) { %>
-                                        <li><a href="/home?officeId=<%= office.id %>" class="office-dropdow-a"><%= office.area %></a></li>
+                                        <% switch (office.area) {
+                                            case 'Tran Khat Chan': %>
+                                                <li id="wp-1"><a href="/home?officeId=<%= office.id %>" class="office-dropdow-a"><%= office.area %></a></li>
+                                            <% break;
+                                            case 'Da Nang Office': %>
+                                                <li id="wp-2"><a href="/home?officeId=<%= office.id %>" class="office-dropdow-a"><%= office.area %></a></li>
+                                            <% break;
+                                            case 'Hanoi Office': %>
+                                                <li id="wp-3"><a href="/home?officeId=<%= office.id %>" class="office-dropdow-a"><%= office.area %></a></li>
+                                            <% break;
+                                            case 'HCMC Office': %>
+                                                <li id="wp-4"><a href="/home?officeId=<%= office.id %>" class="office-dropdow-a"><%= office.area %></a></li>
+                                            <% break;
+                                            case 'Handico Office': %>
+                                                <li id="wp-5"><a href="/home?officeId=<%= office.id %>" class="office-dropdow-a"><%= office.area %></a></li>
+                                            <% break;
+                                            default: %>
+                                                <li id="wp-6"><a href="/home?officeId=<%= office.id %>" class="office-dropdow-a"><%= office.area %></a></li>
+                                        <% } %>
                                     <% }) %>
                                 </ul>
                             </li>
