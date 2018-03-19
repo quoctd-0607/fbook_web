@@ -36,14 +36,18 @@
                 <div class="box-body no-padding">
                     <table class="table table-hover table-responsive">
                         <tr>
-                            <th class="width-30-percent"><%= __('Name') %></th>
-                            <th class="width-55-percent"><%= __('Description') %></th>
-                            <th class="width-15-percent text-center"><%= __('Total Book') %></th>
+                            <th class="width-15-percent"><%= __('Vietnamese name') %></th>
+                            <th class="width-15-percent"><%= __('English name') %></th>
+                            <th class="width-15-percent"><%= __('Japanese name') %></th>
+                            <th class="width-45-percent"><%= __('Description') %></th>
+                            <th class="width-10-percent text-center"><%= __('Total Book') %></th>
                         </tr>
                         <% if (dataRequest.items.data.length > 0) { %>
                             <% dataRequest.items.data.forEach(function(data) { %>
                             <tr onClick="window.location='/admin/categories/detail/<%= data.id %>'" class="cursor-hover">
-                                <td><%= data.name %></td>
+                                <td><%= data.name_vi %></td>
+                                <td><%= data.name_en %></td>
+                                <td><%= data.name_jp %></td>
                                 <td class="lite-description"><%= data.description %></td>
                                 <td class="text-center"><%= data.books_count %></td>
                             </tr>

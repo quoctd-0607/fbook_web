@@ -3,10 +3,10 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-md-9 pull-right">
-                <h3><i class="icofont icofont-book"></i><%= __(books.items.category.name) %> %></h3>
+                <h3><i class="icofont icofont-book"></i><%= books.items.category.name_vi %> %></h3>
                 <div class="row">
                     <div class="pull-left col-xs-12 col-sm-7 col-md-7">
-                        <h4><i><%= __('Books for') %> <span class="">"<%= __(books.items.category.name) %>"</span></i></h4>
+                        <h4><i><%= __('Books for') %> <span class="">"<%= books.items.category.name_vi %>"</span></i></h4>
                     </div>
                     <div class="pull-right col-xs-12 col-sm-5 col-md-5">
                         <form class="form-horizontal">
@@ -134,9 +134,9 @@
                         <ul class="box-content category-sidebar">
                             <% categories.items.forEach(function (category, index) { %>
                                 <% if (index <= 9) { %>
-                                    <li><a href="/books/category/<%= category.id %>"><%= category.name %></a></li>
+                                    <li><a href="/books/category/<%= category.id %>"><%= category.name_vi %></a></li>
                                 <% } else { %>
-                                    <li class="hidden"><a href="/books/category/<%= category.id %>"><%= category.name %></a></li>
+                                    <li class="hidden"><a href="/books/category/<%= category.id %>"><%= category.name_vi %></a></li>
                                 <% } %>
                             <% }) %>
                         </ul>

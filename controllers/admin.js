@@ -254,8 +254,12 @@ router.get('/categories/create', authorize.isAdmin, function (req, res, next) {
 });
 
 router.post('/categories/store', authorize.isAdmin, function (req, res, next) {
-    req.checkBody('name', 'Name field is required').notEmpty();
-    req.checkBody('name', 'Name must have more than 2 characters').isLength({ min: 3 });
+    req.checkBody('name_vi', 'Name field is required').notEmpty();
+    req.checkBody('name_vi', 'Name must have more than 2 characters').isLength({ min: 3 });
+    req.checkBody('name_en', 'Name field is required').notEmpty();
+    req.checkBody('name_en', 'Name must have more than 2 characters').isLength({ min: 3 });
+    req.checkBody('name_jp', 'Name field is required').notEmpty();
+    req.checkBody('name_jp', 'Name must have more than 2 characters').isLength({ min: 3 });
 
     req.getValidationResult().then(function (result) {
         if (!result.isEmpty()) {
@@ -266,7 +270,9 @@ router.post('/categories/store', authorize.isAdmin, function (req, res, next) {
             request.post({
                 url: req.configs.api_base_url + 'admin/categories',
                 form: {
-                    name: req.body.name,
+                    name_vi: req.body.name_vi,
+                    name_en: req.body.name_en,
+                    name_jp: req.body.name_jp,
                     description: req.body.description
                 },
                 headers: objectHeaders.headers({'Authorization': req.session.access_token})
@@ -281,6 +287,8 @@ router.post('/categories/store', authorize.isAdmin, function (req, res, next) {
                 } else if (response.statusCode === 422) {
                     var msg = JSON.parse(body);
                     req.flash('apiValidate', msg.message.description[0]);
+                    req.flash('apiValidate', msg.message.description[1]);
+                    req.flash('apiValidate', msg.message.description[2]);
                     req.flash('error', res.__('Data invalid'));
                     return res.redirect('/admin/categories/create');
                 } else {
@@ -332,7 +340,9 @@ router.post('/categories/update', authorize.isAdmin, function (req, res, next) {
         request.put({
             url: req.configs.api_base_url + 'admin/categories/' + categoryId,
             form: {
-                name: req.body.name,
+                name_vi: req.body.name_vi,
+                name_en: req.body.name_en,
+                name_jp: req.body.name_jp,
                 description: req.body.description
             },
             headers: objectHeaders.headers({'Authorization': req.session.access_token})
