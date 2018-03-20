@@ -79,8 +79,6 @@
             }
         }
 
-        //$.i18n.debug = true;
-
         function getCookie(cname) {
             var name = cname + '=';
             var decodedCookie = decodeURIComponent(document.cookie);
@@ -96,8 +94,9 @@
             }
             return '';
         }
-        var lang = getCookie('language');
-        // var abc = {};
+
+        var lang = getCookie('lang');
+        
         function setLanguage(lang) {
             document.cookie = 'language=' + lang +';max-age=9000';
         }
@@ -105,10 +104,8 @@
         if (lang === undefined || lang === null) {
             $('#myImage').attr('src', '/images/vietnam.png');
             readTextFile('/javascripts/i18n/vi.json');
-
         } else {
             langText = '';
-            console.log('lang: ' + lang);
             switch (lang) {
                 case 'en':
                     langText = '/images/english.png';
@@ -123,7 +120,11 @@
                     langText = '/images/vietnam.png';
                     break;
             }
-            readTextFile('/javascripts/i18n/' + lang + '.json');
+            if (lang == '') {
+                readTextFile('/javascripts/i18n/vi.json');
+            } else {
+                readTextFile('/javascripts/i18n/' + lang + '.json');
+            }
         }
 
         var API_PATH = "<%= configs.api_base_url %>";

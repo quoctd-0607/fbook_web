@@ -81,7 +81,7 @@ router.get('/all_office', localSession, function (req, res, next) {
 });
 
 router.get('/change-lang/:lang', function(req, res) {
-    res.cookie('lang', req.params.lang, { maxAge: 900000 , httpOnly: true});
+    res.cookie('lang', req.params.lang, { maxAge: 900000});
     req.session.lang = req.params.lang;
     res.redirect('back');
 });
