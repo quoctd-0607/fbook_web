@@ -12,10 +12,30 @@
                 <form method="POST" action="/admin/categories/store" role="form" class="form-element" id="create-category">
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="name"><%= __('Name') %></label>
-                            <input class="form-control" type="text" name="name" id="name" placeholder="<%= __('Category is name...') %>">
+                            <label for="name"><%= __('Vietnamese name') %></label>
+                            <input class="form-control" type="text" name="name_vi" id="name_vi" placeholder="<%= __('Category is name...') %>">
                             <% if (typeof validate != 'undefined' && validate != '') { %>
                                 <span class="help-block text-red"><%= validate[0].msg %></span>
+                            <% } %>
+                            <% if (typeof apiValidate != 'undefined' && apiValidate != '') { %>
+                                <span class="help-block text-red"><%= apiValidate %></span>
+                            <% } %>
+                        </div>
+                        <div class="form-group">
+                            <label for="name"><%= __('English name') %></label>
+                            <input class="form-control" type="text" name="name_en" id="name_en" placeholder="<%= __('Category is name...') %>">
+                            <% if (typeof validate != 'undefined' && validate != '') { %>
+                                <span class="help-block text-red"><%= validate[1].msg %></span>
+                            <% } %>
+                            <% if (typeof apiValidate != 'undefined' && apiValidate != '') { %>
+                                <span class="help-block text-red"><%= apiValidate %></span>
+                            <% } %>
+                        </div>
+                        <div class="form-group">
+                            <label for="name"><%= __('Japanese name') %></label>
+                            <input class="form-control" type="text" name="name_jp" id="name_jp" placeholder="<%= __('Category is name...') %>">
+                            <% if (typeof validate != 'undefined' && validate != '') { %>
+                                <span class="help-block text-red"><%= validate[2].msg %></span>
                             <% } %>
                             <% if (typeof apiValidate != 'undefined' && apiValidate != '') { %>
                                 <span class="help-block text-red"><%= apiValidate %></span>

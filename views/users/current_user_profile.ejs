@@ -201,9 +201,9 @@
                                                 <div class="list-category">
                                                     <span class="button-checkbox">
                                                         <% if (userId === user.id) { %>
-                                                            <button type="button" class="btn-category btn-block prcategorybutton btn-sm" data-color="info"><%= getString(category.name, configs.user.category_name) %></button>
+                                                            <button type="button" class="btn-category btn-block prcategorybutton btn-sm" data-color="info"><%= getString(category.name_vi, configs.user.category_name) %></button>
                                                         <% } else { %>
-                                                            <button type="button" disabled class="btn-category btn-block btn-sm  prgreen-bg" data-color="info"><%= getString(category.name, configs.user.category_name) %></button>
+                                                            <button type="button" disabled class="btn-category btn-block btn-sm  prgreen-bg" data-color="info"><%= getString(category.name_vi, configs.user.category_name) %></button>
                                                         <% } %>
                                                         <% if (typeof(interestedCategoryIds) != 'undefined') { %>
                                                             <% var isInterested = false; %>
