@@ -201,9 +201,33 @@
                                                 <div class="list-category">
                                                     <span class="button-checkbox">
                                                         <% if (userId === user.id) { %>
-                                                            <button type="button" class="btn-category btn-block prcategorybutton btn-sm" data-color="info"><%= getString(category.name_vi, configs.user.category_name) %></button>
+                                                            <% switch (langCategory) {
+                                                                case 'vi': %>
+                                                                    <button type="button" class="btn-category btn-block prcategorybutton btn-sm" data-color="info"><%= getString(category.name_vi, configs.user.category_name) %></button>
+                                                                <% break;
+                                                                case 'en': %>
+                                                                    <button type="button" class="btn-category btn-block prcategorybutton btn-sm" data-color="info"><%= getString(category.name_en, configs.user.category_name) %></button>
+                                                                <% break;
+                                                                case 'jp': %>
+                                                                    <button type="button" class="btn-category btn-block prcategorybutton btn-sm" data-color="info"><%= getString(category.name_jp, configs.user.category_name) %></button>
+                                                                <% break;
+                                                                default: %>
+                                                                    <button type="button" class="btn-category btn-block prcategorybutton btn-sm" data-color="info"><%= getString(category.name_vi, configs.user.category_name) %></button>
+                                                            <% } %>
                                                         <% } else { %>
-                                                            <button type="button" disabled class="btn-category btn-block btn-sm  prgreen-bg" data-color="info"><%= getString(category.name_vi, configs.user.category_name) %></button>
+                                                            <% switch (langCategory) {
+                                                                case 'vi': %>
+                                                                    <button type="button" disabled class="btn-category btn-block btn-sm  prgreen-bg" data-color="info"><%= getString(category.name_vi, configs.user.category_name) %></button>
+                                                                <% break;
+                                                                case 'en': %>
+                                                                    <button type="button" disabled class="btn-category btn-block btn-sm  prgreen-bg" data-color="info"><%= getString(category.name_en, configs.user.category_name) %></button>
+                                                                <% break;
+                                                                case 'jp': %>
+                                                                    <button type="button" disabled class="btn-category btn-block btn-sm  prgreen-bg" data-color="info"><%= getString(category.name_jp, configs.user.category_name) %></button>
+                                                                <% break;
+                                                                default: %>
+                                                                    <button type="button" disabled class="btn-category btn-block btn-sm  prgreen-bg" data-color="info"><%= getString(category.name_vi, configs.user.category_name) %></button>
+                                                            <% } %>
                                                         <% } %>
                                                         <% if (typeof(interestedCategoryIds) != 'undefined') { %>
                                                             <% var isInterested = false; %>

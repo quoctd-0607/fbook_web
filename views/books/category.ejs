@@ -3,10 +3,34 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-md-9 pull-right">
-                <h3><i class="icofont icofont-book"></i><%= books.items.category.name_vi %> %></h3>
+                <% switch (langCategory) {
+                    case 'vi': %>
+                        <h3><i class="icofont icofont-book"></i><%= books.items.category.name_vi %></h3>
+                    <% break;
+                    case 'en': %>
+                        <h3><i class="icofont icofont-book"></i><%= books.items.category.name_en %></h3>
+                    <% break;
+                    case 'jp': %>
+                        <h3><i class="icofont icofont-book"></i><%= books.items.category.name_jp %></h3>
+                    <% break;
+                    default: %>
+                        <h3><i class="icofont icofont-book"></i><%= books.items.category.name_vi %></h3>
+                <% } %>
                 <div class="row">
                     <div class="pull-left col-xs-12 col-sm-7 col-md-7">
-                        <h4><i><%= __('Books for') %> <span class="">"<%= books.items.category.name_vi %>"</span></i></h4>
+                        <% switch (langCategory) {
+                            case 'vi': %>
+                                <h4><i><%= __('Books for') %> <span class="">"<%= books.items.category.name_vi %>"</span></i></h4>
+                            <% break;
+                            case 'en': %>
+                                <h4><i><%= __('Books for') %> <span class="">"<%= books.items.category.name_en %>"</span></i></h4>
+                            <% break;
+                            case 'jp': %>
+                                <h4><i><%= __('Books for') %> <span class="">"<%= books.items.category.name_jp %>"</span></i></h4>
+                            <% break;
+                            default: %>
+                                <h4><i><%= __('Books for') %> <span class="">"<%= books.items.category.name_vi %>"</span></i></h4>
+                        <% } %>
                     </div>
                     <div class="pull-right col-xs-12 col-sm-5 col-md-5">
                         <form class="form-horizontal">
@@ -134,9 +158,40 @@
                         <ul class="box-content category-sidebar">
                             <% categories.items.forEach(function (category, index) { %>
                                 <% if (index <= 9) { %>
-                                    <li><a href="/books/category/<%= category.id %>"><%= category.name_vi %></a></li>
+                                    <% switch (langCategory) {
+                                        case 'vi': %>
+                                            <li><a href="/books/category/<%= category.id %>"><%= category.name_vi %></a></li>
+                                        <% break;
+                                        case 'en': %>
+                                            <li><a href="/books/category/<%= category.id %>"><%= category.name_en %></a></li>
+                                        <% break;
+                                        case 'jp': %>
+                                            <li><a href="/books/category/<%= category.id %>"><%= category.name_jp %></a></li>
+                                        <% break;
+                                        default: %>
+                                            <li><a href="/books/category/<%= category.id %>"><%= category.name_vi %></a></li>
+                                    <% } %>
                                 <% } else { %>
-                                    <li class="hidden"><a href="/books/category/<%= category.id %>"><%= category.name_vi %></a></li>
+                                    <% if (langCategory == 'vi') { %>
+                                        <li class="hidden"><a href="/books/category/<%= category.id %>"><%= category.name_vi %></a></li>
+                                    <% } else if (langCategory == 'en') { %>
+                                        <li class="hidden"><a href="/books/category/<%= category.id %>"><%= category.name_en %></a></li>
+                                    <% } else { %>
+                                        <li class="hidden"><a href="/books/category/<%= category.id %>"><%= category.name_jp %></a></li>
+                                    <% } %>
+                                    <% switch (langCategory) {
+                                        case 'vi': %>
+                                            <li class="hidden"><a href="/books/category/<%= category.id %>"><%= category.name_vi %></a></li>
+                                        <% break;
+                                        case 'en': %>
+                                            <li class="hidden"><a href="/books/category/<%= category.id %>"><%= category.name_en %></a></li>
+                                        <% break;
+                                        case 'jp': %>
+                                            <li class="hidden"><a href="/books/category/<%= category.id %>"><%= category.name_jp %></a></li>
+                                        <% break;
+                                        default: %>
+                                            <li class="hidden"><a href="/books/category/<%= category.id %>"><%= category.name_vi %></a></li>
+                                    <% } %>
                                 <% } %>
                             <% }) %>
                         </ul>

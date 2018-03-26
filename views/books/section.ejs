@@ -143,9 +143,33 @@
                         <ul class="box-content category-sidebar">
                             <% categories.items.forEach(function (category, index) { %>
                                 <% if (index <= 9) { %>
-                                    <li><a href="/books/category/<%= category.id %>"><%= category.name_vi %></a></li>
+                                    <% switch (langCategory) {
+                                        case 'vi': %>
+                                            <li><a href="/books/category/<%= category.id %>"><%= category.name_vi %></a></li>
+                                        <% break;
+                                        case 'en': %>
+                                            <li><a href="/books/category/<%= category.id %>"><%= category.name_en %></a></li>
+                                        <% break;
+                                        case 'jp': %>
+                                            <li><a href="/books/category/<%= category.id %>"><%= category.name_jp %></a></li>
+                                        <% break;
+                                        default: %>
+                                            <li><a href="/books/category/<%= category.id %>"><%= category.name_vi %></a></li>
+                                    <% } %>
                                 <% } else { %>
-                                    <li class="hidden"><a href="/books/category/<%= category.id %>"><%= category.name_vi %></a></li>
+                                    <% switch (langCategory) {
+                                        case 'vi': %>
+                                            <li class="hidden"><a href="/books/category/<%= category.id %>"><%= category.name_vi %></a></li>
+                                        <% break;
+                                        case 'en': %>
+                                            <li class="hidden"><a href="/books/category/<%= category.id %>"><%= category.name_en %></a></li>
+                                        <% break;
+                                        case 'jp': %>
+                                            <li class="hidden"><a href="/books/category/<%= category.id %>"><%= category.name_jp %></a></li>
+                                        <% break;
+                                        default: %>
+                                            <li class="hidden"><a href="/books/category/<%= category.id %>"><%= category.name_vi %></a></li>
+                                    <% } %>
                                 <% } %>
                             <% }) %>
                         </ul>

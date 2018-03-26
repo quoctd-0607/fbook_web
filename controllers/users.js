@@ -20,6 +20,7 @@ router.get('/my_profile', authorize.isAuthenticated, function(req, res, next) {
     var pageSuggest = req.query.pageSuggest ? req.query.pageSuggest : 1;
     var pageReviewed = req.query.pageReviewed ? req.query.pageReviewed : 1;
     var userId = req.session.user.id;
+    var langCategory = req.cookies.lang;
 
     async.parallel({
         suggestedBooks: function (callback) {
@@ -212,6 +213,7 @@ router.get('/my_profile', authorize.isAuthenticated, function(req, res, next) {
                 pageSharing: pageSharing,
                 pageSuggest: pageSuggest,
                 pageReviewed: pageReviewed,
+                langCategory: langCategory,
             });
         }
     });
