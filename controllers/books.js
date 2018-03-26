@@ -26,6 +26,7 @@ router.get('/', localSession, function (req, res, next) {
         } else {
             var page = req.query.page ? req.query.page : 1;
             var field = req.query.field;
+            var langCategory = req.cookies.lang;
             var url = req.configs.api_base_url + 'books/?field=' + field + '&page=' + page;
 
             if (req.query.officeId) {
@@ -89,6 +90,7 @@ router.get('/', localSession, function (req, res, next) {
                     res.status(400).send(err);
                 } else {
                     res.render('books/section', {
+                        langCategory: langCategory,
                         field: field,
                         officeId: req.query.officeId,
                         section: results.section,
@@ -243,6 +245,7 @@ router.get('/:id', localSession, function (req, res, next) {
                             var cancelBookForOwner = null;
                             var returningBookToOwner = null;
                             var messages = req.flash('errors');
+                            var langCategory = req.cookies.lang;
                             var btnBooking = {
                                 'text': res.__('Want to Read'),
                                 'status': req.configs.book_user.status.waiting
@@ -313,6 +316,7 @@ router.get('/:id', localSession, function (req, res, next) {
                             data.item.returning_book_to_owner = returningBookToOwner;
                             res.render('books/detail', {
                                 data: data,
+                                langCategory: langCategory,
                                 pageTitle: 'Detail',
                                 officeId: data.item.office.id,
                                 messages: messages,
@@ -343,6 +347,7 @@ router.get('/category/:category_id', localSession, function (req, res, next) {
             res.status(400).send(res.__('There have been validation errors: ') + util.inspect(result.array()));
             return;
         } else {
+            var langCategory = req.cookies.lang;
             async.parallel({
                 books: function (callback) {
                     request({
@@ -400,6 +405,7 @@ router.get('/category/:category_id', localSession, function (req, res, next) {
                     res.redirect('back');
                 } else {
                     res.render('books/category', {
+                        langCategory: langCategory,
                         books: results.books,
                         categories: results.categories,
                         sortBookBy: results.sortBookBy,

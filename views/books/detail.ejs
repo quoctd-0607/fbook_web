@@ -65,7 +65,19 @@
                         <div class="space-10"></div>
                         <div class="row">
                             <p>
-                                <h4 class="tip-left"><%= __('Category') %>: <span class="text-warning"><%= data.item.category.name %></span></h4>
+                                <% switch (langCategory) {
+                                    case 'vi': %>
+                                        <h4 class="tip-left"><%= __('Category') %>: <span class="text-warning"><%= data.item.category.name_vi %></span></h4>
+                                    <% break;
+                                    case 'en': %>
+                                        <h4 class="tip-left"><%= __('Category') %>: <span class="text-warning"><%= data.item.category.name_en %></span></h4>
+                                    <% break;
+                                    case 'jp': %>
+                                        <h4 class="tip-left"><%= __('Category') %>: <span class="text-warning"><%= data.item.category.name_jp %></span></h4>
+                                    <% break;
+                                    default: %>
+                                        <h4 class="tip-left"><%= __('Category') %>: <span class="text-warning"><%= data.item.category.name_vi %></span></h4>
+                                <% } %>
                             </p>
                         </div>
                         <div class="space-10"></div>
