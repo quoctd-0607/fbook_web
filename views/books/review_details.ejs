@@ -14,8 +14,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-1">
+            <div class="row panel">
+                <div class="col-md-2">
                     <% if(data.items.current_vote == configs.words.up_vote ) { %>
                         <button class="btn_vote btn_voted up_vote" value="2">
                             <i class="icofont icofont-caret-up vote_review"></i>
@@ -38,7 +38,7 @@
                         </button>
                     <% } %>
                 </div>
-                <div class="col-xs-12 pull-right col-md-11 padding60 wow fadeInRight">
+                <div class="col-xs-12 pull-right col-md-10 padding60 wow fadeInRight">
                     <div class="book-content">
                         <%- data.items.content %>
                     </div>
@@ -85,13 +85,13 @@
             <div class="col-md-12">
                 <div class="space-40"></div>
                 <h4><%= __('Description') %></h4>
-                <div class="more fix-text"><%- data.items.book.description %></div>
+                <div class=" panel more fix-text"><%- data.items.book.description %></div>
             </div>
         </div>
     </div>
 </section>
-<section class="relative">
-    <div class="container">
+<section class="relative fix gray-bg">
+    <div class="container cmt-div bg-white">
         <div class="panel">
             <div class="panel-heading">
                 <ul class="nav nav-tabs">
@@ -104,43 +104,47 @@
                         <div class="row event-list">
                             <% if (data.items.comments.length > 0) { %>
                                 <% data.items.comments.forEach((comment) => { %>
-                                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-9 revsdv" id="">
-                                    <div class="event-item wow fadeInRight" id="comment<%= comment.id %>">
-                                        <h4 class="show tip-left"><a href="javascript:voi(0);"><%= comment.user.name %></a></h4>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="event-item wow fadeInRight comment-box" id="comment<%= comment.id %>">
                                         <div class="well padding5 owner-clear relative-position">
-                                            <div class="media">
-                                                <div class="media-left">
+                                            <div class="media padding5">
+                                                <header class="media-left">
                                                     <% if (user.avatar !== null) { %>
-                                                        <a href="/users/<%= comment.user.id %>">
-                                                            <img src="<%= comment.user.avatar %>" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
+                                                        <a href="/users/<%= comment.user.id %>" class="avatar">
+                                                            <img src="<%= comment.user.avatar %>" class="media-object" alt="<%= __('Avatar') %>">
+                                        
                                                         </a>
                                                     <% } else { %>
-                                                        <a href="/users/<%= comment.user.id %>">
+                                                        <a href="/users/<%= comment.user.id %>" class="avatar">
                                                             <img src="/images/user/icon_user_default.png" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
+                                                            
                                                         </a>
                                                     <% } %>
-                                                </div>
+                                                </header>
                                                 <div class="media-body">
-                                                    <p class="review-comment">
-                                                        <%= comment.created_at %>                          
-                                                    </p>
-                                                    <% if(userId == comment.user.id) { %>
-                                                        <button type="button" 
-                                                            class="edit_comment_topright" 
-                                                            id="edit_comment_topright<%= comment.id %>" 
-                                                            data-comment-content="<%= comment.content %>" 
-                                                            data-user-id="<%= comment.user.id %>" 
-                                                            data-comment-id="<%= comment.id %>" 
-                                                            data-review-id="<%= data.items.id %>" 
-                                                            value="<%= comment.id %>" 
-                                                            title="<%= __('edit comment') %>">
-                                                        <span class="glyphicon glyphicon-pencil"></span>
-                                                    </button>
-                                                        <button type="button" class="delete_comment_topright" value="<%= comment.id %>" title="<%= __('delete comment') %>">X</button>
-                                                    <% }%>
                                                     <div class="content-comment" id="content-comment-<%= comment.id %>">
+                                                        <p class="show tip-left">
+                                                            <strong><%= comment.user.name %></strong>  
+                                                            <span><%= comment.created_at %></span>                
+                                                        </p>
                                                         <p>
                                                             <%= comment.content %>
+                                                            <% if(userId == comment.user.id) { %>
+                                                                <button type="button" 
+                                                                    class="edit_comment_topright" 
+                                                                    id="edit_comment_topright<%= comment.id %>" 
+                                                                    data-comment-content="<%= comment.content %>" 
+                                                                    data-user-id="<%= comment.user.id %>" 
+                                                                    data-comment-id="<%= comment.id %>" 
+                                                                    data-review-id="<%= data.items.id %>" 
+                                                                    value="<%= comment.id %>" 
+                                                                    title="<%= __('edit comment') %>">
+                                                                <span class="glyphicon glyphicon-pencil"></span>
+                                                            </button>
+                                                                <button type="button" class="delete_comment_topright" value="<%= comment.id %>" title="<%= __('delete comment') %>">
+                                                                    <span class="glyphicon glyphicon-trash"></span>
+                                                                </button>
+                                                            <% }%>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -149,25 +153,36 @@
                                     </div>
                                 </div>
                             <% })} else { %>
-                                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-9 revsdv" id="no_comment">
+                                <div class="col-xs-12 col-sm-8 col-md-9" id="no_comment">
                                     <%= __('Not yet comment') %>
                                 </div>
                             <% } %>
                         </div>
                         <div class="row ">
                             <form action="/books/review-details/comment" method="post">
-                                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-9 p-0">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 well">
                                         <div class="form-group">
-                                            <textarea name="review_content" id="content" class="form-control bg-info b-r-0" cols="50" rows="3" placeholder="<%= __('Enter your review') %>'" required> </textarea>
-                                            <input type="hidden" name="review_user_id" value="<%= userId %>"/>
-                                            <input type="hidden" name="review_review_id" value="<%= data.items.id %>"/>
+                                            <div class="col-xs-12 col-sm-12 col-md-1 text-center">
+                                            <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown">
+                                                <% if (typeof user != 'undefined' && typeof user.avatar !== 'undefined' && user.avatar) { %>
+                                                    <img src="<%= user.avatar %>" alt="<%= __('Avatar') %>" /><span class="badge active-user-notification"></span>
+                                                    <div class="hidden" id="get-user-id"><%= user.id%></div>
+                                                <% }
+                                                else { %>
+                                                    <img src="/images/user_default.png" class="img-circle img-thumbnail" alt="<%= __('Avatar') %>" />
+                                                <% } %>
+                                            </a>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-11">
+                                                <textarea name="review_content" id="content" class="form-control bg-info b-r-0" cols="50" rows="3" placeholder="<%= __('Enter your review') %>'" required> </textarea>
+                                                <input type="hidden" name="review_user_id" value="<%= userId %>"/>
+                                                <input type="hidden" name="review_review_id" value="<%= data.items.id %>"/>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-9 p-0">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <button type="submit" class="btn btn-primary hover-btn-default m-0 b-r-0" id> <%= __('Up comment') %> <i class="fa fa-long-arrow-right"></i></button>
+                                        <div class="col-xs-12 col-sm-12 col-md-12 button-comment text-right">
+                                            <button type="submit" class="btn btn-primary hover-btn-default btn-customize margin-top-20"> <%= __('Up comment') %> <i class="fa fa-long-arrow-right"></i></button>
+                                        </div>
                                     </div>
                                 </div>
                             </form>

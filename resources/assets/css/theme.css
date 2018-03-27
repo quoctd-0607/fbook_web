@@ -459,9 +459,15 @@ a.media-button-customize {
     font-style: italic;
     margin: 0 0 5px 0 !important;
 }
-.comment-box .well {
-    height: 100px;
+
+.padding-left-0{
+    padding: 0px !important;
 }
+
+.margin-top-20 {
+    margin-top: 20px;
+}
+
 .comment-box .avatar img {
     width: 64px !important;
     height: 64px !important;
