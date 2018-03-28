@@ -198,9 +198,19 @@
     background-color: white !important;
 }
 
+.show tip-left {
+    padding-left: 10px;
+}
+
 .w-70-h-70 {
-    width: 70px;
-    height: 70px;
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 100%;
+    max-width: 3.75rem;
+    max-height: 3.75rem;
+    margin: 0 auto;
+    float: left;
 }
 
 .w-30-h-30 {

@@ -113,7 +113,7 @@
                         <div class="row">
                             <h4 class="tip-left"><%= __('Activities') %>: </h4>
                             <div class="col-xs-12 col-sm-4">
-                                <div class="media">
+                                <div class="media padding5">
                                     <div class="media-body">
                                         <a href="javascript:void(0);" onclick="showTab('#user_review')">
                                             <span class="badge"><%= data.item.reviews_detail.length %></span> <%= __('Review')%>
@@ -264,7 +264,7 @@
 </section>
 
 <section class="relative">
-    <div class="container">
+    <div class="container cmt-div">
         <div class="panel">
             <div class="panel-heading">
                 <ul class="nav nav-tabs">
@@ -285,11 +285,11 @@
                                         data.prototype.detect = 1;
                                     }
                                 %>
-                                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-9 revsdv" id="review<%= review.id %>">
+                                <div class="col-xs-12 col-sm-8 col-md-12 revsdv" id="review<%= review.id %>">
                                     <div class="event-item wow fadeInRight comment-box">
                                         <h4 class="show tip-left"><%= review.created_at %></h4>
                                         <div class="well padding5 owner-clear relative-position">
-                                            <div class="media">
+                                            <div class="media padding5">
                                                 <div class="media-left">
                                                     <% if (review.user.avatar !== null) { %>
                                                         <a href="/users/<%= review.user.id %>" class="avatar">
@@ -341,7 +341,7 @@
                             <% } %>
                         </div>
                         <div class="row ">
-                            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-9">
+                            <div class="col-xs-12 col-sm-8 col-md-12 text-right">
                                 <h4 class="m-bottom5">
                                     <a href="/books/<%= book_current %>/review" class="btn btn-primary hover-btn-default btn-customize">
                                         <% if(data.item.current_user_review !== null && data.detect !== null ){ %>

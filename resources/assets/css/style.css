@@ -498,6 +498,7 @@ input:-webkit-autofill:focus {
 
 .fix-text {
     text-align: justify;
+    padding: 30px;
 }
  .no-margin {
     margin: 0;
@@ -562,6 +563,14 @@ input:-webkit-autofill:focus {
 
 .btn_voted {
     color: #5488c7;
+}
+
+.padding-avatar {
+    padding-left: 35px;
+}
+
+.button-comment{
+    margin-top: 10px;
 }
 
 .delete_comment_topright {
