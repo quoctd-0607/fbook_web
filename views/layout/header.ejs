@@ -37,11 +37,9 @@
                                     <% } %>
                                 </a>
                                 <ul class="dropdown-menu info-user">
+                                    <li class="border-bottom-ccc"><a><b><%= user.name %></b></a></li>
                                     <li>
                                         <a href="/users/my_profile"> <span><i class="icofont icofont-user"></i></span> <%= __('Profile') %></a>
-                                    </li>
-                                    <li>
-                                        <a href="/books/add"> <span><i class="glyphicon glyphicon-share-alt"></i></span> <%= __('Share books')%></a>
                                     </li>
                                     <li>
                                         <a href="/books/waiting_approve"> <span><i class="glyphicon glyphicon-ok"></i></span> <%= __('Requests borrow book')%> </a>
@@ -140,7 +138,7 @@
                         <% if (typeof user != 'undefined' && typeof user.name !== 'undefined' && user.name) { %>
                             <li data-toggle="tooltip" title="<%= __('Notifications') %>">
                                 <a href="#" class="dropdown-toggle notification_onclick_icon dropdown-toggle" data-toggle="dropdown">
-                                    <i class="icofont icofont-notification nav-icon"></i>
+                                    <i class="fa fa-bell-o nav-icon"></i>
                                 </a>
                                 <span class="badge active-notification count_Notifications" id="notification_<%=user.id%>"></span>
                                 <ul class="dropdown-menu dropdown-menu-notification">
@@ -156,8 +154,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="javascript:void(0);"><%= user.name %></a>
+                            <li title="<%= __('Share books')%>">
+                                <a href="/books/add" class="nav-icon"><i class="glyphicon glyphicon-plus"></i></a>
                             </li>
                         <% }
                         else { %>
