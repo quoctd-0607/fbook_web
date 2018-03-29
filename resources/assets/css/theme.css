@@ -342,6 +342,28 @@ a.media-button-customize {
     color: #337ab7 !important;
 }
 
+.pencil{
+    color: #000;
+}
+
+.category-item.well-book {
+    background-color: #ffffff;
+    padding: 0px 0px 10px 10px;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.3);
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    border: 2px solid #d6d6d6;
+}
+.category-item.well-book .media-left {
+    padding: 2px;
+}
+
+.category-item.well-book:hover {
+    box-shadow: 0 10px 40px -11px rgba(0, 0, 0, 0.3);
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+}
+
 .category-item.well {
     background-color: #ffffff;
     padding: 30px 8px 0 8px;
