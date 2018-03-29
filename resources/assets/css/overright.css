@@ -85,6 +85,23 @@
     border: none
 }
 
+.btn.btn-primary.edit-my-book{
+    height: 30px !important;
+    width: 30px !important;
+    min-width: 30px !important;
+    padding: 5px !important;
+}
+
+.btn.btn-primary.edit-my-book,
+.hover-btn-primary:hover {
+    background-color: #fec826;
+    color: #ffffff;
+}
+
+.btn.btn-primary.edit-my-book:hover {
+    background-color: #fec826;
+}
+
 .btn.btn-primary,
 .hover-btn-primary:hover {
     background-color: #2352c5;
@@ -176,6 +193,30 @@
 
 .media-body {
     padding: 5px;
+}
+
+.category-item.well-book {
+    overflow: hidden;
+    /* height: 300px; */
+    border: 1px solid #5b5b5b;
+    margin-bottom: 30px;
+}
+
+.category-item.well-book .media-body h5 {
+    cursor: pointer;
+    text-transform: uppercase;
+}
+.category-item.well-book p {
+    font-size: 12px;
+}
+
+.category-item.well-book .owners {
+    position: absolute;
+    bottom: 30px
+}
+
+.category-item.well-book:hover {
+    transform: none !important;
 }
 
 .category-item.well {
