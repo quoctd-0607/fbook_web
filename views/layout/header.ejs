@@ -65,6 +65,11 @@
                 <!--Mainmenu list-->
                 <div class="navbar-right in fade" id="mainmenu">
                     <ul class="nav navbar-nav nav-white text-uppercase">
+                        <li>
+                            <input id="search-box" type="text" class="search-box" name="q" />
+                            <label for="search-box"><span class="glyphicon glyphicon-search search-icon"></span></label>
+                            <input type="submit" id="search-submit"/>
+                        </li>
                         <li class="active" title="<%= __('Home Page') %>">
                             <% if (typeof user != 'undefined' && typeof user.office_id !== 'undefined' && user.office_id) { %>
                                 <a href="/home?officeId=<%= user.office_id %>"><%= __('Home')%></a>
