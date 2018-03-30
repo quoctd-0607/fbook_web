@@ -68,9 +68,33 @@
                                 <select id="category" class="form-control bg-danger b-r-0" name="category_id" required="required">
                                     <% categories.items.forEach(function (category) { %>
                                         <% if (book.item.category.id == category.id) { %>
-                                            <option value="<%= category.id %>" selected><%= category.name %></option>
+                                            <% switch (langCategory) {
+                                                case 'vi': %>
+                                                    <option value="<%= category.id %>" selected><%= category.name_vi %></option>
+                                                <% break;
+                                                case 'en': %>
+                                                    <option value="<%= category.id %>" selected><%= category.name_en %></option>
+                                                <% break;
+                                                case 'jp': %>
+                                                    <option value="<%= category.id %>" selected><%= category.name_jp %></option>
+                                                <% break;
+                                                default: %>
+                                                    <option value="<%= category.id %>" selected><%= category.name_vi %></option>
+                                            <% } %>
                                         <% } else { %>
-                                            <option value="<%= category.id %>"><%= category.name %></option>
+                                            <% switch (langCategory) {
+                                                case 'vi': %>
+                                                    <option value="<%= category.id %>"><%= category.name_vi %></option>
+                                                <% break;
+                                                case 'en': %>
+                                                    <option value="<%= category.id %>"><%= category.name_en %></option>
+                                                <% break;
+                                                case 'jp': %>
+                                                    <option value="<%= category.id %>"><%= category.name_jp %></option>
+                                                <% break;
+                                                default: %>
+                                                    <option value="<%= category.id %>"><%= category.name_vi %></option>
+                                            <% } %>
                                         <% } %>
                                     <% }) %>
                                 </select>

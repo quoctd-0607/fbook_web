@@ -106,6 +106,7 @@ router.get('/', localSession, function (req, res, next) {
 });
 
 router.get('/add', authorize.isAuthenticated, function (req, res, next) {
+    var langCategory = req.cookies.lang;
     async.parallel({
         offices: function (callback) {
             request({
@@ -146,6 +147,7 @@ router.get('/add', authorize.isAuthenticated, function (req, res, next) {
             res.redirect('back');
         } else {
             res.render('books/add', {
+                langCategory: langCategory,
                 categories: results.categories,
                 offices: results.offices,
                 officeId: req.session.office_id
@@ -505,6 +507,7 @@ router.post('/booking/:id', authorize.isAuthenticated, function (req, res, next)
 });
 
 router.get('/:id/edit', authorize.isAuthenticated, function (req, res, next) {
+    var langCategory = req.cookies.lang;
     async.parallel({
         offices: function (callback) {
             request({
@@ -562,6 +565,7 @@ router.get('/:id/edit', authorize.isAuthenticated, function (req, res, next) {
             res.redirect('back');
         } else {
             res.render('books/edit', {
+                langCategory: langCategory,
                 categories: results.categories,
                 offices: results.offices,
                 officeId: req.session.office_id,

@@ -85,11 +85,39 @@
                                                 </tr>
                                                 <tr>
                                                     <td><strong><%= __('Category') %></strong></td>
-                                                    <td><%= data.current_book_info.category.name %></td>
+                                                    <td>
+                                                        <% switch (langCategory) {
+                                                            case 'vi': %>
+                                                                <%= data.current_book_info.category.name_vi %>
+                                                            <% break;
+                                                            case 'en': %>
+                                                                <%= data.current_book_info.category.name_en %>
+                                                            <% break;
+                                                            case 'jp': %>
+                                                                <%= data.current_book_info.category.name_jp %>
+                                                            <% break;
+                                                            default: %>
+                                                                <%= data.current_book_info.category.name_vi %>
+                                                        <% } %>
+                                                    </td>
                                                     <% if (data.current_book_info.category.id == data.category.id) { %>
                                                         <td><%= __('Not Change') %></td>
                                                     <% } else { %>
-                                                        <td><%= data.category.name %></td>
+                                                        <td>
+                                                            <% switch (langCategory) {
+                                                                case 'vi': %>
+                                                                    <%= data.category.name_vi %>
+                                                                <% break;
+                                                                case 'en': %>
+                                                                    <%= data.category.name_en %>
+                                                                <% break;
+                                                                case 'jp': %>
+                                                                    <%= data.category.name_en %>
+                                                                <% break;
+                                                                default: %>
+                                                                    <%= data.category.name_vi %>
+                                                            <% } %>
+                                                        </td>
                                                     <% } %>
                                                 </tr>
                                                 <tr>
