@@ -226,7 +226,7 @@ $(function ($) {
                         htmlModel +=
                             "<span class='text-color-noti label label-success lbl-waiting" +
                             data.user_send.id +
-                            "'>" + i18n['approve request edit book'] + "</span>";
+                            "'>" + i18n['Requests edit book'] + "</span>";
                     } else if (data.type == configs.notification.delete_request_update_book) {
                         htmlModel += "<a href='#" +
                             "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
