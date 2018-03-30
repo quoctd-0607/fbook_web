@@ -106,6 +106,8 @@ router.get('/', authorize.isAdmin, function (req, res, next) {
 
 router.get('/waiting-request-edit-book', authorize.isAdmin, function (req, res, next) {
     var page = req.query.page ? req.query.page : 1;
+    var langCategory = req.cookies.lang;
+
     request({
         url: req.configs.api_base_url + 'admin/waiting-update-book' + '/?page=' + page,
         headers: objectHeaders.headers({'Authorization': req.session.access_token})
@@ -120,6 +122,7 @@ router.get('/waiting-request-edit-book', authorize.isAdmin, function (req, res, 
                     });
                 res.render('admin/waiting_request_edit_book', {
                     layout: 'admin/layout/admin_template',
+                    langCategory: langCategory,
                     dataRequest: data,
                     paginate: pagination,
                     pageTitle: res.__('Waiting Request Edit Book'),
