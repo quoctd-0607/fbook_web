@@ -839,37 +839,37 @@ a.media-button-customize {
 }
 
 .badge-1 {
-    background: blue;
+    background: lightblue; /* #add8e6 */
     position: absolute;
     top: 7px;
 }
 
 .badge-2 {
-    background: red;
+    background: pink; /* #ffc0cb */
     position: absolute;
     top: 7px;
 }
 
 .badge-3 {
-    background: orange;
+    background: lightsalmon; /* #ffa07a */
     position: absolute;
     top: 7px;
 }
 
 .badge-4 {
-    background: green;
+    background: lightgreen; /* #90ee90 */
     position: absolute;
     top: 7px;
 }
 
 .badge-5 {
-    background: purple;
+    background: plum; /* #dda0dd */
     position: absolute;
     top: 7px;
 }
 
 .badge-notify {
-    background: red;
+    background: pink; /* #ffc0cb */
     position: absolute;
     top: 7px;
 }

@@ -288,7 +288,7 @@ Book.return = function (data) {
 
 Book.cancel = function (data) {
     swal({
-        title: 'Are you sure cancel waiting this book?',
+        title: i18n['Are you sure cancel waiting this book?'],
         type: 'info',
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
