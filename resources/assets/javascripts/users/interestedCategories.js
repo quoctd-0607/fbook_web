@@ -1,6 +1,7 @@
 
 $(function ($) {
     $('.btn-save').on('click', function(e) {
+        $('#favoritecategories').modal('hide');
         e.preventDefault();
         var interestedCategoryIds = [];
         var categoryIds = $('.hide-categoryIds').data('categoryIds');
