@@ -232,7 +232,7 @@
     font-size: 12px;
 }
 .rating-container {
-    font-size: 1.5em !important;
+    font-size: 1.3em !important;
 }
 
 .background--white {
@@ -364,6 +364,7 @@
 
 .img-avatar-book {
     cursor: pointer;
+    width: 100%;
 }
 
 .loader {
