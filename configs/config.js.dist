@@ -59,9 +59,7 @@ var config = {
         "down_vote" : 1
     },
     search: {
-        "title": "title",
-        "author": "author",
-        "description": "description"
+        title_limit_search: 20
     }
 };
 
