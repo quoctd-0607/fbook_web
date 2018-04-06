@@ -25,6 +25,7 @@
 /*------------------
 2. Theme Default CSS
 -------------------*/
+
 .search-box {
     width: 40px;
     height: 40px;
@@ -48,7 +49,7 @@
     box-shadow: none;
     padding-left: 15px;
     cursor: text;
-    width: 250px;
+    width: 300px;
     border-radius: auto;
     background: #ebebeb;
     color: black;
