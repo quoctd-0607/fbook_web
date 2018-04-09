@@ -70,7 +70,7 @@
                             <label for="search-box"><span class="glyphicon glyphicon-search search-icon"></span></label>
                             <input type="submit" id="search-submit"/>
                         </li>
-                        <li class="active" title="<%= __('Home Page') %>">
+                        <li class="active header-li" title="<%= __('Home Page') %>">
                             <% if (typeof user != 'undefined' && typeof user.office_id !== 'undefined' && user.office_id) { %>
                                 <a href="/home?officeId=<%= user.office_id %>"><%= __('Home')%></a>
                             <% } else { %>
@@ -78,7 +78,7 @@
                             <% } %>
                         </li>
                         <% if (typeof(offices.items) !== 'undefined' && typeof(offices) !== 'undefined' && offices && offices.items) { %>
-                            <li class="dropdown" title="<%= __('Office') %>">
+                            <li class="dropdown header-li" title="<%= __('Office') %>">
                                 <% offices.items.forEach(function(office) { %>
                                     <% if (typeof(officeId) !== 'undefined' && officeId == office.id) { %>
                                         <a href="#" class="dropdown-toggle opacity-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= office.area %><span class="caret"></span></a>
@@ -113,10 +113,10 @@
                                 </ul>
                             </li>
                         <% } %>
-                        <li title="<%= __('Mobile') %>">
+                        <li class="header-li" title="<%= __('Mobile') %>">
                             <a target="_blank" href="/users/fbook_app" class="icon-header"><span><i class="icofont icofont-iphone nav-icon"></i></span></a>
                         </li>
-                        <li title="<%= __('Language') %>">
+                        <li class="header-li" title="<%= __('Language') %>">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><img src="/images/vietnam.png" class="image-flag-be" id="myImage"></span></a>
                             <ul class="dropdown-menu language">
                                 <li>
@@ -136,12 +136,12 @@
                                 </li>
                             </ul>
                         </li>
-                        <li data-toggle="tooltip" title="<%= __('More tools') %>">
+                        <li class="header-li" data-toggle="tooltip" title="<%= __('More tools') %>">
                             <a target="_blank" href="https://wsm.framgia.vn/all-tools" class="icon-header">
                             <img src="/images/app_icon.png" class="icofont-fw nav-icon nav-moretoolicon"></a>
                         </li>
                         <% if (typeof user != 'undefined' && typeof user.name !== 'undefined' && user.name) { %>
-                            <li data-toggle="tooltip" title="<%= __('Notifications') %>">
+                            <li class="header-li"> data-toggle="tooltip" title="<%= __('Notifications') %>">
                                 <a href="#" class="dropdown-toggle notification_onclick_icon dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-bell-o nav-icon"></i>
                                 </a>
@@ -164,7 +164,7 @@
                             </li>
                         <% }
                         else { %>
-                            <li>
+                            <li class="header-li">
                                 <a href="/login"><%= __('Login with WSM') %></a>
                             </li>
                         <% } %>
