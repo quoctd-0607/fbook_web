@@ -175,9 +175,26 @@ input:-webkit-autofill:focus {
 }
 
 .search-result {
-    max-height: 200px;
+    max-height: 600px;
+    max-width: 250px;
     overflow: auto;
     padding-right: 0;
+    position: absolute;
+}
+
+.search-result a {
+    font-size: 10px !important;
+}
+
+.book-search {
+    margin-left: 10px;
+    color: #5b5b5b;
+}
+
+.author-search {
+    font-size: 8px !important;
+    color: #5b5b5b;
+    font-style: italic !important;
 }
 
 #data-search, #data-search-google, #data-suggest-book {

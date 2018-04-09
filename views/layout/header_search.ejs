@@ -25,49 +25,5 @@
                 <div class="space-40"></div>
             </div>
         </div>
-        <div class="row wow fadeInUp" data-wow-delay="0.5s" style="display: none;">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 ">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <div class="panel-heading">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#search_internal"><%= __('Search internal books') %></a></li>
-                                <li><a data-toggle="tab" href="#search_google_books"><%= __('Search books with google books') %></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="tab-content">
-                            <div class="tab-pane fade in active" id="search_internal">
-                                <div class="row event-list">
-                                    <div class="search-result col-md-12">
-                                        <label class="radio-inline"><input type="radio" name="type-search" value="<%= configs.search.title %>" checked="true"><%= __('Title') %></label>
-                                        <label class="radio-inline"><input type="radio" name="type-search" value="<%= configs.search.author %>"><%= __('Author') %></label>
-                                        <label class="radio-inline"><input type="radio" name="type-search" value="<%= configs.search.description %>"><%= __('Description') %></label>
-                                    </div>
-                                    <div class="category-container col-md-12">
-                                        <input type="text" id="search-book"/>
-                                    </div>
-                                    <div class="search-result col-md-12">
-                                        <ul id="data-search"></ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane fade" id="search_google_books">
-                                <div class="row event-list">
-                                    <div class="category-container col-md-12">
-                                        <input type="text" id="search-book-google"/>
-                                    </div>
-                                    <div class="search-result col-md-12">
-                                        <ul id="data-search-google"></ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>

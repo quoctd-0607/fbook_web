@@ -1,9 +1,16 @@
 $(function ($) {
-    $('body').on('keyup', '#search-book', function (e) {
+    $('body').on('keyup', '#search-box', function (e) {
+        $('.search-result').show();
+        
         delay(function(){
             e.preventDefault();
             searchBooks();
         }, 500);
+    });
+
+    $('input[name="search-box"]').blur(function(){
+        $(".search-result").hide();
+        $(this).val('');
     });
 
     $('body').on('keyup', '#search-book-google', function (e) {
@@ -11,11 +18,6 @@ $(function ($) {
             e.preventDefault();
             searchBooksGoogle();
         }, 500);
-    });
-
-    $('input[name="type-search"]').on('change', function (e) {
-        e.preventDefault();
-        searchBooks();
     });
 
     var delay = (function() {
@@ -29,7 +31,7 @@ $(function ($) {
 
 if (typeof searchBooks === 'undefined') { 
     function searchBooks() {
-        if ($('#search-book').val() == '') {
+        if ($('#search-box').val() == '') {
             $('#data-search').empty();
         } else {
             $.ajax({
@@ -38,19 +40,103 @@ if (typeof searchBooks === 'undefined') {
                 type: 'POST',
                 data: JSON.stringify({
                     search: {
-                        keyword: $('#search-book').val(),
-                        field: $('input[name="type-search"]:checked').val()
+                        keyword: $('#search-box').val(),
                     }
                 }),
             }).done(function (response) {
                 $('#data-search').empty();
 
-                if (response.items.total) {
-                    response.items.data.forEach(function (book) {
-                        $('#data-search').append('<li><a href="/books/'+ book.id +'">' + book.title + '</a></li>');
-                    });
-                } else {
+                if (response.titles.total == 0) {
+                    $('#data-search').append('<li><a href="#"><h5>' + i18n['TITLE'] + '</h5></a></li>');
                     $('#data-search').append('<li><a href="#">' + i18n['Not found'] + '</a></li>');
+                } else {
+                    $('#data-search').append('<li><a href="#"><h5>' + i18n['TITLE'] + '</h5></a></li>');
+                    response.titles.data.forEach(function (book) {
+                        if (book.image) {
+                            $('#data-search').append('<li><a href="/books/'
+                                + book.id + '"><img src="'
+                                + book.image.web.thumbnail_path
+                                + '", class="owner-image-home img-thumbnail"><b class="book-search">'
+                                + book.title.slice(0, configs.search.title_limit_search) 
+                                + (book.title.length > configs.search.title_limit_search ? "..." : "")
+                                + '<br><p class="author-search">'
+                                + book.author
+                                + '</p></b></a></li>'
+                            );
+                        } else {
+                            $('#data-search').append('<li><a href="/books/'
+                                + book.id
+                                + '"><img src="/images/book_thumb_default.jpg", class="owner-image-home img-thumbnail"><b class="book-search">'
+                                + book.title.slice(0, configs.search.title_limit_search) 
+                                + (book.title.length > configs.search.title_limit_search ? "..." : "")
+                                + '<br><p class="author-search">'
+                                + book.author
+                                + '</p></b></a></li>'
+                            );
+                        }
+                    });
+                }
+
+                if (response.authors.total == 0) {
+                    $('#data-search').append('<li><a href="#"><h5>' + i18n['AUTHOR'] + '</h5></a></li>');
+                    $('#data-search').append('<li><a href="#">' + i18n['Not found'] + '</a></li>');
+                } else {
+                    $('#data-search').append('<li><a href="#"><h5>' + i18n['AUTHOR'] + '</h5></a></li>');
+                    response.authors.data.forEach(function (book) {
+                        if (book.image) {
+                            $('#data-search').append('<li><a href="/books/'
+                                + book.id + '"><img src="'
+                                + book.image.web.thumbnail_path
+                                + '", class="owner-image-home img-thumbnail"><b class="book-search">'
+                                + book.title.slice(0, configs.search.title_limit_search) 
+                                + (book.title.length > configs.search.title_limit_search ? "..." : "")
+                                + '<br><p class="author-search">'
+                                + book.author
+                                + '</p></b></a></li>'
+                            );
+                        } else {
+                            $('#data-search').append('<li><a href="/books/'
+                                + book.id
+                                + '"><img src="/images/book_thumb_default.jpg", class="owner-image-home img-thumbnail"><b class="book-search">'
+                                + book.title.slice(0, configs.search.title_limit_search) 
+                                + (book.title.length > configs.search.title_limit_search ? "..." : "")
+                                + '<br><p class="author-search">'
+                                + book.author
+                                + '</p></b></a></li>'
+                            );
+                        }
+                    });
+                }
+
+                if (response.descriptions.total == 0) {
+                    $('#data-search').append('<li><a href="#"><h5>' + i18n['DESCRIPTION'] + '</h5></a></li>');
+                    $('#data-search').append('<li><a href="#">' + i18n['Not found'] + '</a></li>');
+                } else {
+                    $('#data-search').append('<li><a href="#"><h5>' + i18n['DESCRIPTION'] + '</h5></a></li>');
+                    response.descriptions.data.forEach(function (book) {
+                        if (book.image) {
+                            $('#data-search').append('<li><a href="/books/'
+                                + book.id + '"><img src="'
+                                + book.image.web.thumbnail_path
+                                + '", class="owner-image-home img-thumbnail"><b class="book-search">'
+                                + book.title.slice(0, configs.search.title_limit_search) 
+                                + (book.title.length > configs.search.title_limit_search ? "..." : "")
+                                + '<br><p class="author-search">'
+                                + book.author
+                                + '</p></b></a></li>'
+                            );
+                        } else {
+                            $('#data-search').append('<li><a href="/books/'
+                                + book.id
+                                + '"><img src="/images/book_thumb_default.jpg", class="owner-image-home img-thumbnail"><b class="book-search">'
+                                + book.title.slice(0, configs.search.title_limit_search) 
+                                + (book.title.length > configs.search.title_limit_search ? "..." : "")
+                                + '<br><p class="author-search">'
+                                + book.author
+                                + '</p></b></a></li>'
+                            );
+                        }
+                    });
                 }
             }).fail(function (error) {
                 $('#data-search').empty();
