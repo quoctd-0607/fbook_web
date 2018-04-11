@@ -1,3 +1,11 @@
+.float-left {
+    float: left !important;
+}
+
+.pl-5 {
+    padding-left: 5px;
+}
+
 .jumbotron {
     background: transparent;
     padding-top: 0;
