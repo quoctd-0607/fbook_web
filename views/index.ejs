@@ -1,8 +1,8 @@
-<% data.items.forEach(function (section, key) { %>
+<div class="row row-section"><% data.items.forEach(function (section, key) { %>
 <!--Begin section-->
-<section id="section<%= key %>" class="gray-bg">
+<section id="section<%= key %>" class="gray-bg col-md-9 border-d6">
     <div class="space-40"></div>
-    <div class="container">
+    <div class="container section-book">
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
                 <h2><strong><%= __(section.title) %></strong></h2>
@@ -62,41 +62,43 @@
                                                 <%= book.office.name %>
                                             </span>
                                         <% } %>
-                                        <div class="media-left">
-                                            <% if (book.image && book.image.web.thumbnail_path !== undefined) { %>
-                                                <img onclick="window.open('/books/<%= book.id %>', '_self')" 
-                                                    src="<%= book.image.web.thumbnail_path %>" 
-                                                    class="media-object img-avatar-book" 
-                                                    alt="<%= book.title %>">
-                                            <% } else { %>
-                                                <img onclick="window.open('/books/<%= book.id %>', '_self')" 
-                                                    src="/images/book_thumb_default.jpg" 
-                                                    class="media-object img-avatar-book" 
-                                                    alt="<%= book.title %>">
-                                            <% } %>
-                                        </div>
-                                        <div class="media-body">
-                                            <% if (typeof (book.title) != 'undefined' && book.title) {%>
-                                                <h5 title="<%= book.title %>" 
-                                                    onclick="window.open('/books/<%= book.id %>', '_self')"
-                                                    data-toggle="tooltip">
-                                                    <%= getString(book.title, configs.book.title_limit_characters) %>
-                                                </h5>
-                                            <% } else {%>
-                                                <a href="/books/<%= book.id %>" target="_self">
-                                                    <h5><%= __('No title') %></h5>
-                                                </a>
-                                            <% } %>
-                                            <% if (typeof (book.author) != 'undefined' && book.author) { %>
-                                                <h6 title="<%= book.author %>" data-toggle="tooltip"><%= __('By') %> <%= getString(book.author, configs.book.author_limit_characters) %></h6>
-                                            <% } else {%>
-                                                <h6><%= __('By') %> Framgia</h6>
-                                            <% } %>
-                                            <input id="rating-book" name="star" class="rating" data-min="0" data-max="5" value=<%= book.avg_star %> disabled="true" data-step="0.01" data-size="xs">
-                                            <div class="space-10"></div>
-                                            <p>
-                                                <%- book.overview %>
-                                            </p>
+                                        <div class="row">
+                                            <div class="media-left col-md-6">
+                                                <% if (book.image && book.image.web.thumbnail_path !== undefined) { %>
+                                                    <img onclick="window.open('/books/<%= book.id %>', '_self')" 
+                                                        src="<%= book.image.web.thumbnail_path %>" 
+                                                        class="media-object img-avatar-book" 
+                                                        alt="<%= book.title %>">
+                                                <% } else { %>
+                                                    <img onclick="window.open('/books/<%= book.id %>', '_self')" 
+                                                        src="/images/book_thumb_default.jpg" 
+                                                        class="media-object img-avatar-book" 
+                                                        alt="<%= book.title %>">
+                                                <% } %>
+                                            </div>
+                                            <div class="col-md-6 book-descrip">
+                                                <% if (typeof (book.title) != 'undefined' && book.title) {%>
+                                                    <h5 title="<%= book.title %>" 
+                                                        onclick="window.open('/books/<%= book.id %>', '_self')"
+                                                        data-toggle="tooltip">
+                                                        <%= getString(book.title, configs.book.title_limit_characters) %>
+                                                    </h5>
+                                                <% } else {%>
+                                                    <a href="/books/<%= book.id %>" target="_self">
+                                                        <h5><%= __('No title') %></h5>
+                                                    </a>
+                                                <% } %>
+                                                <% if (typeof (book.author) != 'undefined' && book.author) { %>
+                                                    <h6 title="<%= book.author %>" data-toggle="tooltip"><%= __('By') %> <%= getString(book.author, configs.book.author_limit_characters) %></h6>
+                                                <% } else {%>
+                                                    <h6><%= __('By') %> Framgia</h6>
+                                                <% } %>
+                                                <input id="rating-book" name="star" class="rating" data-min="0" data-max="5" value=<%= book.avg_star %> disabled="true" data-step="0.01" data-size="xs">
+                                                <div class="space-10"></div>
+                                                <p>
+                                                    <%- book.overview %>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="owners">
@@ -133,7 +135,7 @@
                     <% if (typeof(officeId) === 'undefined') { %>
                         <a href="/books/?field=<%= section.key %>&page=1" class="btn btn-warning btn-xs uppercase"><%= __('More')%></a>
                     <% } else { %>
-                        <a href="/books/?field=<%= section.key %>&page=1&officeId=<%= officeId %>" class="btn btn-warning btn-xs uppercase"><%= __('More')%></a>
+                        <a href="/books/?field=<%= section.key %>&page=1&officeId=<%= officeId %>" class="btn btn-warning btn-xs uppercase"><%= __('More') %></a>
                     <% } %>
                 </div>
             </div>
@@ -143,7 +145,92 @@
 </section>
 <!--End section-->
 <% }) %>
-
+    <div class="col-md-3 text-center hot-user-column gray-bg">
+        <div class="space-40"></div>
+        <h2><strong><%= __('Enthusiast') %></strong></h2>
+        <div class="title-bar blue">
+            <ul class="list-inline list-unstyled">
+                <li><i class="icofont icofont-square"></i></li>
+                <li><i class="icofont icofont-square"></i></li>
+            </ul>
+        </div>
+        <div class="space-20"></div>
+        <% if (data.item.length > 0) { %>
+            <% data.item.forEach(function(hotUser) {%>
+                <div class="row hot-user">
+                    <div class="row">
+                        <div class="hot-user-img col-md-4">
+                            <a href="/users/<%= hotUser.id %>">
+                                <img src="<%= hotUser.avatar %>">
+                            </a>
+                        </div>
+                        <div class="infor col-md-8 text-left">
+                            <a href="/users/<%= hotUser.id %>"><h5><%= hotUser.name %></h5></a>
+                            <h6 class="hot-user-email"><span class="glyphicon glyphicon-book icon-book"></span><%= hotUser.user_count %> <%= __('books') %></h6>
+                            <% switch (hotUser.office_id) {
+                                case 1: %>
+                                    <span class="badge badge-3">
+                                        <a href="#" class="office_on_books">
+                                            Da Nang Office
+                                        </a>
+                                    </span>
+                                <% break;
+                                case 2: %>
+                                    <span class="badge badge-1">
+                                        <a href="#" class="office_on_books">
+                                            Tran Khat Chan
+                                        </a>
+                                    </span>
+                                <% break;
+                                case 3: %>
+                                    <span class="badge badge-5">
+                                        <a href="#" class="office_on_books">
+                                            Handico Office
+                                        </a>
+                                    </span>
+                                <% break;
+                                case 4: %>
+                                    <span class="badge badge-4">
+                                        <a href="#" class="office_on_books">
+                                            Hanoi Office
+                                        </a>
+                                    </span>
+                                <% break;
+                                case 5: %>
+                                    <span class="badge badge-4">
+                                        <a href="#" class="office_on_books">
+                                            HCMC Office
+                                        </a>
+                                    </span>
+                                <% break;
+                                default: %>
+                                    <span class="badge badge-4">
+                                        <a href="#" class="office_on_books">
+                                            Hanoi Office
+                                        </a>
+                                    </span>
+                            <% } %>
+                        </div>    
+                    </div>
+                </div>
+            <% }) %>
+        <% } %>
+        <hr class="hr-new">
+        <div class="space-20"></div>
+        <h2><strong><%= __('News') %></strong></h2>
+        <div class="title-bar blue">
+            <ul class="list-inline list-unstyled">
+                <li><i class="icofont icofont-square"></i></li>
+                <li><i class="icofont icofont-square"></i></li>
+            </ul>
+        </div>
+        <div class="space-20"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    var height = $('.hot-user-img img').width() + 10;
+    $('.hot-user-img img').css({'height':height + 'px'});
+</script>
 <%- contentFor('appjs') %>
 <script src="/bower/bootstrap-star-rating/js/star-rating.js"></script>
 

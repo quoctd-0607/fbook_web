@@ -659,3 +659,74 @@ input:-webkit-autofill:focus {
 #wp-6:hover {
     background-color: #f5f5f5 !important;
 }
+.section-book {
+    display: table-cell;
+}
+
+.hot-user {
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.hot-user-img img {
+    width: 100%;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.btn-follow {
+    padding: 5px;
+    min-width: 80px;
+    margin: 0 auto;
+}
+
+.hot-user-title {
+    text-align: center;
+    font-weight: bold;
+    font-family: inherit;
+    padding: 15px 0px;
+    border-bottom: 1px solid #ccc;
+}
+
+.infor {
+    padding-top: 30px;
+}
+.infor h5 {
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+.infor .badge a {
+    color: #fff !important;
+}
+.hot-user-email {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 15px;
+}
+.hot-user-column {
+    position: absolute;
+    right: 0;
+}
+.border-d6 {
+    border-right: 1px solid #d6d6d6;
+}
+.row-section {
+    background-color: #f5f5f5;
+    margin-right: 0px;
+}
+.hr-new {
+    border: 1px solid #d6d6d6;
+}
+.book-descrip {
+    padding: 0px 10px !important;
+}
+
+.btn-to-follow {
+    background-color: white !important;
+    border: 2px solid #2352c5;
+    color: #2352c5 !important;
+}
+
+.icon-book {
+    padding-right: 10px;
+}
