@@ -14,6 +14,7 @@ index.set('view engine', 'ejs');
 router.get('/', localSession, function (req, res, next) {
     var url = req.configs.api_base_url + 'home/';
     var officeId;
+    var page = req.query.page ? req.query.page : 1;
 
     if (typeof(req.session.office_id) !== 'undefined' && req.session.office_id != null) {
         url = req.configs.api_base_url + 'home?office_id=' + req.session.office_id;
@@ -25,16 +26,74 @@ router.get('/', localSession, function (req, res, next) {
         officeId = req.query.officeId;
     }
 
-    request({
-        url: url,
-        headers: objectHeaders.headers
-    }, function (error, response, body) {
-        if (!error && response.statusCode === 200) {
-            try {
-                var data = JSON.parse(body);
+    if(typeof(req.session.access_token) == 'undefined'){
+        request({
+            url: url,
+            headers: objectHeaders.headers
+        }, function (error, response, body) {
+            if (!error && response.statusCode === 200) {
+                try {
+                    var data = JSON.parse(body);
 
+                    res.render('index', {
+                        data: data,
+                        officeId: officeId,
+                        pageTitle: res.__('Home'),
+                        isHomePage: true,
+                        info: req.flash('info'),
+                        error: req.flash('error'),
+                        lang : req.session.lang
+                    });
+                } catch (errorJSONParse) {
+                    res.redirect('home');
+                }
+            } else {
+                res.redirect('home');
+            }
+        });
+    } else {
+        async.parallel({
+            data: function (callback) {
+                request({
+                    url: url,
+                    headers: objectHeaders.headers
+                }, function (error, response, body) {
+                    if (!error && response.statusCode === 200) {
+                        try {
+                            var data = JSON.parse(body);
+                            callback(null, data);
+                        } catch (errorJSONParse) {
+                            callback(null, null);
+                        }
+                    } else {
+                        callback(null, null);
+                    }
+                });
+            },
+            dataNoti: function (callback) {
+                request({
+                    url: req.configs.api_base_url + 'notifications' + '/?page=' + page,
+                    headers: objectHeaders.headers({'Authorization': req.session.access_token})
+                }, function (error, response, body) {
+                    if (!error && response.statusCode === 200) {
+                        try {
+                            var dataNoti = JSON.parse(body);
+                            callback(null, dataNoti);
+                        } catch (errorJSONParse) {
+                            callback(null, null);
+                        }
+                    } else {
+                        callback(null, null);
+                    }
+                });
+            }
+        }, function (err, results) {
+            if (err) {
+                res.redirect('back');
+            } else {
                 res.render('index', {
-                    data: data,
+                    data: results.data,
+                    dataNoti: results.dataNoti,
                     officeId: officeId,
                     pageTitle: res.__('Home'),
                     isHomePage: true,
@@ -42,13 +101,9 @@ router.get('/', localSession, function (req, res, next) {
                     error: req.flash('error'),
                     lang : req.session.lang
                 });
-            } catch (errorJSONParse) {
-                res.redirect('home');
             }
-        } else {
-            res.redirect('home');
-        }
-    });
+        });
+    }
 });
 
 router.get('/all_office', localSession, function (req, res, next) {

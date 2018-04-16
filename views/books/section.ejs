@@ -71,12 +71,12 @@
                                     <% if (book.image && book.image.web.thumbnail_path !== undefined) { %>
                                         <img onclick="window.open('/books/<%= book.id %>', '_self')" 
                                             src="<%= book.image.web.thumbnail_path %>" 
-                                            class="media-object img-avatar-book" 
+                                            class="media-object" 
                                             alt="<%= book.title %>">
                                     <% } else { %>
                                         <img onclick="window.open('/books/<%= book.id %>', '_self')" 
                                             src="/images/book_thumb_default.jpg" 
-                                            class="media-object img-avatar-book" 
+                                            class="media-object" 
                                             alt="<%= book.title %>">
                                     <% } %>
                                 </div>

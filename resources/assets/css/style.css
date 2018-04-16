@@ -679,6 +679,11 @@ input:-webkit-autofill:focus {
     padding: 10px;
 }
 
+.show-user {
+    margin: 0 auto;
+    padding: 2px;
+}
+
 .hot-user-img img {
     width: 100%;
     padding: 5px;
@@ -713,6 +718,16 @@ input:-webkit-autofill:focus {
     text-overflow: ellipsis;
     overflow: hidden;
     line-height: 15px;
+}
+.notification-box {
+    border-bottom: 1px solid #ccc;
+    height: 70px;
+}
+.notification-right {
+    padding-top: 5px;
+}
+.notification-light {
+    padding-top: 5px;
 }
 .hot-user-column {
     position: absolute;
