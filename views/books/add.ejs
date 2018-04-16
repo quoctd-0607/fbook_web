@@ -66,6 +66,7 @@
                             <div class="form-group">
                                 <label for="category"><%= __('Category') %></label>
                                 <select id="category" class="form-control bg-danger b-r-0" name="category_id" required="required">
+                                    <option selected disabled="1"><%= __('Choose category') %></option>
                                     <% categories.items.forEach(function (category) { %>
                                         <% switch (langCategory) {
                                             case 'vi': %>
