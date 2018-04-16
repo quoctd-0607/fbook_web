@@ -13,6 +13,7 @@
                         </ul>
                     </div>
                 </div>
+                <div class="space-20"></div>
             </div>
             <div class="row panel">
                 <div class="col-md-2">
@@ -54,7 +55,7 @@
                 <p><%= __('No Author') %></p>>
             <% } %>
             <div class="space-10"></div>
-            <div class="col-md-12" id="review_img">
+            <div class="col-md-12 p-0" id="review_img">
                 <div class="book-list-photo">
                     <% if (data.items.media) { %>
                     <div class="book-list">
@@ -82,11 +83,7 @@
                     <i class="icofont icofont-long-arrow-right testi_next"></i>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="space-40"></div>
-                <h4><%= __('Description') %></h4>
-                <div class=" panel more fix-text"><%- data.items.book.description %></div>
-            </div>
+            <div class="space-40"></div>
         </div>
     </div>
 </section>
@@ -181,7 +178,7 @@
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12 button-comment text-right">
-                                            <button type="submit" class="btn btn-primary hover-btn-default btn-customize margin-top-20"> <%= __('Up comment') %> <i class="fa fa-long-arrow-right"></i></button>
+                                            <button type="submit" class="btn btn-primary hover-btn-default btn-customize margin-top-20"> <%= __('Up comment') %> </button>
                                         </div>
                                     </div>
                                 </div>

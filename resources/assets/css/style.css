@@ -175,19 +175,30 @@ input:-webkit-autofill:focus {
 }
 
 .search-result {
+    display: none;
     max-height: 600px;
-    max-width: 250px;
+    border-radius: 15px;
     overflow: auto;
     padding-right: 0;
     position: absolute;
+    min-width: 300px;
+    right: 0px;
+}
+.search-img {
+    width: 35px;
+    float: left;
+    margin-right: 10px;
+}
+.search-book-url {
+    display: inline-block !important;
+    width: 100%;
 }
 
 .search-result a {
-    font-size: 10px !important;
+    font-size: 12px !important;
 }
 
 .book-search {
-    margin-left: 10px;
     color: #5b5b5b;
 }
 

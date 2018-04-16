@@ -63,7 +63,7 @@ $(function ($) {
                             data.user_send.id + "'>" + i18n['cancel'] + "</span>";
                     } else if (data.type == configs.notification.review) {
                         htmlModel += "<a href='/books/" + data.book.id +
-                            "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
+                            "' class='a-notification-dropdown clearfix notification_onclick' style='display: block;' data-notification-id='" +
                             data.id + "'>";
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
@@ -81,7 +81,7 @@ $(function ($) {
                             data.user_send.id + "'>" + i18n['review'] + "</span>";
                     } else if (data.type == configs.notification.up_vote) {
                         htmlModel += "<a href='/books/" + data.book.id +
-                            "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
+                            "' class='a-notification-dropdown clearfix notification_onclick' style='display: block;' data-notification-id='" +
                             data.id + "'>";
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
@@ -102,7 +102,7 @@ $(function ($) {
                             data.user_send.id + "'>" + i18n['UpVote'] + "</span>";
                     } else if (data.type == configs.notification.down_vote) {
                         htmlModel += "<a href='/books/" + data.book.id +
-                            "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
+                            "' class='a-notification-dropdown clearfix notification_onclick' style='display: block;' data-notification-id='" +
                             data.id + "'>";
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
@@ -123,7 +123,7 @@ $(function ($) {
                             data.user_send.id + "'>" + i18n['DownVote'] + "</span>";
                     } else if (data.type == configs.notification.returning) {
                         htmlModel += "<a href='/books/" + data.book.id +
-                            "/approve-request' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
+                            "/approve-request' class='a-notification-dropdown clearfix notification_onclick' style='display: block;' data-notification-id='" +
                             data.id + "'>";
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
@@ -144,7 +144,7 @@ $(function ($) {
                             data.user_send.id + "'>" + i18n['returning'] + "</span>";
                     } else if (data.type == configs.notification.returned) {
                         htmlModel += "<a href='/books/" + data.book.id +
-                            "/approve-request' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
+                            "/approve-request' class='a-notification-dropdown clearfix notification_onclick' style='display: block;' data-notification-id='" +
                             data.id + "'>";
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
@@ -165,7 +165,7 @@ $(function ($) {
                             data.user_send.id + "'>" + i18n['returned'] + "</span>";
                     } else if (data.type == configs.notification.approve_returning) {
                         htmlModel += "<a href='/books/" + data.book.id +
-                            "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
+                            "' class='a-notification-dropdown clearfix notification_onclick' style='display: block;' data-notification-id='" +
                             data.id + "'>";
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
@@ -186,7 +186,7 @@ $(function ($) {
                             data.user_send.id + "'>" + i18n['approve returning'] + "</span>";
                     } else if (data.type == configs.notification.request_edit_book) {
                         htmlModel += "<a href='/admin/waiting-request-edit-book" +
-                            "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
+                            "' class='a-notification-dropdown clearfix notification_onclick' style='display: block;' data-notification-id='" +
                             data.id + "'>";
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
@@ -207,7 +207,7 @@ $(function ($) {
                             data.user_send.id + "'>" + i18n['request edit book'] + "</span>";
                     } else if (data.type == configs.notification.approve_request_update_book) {
                         htmlModel += "<a href='/books/" + data.book.id +
-                            "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
+                            "' class='a-notification-dropdown clearfix notification_onclick' style='display: block;' data-notification-id='" +
                             data.id + "'>";
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
@@ -229,7 +229,7 @@ $(function ($) {
                             "'>" + i18n['Requests edit book'] + "</span>";
                     } else if (data.type == configs.notification.delete_request_update_book) {
                         htmlModel += "<a href='#" +
-                            "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
+                            "' class='a-notification-dropdown clearfix notification_onclick' style='display: block;' data-notification-id='" +
                             data.id + "'>";
                         htmlModel += "<div class='hidden' id='get-notify-view'>" + data
                             .viewed + "</div>";
@@ -253,7 +253,7 @@ $(function ($) {
                             "'>" + i18n['Unapprove your request edit book'] + "</span>";
                     } else if (data.type == configs.notification.approve_waiting) {
                         htmlModel += "<a href='/books/" + data.book.id +
-                            "' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
+                            "' class='a-notification-dropdown clearfix notification_onclick' style='display: block;' data-notification-id='" +
                             data.id + "'>";
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);

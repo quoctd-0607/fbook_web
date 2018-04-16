@@ -925,5 +925,5 @@ a.media-button-customize {
 }
 .header-li a {
     font-size: 13px !important;
-    padding: 10px 17px !important;
+    padding: 10px 17px;
 }
