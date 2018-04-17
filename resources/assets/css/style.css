@@ -25,6 +25,12 @@
 /*------------------
 2. Theme Default CSS
 -------------------*/
+.prnav-tabs .active {
+    border: 1px solid #aaa;
+}
+.cmt-div .nav-tabs li {
+    border: 1px solid #eee;
+}
 
 .search-box {
     width: 40px;

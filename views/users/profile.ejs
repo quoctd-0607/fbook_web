@@ -1,7 +1,7 @@
 <section class="relative fix m-bottom50 gray-bg" id="sc3">
     <div class="hide-categoryIds" data-category-ids=<%= categoryIds %>></div>
     <div class="hide-userId" user-name="<%= data.name %>" follow=<%= follow.isFollow == true ? "follow" : "unfollow" %> data-user-id=<%= userId %>></div>
-    <div class="wrap_content">
+    <div class="wrap_content container">
         <div class="prcover prgreen-bg">
             <div class="space-25"></div>
             <h1 class="text-white prhellofont"><%= __('Hello there') %></h1>
@@ -79,7 +79,7 @@
                 </ul>
             </div>
         </div>
-        <div class="row">
+        <div class="row m-0">
             <div class="col-sm-3">
             <div class="space-30"></div>
                 <!--left col-->
@@ -180,69 +180,85 @@
                 </div>
                 <div class="title-bar"></div>
             </div>
-            <div class="col-sm-9"  contenteditable="false">
-                    <div class="tab-content">
-                        <% var isTabPaneActived = false; %>
-                        <% if (!isTabPaneActived && pageReading === 1 || pageWaiting === 1 && pageDone === 1 && pageSharing !== 1 && pageSuggest === 1 && pageReviewed === 1) {
-                            isTabPaneActived = true;
-                        %>
-                            <div class="tab-pane fade in active" id="sharing_books">
-                        <% } else { %>
-                            <div class="tab-pane fade" id="sharing_books">
-                        <% } %>
+            <div class="col-sm-9" contenteditable="false">
+                <div class="tab-content">
+                    <% var isTabPaneActived = false; %>
+                    <% if (!isTabPaneActived && pageReading === 1 || pageWaiting === 1 && pageDone === 1 && pageSharing !== 1 && pageSuggest === 1 && pageReviewed === 1) { 
+                        isTabPaneActived = true;
+                    %>
+                        <div class="tab-pane fade in active" id="sharing_books">
+                    <% } else { %>
+                        <div class="tab-pane fade" id="sharing_books">
+                    <% } %>
 
                         <%- include('../shared/myBooks', {books: sharingBooks, pageName: 'pageSharing'}); %>
-                        </div>
-                        <% if (!isTabPaneActived && pageReading !== 1) {
-                            isTabPaneActived = true;
-                        %>
-                            <div class="tab-pane fade in active" id="reading_books">
-                        <% } else { %>
-                            <div class="tab-pane fade" id="reading_books">
-                        <% } %>
+                    </div>
+
+                    <% if (!isTabPaneActived && pageReading !== 1) {
+                        isTabPaneActived = true;
+                    %>
+                        <div class="tab-pane fade in active" id="reading_books">
+                    <% } else { %>
+                        <div class="tab-pane fade" id="reading_books">
+                    <% } %>
 
                         <%- include('../shared/myBooks', {books: readingBooks, pageName: 'pageReading'}); %>
-                        </div>
+                    </div>
 
-                        <% if (!isTabPaneActived && pageWaiting !== 1) {
-                            isTabPaneActived = true;
-                        %>
-                            <div class="tab-pane fade in active" id="waiting_books">
-                        <% } else { %>
-                            <div class="tab-pane fade" id="waiting_books">
-                        <% } %>
+                    <% if (!isTabPaneActived && pageWaiting !== 1) {
+                        isTabPaneActived = true;
+                    %>
+                        <div class="tab-pane fade in active" id="waiting_books">
+                    <% } else { %>
+                        <div class="tab-pane fade" id="waiting_books">
+                    <% } %>
 
                         <%- include('../shared/myBooks', {books: waitingBooks, pageName: 'pageWaiting'}); %>
-                        </div>
+                    </div>
 
-                        <% if (!isTabPaneActived && pageDone !== 1) {
-                            isTabPaneActived = true;
-                        %>
-                            <div class="tab-pane fade in active" id="done_books">
-                        <% } else { %>
-                            <div class="tab-pane fade" id="done_books">
-                        <% } %>
+                    <% if (!isTabPaneActived && pageDone !== 1) {
+                        isTabPaneActived = true;
+                    %>
+                        <div class="tab-pane fade in active" id="done_books">
+                    <% } else { %>
+                        <div class="tab-pane fade" id="done_books">
+                    <% } %>
 
                         <%- include('../shared/myBooks', {books: doneBooks, pageName: 'pageDone'}); %>
-                        </div>
+                    </div>
 
-                        <% if (!isTabPaneActived && pageReviewed !== 1) {
-                            isTabPaneActived = true;
-                        %>
-                            <div class="tab-pane fade in active" id="reviewed_books">
-                        <% } else { %>
-                            <div class="tab-pane fade" id="reviewed_books">
-                        <% } %>
+                    <% if (!isTabPaneActived && pageReviewed !== 1) {
+                        isTabPaneActived = true;
+                    %>
+                        <div class="tab-pane fade in active" id="reviewed_books">
+                    <% } else { %>
+                        <div class="tab-pane fade" id="reviewed_books">
+                    <% } %>
 
                         <%- include('../shared/myBooks', {books: reviewedBooks, pageName: 'pageReviewed'}); %>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<script type="text/javascript">
+    var book_img_height = $(".media-object").map(function ()
+    {
+        return $(this).height();
+    }).get(),
 
+    maxHeight = Math.max.apply(null, book_img_height);
+    $(".media-object").height(maxHeight);
+
+    var section_height = $(".book-descrip").map(function ()
+    {
+        return $(this).height();
+    }).get(),
+
+    maxSectionHeight = Math.max.apply(null, section_height);
+    $(".book-descrip").height(maxSectionHeight);
+</script>
 <%- contentFor('appCss') %>
 <link type="text/css" href="/bower/bootstrap-star-rating/css/star-rating.css" rel="stylesheet">
 <link type="text/css" href="/bower/sweetalert/dist/sweetalert.css" rel="stylesheet">
