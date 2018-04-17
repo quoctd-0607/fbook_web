@@ -671,7 +671,11 @@ input:-webkit-autofill:focus {
     background-color: #f5f5f5 !important;
 }
 .section-book {
-    display: table-cell;
+    display: inline-block;
+    width: 100%;
+}
+.height-auto {
+    height: auto !important;
 }
 
 .hot-user {
@@ -755,4 +759,21 @@ input:-webkit-autofill:focus {
 
 .icon-book {
     padding-right: 10px;
+}
+@media (min-width: 576px) {
+    .hot-user-img img {
+        width: 50px;
+        height: 50px;
+    }
+}
+@media (max-width: 768px) {
+    .hot-user-column {
+        display: none;
+    }
+}
+@media (min-width: 768px) {
+    .hot-user-img img {
+        width: 75px;
+        height: 75px;
+    }
 }

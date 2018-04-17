@@ -387,8 +387,7 @@
 }
 
 .category-item.well .owners {
-    position: absolute;
-    bottom: 30px
+    padding: 10px 0px;
 }
 
 .category-item.well:hover {
