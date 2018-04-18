@@ -229,7 +229,6 @@
 
 .category-item.well {
     overflow: hidden;
-    height: 300px;
     border: 1px solid #5b5b5b;
 }
 .category-item.well .media-body h5 {
@@ -237,7 +236,7 @@
     text-transform: uppercase;
 }
 .category-item.well p {
-    font-size: 12px;
+    font-size: 11px;
 }
 .rating-container {
     font-size: 1.3em !important;
@@ -250,7 +249,9 @@
 .show tip-left {
     padding-left: 10px;
 }
-
+.font-12 {
+    font-size: 12px !important;
+}o
 .w-70-h-70 {
     display: block;
     width: 100%;
@@ -355,8 +356,8 @@
 
 .owner-image-home {
     padding: 1px;
-    width: 35px;
-    height: 35px;
+    width: 34px;
+    height: 34px;
     cursor: pointer;
 }
 
