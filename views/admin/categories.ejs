@@ -44,7 +44,7 @@
                         </tr>
                         <% if (dataRequest.items.data.length > 0) { %>
                             <% dataRequest.items.data.forEach(function(data) { %>
-                            <tr onClick="window.location='/admin/categories/detail/<%= data.id %>'" class="cursor-hover">
+                            <tr onClick="window.location='/admin/categories/<%= data.id %>/edit_category'" class="cursor-hover">
                                 <td><%= data.name_vi %></td>
                                 <td><%= data.name_en %></td>
                                 <td><%= data.name_jp %></td>
