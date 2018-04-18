@@ -9,12 +9,12 @@
                 <div class="box-header with-border">
                     <h3 class="box-title"><%= __('Category Detail') %></h3>
                 </div>
-                <form method="POST" action="/admin/categories/update" role="form" class="form-element" id="create-category">
+                <form method="POST" action="/admin/categories/update" role="form" class="form-element" id="edit-category">
                     <input type="hidden" name="id" value="<%= category.item.id %>">
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="name"><%= __('Name') %></label>
-                            <input class="form-control" type="text" name="name" id="name" placeholder="<%= __('Category's name...') %>" value="<%= category.item.name %>">
+                            <label for="name"><%= __('Vietnamese name') %></label>
+                            <input class="form-control" type="text" name="name_vi" id="name_vi" value="<%= category.item.name_vi %>" placeholder="<%= __('Category\'s name...') %>">
                             <% if (typeof validate != 'undefined' && validate != '') { %>
                                 <span class="help-block text-red"><%= validate[0].msg %></span>
                             <% } %>
@@ -23,8 +23,28 @@
                             <% } %>
                         </div>
                         <div class="form-group">
+                            <label for="name"><%= __('English name') %></label>
+                            <input class="form-control" type="text" name="name_en" id="name_en" value="<%= category.item.name_en %>" placeholder="<%= __('Category\'s name...') %>">
+                            <% if (typeof validate != 'undefined' && validate != '') { %>
+                                <span class="help-block text-red"><%= validate[1].msg %></span>
+                            <% } %>
+                            <% if (typeof apiValidate != 'undefined' && apiValidate != '') { %>
+                                <span class="help-block text-red"><%= apiValidate %></span>
+                            <% } %>
+                        </div>
+                        <div class="form-group">
+                            <label for="name"><%= __('Japanese name') %></label>
+                            <input class="form-control" type="text" name="name_jp" id="name_jp" value="<%= category.item.name_jp %>" placeholder="<%= __('Category\'s name...') %>">
+                            <% if (typeof validate != 'undefined' && validate != '') { %>
+                                <span class="help-block text-red"><%= validate[2].msg %></span>
+                            <% } %>
+                            <% if (typeof apiValidate != 'undefined' && apiValidate != '') { %>
+                                <span class="help-block text-red"><%= apiValidate %></span>
+                            <% } %>
+                        </div>
+                        <div class="form-group">
                             <label for="description"><%= ('Description') %></label>
-                            <textarea class="form-control" name="description" id="description" rows="5" placeholder="<%= __('Category's description...') %>"><%= category.item.description %></textarea>
+                            <textarea class="form-control" name="description" id="description" rows="5" placeholder="<%= __('Category\'s description...') %>"><%= category.item.description %></textarea>
                         </div>
                     </div>
                     <div class="box-footer text-right">

@@ -303,11 +303,11 @@ router.post('/categories/store', authorize.isAdmin, function (req, res, next) {
     });
 });
 
-router.get('/categories/detail/:id', authorize.isAdmin, function (req, res, next) {
+router.get('/categories/:id/edit_category', authorize.isAdmin, function (req, res, next) {
     var categoryId = req.params.id;
-
+    
     request.get({
-        url: req.configs.api_base_url + 'admin/categories/detail/' + categoryId,
+        url: req.configs.api_base_url + 'admin/categories/' + categoryId +'/edit_category',
         headers: objectHeaders.headers({'Authorization': req.session.access_token})
     }, function (error, response, body) {
         if (!error && response.statusCode === 200) {
@@ -329,7 +329,7 @@ router.get('/categories/detail/:id', authorize.isAdmin, function (req, res, next
             }
         } else {
             req.flash('error', res.__('Sorry, something went wrong'));
-            return res.redirect('/admin/categories');
+            return res.redirect('/admin');
         }
     });
 });
