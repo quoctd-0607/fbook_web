@@ -360,7 +360,7 @@
                         <div class="row event-list">
                             <% if (data.item.users_reading.length > 0) { %>
                                 <% data.item.users_reading.forEach(function (user) { %>
-                                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-9" id="user-<%= user.id %>">
+                                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1" id="user-<%= user.id %>">
                                     <div class="event-item wow fadeInRight">
                                         <% if (data.item.owners) { %>
                                             <% data.item.owners.forEach(function (owner) { %>
@@ -379,11 +379,11 @@
                                                 <div class="media-left">
                                                     <% if (user.avatar !== null) { %>
                                                         <a href="/users/<%= user.id %>">
-                                                            <img src="<%= user.avatar %>" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
+                                                            <img src="<%= user.avatar %>" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
                                                         </a>
                                                     <% } else { %>
                                                         <a href="/users/<%= user.id %>">
-                                                            <img src="/images/user/icon_user_default.png" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
+                                                            <img src="/images/user/icon_user_default.png" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
                                                         </a>
                                                     <% } %>
                                                 </div>
@@ -392,7 +392,6 @@
                                                     <a href="/users/<%= user.id %>"><h4 class="media-heading"><%= user.name %></h4></a>
                                                     <div class="space-10"></div>
                                                     <p><%= user.email %></p>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -411,7 +410,7 @@
                         <div class="row event-list">
                             <% if (data.item.users_waiting.length > 0) { %>
                                 <% data.item.users_waiting.forEach(function (user) { %>
-                                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-9" id="user-<%= user.id %>">
+                                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1" id="user-<%= user.id %>">
                                     <div class="event-item wow fadeInRight">
                                         <% if (data.item.owners) { %>
                                             <% data.item.owners.forEach(function (owner) { %>
@@ -430,11 +429,11 @@
                                                 <div class="media-left">
                                                     <% if (user.avatar !== null) { %>
                                                         <a href="/users/<%= user.id %>">
-                                                            <img src="<%= user.avatar %>" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
+                                                            <img src="<%= user.avatar %>" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
                                                         </a>
                                                     <% } else { %>
                                                         <a href="/users/<%= user.id %>">
-                                                            <img src="/images/user/icon_user_default.png" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
+                                                            <img src="/images/user/icon_user_default.png" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
                                                         </a>
                                                     <% } %>
                                                 </div>
@@ -461,7 +460,7 @@
                        <div class="row event-list">
                            <% if (data.item.users_returning.length > 0) { %>
                                <% data.item.users_returning.forEach(function (user) { %>
-                               <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-9" id="user-<%= user.id %>">
+                               <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1" id="user-<%= user.id %>">
                                    <div class="event-item wow fadeInRight">
                                        <% if (data.item.owners) { %>
                                            <% data.item.owners.forEach(function (owner) { %>
@@ -480,11 +479,11 @@
                                                <div class="media-left">
                                                    <% if (user.avatar !== null) { %>
                                                        <a href="/users/<%= user.id %>">
-                                                           <img src="<%= user.avatar %>" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
+                                                           <img src="<%= user.avatar %>" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
                                                        </a>
                                                    <% } else { %>
                                                        <a href="/users/<%= user.id %>">
-                                                           <img src="/images/user/icon_user_default.png" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
+                                                           <img src="/images/user/icon_user_default.png" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
                                                        </a>
                                                    <% } %>
                                                </div>
@@ -511,7 +510,7 @@
                        <div class="row event-list">
                            <% if (data.item.users_returned.length > 0) { %>
                                <% data.item.users_returned.forEach(function (user) { %>
-                               <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-9" id="user-<%= user.id %>">
+                               <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1" id="user-<%= user.id %>">
                                    <div class="event-item wow fadeInRight">
                                        <% if (data.item.owners) { %>
                                            <% data.item.owners.forEach(function (owner) { %>
@@ -530,11 +529,11 @@
                                                <div class="media-left">
                                                    <% if (user.avatar !== null) { %>
                                                        <a href="/users/<%= user.id %>">
-                                                           <img src="<%= user.avatar %>" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
+                                                           <img src="<%= user.avatar %>" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
                                                        </a>
                                                    <% } else { %>
                                                        <a href="/users/<%= user.id %>">
-                                                           <img src="/images/user/icon_user_default.png" class="media-object w-70-h-70" alt="<%= __('Avatar') %>">
+                                                           <img src="/images/user/icon_user_default.png" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
                                                        </a>
                                                    <% } %>
                                                </div>

@@ -60,6 +60,14 @@
     background: #ebebeb;
     color: black;
 }
+.noti-img {
+    width: 60px !important;
+    height: 60px !important;
+}
+.width-20 {
+    width: 20% !important;
+    float: left;
+}
 #search-submit {
     position: relative;
     display: none;

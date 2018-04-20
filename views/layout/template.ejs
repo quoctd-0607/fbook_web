@@ -103,8 +103,8 @@
         }
 
         if (lang === undefined || lang === null) {
-            $('#myImage').attr('src', '/images/vietnam.png');
-            readTextFile('/javascripts/i18n/vi.json');
+            $('#myImage').attr('src', '/images/english.png');
+            readTextFile('/javascripts/i18n/en.json');
         } else {
             langText = '';
             switch (lang) {
@@ -122,7 +122,7 @@
                     break;
             }
             if (lang == '') {
-                readTextFile('/javascripts/i18n/vi.json');
+                readTextFile('/javascripts/i18n/en.json');
             } else {
                 readTextFile('/javascripts/i18n/' + lang + '.json');
             }

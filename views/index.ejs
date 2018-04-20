@@ -97,8 +97,21 @@
                                                         <% } %>
                                                         <input id="rating-book" name="star" class="rating" data-min="0" data-max="5" value=<%= book.avg_star %> disabled="true" data-step="0.01" data-size="xs">
                                                         <div class="space-10"></div>
+                                                        <p><%= __('Category') %>: </p>
                                                         <p>
-                                                            <%- book.overview %>
+                                                            <% switch (langCategory) {
+                                                                case 'vi': %>
+                                                                    <%= book.category.name_vi %>
+                                                                <% break;
+                                                                case 'en': %>
+                                                                    <%= book.category.name_en %>
+                                                                <% break;
+                                                                case 'jp': %>
+                                                                    <%= book.category.name_jp %>
+                                                                <% break;
+                                                                default: %>
+                                                                    <%= book.category.name_vi %>
+                                                            <% } %>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -131,6 +144,7 @@
                         <h5 class="text-center"><%= __('No book in section') %> </h5>
                     <% } %>
                 </div>
+                <%= console.log(lang) %>
                 <% if (section.data.length > 0) { %>
                     <div class="row">
                         <div class="col-xs-12 text-center">
@@ -235,16 +249,16 @@
                         <% if (index <= 4) { %>
                             <%if (data.type == configs.notification.waiting && data.book != null) { %>
                                 <div class="row show-user">
-                                    <div class="row notification-box">
-                                        <div class="hot-user-img news-img p-0 col-md-2">
+                                    <div class="notification-box">
+                                        <div class="hot-user-img news-img p-0 col-md-3">
                                             <a href="/users/<%= data.user_send.id %>">
-                                                <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="hot-user-img col-md-4" alt="<%= __('Avatar') %>">
+                                                <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="col-md-4 noti-img" alt="<%= __('Avatar') %>">
                                             </a>
                                         </div>
-                                        <div class="col-md-10 text-left infor notification-right">
+                                        <div class="infor notification-right text-justify">
                                             <a href="/users/<%= data.user_send.id %>"><h5><b><%= data.user_send.name %></b></h5></a>
                                             <a href="/books/<%= data.book.id %>/approve-request" class="notification_onclick" data-notification-id="<%= data.id %>">
-                                                <h6 class="hot-user-email"><b><%= __('Waiting Books') %></b>: <%= data.book.title %></h6>
+                                                <h6 class="hot-user-email"><b><%= __('Waiting Books') %></b>: <%= getString(data.book.title, configs.book.title_limit_characters) %></h6>
                                             </a>
                                         </div> 
                                     </div>
@@ -252,16 +266,16 @@
                             <% } %>
                             <%if (data.type == configs.notification.cancel && data.book != null) { %>
                                 <div class="row show-user">
-                                    <div class="row notification-box">
-                                        <div class="hot-user-img news-img p-0 col-md-2">
+                                    <div class="notification-box">
+                                        <div class="hot-user-img news-img p-0 col-md-3">
                                             <a href="/users/<%= data.user_send.id %>">
-                                                <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="hot-user-img col-md-4" alt="<%= __('Avatar') %>">
+                                                <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="col-md-4 noti-img" alt="<%= __('Avatar') %>">
                                             </a>
                                         </div>
-                                        <div class="col-md-8 text-left infor notification-right">
+                                        <div class="infor notification-right text-justify">
                                             <a href="/users/<%= data.user_send.id %>"><h5><b><%= data.user_send.name %></b></h5></a>
                                             <a href="/books/<%= data.book.id %>/approve-request" class="notification_onclick" data-notification-id="<%= data.id %>">
-                                                <h6 class="hot-user-email"><b><%= __('Cancel book request') %></b>: <%= data.book.title %></h6>
+                                                <h6 class="hot-user-email"><b><%= __('Cancel book request') %></b>: <%= getString(data.book.title, configs.book.title_limit_characters) %></h6>
                                             </a>
                                         </div>
                                     </div>
@@ -269,16 +283,16 @@
                             <% } %>
                             <%if (data.type == configs.notification.review && data.book != null) { %>
                                 <div class="row show-user">
-                                    <div class="row notification-box">
-                                        <div class="hot-user-img news-img p-0 col-md-2">
+                                    <div class="notification-box">
+                                        <div class="hot-user-img news-img p-0 col-md-3">
                                             <a href="/users/<%= data.user_send.id %>">
-                                                <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="hot-user-img 2" alt="<%= __('Avatar') %>">
+                                                <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="col-md-4 noti-img" alt="<%= __('Avatar') %>">
                                             </a>
                                         </div>
-                                        <div class="col-md-8 text-left infor notification-right">
+                                        <div class="infor notification-right text-justify">
                                             <a href="/users/<%= data.user_send.id %>"><h5><b><%= data.user_send.name %></b></h5></a>
                                             <a href="/books/<%= data.book.id %>/approve-request" class="notification_onclick" data-notification-id="<%= data.id %>">
-                                                <h6 class="hot-user-email"><b><%= __('Review Book') %></b>: <%= data.book.title %></h6>
+                                                <h6 class="hot-user-email"><b><%= __('Review Book') %></b>: <%= getString(data.book.title, configs.book.title_limit_characters) %></h6>
                                             </a>
                                         </div>
                                     </div>
@@ -286,16 +300,16 @@
                             <% } %>
                             <%if (data.type == configs.notification.returning && data.book != null) { %>
                                 <div class="row show-user">
-                                    <div class="row notification-box">
-                                        <div class="hot-user-img news-img p-0 col-md-2">
+                                    <div class="notification-box">
+                                        <div class="hot-user-img news-img p-0 col-md-3">
                                             <a href="/users/<%= data.user_send.id %>">
-                                                <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="hot-user-img col-md-4" alt="<%= __('Avatar') %>">
+                                                <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class=" col-md-4 noti-img" alt="<%= __('Avatar') %>">
                                             </a>
                                         </div>
-                                        <div class="col-md-8 text-left infor notification-right">
+                                        <div class="infor notification-right text-justify">
                                             <a href="/users/<%= data.user_send.id %>"><h5><b><%= data.user_send.name %></b></h5></a>
                                             <a href="/books/<%= data.book.id %>/approve-request" class="notification_onclick" data-notification-id="<%= data.id %>">
-                                                <h6 class="hot-user-email"><b><%= __('Returning book') %></b>: <%= data.book.title %></h6>
+                                                <h6 class="hot-user-email"><b><%= __('Returning book') %></b>: <%= getString(data.book.title, configs.book.title_limit_characters) %></h6>
                                             </a>
                                         </div>
                                     </div>
@@ -303,16 +317,16 @@
                             <% } %>
                             <%if (data.type == configs.notification.approve_returning && data.book != null) { %>
                                 <div class="row show-user">
-                                    <div class="row notification-box">
-                                        <div class="hot-user-img news-img p-0 col-md-2">
+                                    <div class="notification-box">
+                                        <div class="hot-user-img news-img p-0 col-md-3">
                                             <a href="/users/<%= data.user_send.id %>">
-                                                <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="hot-user-img col-md-4" alt="<%= __('Avatar') %>">
+                                                <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class=" col-md-4 noti-img" alt="<%= __('Avatar') %>">
                                             </a>
                                         </div>
-                                        <div class="col-md-8 text-left infor notification-right">
+                                        <div class="infor notification-right text-justify">
                                             <a href="/users/<%= data.user_send.id %>"><h5><b><%= data.user_send.name %></b></h5></a>
                                             <a href="/books/<%= data.book.id %>/approve-request" class="notification_onclick" data-notification-id="<%= data.id %>">
-                                                <h6 class="hot-user-email"><b><%= __('Return books successfully') %></b>: <%= data.book.title %></h6>
+                                                <h6 class="hot-user-email"><b><%= __('Return books successfully') %></b>: <%= getString(data.book.title, configs.book.title_limit_characters) %></h6>
                                             </a>
                                         </div>
                                     </div>
@@ -320,16 +334,16 @@
                             <% } %>
                             <%if (data.type == configs.notification.approve_waiting && data.book != null) { %>
                                 <div class="row show-user">
-                                    <div class="row notification-box">
-                                        <div class="hot-user-img news-img p-0 col-md-2">
+                                    <div class="notification-box">
+                                        <div class="hot-user-img news-img p-0 col-md-3">
                                             <a href="/users/<%= data.user_send.id %>">
-                                                <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="hot-user-img col-md-4" alt="<%= __('Avatar') %>">
+                                                <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class=" col-md-4 noti-img" alt="<%= __('Avatar') %>">
                                             </a>
                                         </div>
-                                        <div class="col-md-8 text-left infor notification-right">
+                                        <div class="infor notification-right text-justify">
                                             <a href="/users/<%= data.user_send.id %>"><h5><b><%= data.user_send.name %></b></h5></a>
                                             <a href="/books/<%= data.book.id %>/approve-request" class="notification_onclick" data-notification-id="<%= data.id %>">
-                                                <h6 class="hot-user-email"><b><%= __('Accept your request waiting book') %></b>: <%= data.book.title %></h6>
+                                                <h6 class="hot-user-email"><b><%= __('Accept your request waiting book') %></b>: <%= getString(data.book.title, configs.book.title_limit_characters) %></h6>
                                             </a>
                                         </div>
                                     </div>
@@ -337,16 +351,16 @@
                             <% } %>
                             <%if (data.type == configs.notification.add_owner && data.book != null) { %>
                                 <div class="row show-user">
-                                    <div class="row notification-box">
-                                        <div class="hot-user-img news-img p-0 col-md-2">
+                                    <div class="notification-box">
+                                        <div class="hot-user-img news-img p-0 col-md-3">
                                             <a href="/users/<%= data.user_send.id %>">
-                                                <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="hot-user-img col-md-4" alt="<%= __('Avatar') %>">
+                                                <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="col-md-4 noti-img" alt="<%= __('Avatar') %>">
                                             </a>
                                         </div>
-                                        <div class="col-md-8 text-left infor notification-right">
+                                        <div class="infor notification-right text-justify">
                                             <a href="/users/<%= data.user_send.id %>"><h5><b><%= data.user_send.name %></b></h5></a>
                                             <a href="/books/<%= data.book.id %>/approve-request" class="notification_onclick" data-notification-id="<%= data.id %>">
-                                                <h6 class="hot-user-email"><b><%= data.user_send.name %><%= __('Add book') %></b>: <%= data.book.title %></h6>
+                                                <h6 class="hot-user-email"><b><%= __('Add book') %></b>: <%= getString(data.book.title, configs.book.title_limit_characters) %></h6>
                                             </a>
                                         </div>
                                     </div>
@@ -354,16 +368,16 @@
                             <% } %>
                             <%if (data.type == configs.notification.remove_owner && data.book != null) { %>
                                 <div class="row hot-user">
-                                    <div class="row notification-box">
-                                        <div class="hot-user-img news-img p-0 col-md-2">
+                                    <div class="notification-box">
+                                        <div class="hot-user-img news-img p-0 col-md-3">
                                             <a href="/users/<%= data.user_send.id %>">
-                                                <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="hot-user-img col-md-4" alt="<%= __('Avatar') %>">
+                                                <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="col-md-4 noti-img" alt="<%= __('Avatar') %>">
                                             </a>
                                         </div>
-                                        <div class="col-md-9 text-left infor notification-right">
+                                        <div class="infor notification-right text-justify">
                                             <a href="/users/<%= data.user_send.id %>"><h5><b><%= data.user_send.name %></b></h5></a>
                                             <a href="/books/<%= data.book.id %>/approve-request" class="notification_onclick" data-notification-id="<%= data.id %>">
-                                                <h6 class="hot-user-email"><b><%= data.user_send.name %><%= __('Remove Book') %></b>: <%= data.book.title %></h6>
+                                                <h6 class="hot-user-email"><b><%= __('Remove Book') %></b>: <%= getString(data.book.title, configs.book.title_limit_characters) %></h6>
                                             </a>
                                         </div>
                                     </div>

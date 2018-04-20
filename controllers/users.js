@@ -221,6 +221,7 @@ router.get('/my_profile', authorize.isAuthenticated, function(req, res, next) {
 
 router.get('/my_books', authorize.isAuthenticated, function (req, res, next) {
     var pageMyBook = req.query.page ? req.query.page : 1;
+    var langCategory = req.cookies.lang;
 
     request({
         url: req.configs.api_base_url + 'users/book/' + req.session.user.id + '/sharing?page=' + pageMyBook,
@@ -230,6 +231,7 @@ router.get('/my_books', authorize.isAuthenticated, function (req, res, next) {
             try {
                 var books = JSON.parse(body);
                 res.render('users/my_books.ejs', {
+                    langCategory: langCategory,
                     books: books,
                     pageTitle: res.__('My Books'),
                     pageName: 'My books',
@@ -257,6 +259,7 @@ router.get('/:id', authorize.isAuthenticated, function(req, res, next) {
     var pageSuggest = req.query.pageSuggest ? req.query.pageSuggest : 1;
     var pageReviewed = req.query.pageReviewed ? req.query.pageReviewed : 1;
     var userId = req.params.id;
+    var langCategory = req.cookies.lang;
 
     async.parallel({
         waitingBooks: function (callback) {
@@ -411,6 +414,7 @@ router.get('/:id', authorize.isAuthenticated, function(req, res, next) {
             }
 
             res.render('users/profile', {
+                langCategory: langCategory,
                 data: results.user.item,
                 pageTitle: results.user.item.name + ' profile',
                 categories: results.categories,

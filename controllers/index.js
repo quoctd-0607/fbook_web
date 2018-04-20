@@ -15,6 +15,7 @@ router.get('/', localSession, function (req, res, next) {
     var url = req.configs.api_base_url + 'home/';
     var officeId;
     var page = req.query.page ? req.query.page : 1;
+    var langCategory = req.cookies.lang;
 
     if (typeof(req.session.office_id) !== 'undefined' && req.session.office_id != null) {
         url = req.configs.api_base_url + 'home?office_id=' + req.session.office_id;
@@ -36,6 +37,7 @@ router.get('/', localSession, function (req, res, next) {
                     var data = JSON.parse(body);
 
                     res.render('index', {
+                        langCategory: langCategory,
                         data: data,
                         officeId: officeId,
                         pageTitle: res.__('Home'),
@@ -92,6 +94,7 @@ router.get('/', localSession, function (req, res, next) {
                 res.redirect('back');
             } else {
                 res.render('index', {
+                    langCategory: langCategory,
                     data: results.data,
                     dataNoti: results.dataNoti,
                     officeId: officeId,
@@ -109,6 +112,7 @@ router.get('/', localSession, function (req, res, next) {
 router.get('/all_office', localSession, function (req, res, next) {
     var url = req.configs.api_base_url + 'home/';
     var officeId;
+    var langCategory = req.cookies.lang;
     var page = req.query.page ? req.query.page : 1;
 
     if(typeof(req.session.access_token) == 'undefined'){
@@ -121,6 +125,7 @@ router.get('/all_office', localSession, function (req, res, next) {
                     var data = JSON.parse(body);
     
                     res.render('index', {
+                        langCategory: langCategory,
                         data: data,
                         officeId: officeId,
                         pageTitle: res.__('Home'),
@@ -176,6 +181,7 @@ router.get('/all_office', localSession, function (req, res, next) {
                 res.redirect('back');
             } else {
                 res.render('index', {
+                    langCategory: langCategory,
                     data: results.data,
                     dataNoti: results.dataNoti,
                     officeId: officeId,

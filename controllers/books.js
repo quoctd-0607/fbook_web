@@ -180,6 +180,7 @@ router.get('/waiting_approve', authorize.isAuthenticated, function (req, res, ne
 });
 
 router.get('/:id/approve-request', authorize.isAuthenticated, function (req, res, next) {
+    var langCategory = req.cookies.lang;
     req.checkParams('id', 'Invalid id').notEmpty().isInt();
     req.getValidationResult().then(function (result) {
         if (!result.isEmpty()) {
@@ -212,6 +213,7 @@ router.get('/:id/approve-request', authorize.isAuthenticated, function (req, res
 });
 
 router.get('/:id', localSession, function (req, res, next) {
+    var langCategory = req.cookies.lang;
     req.checkParams('id', 'Invalid id').notEmpty().isInt();
     req.getValidationResult().then(function (result) {
         if (!result.isEmpty()) {
@@ -420,6 +422,7 @@ router.get('/category/:category_id', localSession, function (req, res, next) {
 
 router.post('/review/:id', authorize.isAuthenticated, function (req, res, next) {
     req.checkBody('content').notEmpty().len(1, 255);
+    var langCategory = req.cookies.lang;
 
     req.getValidationResult().then(function (result) {
         if (!result.isEmpty()) {
@@ -460,6 +463,7 @@ router.post('/review/:id', authorize.isAuthenticated, function (req, res, next) 
 });
 
 router.post('/booking/:id', authorize.isAuthenticated, function (req, res, next) {
+    var langCategory = req.cookies.lang;
     req.checkParams('id', 'Invalid book_id').notEmpty().isInt();
     req.checkBody('owner_id', 'Invalid owner_id').notEmpty().isInt();
     req.checkBody('status', 'Invalid status').notEmpty().isInt();
@@ -577,6 +581,7 @@ router.get('/:id/edit', authorize.isAuthenticated, function (req, res, next) {
 
 //write new review
 router.get('/:id/review', authorize.isAuthenticated, (req, res, next) => {
+    var langCategory = req.cookies.lang;
     {
         request({
             url: req.configs.api_base_url + 'books/' + req.params.id,
@@ -633,6 +638,7 @@ router.post('/post-review/:id', urlencodedParser, (req, res, next) => {
 });
 
 router.get('/view-review/:id', authorize.isAuthenticated, localSession, (req, res, next) => {
+    var langCategory = req.cookies.lang;
     request({
         url: req.configs.api_base_url + 'books/review-details/' + req.params.id + '/' + req.session.user.id,
         headers: objectHeaders.headers({'Authorization': req.session.access_token})
