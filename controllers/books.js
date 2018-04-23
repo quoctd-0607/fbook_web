@@ -157,24 +157,84 @@ router.get('/add', authorize.isAuthenticated, function (req, res, next) {
 });
 
 router.get('/waiting_approve', authorize.isAuthenticated, function (req, res, next) {
-    request({
-        url: req.configs.api_base_url + 'user/books/waiting_approve',
-        headers: objectHeaders.headers({'Authorization': req.session.access_token})
-    }, function (error, response, body) {
-        if (!error && response.statusCode === 200) {
-            try {
-                var books = JSON.parse(body);
-                res.render('books/waiting_approve', {
-                    books: books,
-                    pageTitle: res.__('Home'),
-                    info: req.flash('info'),
-                    error: req.flash('error'),
-                });
-            } catch (errorJSONParse) {
-                res.redirect('home');
-            }
+    // request({
+    //     url: req.configs.api_base_url + 'user/books/waiting_approve',
+    //     headers: objectHeaders.headers({'Authorization': req.session.access_token})
+    // }, function (error, response, body) {
+    //     if (!error && response.statusCode === 200) {
+    //         try {
+    //             var books = JSON.parse(body);
+    //             res.render('books/waiting_approve', {
+    //                 books: books,
+    //                 pageTitle: res.__('Home'),
+    //                 info: req.flash('info'),
+    //                 error: req.flash('error'),
+    //             });
+    //         } catch (errorJSONParse) {
+    //             res.redirect('home');
+    //         }
+    //     } else {
+    //         res.redirect('home');
+    //     }
+    // });
+    req.getValidationResult().then(function (result) {
+        if (!result.isEmpty()) {
+            res.status(400).send(res.__('There have been validation errors: ') + util.inspect(result.array()));
+            return;
         } else {
-            res.redirect('home');
+            var langCategory = req.cookies.lang;
+            async.parallel({
+                books: function (callback) {
+                    request({
+                        url: req.configs.api_base_url + 'user/books/waiting_approve',
+                        headers: objectHeaders.headers({'Authorization': req.session.access_token})
+                    }, function (error, response, body) {
+                        if (!error && response.statusCode === 200) {
+                            try {
+                                books = JSON.parse(body);
+                                callback(null, books);
+                            } catch (errorJSONParse) {
+                                callback(null, null);
+                            }
+                        } else {
+                            callback(null, null);
+                        }
+                    });
+                },
+                data: function (callback) {
+                    request({
+                        url: req.configs.api_base_url + 'user/' + 129 + '/approve/detail',
+                        headers: objectHeaders.headers({'Authorization': req.session.access_token})
+                    }, function (error, response, body) {
+                        if (!error && response.statusCode === 200) {
+                            try {
+                                var data = JSON.parse(body);
+
+                                callback(null, data);
+                            } catch (errorJSONParse) {
+                                req.flash('error', res.__('Don\'t allow show approve request page'));
+                                res.redirect('back');
+                            }
+                        } else {
+                            req.flash('error', res.__('Don\'t allow show approve request page'));
+                            res.redirect('back');
+                        }
+                    });
+                }
+            }, function (err, results) {
+                if (err) {
+                    res.redirect('back');
+                } else {
+                    res.render('books/waiting_approve', {
+                        data: results.data,
+                        books: results.books,
+                        langCategory: langCategory,
+                        pageTitle: res.__('Waiting approve'),
+                        info: req.flash('info'),
+                        error: req.flash('error'),
+                    });
+                }
+            });
         }
     });
 });

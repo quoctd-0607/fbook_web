@@ -235,7 +235,7 @@
         <hr class="hr-new">
         <div class="space-20"></div>
         <% if (typeof user != 'undefined' && typeof user.name !== 'undefined' && user.name) { %>
-            <h2><strong><%= __('News') %></strong></h2>
+            <h2><strong><%= __('Newsfeed') %></strong></h2>
             <div class="title-bar blue">
                 <ul class="list-inline list-unstyled">
                     <li><i class="icofont icofont-square"></i></li>
@@ -392,16 +392,6 @@
                         </div>
                     </div>
                 <% } else { %>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
-                            <div class="title-bar blue">
-                                <ul class="list-inline list-unstyled">
-                                    <li><i class="icofont icofont-square"></i></li>
-                                    <li><i class="icofont icofont-square"></i></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                     <h5 class="text-center"><%= __('No Newfeeds') %></h5>
                 <% } %>
             </div>
