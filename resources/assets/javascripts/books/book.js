@@ -685,7 +685,7 @@ $(function ($) {
 }(jQuery));
 
 if (typeof approveRequestWaiting === 'undefined') {
-    function approveRequestWaiting(userId) {
+    function approveRequestWaiting(userId, bookId) {
         swal({
             title: i18n['Are you sure approve this request?'],
             type: 'info',
@@ -707,7 +707,7 @@ if (typeof approveRequestWaiting === 'undefined') {
             }
 
             $.ajax({
-                url: API_PATH + 'books/approve/' + $('.hide-book').data('bookId'),
+                url: API_PATH + 'books/approve/' + bookId,
                 contentType: 'application/json',
                 dataType: 'json',
                 headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
@@ -752,7 +752,7 @@ if (typeof approveRequestWaiting === 'undefined') {
 }
 
 if (typeof approveRequestReturning === 'undefined') {
-    function approveRequestReturning(userId) {
+    function approveRequestReturning(userId, bookId) {
         swal({
             title: i18n['Are you sure approve this request?'],
             type: 'info',
@@ -774,7 +774,7 @@ if (typeof approveRequestReturning === 'undefined') {
             }
 
             $.ajax({
-                url: API_PATH + 'books/approve/' + $('.hide-book').data('bookId'),
+                url: API_PATH + 'books/approve/' + bookId,
                 contentType: 'application/json',
                 dataType: 'json',
                 headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
@@ -817,7 +817,7 @@ if (typeof approveRequestReturning === 'undefined') {
 }
 
 if (typeof unapproveRequestWaiting === 'undefined') {
-    function unapproveRequestWaiting(userId) {
+    function unapproveRequestWaiting(userId, bookId) {
         swal({
             title: i18n['Are you sure unapprove this request?'],
             type: 'info',
@@ -839,7 +839,7 @@ if (typeof unapproveRequestWaiting === 'undefined') {
             }
 
             $.ajax({
-                url: API_PATH + 'books/approve/' + $('.hide-book').data('bookId'),
+                url: API_PATH + 'books/approve/' + bookId,
                 contentType: 'application/json',
                 dataType: 'json',
                 headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
@@ -884,7 +884,7 @@ if (typeof unapproveRequestWaiting === 'undefined') {
 }
 
 if (typeof removeRequestWaiting === 'undefined') {
-    function removeRequestWaiting(userId) {
+    function removeRequestWaiting(userId, bookId) {
         swal({
             title: i18n['Are you sure remove this request?'],
             type: 'info',
@@ -906,7 +906,7 @@ if (typeof removeRequestWaiting === 'undefined') {
             }
 
             $.ajax({
-                url: API_PATH + 'books/approve/' + $('.hide-book').data('bookId'),
+                url: API_PATH + 'books/approve/' + bookId,
                 contentType: 'application/json',
                 dataType: 'json',
                 headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},

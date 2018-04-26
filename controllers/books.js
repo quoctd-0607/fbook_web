@@ -157,26 +157,6 @@ router.get('/add', authorize.isAuthenticated, function (req, res, next) {
 });
 
 router.get('/waiting_approve', authorize.isAuthenticated, function (req, res, next) {
-    // request({
-    //     url: req.configs.api_base_url + 'user/books/waiting_approve',
-    //     headers: objectHeaders.headers({'Authorization': req.session.access_token})
-    // }, function (error, response, body) {
-    //     if (!error && response.statusCode === 200) {
-    //         try {
-    //             var books = JSON.parse(body);
-    //             res.render('books/waiting_approve', {
-    //                 books: books,
-    //                 pageTitle: res.__('Home'),
-    //                 info: req.flash('info'),
-    //                 error: req.flash('error'),
-    //             });
-    //         } catch (errorJSONParse) {
-    //             res.redirect('home');
-    //         }
-    //     } else {
-    //         res.redirect('home');
-    //     }
-    // });
     req.getValidationResult().then(function (result) {
         if (!result.isEmpty()) {
             res.status(400).send(res.__('There have been validation errors: ') + util.inspect(result.array()));
