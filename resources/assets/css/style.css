@@ -188,7 +188,7 @@ input:-webkit-autofill:focus {
     padding-right: 0;
     position: absolute;
     min-width: 300px;
-    right: 0px;
+    right: 19px;
 }
 .search-img {
     width: 35px;
@@ -202,6 +202,24 @@ input:-webkit-autofill:focus {
 
 .search-result a {
     font-size: 12px !important;
+}
+.search-result::-webkit-scrollbar {
+    width: 15px;
+    background-color: white;
+    border-radius: 50%;
+}
+.search-result::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: #fff;
+}
+.search-result::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.7);
 }
 
 .book-search {
@@ -239,7 +257,10 @@ input:-webkit-autofill:focus {
 }
 
 #data-search li a:hover:not(.header), #data-search-google li a:hover:not(.header), #data-suggest-book li a:hover:not(.header){
-    background-color: #eee; /* Add a hover effect to all links, except for headers */
+    background-color: #ddd; /* Add a hover effect to all links, except for headers */
+}
+.bg-lightgray {
+    background-color: #d3d3d3 !important;
 }
 
 .btn-category {
