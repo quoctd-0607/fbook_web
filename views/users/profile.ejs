@@ -14,7 +14,7 @@
                     <img class="img-circle pravatar-image img-responsive" src="/images/user_default.png" alt="avatar">
                 <% } %></a>
             </div>
-            <div class="prheadlineinfo pull-right">
+            <div class="prheadlineinfo pull-right m-0">
                 <ul class="nav nav-tabs prnav-tabs">
                     <% var isTabActived = false; %>
                     <% if (!isTabActived && pageReading === 1 || pageWaiting === 1 && pageDone === 1 && pageSharing !== 1 && pageSuggest === 1 && pageReviewed === 1) {
@@ -96,7 +96,7 @@
                 </div>
                 <div class="title-bar"></div>
                 <div class="">
-                    <div class="book-content book-content-profile">
+                    <div class="book-content book-content-profile m-0">
                         <div class="book-details-item">
                             <h4 class="tip-left"><%= __('Email') %>: </h4>
                             <p class=""><%= data.email %></p>

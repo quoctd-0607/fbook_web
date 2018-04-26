@@ -1,7 +1,7 @@
 <section class="relative fix m-bottom50 gray-bg" id="sc3">
     <div class="hide-categoryIds" data-category-ids=<%= categoryIds %>></div>
     <div class="hide-userId" user-name="<%= data.name %>" follow=<%= follow.isFollow == true ? "follow" : "unfollow" %> data-user-id=<%= userId %>></div>
-    <div class="wrap_content">
+    <div class="wrap_content container">
         <div class="prcover prgreen-bg">
             <div class="space-25"></div>
             <h1 class="text-white prhellofont"><%= __('Hello there') %></h1>
@@ -14,7 +14,7 @@
                     <img class="img-circle pravatar-image img-responsive" src="/images/user_default.png" alt="<%= __('Avatar') %>">
                 <% } %></a>
             </div>
-            <div class="prheadlineinfo pull-right navbar-collapse">
+            <div class="prheadlineinfo pull-right navbar-collapse m-0">
                 <ul class="nav nav-tabs prnav-tabs">
                     <% var isTabActived = false; %>
                     
@@ -106,7 +106,7 @@
                 </div>
                 <div class="title-bar"></div>
                 <div class="">
-                    <div class="book-content book-content-profile">
+                    <div class="book-content book-content-profile m-0">
                         <div class="book-details-item">
                             <h4 class="tip-left"><%= __('Email') %>: </h4>
                             <p class=""><%= data.email %></p>
