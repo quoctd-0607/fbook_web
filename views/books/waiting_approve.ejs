@@ -16,56 +16,118 @@
         <div class="space-20"></div>
         <div class="row">
             <% if (books.items.data.length) { %>
-                <% books.items.data.forEach(function (book) { %>
-                    <div class="col-xs-12 col-md-4 wow fadeInLeft" data-wow-delay="0.1s" data-wow-offset="50">
-                        <div class="category-item well yellow">
-                            <div class="media">
-                                <div class="media-left">
-                                    <img onclick="window.open('/books/<%= book.id %>', '_self')" 
-                                        src="<%= book.image ? book.image.web.thumbnail_path : '/images/book_thumb_default.jpg' %>"
-                                        class="media-object img-avatar-book" 
-                                        alt="<%= book.title %>">
-                                </div>
-                                <div class="media-body">
-                                    <h5 title="<%= book.title %>" 
-                                        onclick="window.open('/books/<%= book.id %>', '_self')"
-                                        data-toggle="tooltip">
-                                        <%= book.title ? getString(book.title, configs.book.title_limit_characters) : __('No title') %>
-                                    </h5>
-                                    <h6 title="<%= book.athor %>" data-toggle="tooltip">
-                                        <%= book.author ? getString(book.title, configs.book.author_limit_characters) : 'Framgia' %>
-                                    </h6>
-                                    <input id="rating-book" name="star" class="rating" data-min="0" data-max="5" value="<%= book.avg_star %>" disabled="true" data-step="0.01" data-size="xs">
-                                    <div class="space-10"></div>
-                                    <p>
-                                        <%- book.overview %>
-                                    </p>
-                                    <a href="/books/<%= book.id %>/approve-request" class="media-button-customize"><%= __('View all request')%> (<%- book.users_waiting.length + book.users_returning.length %>)</a>
-                                </div>
-                            </div>
-                            <div class="owners">
-                                <strong> <%= __('Shared by') %>: </strong>
-                                <% if (book.owners) { %>
-                                    <% var countOwner = 0 %>
-                                    <% book.owners.forEach(function (owner) { %>
-                                        <%  countOwner++;
-                                            if (countOwner == 6) {
-                                                %> <strong> ... </strong> <%
-                                                return;
-                                            }
-                                        %>
-                                        <img onclick="window.open('/users/<%= owner.id %>')" 
-                                            onerror="imgBackUp(this)" 
-                                            data-toggle="tooltip" 
-                                            title="<%= owner.name %>" 
-                                            class="owner-image-home img-circle" 
-                                            src="<%= (owner && owner.avatar) ? owner.avatar : '/images/user_default.png' %>"
-                                            class="media-object author-photo img-thumbnail <%= owner ? '' : 'background--white' %>"
-                                            alt="<%= __('book') %>">
-                                    <% }) %>
-                                <% } %>
-                            </div>
-                        </div>
+                <% books.items.data.forEach(function (book) { 
+                    var request = 0;
+                    %>
+                    <div class="panel-body comment-box">
+                        <h4><span class=""><%= book.title %></span></h4>
+                        <% if (book.users_returning) {
+                            if (book.users_returning.length != 0) {
+                                request = 1;
+                                book.users_returning.forEach(function(user) { %>
+                                    <div class="approve-waiting-area-<%= user.id %>">
+                                        <div class="well">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <a href="/user/<%= user.id %>" class="avatar">
+                                                        <img src="<%= user.avatar %>">
+                                                    </a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="space-10"></div>
+                                                    <a href="/users/<%= user.id %>">
+                                                        <h4 class="media-heading"><%= user.name %></h4>
+                                                        <%= user.pivot.created_at %>
+                                                    </a>
+                                                    <span class="label label-warning lbl-returning<%= user.id %>"><%= __('Returning') %></span>
+                                                </div>
+                                                <div class="media-body text-right">
+                                                    <a href="javascript:void(0)" onclick="return approveRequestReturning(<%= user.id %>, <%= user.pivot.book_id %>);" class="btn btn-primary btn-xs btn-approve-returning<%= user.id %>"><%= __('Approve') %>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% })
+                            }
+                        } %>
+                        <% if (book.users_reading) {
+                            if (book.users_reading.length != 0) {
+                                request = 2;
+                                book.users_reading.forEach(function(user) { %>
+                                    <div class="approve-waiting-area-<%= user.id %>">
+                                        <div class="well">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <a href="/user/<%= user.id %>" class="avatar">
+                                                        <img src="<%= user.avatar %>">
+                                                    </a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="space-10"></div>
+                                                    <a href="/users/<%= user.id %>">
+                                                        <h4 class="media-heading"><%= user.name %></h4>
+                                                        <%= user.pivot.created_at %>
+                                                    </a>
+                                                    <span class="label label-success lbl-reading<%= user.id %>"><%= __('Reading') %></span>
+                                                </div>
+                                                <div class="media-body text-right">
+                                                    <a href="javascript:void(0)" onclick="return unapproveRequestWaiting(<%= user.id %>, <%= user.pivot.book_id %>);" class="btn btn-primary btn-xs btn-approve btn-unapprove-reading<%= user.id %>"><%= __('Unapprove') %></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% })
+                            }
+                        }
+                        if (book.users_waiting) {
+                            if (book.users_waiting.length != 0) {
+                                request = 3;
+                                book.users_waiting.forEach(function(user) { %>
+                                    <div class="approve-waiting-area-<%= user.id %>">
+                                        <div class="well">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <a href="/user/<%= user.id %>" class="avatar">
+                                                        <img src="<%= user.avatar %>">
+                                                    </a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="space-10"></div>
+                                                    <a href="/users/<%= user.id %>">
+                                                        <h4 class="media-heading"><%= user.name %></h4>
+                                                        <%= user.pivot.created_at %>
+                                                    </a>
+                                                    <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Waiting') %></span>
+                                                    <span class="text-success"><%= __('Time want to borrow') %>:
+                                                        <% if (user.pivot.days_to_read == 1) { %>
+                                                            <%= user.pivot.days_to_read %> <%= __('day') %>
+                                                        <% } else { %>
+                                                            <%= user.pivot.days_to_read %> <%= __('days') %>
+                                                        <% } %>
+                                                    </span>
+                                                </div>
+                                                <% if (!book.users_waiting.length) { %>
+                                                    <div class="media-body text-right">
+                                                        <a onclick="return approveRequestWaiting(<%= user.id %>, <%= user.pivot.book_id %>);" class="btn btn-primary btn-xs btn-approve btn-approve-waiting<%= user.id %>"><%= __('Approve') %>
+                                                        </a>
+                                                <% } else { %>
+                                                    <div class="media-body text-right">
+                                                        <a onclick="return approveRequestWaiting(<%= user.id %>, <%= user.pivot.book_id %>);" class="btn btn-primary btn-xs btn-approve btn-approve-waiting<%= user.id %>"><%= __('Approve') %></a>
+                                                <% } %>
+                                                    <a onclick="return removeRequestWaiting(<%= user.id %>, <%= user.pivot.book_id %>);" class="btn btn-danger btn-xs btn-remove btn-remove-waiting<%= user.id %>"><%= __('Remove this request') %></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                     </div>
+                                <% })
+                            }
+                            if (request == 0) { %>
+                                <%= __('No request') %>
+                            <% }
+                        } else { %>
+                            <%= __('No request') %>
+                        <% } %>
                     </div>
                 <% }) %>
             <% } else { %>
@@ -107,3 +169,9 @@
 
 <%- contentFor('appCss') %>
 <link type="text/css" href="/bower/bootstrap-star-rating/css/star-rating.css" rel="stylesheet">
+<link type="text/css" href="/bower/sweetalert/dist/sweetalert.css" rel="stylesheet">
+
+<%- contentFor('appjs') %>
+<script type="text/javascript" src="/javascripts/books/book.js"></script>
+<script type="text/javascript" src="/bower/bootstrap-star-rating/js/star-rating.js"></script>
+<script type="text/javascript" src="/bower/sweetalert/dist/sweetalert.min.js"></script>

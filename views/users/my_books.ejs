@@ -66,7 +66,6 @@
                                                     <%= book.category.name_vi %>
                                             <% } %>
                                         </p>
-                                        <p><%= getString(book.overview, configs.book.author_limit_characters) %></p>
                                         <p><a href="/books/<%= book.id %>/approve-request" class="media-button-customize"><%= __('View all request')%> (<%- book.users_waiting.length + book.users_returning.length %>)</a></p>
                                         <% if (book.users_reading && book.users_reading.length) { %>
                                                 <strong> <%= __('Keeped by') %>: </strong>
