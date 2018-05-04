@@ -72,6 +72,23 @@ router.get('/', localSession, function (req, res, next) {
                     }
                 });
             },
+            dataSuggest: function (callback) {
+                request({
+                    url: req.configs.api_base_url + 'users/interested-books',
+                    headers: objectHeaders.headers({'Authorization': req.session.access_token})
+                }, function (error, response, body) {
+                    if (!error && response.statusCode === 200) {
+                        try {
+                            var dataSuggest = JSON.parse(body);
+                            callback(null, dataSuggest);
+                        } catch (errorJSONParse) {
+                            callback(null, null);
+                        }
+                    } else {
+                        callback(null, null);
+                    }
+                });
+            },
             dataNoti: function (callback) {
                 request({
                     url: req.configs.api_base_url + 'notifications' + '/?page=' + page,
@@ -96,6 +113,7 @@ router.get('/', localSession, function (req, res, next) {
                 res.render('index', {
                     langCategory: langCategory,
                     data: results.data,
+                    dataSuggest: results.dataSuggest,
                     dataNoti: results.dataNoti,
                     officeId: officeId,
                     pageTitle: res.__('Home'),
@@ -159,6 +177,23 @@ router.get('/all_office', localSession, function (req, res, next) {
                     }
                 });
             },
+            dataSuggest: function (callback) {
+                request({
+                    url: req.configs.api_base_url + 'users/interested-books',
+                    headers: objectHeaders.headers({'Authorization': req.session.access_token})
+                }, function (error, response, body) {
+                    if (!error && response.statusCode === 200) {
+                        try {
+                            var dataSuggest = JSON.parse(body);
+                            callback(null, dataSuggest);
+                        } catch (errorJSONParse) {
+                            callback(null, null);
+                        }
+                    } else {
+                        callback(null, null);
+                    }
+                });
+            },
             dataNoti: function (callback) {
                 request({
                     url: req.configs.api_base_url + 'notifications' + '/?page=' + page,
@@ -183,6 +218,7 @@ router.get('/all_office', localSession, function (req, res, next) {
                 res.render('index', {
                     langCategory: langCategory,
                     data: results.data,
+                    dataSuggest: results.dataSuggest,
                     dataNoti: results.dataNoti,
                     officeId: officeId,
                     pageTitle: res.__('Home'),
