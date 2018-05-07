@@ -38,25 +38,25 @@
             <%- appCss %>
         <% }%>
         <script type="text/javascript">
-        var i18n;
-        function readTextFile(file)
-        {
-            var rawFile = new XMLHttpRequest();
-            rawFile.open("GET", file, false);
-            rawFile.onreadystatechange = function ()
+            var i18n;
+            function readTextFile(file)
             {
-                if(rawFile.readyState === 4)
+                var rawFile = new XMLHttpRequest();
+                rawFile.open("GET", file, false);
+                rawFile.onreadystatechange = function ()
                 {
-                    if(rawFile.status === 200 || rawFile.status == 0)
+                    if(rawFile.readyState === 4)
                     {
-                        var allText = rawFile.responseText;
-                        i18n = JSON.parse(allText);
+                        if(rawFile.status === 200 || rawFile.status == 0)
+                        {
+                            var allText = rawFile.responseText;
+                            i18n = JSON.parse(allText);
+                        }
                     }
                 }
+                rawFile.send(null);
             }
-            rawFile.send(null);
-        }
-    </script>
+        </script>
     </head>
     <body class="hold-transition skin-black sidebar-mini relative-postion">
 
