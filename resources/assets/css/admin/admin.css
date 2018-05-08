@@ -201,7 +201,8 @@ section.content{
 .table-box {
     overflow-x: auto;
 }
-.table-books th{
+.table-books th,
+.table-users th {
     width: 20%;
 }
 .table-books th:first-child {

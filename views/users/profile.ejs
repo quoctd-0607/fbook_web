@@ -84,6 +84,7 @@
             <div class="space-30"></div>
                 <!--left col-->
                 <div class="text-center"><h2><strong><%= data.name %></strong></h2>
+                    <h4><%= __('Reputations') %>: <%= data.reputation_point %></h4>
                 <% if (userId === user.id) { %>
                     <a href="/books/add"><i class="glyphicon glyphicon-share-alt"></i> <%= __('Share books') %></a>
                 <% } else { %>
