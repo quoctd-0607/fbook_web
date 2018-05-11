@@ -150,6 +150,7 @@ router.get('/all_office', localSession, function (req, res, next) {
                         isHomePage: true,
                         info: req.flash('info'),
                         error: req.flash('error'),
+                        lang : req.session.lang
                     });
                 } catch (errorJSONParse) {
                     res.redirect('home');
@@ -224,7 +225,8 @@ router.get('/all_office', localSession, function (req, res, next) {
                     pageTitle: res.__('Home'),
                     isHomePage: true,
                     info: req.flash('info'),
-                    error: req.flash('error')
+                    error: req.flash('error'),
+                    lang : req.session.lang
                 });
             }
         });
