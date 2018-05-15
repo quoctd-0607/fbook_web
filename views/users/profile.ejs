@@ -83,8 +83,14 @@
             <div class="col-sm-3">
                 <div class="space-30"></div>
                 <div class="text-center"><h2><strong><%= data.name %></strong></h2>
-                    <% if (userId === user.id) { %>
-                        <a href="#">
+                    <h4><%= __('Reputations') %>: <%= data.reputation_point %></h4>
+                <% if (userId === user.id) { %>
+                    <a href="/books/add"><i class="glyphicon glyphicon-share-alt"></i> <%= __('Share books') %></a>
+                <% } else { %>
+                    <% if (follow.isFollow === true) { %>
+                        <button type="button" class="btn-follow btn btn-primary"><%= __('Following') %></button>
+                    <% } else { %>
+                        <button type="button" class="btn-follow btn btn-success"><%= __('Follow') %></button>
                     <% } %>
                 </div>
                 <div class="title-bar"></div>

@@ -35,14 +35,15 @@
                     <h3 class="box-title"><%= __('User manager') %></h3>
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body no-padding">
-                    <table class="table table-hover table-responsive">
+                <div class="box-body no-padding table-box">
+                    <table class="table table-hover table-responsive table-users">
                         <tr>
                             <th><%= __('Staff Code') %></th>
                             <th><%= __('Email') %></th>
                             <th><%= __('Branch') %></th>
                             <th class="text-center"><%= __('Create Date') %></th>
                             <th class="text-center"><%= __('Book Own') %></th>
+                            <th class="text-center"><%= __('Reputations') %></th>
                         </tr>
                         <% if (dataRequest.items.data.length > 0) { %>
                             <% dataRequest.items.data.forEach(function(data) { %>
@@ -52,6 +53,7 @@
                                 <td><%= data.office.name %></td>
                                 <td class="text-center"><%= data.join_date %></td>
                                 <td class="text-center"><%= data.owners_count %></td>
+                                <td class="text-center"><%= data.reputation_point %></td>
                             </tr>
                             <% }) %>
                         <% } %>

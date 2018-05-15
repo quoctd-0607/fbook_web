@@ -179,6 +179,7 @@ $(function ($) {
         var user_id = $('#user_id' + review_id).val();
         var status_id = $(this).val();
         var current_vote = parseInt($('#btn_show_vote').text());
+        var reviewer_id = $('#reviewer_id').val();
 
         $.ajax({
             url: API_PATH + 'books/vote',
@@ -187,7 +188,8 @@ $(function ($) {
             data: JSON.stringify({
                 reviewId: review_id,
                 userId: user_id,
-                status: status_id
+                status: status_id,
+                reviewerId: reviewer_id
             }),
         }).done(function(response) {
             if (response.message.code == 200) {
