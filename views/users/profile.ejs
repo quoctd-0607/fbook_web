@@ -9,7 +9,7 @@
         </div>
         <div class="prheadline">
             <div class="pravatar"><a href="/users/<%= data.id%>" class=""><% if (typeof data.avatar != 'undefined' && data.avatar) { %>
-                <img class= "img-circle pravatar-image img-responsive" src="<%= data.avatar %>" alt="avatar">
+                <img class="img-circle pravatar-image img-responsive" src="<%= data.avatar %>" alt="avatar">
                 <% } else { %>
                     <img class="img-circle pravatar-image img-responsive" src="/images/user_default.png" alt="avatar">
                 <% } %></a>
@@ -81,8 +81,7 @@
         </div>
         <div class="row m-0">
             <div class="col-sm-3">
-            <div class="space-30"></div>
-                <!--left col-->
+                <div class="space-30"></div>
                 <div class="text-center"><h2><strong><%= data.name %></strong></h2>
                     <h4><%= __('Reputations') %>: <%= data.reputation_point %></h4>
                 <% if (userId === user.id) { %>
@@ -93,20 +92,19 @@
                     <% } else { %>
                         <button type="button" class="btn-follow btn btn-success"><%= __('Follow') %></button>
                     <% } %>
-                <% } %>
                 </div>
                 <div class="title-bar"></div>
-                <div class="">
+                <div>
                     <div class="book-content book-content-profile m-0">
                         <div class="book-details-item">
                             <h4 class="tip-left"><%= __('Email') %>: </h4>
-                            <p class=""><%= data.email %></p>
+                            <p><%= data.email %></p>
                             <h4 class="tip-left"><%= __('Phone') %>: </h4>
-                            <p class=""><%= data.phone %></p>
+                            <p><%= data.phone %></p>
                             <h4 class="tip-left"><%= __('Code') %>: </h4>
-                            <p class=""><%= data.code %></p>
+                            <p><%= data.code %></p>
                             <h4 class="tip-left"><%= __('Position') %>: </h4>
-                            <p class=""><%= data.position %></p>
+                            <p><%= data.position %></p>
                             <h4 class="tip-left"><%= __('Workspace') %>: </h4>
                             <% if (typeof(offices.items) !== 'undefined' && typeof(data.office_id) !== 'undefined' && data.office_id && offices.items) { %>
                                 <% offices.items.forEach(function(office) { %>
@@ -116,10 +114,10 @@
                                 <% }) %>
                             <% } %>
 
-                            <h4 class=""><%= __('Follower') %>: </h4>
-                            <p class=""><a href="" data-toggle="modal" data-target="#followed"><%= follow.countFollowed %> <%= __('people') %></a></p>
-                            <h4 class=""><%= __('Following') %>: </h4>
-                            <p class=""><a href="" data-toggle="modal" data-target="#following"><%= follow.countFollowing %> <%= __('people') %></a></p>
+                            <h4><%= __('Follower') %>: </h4>
+                            <p><a href="" data-toggle="modal" data-target="#followed"><%= follow.countFollowed %> <%= __('people') %></a></p>
+                            <h4><%= __('Following') %>: </h4>
+                            <p><a href="" data-toggle="modal" data-target="#following"><%= follow.countFollowing %> <%= __('people') %></a></p>
                         </div>
                     </div>
                     <div class="modal fade" id="followed" role="dialog">
@@ -133,13 +131,13 @@
                                     <% follow.followedBy.forEach(function (user) { %>
                                         <div class="row show-more">
                                             <div class="col-sm-3"><a onclick="window.open('/users/<%= user.id %>')"><% if (typeof data.avatar != 'undefined' && user.avatar) { %>
-                                            <img class= "img-circle img-responsive follow-avatar" src="<%= user.avatar %>" alt="<%= __('Avatar') %>">
+                                            <img class="img-circle img-responsive follow-avatar" src="<%= user.avatar %>" alt="<%= __('Avatar') %>">
                                             <% } else { %>
                                                 <img class="img-circle img-responsive follow-avatar" src="/images/user_default.png" alt="<%= __('Avatar') %>">
                                             <% } %></a>
                                             </div>
                                             <div class="col-sm-9">
-                                            <p class=""><a href="" onclick="window.open('/users/<%= user.id %>')"><%= user.name %></a></p>
+                                            <p class=""><a href="#" onclick="window.open('/users/<%= user.id %>')"><%= user.name %></a></p>
                                             </div>
                                         </div>
                                     <% }) %>
@@ -181,61 +179,38 @@
                 </div>
                 <div class="title-bar"></div>
             </div>
-            <div class="col-sm-9" contenteditable="false">
+            <div class="col-md-9" contenteditable="false">
                 <div class="tab-content">
                     <% var isTabPaneActived = false; %>
-                    <% if (!isTabPaneActived && pageReading === 1 || pageWaiting === 1 && pageDone === 1 && pageSharing !== 1 && pageSuggest === 1 && pageReviewed === 1) { 
-                        isTabPaneActived = true;
-                    %>
-                        <div class="tab-pane fade in active" id="sharing_books">
-                    <% } else { %>
-                        <div class="tab-pane fade" id="sharing_books">
-                    <% } %>
-
+                    <div id="sharing_books" class="tab-pane fade
+                        <% if (!isTabPaneActived && pageReading === 1 || 
+                        pageWaiting === 1 && 
+                        pageDone === 1 && 
+                        pageSharing !== 1 && 
+                        pageSuggest === 1 && 
+                        pageReviewed === 1) { isTabPaneActived = true; %> in active <% } %>">
                         <%- include('../shared/myBooks', {books: sharingBooks, pageName: 'pageSharing'}); %>
                     </div>
-
-                    <% if (!isTabPaneActived && pageReading !== 1) {
-                        isTabPaneActived = true;
-                    %>
-                        <div class="tab-pane fade in active" id="reading_books">
-                    <% } else { %>
-                        <div class="tab-pane fade" id="reading_books">
-                    <% } %>
-
+                    <div id="reading_books" class="tab-pane fade
+                        <% if (!isTabPaneActived && pageReading !== 1) { isTabPaneActived = true; %> in active <% } %>">
                         <%- include('../shared/myBooks', {books: readingBooks, pageName: 'pageReading'}); %>
                     </div>
-
-                    <% if (!isTabPaneActived && pageWaiting !== 1) {
-                        isTabPaneActived = true;
-                    %>
-                        <div class="tab-pane fade in active" id="waiting_books">
-                    <% } else { %>
-                        <div class="tab-pane fade" id="waiting_books">
-                    <% } %>
-
+                    <div id="waiting_books" class="tab-pane fade
+                        <% if (!isTabPaneActived && pageWaiting !== 1) { isTabPaneActived = true; %> in active <% } %>">
                         <%- include('../shared/myBooks', {books: waitingBooks, pageName: 'pageWaiting'}); %>
                     </div>
-
-                    <% if (!isTabPaneActived && pageDone !== 1) {
-                        isTabPaneActived = true;
-                    %>
-                        <div class="tab-pane fade in active" id="done_books">
-                    <% } else { %>
-                        <div class="tab-pane fade" id="done_books">
-                    <% } %>
-
+                    <div id="done_books" class="tab-pane fade
+                        <% if (!isTabPaneActived && pageDone !== 1) { isTabPaneActived = true; %> in active <% } %>">
                         <%- include('../shared/myBooks', {books: doneBooks, pageName: 'pageDone'}); %>
                     </div>
-
-                    <% if (!isTabPaneActived && pageReviewed !== 1) {
-                        isTabPaneActived = true;
-                    %>
-                        <div class="tab-pane fade in active" id="reviewed_books">
-                    <% } else { %>
-                        <div class="tab-pane fade" id="reviewed_books">
-                    <% } %>
-
+                    <div id="suggested_books" class="tab-pane fade
+                        <% if (userId === user.id) {
+                            if (!isTabPaneActived && pageSuggest !== 1) { isTabPaneActived = true; %> in active <% } %>">
+                            <%- include('../shared/myBooks', {books: suggestedBooks, pageName: 'pageSuggest'}); %>
+                        <% } %>
+                    </div>
+                    <div id="reviewed_books" class="tab-pane fade
+                        <% if (!isTabPaneActived && pageReviewed !== 1) { isTabPaneActived = true; %> in active <% } %>">
                         <%- include('../shared/myBooks', {books: reviewedBooks, pageName: 'pageReviewed'}); %>
                     </div>
                 </div>
