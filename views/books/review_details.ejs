@@ -28,6 +28,7 @@
                     <% } %>
                     <input type="hidden" id="review_data" value="<%= data.items.id %>">
                     <input type="hidden" id="user_id<%= data.items.id %>" value="<%= userId %>">
+                    <input type="hidden" id="reviewer_id" value="<%= data.items.user_id %>">
                     <span id="btn_show_vote"><%= data.items.up_vote - data.items.down_vote %></span>
                     <% if(data.items.current_vote == configs.words.down_vote ) { %>
                         <button class="btn_vote btn_voted down_vote" value="1">
