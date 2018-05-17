@@ -39,7 +39,7 @@ $(function ($) {
                         }
                         htmlModel +=
                             "<span class='text-color-noti label label-warning lbl-waiting" +
-                            data.user_send.id + "'>" + i18n['waiting'] + "</span>";
+                            data.user_send.id + "'>" + i18n['Waiting'] + "</span>";
                     } else if (data.type == configs.notification.cancel) {
                         htmlModel +=
                             "<a href='#' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
