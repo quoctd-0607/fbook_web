@@ -53,10 +53,10 @@
                                 <td><%= data.office.name %></td>
                                 <td class="text-center"><%= data.created_at %></td>
                                 <td>
-                                    <button type="button" class="delete_book" value="<%= data.id %>" title="<%= __('Delete book') %>"><i class="fa fa-trash-o"></i></button>
+                                    <button href="javascript:void(0)" data-toggle="modal" data-target="#myModal<%= data.id %>" data-id="<%= data.id %>"><i class="fa fa-eye"></i></button> 
                                 </td>
                                 <td>
-                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal<%= data.id %>" data-id="<%= data.id %>" class="btn btn-primary btn-lg font-size-14"><%= __('View detail') %></a>
+                                    <button type="button" class="delete_book" value="<%= data.id %>" title="<%= __('Delete book') %>"><i class="fa fa-trash-o"></i></button>
                                 </td>
                             </tr>
                             <div class="modal fade bs-example-modal-lg modal-book-detail" id="myModal<%= data.id %>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">

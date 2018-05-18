@@ -99,8 +99,8 @@
                             <% var countOwner = 0 %>
                             <% book.owners.forEach(function (owner) { %>
                                 <%  countOwner++;
-                                    if (countOwner == 6) {
-                                        %> <strong> ... </strong> 
+                                    if (countOwner >= 4) {
+                                        %> 
                                 <% return; } %>
                                 <img onclick="window.open('/users/<%= owner.id %>')" 
                                     src="<%= (owner && owner.avatar) ? owner.avatar : '/images/user_default.png' %>"
@@ -110,7 +110,10 @@
                                     class="owner-image-home img-circle" 
                                     alt="<%= __('Avatar') %>">
                             <% }) %>
-                         <% } %>
+                            <% if(countOwner >=4) { %>
+                                <strong> + <%= (countOwner-3) %></strong>
+                            <% } %>
+                        <% } %>
                     </div>
                 </div>
             </div>
