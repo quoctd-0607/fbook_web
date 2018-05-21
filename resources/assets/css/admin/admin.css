@@ -198,3 +198,27 @@ section.content{
 .padding-select {
     padding-right: 15px !important;
 }
+.table-box {
+    overflow-x: auto;
+}
+.table-books th,
+.table-users th {
+    width: 20%;
+}
+.table-books th:first-child {
+    width: 40%;
+}
+.table-books th:nth-child(5) {
+    width: 20px;
+}
+.img-avatar-book {
+    width: 100%;
+}
+.modal-book-detail .modal-body{
+    height: 300px;
+    margin-bottom: 15px;
+}
+.modal-book-detail .modal-body .col-sm-9{
+    height: 300px;
+    overflow-y: auto;
+}

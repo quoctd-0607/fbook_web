@@ -273,6 +273,18 @@ $(function ($) {
                             "<span class='text-color-noti label label-warning lbl-waiting" +
                             data.user_send.id +
                             "'>" + i18n['approve waiting'] + "</span>";
+                    } else if (data.type == configs.notification.follow) {
+                        htmlModel += "<a href='/users/" + data.user_send.id +
+                            "' class='a-notification-dropdown clearfix notification_onclick' style='display: block;' data-notification-id='" +
+                            data.id + "'>" +
+                            "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
+                            data.user_send.name + "</span>" + "<span> " +
+                            i18n['Just follow you'];
+                        if (data.follow != null && data.follow.deleted_at == null) {
+                            htmlModel += i18n['You are received '] + configs.reputation.be_followed + i18n['point']
+                        }
+                        htmlModel += "</span>" + "</p>" + "<span class='text-color-noti label label-success" +
+                            "'>" + i18n['Follow'] + "</span>";
                     }
                     htmlModel +=
                         "<p class='show text-danger pull-right time-ago-notification-dropdown'><span class='time_a_go'>" +

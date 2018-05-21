@@ -45,7 +45,8 @@ var config = {
         "approve_request_update_book": 'approve_edit_book',
         "delete_request_update_book": 'delete_edit_book',
         "viewed ": true,
-        "not_view": false
+        "not_view": false,
+        "follow": "follow"
     },
     pusher: {
         "app_id": '400613',
@@ -60,6 +61,13 @@ var config = {
     },
     search: {
         title_limit_search: 20
+    },
+    reputation: {
+        "share_book": 5,
+        "add_owner": 5,
+        "approve_borrow": 3,
+        "be_upvoted": 1,
+        "be_followed": 1
     }
 };
 

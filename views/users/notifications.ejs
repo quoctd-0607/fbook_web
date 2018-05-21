@@ -12,7 +12,7 @@
                                 <div class="event-item wow fadeInRight">
                                     <% if (dataNoti && dataNoti.items.notification.data.length && dataNoti.items.notification.total) { %>
                                         <% dataNoti.items.notification.data.forEach(function(data) { %>
-                                            <%if (data.user_receive_id == user.id && data.book != null) { %>
+                                            <%if (data.user_receive_id == user.id) { %>
                                                 <%if (data.viewed == configs.notification.not_view) { %>
                                                     <%if (data.type == configs.notification.waiting) { %>
                                                         <div class="notificaiton-box noSeen">
@@ -40,7 +40,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.cancel) { %>
-                                                        <div class=" notificaiton-box noSeen">
+                                                        <div class="notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -65,7 +65,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.review) { %>
-                                                        <div class=" notificaiton-box noSeen">
+                                                        <div class="notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -90,7 +90,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.up_vote) { %>
-                                                        <div class=" notificaiton-box seen">
+                                                        <div class="notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -115,7 +115,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.down_vote) { %>
-                                                        <div class=" notificaiton-box seen">
+                                                        <div class="notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -140,7 +140,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.returning) { %>
-                                                        <div class=" notificaiton-box noSeen">
+                                                        <div class="notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -165,7 +165,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.returned) { %>
-                                                        <div class=" notificaiton-box noSeen">
+                                                        <div class="notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -188,7 +188,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.approve_returning) { %>
-                                                        <div class=" notificaiton-box noSeen">
+                                                        <div class="notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -213,7 +213,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.approve_waiting) { %>
-                                                        <div class=" notificaiton-box noSeen">
+                                                        <div class="notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -238,7 +238,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.request_edit_book) { %>
-                                                        <div class=" notificaiton-box noSeen">
+                                                        <div class="notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -263,7 +263,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.approve_request_update_book) { %>
-                                                        <div class=" notificaiton-box noSeen">
+                                                        <div class="notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -286,7 +286,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.delete_request_update_book) { %>
-                                                        <div class=" notificaiton-box noSeen">
+                                                        <div class="notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -309,7 +309,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.unapprove_waiting) { %>
-                                                        <div class=" notificaiton-box noSeen">
+                                                        <div class="notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -333,10 +333,37 @@
                                                             </div>
                                                         </div>
                                                     <% } %>
+                                                    <%if (data.type == configs.notification.follow) { %>
+                                                        <div class="notificaiton-box noSeen">
+                                                            <div class="media click-notification">
+                                                                <div class="media-left">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <h4 class="show text-danger pull-right">
+                                                                        <span class="time_a_go"><%= data.created_at %></span>
+                                                                    </h4>
+                                                                    <a href="/users/<%= data.user_send.id %>">
+                                                                        <h4 class="media-heading user-email-box">
+                                                                            <%= data.user_send.name %> 
+                                                                            <span>[<%= data.user_send.email %>]</span>
+                                                                        </h4>
+                                                                        <span class="label label-success lbl-waiting<%= user.id %>"><%= __('Follow') %></span>
+                                                                        <p class="notification-p">
+                                                                            <span><%= __('Just follow you') %></span> 
+                                                                            <% if (data.follow != null && data.follow.deleted_at == null) {%>
+                                                                                <span><%= __('You are received %s point', configs.reputation.be_followed) %></span>
+                                                                            <% } %>
+                                                                        </p>
+                                                                    </a>               
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <% } %>
                                                 <% } %>
                                                 <%if (data.viewed != configs.notification.not_view) { %>
                                                     <%if (data.type == configs.notification.waiting) { %>
-                                                        <div class=" notificaiton-box seen">
+                                                        <div class="notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -361,7 +388,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.cancel) { %>
-                                                        <div class=" notificaiton-box seen">
+                                                        <div class="notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -386,7 +413,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.review) { %>
-                                                        <div class=" notificaiton-box seen">
+                                                        <div class="notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -411,7 +438,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.up_vote) { %>
-                                                        <div class=" notificaiton-box seen">
+                                                        <div class="notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -436,7 +463,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.down_vote) { %>
-                                                        <div class=" notificaiton-box seen">
+                                                        <div class="notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -461,7 +488,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.returned) { %>
-                                                        <div class=" notificaiton-box seen">
+                                                        <div class="notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -486,7 +513,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.returning) { %>
-                                                        <div class=" notificaiton-box seen">
+                                                        <div class="notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -511,7 +538,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.approve_returning) { %>
-                                                        <div class=" notificaiton-box seen">
+                                                        <div class="notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -536,7 +563,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.approve_waiting) { %>
-                                                        <div class=" notificaiton-box seen">
+                                                        <div class="notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -561,7 +588,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.request_edit_book) { %>
-                                                        <div class=" notificaiton-box seen">
+                                                        <div class="notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -586,7 +613,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.approve_request_update_book) { %>
-                                                        <div class=" notificaiton-box noSeen">
+                                                        <div class="notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -611,7 +638,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.delete_request_update_book) { %>
-                                                        <div class=" notificaiton-box noSeen">
+                                                        <div class="notificaiton-box noSeen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -636,7 +663,7 @@
                                                         </div>
                                                     <% } %>
                                                     <%if (data.type == configs.notification.unapprove_waiting) { %>
-                                                        <div class=" notificaiton-box seen">
+                                                        <div class="notificaiton-box seen">
                                                             <div class="media click-notification">
                                                                 <div class="media-left">
                                                                     <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -684,7 +711,7 @@
                                     <% if (dataNoti && dataNoti.items.notificationFollow.data.length && dataNoti.items.notificationFollow.total) { %>
                                         <% dataNoti.items.notificationFollow.data.forEach(function(data) { %>
                                             <%if (data.type == configs.notification.waiting && data.book != null) { %>
-                                                <div class=" notificaiton-box seen">
+                                                <div class="notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
                                                             <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -703,7 +730,7 @@
                                                 </div>
                                             <% } %>
                                             <%if (data.type == configs.notification.cancel && data.book != null) { %>
-                                                <div class=" notificaiton-box seen">
+                                                <div class="notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
                                                             <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -722,7 +749,7 @@
                                                 </div>
                                             <% } %>
                                             <%if (data.type == configs.notification.review && data.book != null) { %>
-                                                <div class=" notificaiton-box seen">
+                                                <div class="notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
                                                             <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -741,7 +768,7 @@
                                                 </div>
                                             <% } %>
                                             <%if (data.type == configs.notification.returning && data.book != null) { %>
-                                                <div class=" notificaiton-box seen">
+                                                <div class="notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
                                                             <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -760,7 +787,7 @@
                                                 </div>
                                             <% } %>
                                             <%if (data.type == configs.notification.approve_returning && data.book != null) { %>
-                                                <div class=" notificaiton-box seen">
+                                                <div class="notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
                                                             <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -779,7 +806,7 @@
                                                 </div>
                                             <% } %>
                                             <%if (data.type == configs.notification.approve_waiting && data.book != null) { %>
-                                                <div class=" notificaiton-box seen">
+                                                <div class="notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
                                                             <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object " alt="<%= __('Avatar') %>">
@@ -798,7 +825,7 @@
                                                 </div>
                                             <% } %>
                                             <%if (data.type == configs.notification.add_owner && data.book != null) { %>
-                                                <div class=" notificaiton-box seen">
+                                                <div class="notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
                                                             <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
@@ -817,7 +844,7 @@
                                                 </div>
                                             <% } %>
                                             <%if (data.type == configs.notification.remove_owner && data.book != null) { %>
-                                                <div class=" notificaiton-box seen">
+                                                <div class="notificaiton-box seen">
                                                     <div class="media click-notification">
                                                         <div class="media-left">
                                                             <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
