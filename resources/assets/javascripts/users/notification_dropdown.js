@@ -39,7 +39,7 @@ $(function ($) {
                         }
                         htmlModel +=
                             "<span class='text-color-noti label label-warning lbl-waiting" +
-                            data.user_send.id + "'>" + i18n['waiting'] + "</span>";
+                            data.user_send.id + "'>" + i18n['Waiting'] + "</span>";
                     } else if (data.type == configs.notification.cancel) {
                         htmlModel +=
                             "<a href='#' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
@@ -94,7 +94,8 @@ $(function ($) {
                             htmlModel +=
                                 "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
                                 data.user_send.name + "</span>" + "<span> " +
-                                i18n['Upvoted your review in book'] + ": " + data.book.title +
+                                i18n['Upvoted your review in book'] + ": " + data.book.title + ". " +
+                                i18n['You are received '] + configs.reputation.be_upvoted + i18n['point'] +
                                 "</span>" + "</p>";
                         }
                         htmlModel +=
