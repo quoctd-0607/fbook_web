@@ -731,6 +731,21 @@ if (typeof approveRequestWaiting === 'undefined') {
                         {icon: 'glyphicon glyphicon-ok'},
                         {delay: 3000}
                     );
+                    if (response.point) {
+                        showNotify(
+                            'success', 
+                            i18n['You are received '] + response.point + i18n[' reputation'] + '!',
+                            {icon: 'glyphicon glyphicon-ok'},
+                            {delay: 3000}
+                        );
+                    } else {
+                        showNotify(
+                            'danger', 
+                            i18n['You are already approved this request before so you receive no reputation!'],
+                            {icon: 'glyphicon glyphicon-remove'},
+                            {delay: 3000}
+                        );
+                    }
                 } else {
                     showNotify(
                         'danger',
