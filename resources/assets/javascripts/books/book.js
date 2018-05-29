@@ -530,7 +530,7 @@ $(function ($) {
 
     $('.loader').hide();
 
-    $('.add-owner').on('click', function(e) {
+    $('body').on('click', '.add-owner', function(e) {
         if (typeof(access_token) === 'undefined' || typeof(user) === 'undefined') {
             showNotify(
                 'danger',
@@ -596,12 +596,22 @@ $(function ($) {
 
                         $('.add-owner').removeClass().addClass('btn btn-danger btn-sm remove-owner').html("<i class='glyphicon glyphicon-remove'></i> Remove owner this book");
 
-                        showNotify(
-                            'success', 
-                            i18n['Add owner success'],
-                            {icon: 'glyphicon glyphicon-ok'}, 
-                            {delay: 3000}
-                        );
+                        if (response.items.book === null) {
+                            showNotify(
+                                'success',
+                                i18n['Add owner success'] + '. ' + i18n['You are received ']
+                                + configs.reputation.add_owner + ' ' + i18n['point'] + '.',
+                                {icon: 'glyphicon glyphicon-ok'},
+                                {delay: 3000}
+                            );
+                        } else {
+                            showNotify(
+                                'success',
+                                i18n['Add owner success'],
+                                {icon: 'glyphicon glyphicon-ok'},
+                                {delay: 3000}
+                            );
+                        }
                     } else {
                         showNotify(
                             'danger', 
@@ -622,7 +632,7 @@ $(function ($) {
         }
     });
 
-    $('.btn-action').on('click', '.remove-owner', function (e) {
+    $('body').on('click', '.remove-owner', function (e) {
         swal({
             title: i18n['Are you sure remove owner this book?'],
             type: 'info',
