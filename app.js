@@ -40,6 +40,9 @@ app.use(i18n.init);
 
 // configs
 app.use(function (req, res, next) {
+    var hour = 3600000
+    req.session.cookie.expires = new Date(Date.now() + hour)
+    req.session.cookie.maxAge = 100 * hour
     req.configs = configs;
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
