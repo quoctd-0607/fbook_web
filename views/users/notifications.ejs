@@ -26,12 +26,12 @@
                                                                     </h4>
                                                                     <a href="/books/<%= data.book.id %>/approve-request" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>  
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Waiting') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Waiting book request') %>: </span> 
+                                                                            <b><%= __('Waiting book request') %>:</b>  
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -51,12 +51,12 @@
                                                                     </h4>
                                                                     <a href="#" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>  
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Cancel') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Cancel book request') %>: </span> 
+                                                                            <b><%= __('Cancel book request') %>:</b>  
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -76,12 +76,12 @@
                                                                     </h4>
                                                                     <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>  
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-primary lbl-waiting<%= user.id %>"><%= __('Review') %></span>
                                                                         <p class="notification-p"> 
-                                                                            <span><%= __('Review Book') %>: </span> 
+                                                                            <b><%= __('Review Book') %>:</b>   
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -101,12 +101,12 @@
                                                                     </h4>
                                                                     <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>  
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-success lbl-waiting<%= user.id %>"><%= __('upvoted') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('upvoted your review in book') %>:</span> 
+                                                                            <b><%= __('upvoted your review in book') %>:</b>  
                                                                             <span><%= data.book.title %></span>
                                                                             <span><%= __('You are received %s point', configs.reputation.be_upvoted) %></span>
                                                                         </p>
@@ -127,12 +127,12 @@
                                                                     </h4>
                                                                     <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>  
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-danger lbl-waiting<%= user.id %>"><%= __('Downvoted') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Downvoted your review in book') %>: </span> 
+                                                                            <b><%= __('Downvoted your review in book') %>:</b>  
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -152,12 +152,12 @@
                                                                     </h4>
                                                                     <a href="/books/<%= data.book.id %>/approve-request %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>  
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('returning') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Returning book') %>: </span> 
+                                                                            <b><%= __('Returning book') %>:</b>  
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -175,12 +175,12 @@
                                                                     <h4 class="show text-danger pull-right"><span class="time_a_go"><%= data.created_at %></span></h4>
                                                                     <a href="/books/<%= data.book.id %>/approve-request %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-success lbl-waiting<%= user.id %>"><%= __('returned') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Return done book') %>: </span> 
+                                                                            <b><%= __('Return done book') %>:</b> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -200,12 +200,12 @@
                                                                     </h4>
                                                                     <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-primary lbl-waiting<%= user.id %>"><%= __('Approve returning') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Return books successfully') %>: </span> 
+                                                                            <b><%= __('Return books successfully') %>:</b> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -225,12 +225,12 @@
                                                                     </h4>
                                                                     <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>  
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Approve waiting') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Accept your request waiting book') %>: </span> 
+                                                                            <b><%= __('Accept your request waiting book') %>:</b>  
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -250,12 +250,12 @@
                                                                     </h4>
                                                                     <a href="/admin/waiting-request-edit-book" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>  
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Requests edit book') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Want to edit book') %>: </span> 
+                                                                            <b><%= __('Want to edit book') %>:</b> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -273,12 +273,12 @@
                                                                     <h4 class="show text-danger pull-right"><span class="time_a_go"><%= data.created_at %></span></h4>
                                                                     <a href="/admin/waiting-request-edit-book" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>  
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-success lbl-waiting<%= user.id %>"><%= __('Requests edit book') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Requests edit book') %>: </span> 
+                                                                            <b><%= __('Requests edit book') %>:</b>  
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -296,12 +296,12 @@
                                                                     <h4 class="show text-danger pull-right"><span class="time_a_go"><%= data.created_at %></span></h4>
                                                                     <a href="/admin/waiting-request-edit-book" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-danger lbl-waiting<%= user.id %>"><%= __('Unapprove request edit book') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Unapprove your request edit book') %>: </span>
+                                                                            <b><%= __('Unapprove your request edit book') %>:</b> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -321,12 +321,12 @@
                                                                     </h4>
                                                                     <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>  
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Approve waiting') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Accept your request unapprove book') %>: </span>
+                                                                            <b><%= __('Accept your request unapprove book') %>:</b> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -375,12 +375,12 @@
                                                                     </h4>
                                                                     <a href="/books/<%= data.book.id %>/approve-request" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Waiting') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Waiting Book') %>:</span> 
+                                                                            <b><%= __('Waiting Book') %>:</b>  
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -400,12 +400,12 @@
                                                                     </h4>
                                                                     <a href="#" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Cancel') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Cancel book request') %>:</span> 
+                                                                            <b><%= __('Cancel book request') %>:</b>  
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -425,12 +425,12 @@
                                                                     </h4>
                                                                     <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-primary lbl-waiting<%= user.id %>"><%= __('Review') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Review Book') %>: </span> 
+                                                                            <b><%= __('Review Book') %>:</b> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -450,12 +450,12 @@
                                                                     </h4>
                                                                     <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>  
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-success lbl-waiting<%= user.id %>"><%= __('upvoted') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('upvoted your review in book') %>:</span> 
+                                                                            <b><%= __('upvoted your review in book') %>:</b>  
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -475,12 +475,12 @@
                                                                     </h4>
                                                                     <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-danger lbl-waiting<%= user.id %>"><%= __('Downvoted') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Downvoted your review in book') %>:</span> 
+                                                                            <b><%= __('Downvoted your review in book') %>:</b>  
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -500,12 +500,12 @@
                                                                     </h4>
                                                                     <a href="/books/<%= data.book.id %>/approve-request %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>  
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-success lbl-waiting<%= user.id %>"><%= __('Returned') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Return done book:') %></span> 
+                                                                            <b><%= __('Return done book:') %></b> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -525,12 +525,12 @@
                                                                     </h4>
                                                                     <a href="/books/<%= data.book.id %>/approve-request %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Returning') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Returning book') %>:</span> 
+                                                                            <b><%= __('Returning book') %>:</b> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -550,12 +550,12 @@
                                                                     </h4>
                                                                     <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-primary lbl-waiting<%= user.id %>"><%= __('Approve returning') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Return books successfully') %>: </span> 
+                                                                            <b><%= __('Return books successfully') %>:</b>
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -575,12 +575,12 @@
                                                                     </h4>
                                                                     <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Approve waiting') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Accept your request waiting book') %>:</span> 
+                                                                            <b><%= __('Accept your request waiting book') %>:</b> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -600,12 +600,12 @@
                                                                     </h4>
                                                                     <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Approve waiting') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Accept your request waiting edit book') %>:</span> 
+                                                                            <b><%= __('Accept your request waiting edit book') %>:</b>  
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -625,12 +625,12 @@
                                                                     </h4>
                                                                     <a href="/admin/waiting-request-edit-book" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b>
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-success lbl-waiting<%= user.id %>"><%= __('Approve request edit book') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Accept your request edit book') %>:</span> 
+                                                                            <b><%= __('Accept your request edit book') %>:</b>  
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -650,12 +650,12 @@
                                                                     </h4>
                                                                     <a href="/admin/waiting-request-edit-book" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %></b> 
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-danger lbl-waiting<%= user.id %>"><%= __('Unapprove request edit book') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Unapprove your request edit book') %>:</span> 
+                                                                            <b><%= __('Unapprove your request edit book') %>:</b> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -675,12 +675,12 @@
                                                                     </h4>
                                                                     <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                         <h4 class="media-heading user-email-box">
-                                                                            <%= data.user_send.name %> 
+                                                                            <b><%= data.user_send.name %> </b>
                                                                             <span>[<%= data.user_send.email %>]</span>
                                                                         </h4>
                                                                         <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Approve waiting') %></span>
                                                                         <p class="notification-p">
-                                                                            <span><%= __('Accept your request unapprove book:') %></span> 
+                                                                            <b><%= __('Accept your request unapprove book:')%></b> 
                                                                             <span><%= data.book.title %></span>
                                                                         </p>
                                                                     </a>
@@ -718,12 +718,12 @@
                                                             <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                         </div>
                                                         <div class="media-body">
-                                                            <a href="/books/<%= data.book.id %>/approve-request" class="notification_onclick" data-notification-id="<%= data.id %>">
+                                                            <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                 <h4 class="media-heading user-email-box">
-                                                                    <%= data.user_send.name %>
+                                                                    <b><%= data.user_send.name %></b>
                                                                 </h4>
                                                                 <p class="notification-p">
-                                                                    <%= __('Waiting Book') %>: <%= data.book.title %>
+                                                                    <b><%= __('Waiting Book') %></b>: <%= data.book.title %>
                                                                 </p>
                                                             </a>
                                                         </div>
@@ -737,12 +737,12 @@
                                                             <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                         </div>
                                                         <div class="media-body">
-                                                            <a href="#" class="notification_onclick" data-notification-id="<%= data.id %>">
+                                                            <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                 <h4 class="media-heading user-email-box">
-                                                                    <%= data.user_send.name %>
+                                                                    <b><%= data.user_send.name %></b>
                                                                 </h4>
                                                                 <p class="notification-p">
-                                                                    <%= __('Cancel book request') %>: <%= data.book.title %>
+                                                                    <b><%= __('Cancel book request') %></b>: <%= data.book.title %>
                                                                 </p>
                                                             </a>
                                                         </div>
@@ -758,10 +758,10 @@
                                                         <div class="media-body">
                                                             <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                 <h4 class="media-heading user-email-box">
-                                                                    <%= data.user_send.name %>
+                                                                    <b><%= data.user_send.name %></b>
                                                                 </h4>
                                                                 <p class="notification-p">
-                                                                    <%= __('Review Book') %>: <%= data.book.title %>
+                                                                    <b><%= __('Review Book') %></b>: <%= data.book.title %>
                                                                 </p>
                                                             </a>
                                                         </div>
@@ -777,10 +777,10 @@
                                                         <div class="media-body">
                                                             <a href="/books/<%= data.book.id %>/approve-request %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                 <h4 class="media-heading user-email-box">
-                                                                    <%= data.user_send.name %>
+                                                                    <b><%= data.user_send.name %></b>
                                                                 </h4>
                                                                 <p class="notification-p">
-                                                                    <%= __('Returning book') %>: <%= data.book.title %>
+                                                                    <b><%= __('Returning book') %></b>: <%= data.book.title %>
                                                                 </p>
                                                             </a>
                                                         </div>
@@ -796,10 +796,10 @@
                                                         <div class="media-body">
                                                             <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                 <h4 class="media-heading user-email-box">
-                                                                    <%= data.user_send.name %>
+                                                                    <b><%= data.user_send.name %></b>
                                                                 </h4>
                                                                 <p class="notification-p">
-                                                                    <%= __('Return books successfully') %>: <%= data.book.title %>
+                                                                    <b><%= __('Return books successfully') %></b>: <%= data.book.title %>
                                                                 </p>
                                                             </a>
                                                         </div>
@@ -815,10 +815,10 @@
                                                         <div class="media-body">
                                                             <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                 <h4 class="media-heading user-email-box">
-                                                                    <%= data.user_send.name %>
+                                                                    <b><%= data.user_send.name %></b>
                                                                 </h4>
                                                                 <p class="notification-p">
-                                                                    <%= __('Accept your request waiting book') %>: <%= data.book.title %>
+                                                                    <b><%= __('Accept your request waiting book') %></b>: <%= data.book.title %>
                                                                 </p>
                                                             </a>
                                                         </div>
@@ -832,12 +832,12 @@
                                                             <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                         </div>
                                                         <div class="media-body">
-                                                            <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
+                                                            <a href="/users/<%= data.user_send.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                 <h4 class="media-heading user-email-box">
-                                                                    <%= data.user_send.name %>
+                                                                    <b><%= data.user_send.name %></b>
                                                                 </h4>
                                                                 <p class="notification-p">
-                                                                    <%= data.user_send.name %> <%= __('Add book') %>: <%= data.book.title %>
+                                                                    <b><%= __('Add book') %></b>: <%= data.book.title %>
                                                                 </p>
                                                             </a>
                                                         </div>
@@ -851,12 +851,12 @@
                                                             <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
                                                         </div>
                                                         <div class="media-body">
-                                                            <a href="/books/<%= data.book.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
+                                                            <a href="/users/<%= data.user_send.id %>" class="notification_onclick" data-notification-id="<%= data.id %>">
                                                                 <h4 class="media-heading user-email-box">
-                                                                    <%= data.user_send.name %>
+                                                                    <b><%= data.user_send.name %></b>
                                                                 </h4>
                                                                 <p class="notification-p">
-                                                                    <%= data.user_send.name %> <%= __('Remove Book') %>: <%= data.book.title %>
+                                                                    <b><%= __('Remove Book') %></b>: <%= data.book.title %>
                                                                 </p>
                                                             </a>
                                                         </div>
