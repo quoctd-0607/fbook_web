@@ -292,6 +292,12 @@ $(function ($) {
                         }
                         htmlModel += '<span class="badge badge-warning size-100-percent' + data.user_send.id
                                     + '">' + i18n['approve waiting'] + '</span>';
+                    } else if (data.type == configs.notification.set_role) {
+                        htmlModel += "<a href='/logout' class='a-notification-dropdown clearfix notification_onclick' style='display: block;' data-notification-id='" +
+                            data.id + "'>" + "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
+                            data.user_send.name + "</span>" + "<span> " + i18n['Just change your role'];
+                            + "</span>" + "</p>" + "<span class='text-color-noti label label-success" 
+                            "'>" + i18n['Set Role'] + "</span>";
                     }
                     htmlModel += '<span class="pull-right padding-left-10 diff-time">' + data.created_at + '</span></a></li>';
                 });
@@ -395,4 +401,44 @@ $(function ($) {
             });
         });
     });
+
+    $('.set_role_user').on('change', function(e) {
+    e.preventDefault();
+    var string = $(this).val();
+    var array = [];
+    array = string.split('/');
+
+    swal({
+        title: i18n['Are you sure set role'],
+        type: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: i18n['Yes'],
+        closeOnConfirm: true
+    },
+
+    function() {
+        $.ajax({
+            url: API_PATH + 'admin/set-role-user/' + array[0] + '/' + array[1],
+            contentType: 'application/json',
+            dataType: 'json',
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
+            type: 'POST',
+            data: {},
+        }).done(function () {
+            showNotify(
+                i18n['Set role user successfull'], 
+                {icon: 'glyphicon glyphicon-remove'},
+                {delay: 3000}
+            );
+            window.localStorage.clear();
+        }).fail(function() {
+            showNotify(
+                i18n['Set role user fail'],
+                {icon: 'glyphicon glyphicon-remove'},
+                {delay: 3000}
+            );
+        }); 
+    });  
+}); 
 }(jQuery));

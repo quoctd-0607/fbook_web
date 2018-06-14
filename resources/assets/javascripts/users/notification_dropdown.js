@@ -286,10 +286,15 @@ $(function ($) {
                         }
                         htmlModel += "</span>" + "</p>" + "<span class='text-color-noti label label-success" +
                             "'>" + i18n['Follow'] + "</span>";
+                    } else if (data.type == configs.notification.set_role) {
+                        htmlModel += "<a href='/users/" + data.user_send.id + "' class='a-notification-dropdown clearfix notification_onclick' style='display: block;' data-notification-id='" +
+                            data.id + "'>" + "<p class='notification-p content-notification-dropdown'><span class='user-name-noti-dropdown'>" +
+                            data.user_send.name + "</span>" + "<span> " + 
+                            i18n['Just change your role'] + "</span>" + "</p>" + "<span class='text-color-noti label label-success" +
+                            "'>" + i18n['Set Role'] + "</span>";
                     }
-                    htmlModel +=
-                        "<p class='show text-danger pull-right time-ago-notification-dropdown'><span class='time_a_go'>" +
-                        data.created_at + "</span></p></a></div></div>";
+                        htmlModel += "<p class='show text-danger pull-right time-ago-notification-dropdown'><span class='time_a_go'>" +
+                            data.created_at + "</span></p></a></div></div>";
                 });
                 htmlModel += "</div>";
                 $('#box_dropdown_noti').html(htmlModel);

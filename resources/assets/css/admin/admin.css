@@ -222,3 +222,6 @@ section.content{
     height: 300px;
     overflow-y: auto;
 }
+.set_role_user{
+    width: auto;
+}

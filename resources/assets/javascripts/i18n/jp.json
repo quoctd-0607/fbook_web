@@ -12,6 +12,7 @@
     "Are you sure approve this request?": "Are you sure approve this request?",
     "Are you sure cancel waiting this book?": "Are you sure cancel waiting this book?",
     "Are you sure delete": "Are you sure delete",
+    "Are you sure set role" : "Are you sure set role",
     "Are you sure Follow": "Are you sure Follow",
     "Are you sure remove owner this book?": "Are you sure remove owner this book?",
     "Are you sure remove this request?": "Are you sure remove this request?",
@@ -97,5 +98,10 @@
     "Your just up or down vote once!": "Your just up or down vote once!",
     "TITLE": "TITLE",
     "AUTHOR": "AUTHOR",
-    "DESCRIPTION": "DESCRIPTION"
+    "DESCRIPTION": "DESCRIPTION",
+    "Set role user successfull": "Set role user successfull",
+    "Set Role": "Set Role",
+    "Just change your role": "Just change your role.",
+    "Set role user successfull": "Set role user successfull",
+    "Set role user fail": "Set role user fail"
 }
