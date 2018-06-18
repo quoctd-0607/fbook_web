@@ -30,7 +30,7 @@ module.exports = {
             return res.redirect('/');
         }
 
-        if (req.session.user.role != 'admin') {
+        if (req.session.user.role != 'admin' && req.session.user.role != 'librarian') {
             req.flash('error', res.__('Not Admin'));
 
             return res.redirect('/');

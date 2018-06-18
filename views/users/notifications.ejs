@@ -688,6 +688,31 @@
                                                             </div>
                                                         </div>
                                                     <% } %>
+                                                    <% if (data.type == configs.notification.set_role) {%>
+                                                        <div class="notificaiton-box seen">
+                                                            <div class="media click-notification">
+                                                                <div class="media-left">
+                                                                    <img src="<%= data.user_send.avatar ? data.user_send.avatar : '/images/data.user_send/icon_data.user_default.png'%>" class="media-object" alt="<%= __('Avatar') %>">
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <h4 class="show text-danger pull-right">
+                                                                        <span class="time_a_go"><%= data.created_at %></span>
+                                                                    </h4>
+                                                                    <a href="/users/<%= data.user_send.id%>" class="notification_onclick" data-notification-id="<%= data.id %>">
+                                                                        <h4 class="media-heading user-email-box">
+                                                                            <b><%= data.user_send.name %> </b>
+                                                                            <span>[<%= data.user_send.email %>]</span>
+                                                                        </h4>
+                                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Set Role') %></span>
+                                                                        <p class="notification-p">
+                                                                            <b><%= __('Just change your role')%></b> 
+                                                                            <span></span>
+                                                                        </p>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <% } %>
                                                 <% } %>
                                             <% } %>
                                         <% }) %>

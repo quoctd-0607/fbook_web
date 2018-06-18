@@ -12,6 +12,7 @@
     "Are you sure approve this request?": "Bạn chắc chắn muốn chấp nhận yêu cầu này?",
     "Are you sure cancel waiting this book?": "Bạn có chắc muốn hủy chờ sách?",
     "Are you sure delete": "Bạn có chắc muốn xóa?",
+    "Are you sure set role" : "Bạn có chắc muốn xét quyền",
     "Are you sure Follow": "Bạn muốn theo dõi",
     "Are you sure remove owner this book?": "Bạn có chắc muốn hủy quyền sở hữu cuốn sách này?",
     "Are you sure remove this request?": "Bạn chắc muốn xóa yêu cầu này?",
@@ -97,5 +98,10 @@
     "Your just up or down vote once!": "Bạn chỉ có thể bình chọn hài lòng hoặc không hài lòng một lần!",
     "TITLE": "TIÊU ĐỀ",
     "AUTHOR": "TÁC GIẢ",
-    "DESCRIPTION": "MÔ TẢ"
+    "DESCRIPTION": "MÔ TẢ",
+    "Set role user successfull": "Thay đổi quyền thành công",
+    "Set Role": "Thay đổi quyền",
+    "Just change your role": "Vừa mới thay đổi quyền của bạn",
+    "Set role user successfull": "Thay đổi quyền người dùng thành công",
+    "Set role user fail": "Set role user Thay đổi quyền người dùng thất bại"
 }

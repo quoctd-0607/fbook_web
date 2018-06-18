@@ -540,4 +540,30 @@ router.get('/books/search', authorize.isAdmin, function (req, res, next) {
     });
 });
 
+router.post('/approve-update-request/:id', authorize.isAdmin, function (req, res, next) {
+    request.post({
+        url: req.configs.api_base_url + 'admin/books/approve-request-edit/' + req.params.id,
+        form: {},
+        headers: objectHeaders.headers({'Authorization': req.session.access_token})
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            try {
+                req.flash('info', res.__('Approve success'));
+                return res.redirect('/admin/waiting-request-edit-book');
+            } catch (errorJSONParse) {
+                req.flash('error', res.__('Unknown error'));
+                return res.redirect('/admin/waiting-request-edit-book');
+            }
+        } else {
+            if (response.statusCode == 401) {
+                req.flash('error', res.__('Please login to approve this book'));
+                return res.redirect('/');
+            } else {
+                req.flash('error', res.__('Sorry, something went wrong'));
+                return res.redirect('/admin/waiting-request-edit-book');
+            }
+        }
+    });
+});
+
 module.exports = router;

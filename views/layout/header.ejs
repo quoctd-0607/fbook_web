@@ -47,7 +47,7 @@
                                     <li>
                                         <a href="/users/my_books"> <span><i class="icofont icofont-read-book"></i></span> <%= __('My Books')%> </a>
                                     </li>
-                                     <% if(user.role == 'admin') { %>
+                                     <% if(user.role == 'admin' || user.role == configs.role.librarian) { %>
                                         <li>
                                             <a href="/admin/waiting-request-edit-book"> <span><i class="icofont icofont-ui-settings"></i></span> <%= __('Requests edit book')%> </a>
                                         </li>

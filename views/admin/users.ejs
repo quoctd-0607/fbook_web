@@ -44,6 +44,9 @@
                             <th class="text-center"><%= __('Create Date') %></th>
                             <th class="text-center"><%= __('Book Own') %></th>
                             <th class="text-center"><%= __('Reputations') %></th>
+                            <% if (user.role == configs.role.admin) {%>
+                                <th class="text-center"><%= __('Role') %></th>
+                            <% } %>
                         </tr>
                         <% if (dataRequest.items.data.length > 0) { %>
                             <% dataRequest.items.data.forEach(function(data) { %>
@@ -54,6 +57,15 @@
                                 <td class="text-center"><%= data.join_date %></td>
                                 <td class="text-center"><%= data.owners_count %></td>
                                 <td class="text-center"><%= data.reputation_point %></td>
+                                <% if (user.role == configs.role.admin) {%>
+                                    <td>
+                                        <select name="role" class="set_role_user form-control">
+                                             <option value="<%= data.id %>/<%= configs.role.admin %>" <%= data.role == configs.role.admin ? "Selected" : "" %> ><%= configs.role.admin%></option>
+                                            <option value="<%= data.id %>/<%= configs.role.user %>" <%= data.role == configs.role.user ? "Selected" : "" %>><%= configs.role.user %></option>
+                                            <option value="<%= data.id %>/<%= configs.role.librarian %>" <%= data.role == configs.role.librarian ? "Selected" : "" %>><%= configs.role.librarian %></option>
+                                        </select>
+                                    </td>
+                                <% } %>
                             </tr>
                             <% }) %>
                         <% } %>
