@@ -16,7 +16,7 @@ channel.bind('App\\Events\\NotificationHandler', function(data) {
             {delay: 5000}
         );
     }
-    if(data.action == configs.notification.set_role) {
+    if(data.user_id == $('#get-user-id').html() && data.action == configs.notification.set_role) {
         window.location.href = '/logout';
     }
 });

@@ -68,6 +68,11 @@ var config = {
         "approve_borrow": 3,
         "be_upvoted": 1,
         "be_followed": 1
+    },
+    role: {
+        "admin": "admin",
+        "user": "user",
+        "librarian": "librarian"
     }
 };
 
