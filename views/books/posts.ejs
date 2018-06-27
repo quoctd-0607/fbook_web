@@ -1,0 +1,81 @@
+<section data-field="" data-office-id="">
+    <div class="space-30"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-12 pull-right">
+                <h3><i class="icofont icofont-paper"></i></h3>
+                <div class="row">
+                    <div class="pull-left col-xs-12 col-sm-7 col-md-7">
+                        <h4><i><%= __('Posts') %> </span></i></h4>
+                    </div>
+                </div>
+                <hr>
+                
+                <div class="row ajax-book-content">
+                    <% if (dataRequest.items.data.length > 0) { %>
+                    <% dataRequest.items.data.forEach(function (post) { %>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="category-item well yellow">
+                            <div class="media">
+                                <div class="media-left">
+                                    <% if (post.web.thumbnail_path !== undefined) { %>
+                                        <img onclick="window.open('/home/post/<%= post.id %>/<%= post.slug %>', '_self')" 
+                                            src="<%= post.web.thumbnail_path %>" 
+                                            class="media-object" 
+                                            alt="<%= post.title %>">
+                                    <% } else { %>
+                                        <img onclick="window.open('/home/post/<%= post.id %>/<%= post.slug %>', '_self')" 
+                                            src="/images/book_thumb_default.jpg" 
+                                            class="media-object" 
+                                            alt="<%= post.title %>">
+                                    <% } %>
+                                </div>
+                                <div class="media-body">
+                                    <h5 title="<%= post.title %>" 
+                                        onclick="window.open('/post/<%= post.id %>/<%= post.slug %>', '_self')"
+                                        data-toggle="tooltip">
+                                        <%= post.title ? post.title : __('No title') %>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+                    <% } else { %>
+                    <h4 class="text-center"><%= __('No post') %></h4>
+                    <% } %>
+                </div>
+                <div class="space-60"></div>
+                <% if (dataRequest.items.total > dataRequest.items.per_page) { %>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="shop-pagination pull-right">
+                                <ul id="pagination-book" class="pagination-sm pagination">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <div class="space-80"></div>
+</section>
+
+<%- contentFor('appjs') %>
+<script type="text/javascript" src="/javascripts/books/book.js"></script>
+<script type="text/javascript" src="/javascripts/paginations/paginate.js"></script>
+<script type="text/javascript">
+    var totalPages = Math.ceil("<%= dataRequest.items.total %>"/"<%= dataRequest.items.per_page %>");
+    var currentPage = parseInt("<%= dataRequest.items.current_page %>");
+    var nextPage = "<%= dataRequest.items.next_page %>";
+
+    if (totalPages) {
+        Paginate.book({
+            totalPages: totalPages,
+            currentPage: currentPage,
+            nextPage: nextPage
+        });
+    }
+</script>
+

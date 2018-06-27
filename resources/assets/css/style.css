@@ -795,6 +795,10 @@ input:-webkit-autofill:focus {
 .icon-book {
     padding-right: 10px;
 }
+
+.post-detail {
+    text-align: center;
+}
 @media (min-width: 576px) {
     .hot-user-img img {
         width: 50px;

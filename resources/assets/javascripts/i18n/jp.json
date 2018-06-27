@@ -26,6 +26,8 @@
     "Cancel fail, Please login to continue": "Cancel fail, Please login to continue",
     "Cancel waiting errors": "Cancel waiting errors",
     "Cancel waiting success": "Cancel waiting success",
+    "Content field is required": "Content field is required",
+    "Can\\'t create your post": "Can\\'t create your post",
     "Data Invalid": "Data Invalid",
     "day ago": "day ago",
     "days ago": "days ago",
@@ -82,6 +84,7 @@
     "Thanks for your vote!": "Thanks for your vote!",
     "The book is not in the your workspace. Are you sure you want to share this book?": "The book is not in the your workspace. Are you sure you want to share this book?",
     "The book is not in the your workspace. Want to read book?": "The book is not in the your workspace. Want to read book?",
+    "Title field is required": "Title field is required",
     "Unapprove your request edit book": "Unapprove your request edit book",
     "Unfollow success": "Unfollow success",
     "Update interested categories fail": "Update interested categories fail",
@@ -103,5 +106,6 @@
     "Set Role": "Set Role",
     "Just change your role": "Just change your role.",
     "Set role user successfull": "Set role user successfull",
-    "Set role user fail": "Set role user fail"
+    "Set role user fail": "Set role user fail",
+    "Image feature field is required": "Image feature field is required"
 }

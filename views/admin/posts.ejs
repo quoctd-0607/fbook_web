@@ -1,0 +1,107 @@
+<section class="content-header">
+    <h1><%= __('Post Manager') %></h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-11">
+            <div class="col-1 offset-1">
+                <a href="/admin/posts/create" class="btn btn-info"><i class="fa fa-plus"></i><%= __('Create post') %></a>
+            </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination pull-right">
+                    <%- paginate %>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-10 offset-1">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title"><%= __('Post manager') %></h3>
+                    <div class="box-tools">
+                        <form method="GET" action="/admin/categories/search">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="key_word" class="form-control pull-right" placeholder="<%= __('Search by name') %>">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <table class="table table-hover table-responsive">
+                        <tr>
+                            <th class="width-55-percent text-center"><%= __('Title') %></th>
+                            <th class="width-55-percent"><%= __('Created_at') %></th>
+                            <th class="width-30-percent text-center" colspan="3"><%= __('Action') %></th>
+                        </tr>
+                        <% if (dataRequest.items.data.length > 0) { %>
+                            <% dataRequest.items.data.forEach(function(data) { %>
+                            <tr class="cursor-hover" id="post<%= data.id %>">
+                                <td><%= data.title %></td>
+                                <td><%= data.created_at %></td>
+                                <td>
+                                    <button onClick="window.location.href='/admin/posts/<%= data.id %>/edit'" ><i class="fa fa-edit"></i></button> 
+                                </td>
+                                <td>
+                                    <button href="javascript:void(0)" data-toggle="modal" data-target="#myModal<%= data.id %>" data-id="<%= data.id %>"><i class="fa fa-eye"></i></button> 
+                                </td>
+                                <td>
+                                    <button type="button" class="delete_post" value="<%= data.id %>" title="<%= __('Delete post') %>"><i class="fa fa-trash-o"></i></button>
+                                </td>
+                            </tr>
+                            <div class="modal fade bs-example-modal-lg modal-book-detail" id="myModal<%= data.id %>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myLargeModalLabel"><%= __('Post detail') %></h4>
+                                            <button type="button" class="close close-btn " data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <img src="<%= data.web.medium_path %>" 
+                                                            class="media-object img-avatar-book" 
+                                                            alt="<%= data.title %>" width="100" height="100">
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <dl class="dl-horizontal">
+                                                        <dt><%= __('Title') %></dt>
+                                                        <dd><strong><%= data.title %></strong></dd>
+                                                        <dt><%= __('Content') %></dt>
+                                                        <dd><%- data.content %></dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer padding-15 text-right">
+                                            <a href="javascript:void(0)" class="btn btn-default waves-effect text-left btn-lg font-size-14" data-dismiss="modal"><%= __('Close') %></a>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                            </div>
+                            <% }) %>
+                        <% } %>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-11">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination pull-right">
+                    <%- paginate %>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
