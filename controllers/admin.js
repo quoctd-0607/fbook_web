@@ -10,10 +10,12 @@ var helper = require('../helpers/helpers');
 var cookieParser = require('cookie-parser');
 var i18n = require('i18n');
 var admin = express();
+
+var bodyParser = require('body-parser');
 admin.use(cookieParser());
 admin.use(i18n.init);
 admin.set('view engine', 'ejs');
-
+ 
 router.get('/', authorize.isAdmin, function (req, res, next) {
     async.parallel({
         totalUser: (callback) => {
@@ -562,6 +564,81 @@ router.post('/approve-update-request/:id', authorize.isAdmin, function (req, res
                 req.flash('error', res.__('Sorry, something went wrong'));
                 return res.redirect('/admin/waiting-request-edit-book');
             }
+        }
+    });
+});
+
+router.get('/posts', authorize.isAdmin, function (req, res, next) {
+    var page = req.query.page ? req.query.page : 1;
+    request({
+        url: req.configs.api_base_url + 'admin/posts?page=' + page,
+        headers: objectHeaders.headers({'Authorization': req.session.access_token})
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            try {
+                var data = JSON.parse(body);
+                var paginate = helper.paginate({
+                    total_record: data.items.total,
+                    current_page: page,
+                    link: `${req.configs.web_domain}:${req.configs.port}/admin/posts?page={?}`
+                });
+                res.render('admin/posts', {
+                    layout: 'admin/layout/admin_template',
+                    dataRequest: data,
+                    pageTitle: res.__('Post Manager'),
+                    paginate: paginate,
+                    info: req.flash('info'),
+                    error: req.flash('error'),
+                    activePost: true,
+                });
+            } catch (errorJSONParse) {
+                req.flash('error', res.__('Unknown error'));
+                return res.redirect('/admin');
+            }
+        } else {
+            req.flash('error', res.__('Sorry, something went wrong'));
+            return res.redirect('/admin');
+        }
+    });
+});
+
+router.get('/posts/create', authorize.isAdmin, function (req, res, next) {
+    res.render('admin/create_post', {
+        layout: 'admin/layout/admin_template',
+        pageTitle: res.__('Create category'),
+        info: req.flash('info'),
+        error: req.flash('error'),
+        validate: req.flash('validate'),
+        apiValidate: req.flash('apiValidate'),
+        activePost: true
+    });
+});
+
+router.get('/posts/:id/edit', authorize.isAdmin, function (req, res, next) {
+    var idPost = req.params.id;
+    
+    request.get({
+        url: req.configs.api_base_url + 'admin/posts/' + idPost + '/edit',
+        headers: objectHeaders.headers({Authorization: req.session.access_token})
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            try {
+                var data = JSON.parse(body);
+                res.render('admin/edit_post', {
+                    layout: 'admin/layout/admin_template',
+                    post: data,
+                    pageTitle: res.__('Post Edit'),
+                    info: req.flash('info'),
+                    error: req.flash('error'),
+                    activePost: true,
+                });
+            } catch (errorJSONParse) {
+                req.flash('error', res.__('Unknown error'));
+                return res.redirect('/admin');
+            } 
+        } else {
+                req.flash('error', res.__('Sorry, something went wrong'));
+                return res.redirect('/admin');
         }
     });
 });

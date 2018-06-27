@@ -10,7 +10,6 @@ var session = require('express-session');
 var flash = require('connect-flash');
 var configs = require('./configs/config');
 var i18n = require("i18n");
-
 var index = require('./routes/index');
 var users = require('./routes/users');
 var books = require('./routes/books');

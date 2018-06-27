@@ -440,5 +440,53 @@ $(function ($) {
             );
         }); 
     });  
-}); 
+});
+
+$('.delete_post').on('click', function(e) {
+        e.preventDefault();
+        var id = $(this).val();
+        swal({
+            title: i18n['Are you sure delete'],
+            type: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: i18n['Yes'],
+            closeOnConfirm: true
+        },
+        function() {
+
+            $.ajax({
+                url: API_PATH + 'admin/posts/' + id,
+                contentType: 'application/json',
+                dataType: 'json',
+                headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
+                type: 'DELETE',
+                data: {},
+            }).done(function(response) {
+                if (response.message.code == 200) {
+                    $('#post' + id).remove();
+                    showNotify(
+                        'success', 
+                        i18n['Delete post successfull!'], 
+                        {icon: 'glyphicon glyphicon-remove'},
+                        {delay: 3000}
+                    );
+                } else {
+                    showNotify(
+                        'danger', 
+                        i18n['Opp\'s something went wrong'],
+                        {icon: 'glyphicon glyphicon-remove'},
+                        {delay: 3000}
+                    );
+                }
+            }).fail(function(error) {
+                showNotify(
+                    'danger', 
+                    i18n['Opp\'s something went wrong'],
+                    {icon: 'glyphicon glyphicon-remove'},
+                    {delay: 3000}
+                );
+            });
+        });
+    }); 
 }(jQuery));

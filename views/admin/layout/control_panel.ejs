@@ -53,6 +53,17 @@
                     <li><a href="/admin/waiting-request-edit-book"><i class="fa fa-paper-plane-o"></i><%= __('Waiting request') %></a></li>
                 </ul>
             </li>
+
+            <% if (typeof(activePost) != 'undefined') { %>
+                <li class="active">
+            <% } else { %>
+                <li>
+            <% } %>
+                <a href="/admin/posts">
+                    <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                    <span><%= __('Post manager') %></span>
+                </a>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

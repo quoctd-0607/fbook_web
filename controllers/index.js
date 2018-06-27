@@ -6,6 +6,7 @@ var localSession = require('../middlewares/localSession');
 var async = require('async');
 var cookieParser = require('cookie-parser');
 var i18n = require('i18n');
+var helper = require('../helpers/helpers');
 var index = express();
 index.use(cookieParser());
 index.use(i18n.init);
@@ -35,7 +36,6 @@ router.get('/', localSession, function (req, res, next) {
             if (!error && response.statusCode === 200) {
                 try {
                     var data = JSON.parse(body);
-
                     res.render('index', {
                         langCategory: langCategory,
                         data: data,
@@ -141,7 +141,6 @@ router.get('/all_office', localSession, function (req, res, next) {
             if (!error && response.statusCode === 200) {
                 try {
                     var data = JSON.parse(body);
-    
                     res.render('index', {
                         langCategory: langCategory,
                         data: data,
@@ -237,6 +236,59 @@ router.get('/change-lang/:lang', function(req, res) {
     res.cookie('lang', req.params.lang, { maxAge: 900000});
     req.session.lang = req.params.lang;
     res.redirect('back');
+});
+
+router.get('/get-list-posts', localSession, function (req, res, next) {
+    var page = req.query.page ? req.query.page : 1;
+    console.log(page);
+    request({
+        url: req.configs.api_base_url + 'home/get-list-posts?page=' + page,
+        headers: objectHeaders.headers({'Authorization': req.session.access_token})
+    }, function (error, response, body) {
+            console.log(response.statusCode);
+        if (!error && response.statusCode === 200) {
+            try {
+                var data = JSON.parse(body);
+                
+                res.render('books/posts', {
+                        dataRequest: data,
+                        error: req.flash('error'),
+                        info: req.flash('info')
+                });
+            } catch (errorJSONParse) {
+                console.log(errorJSONParse);
+                req.flash('error', res.__('Unknown error'));
+                return res.redirect('/home');
+            }
+        } else {
+            req.flash('error', res.__('Sorry, something went wrong'));
+            return res.redirect('/home');
+        }
+    });
+});
+
+router.get('/post/:id/:slug', function (req, res, next) {
+    request({
+        url: req.configs.api_base_url + 'home/get-post/' + req.params.id,
+        headers: objectHeaders.headers({'Authorization': req.session.access_token})
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            try {
+                var data = JSON.parse(body);
+                res.render('books/post_detail', {
+                    post: data,
+                    error: req.flash('error'),
+                    info: req.flash('info')
+                });
+            } catch (errorJSONParse) {
+                req.flash('error', res.__('Unknown error'));
+                return res.redirect('/home');
+            }
+        } else {
+            req.flash('error', res.__('Sorry, something went wrong'));
+            return res.redirect('/home');
+        }
+    });
 });
 
 module.exports = router;

@@ -1,0 +1,91 @@
+<section class="content-header">
+    <h1><%= __('Edit post') %></h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-10 offset-1">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title"><%= __('Edit post') %> <%= post.items.title %></h3>
+                </div>
+                <form method="POST" action="/admin/posts/update/<%= post.items.id %>" role="form" class="form-element" id="edit-post" enctype="multipart/form-data">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="title"><%= __('Title') %></label>
+                            <input class="form-control" type="text" name="title" id="title" value="<%= post.items.title %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="thumbnail"><%= __('Image Feature') %></label>
+                            <br>
+                            <img src="<%= post.items.web.small_path%>" alt="<%= post.items.slide_url %>">
+                            <input type="file" id="image1" name="file" accept="Image/*" key="1"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="name"><%= __('Content') %></label>
+                            <textarea class="form-control" name="content" id="content" rows="15"></textarea>
+                        </div>
+                    </div>
+                    <div class="box-footer text-right">
+                        <label id="content-error" class="error" for="content"></label>
+                        <button type="submit" class="btn btn-lg btn-warning" id="btn-edit-post"><%= __('Edit') %></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<%- contentFor('appjs') %>
+<script type="text/javascript" src="/javascripts/admin/post.js"></script>
+<script type="text/javascript" src="/javascripts/admin/create_post_validator.js"></script>
+<script src="/bower/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    var decodeHtmlEntity = function(str) {
+        return str.replace(/&#(\d+);/g, function(match, dec) {
+            return String.fromCharCode(dec);
+        });
+    };
+
+    var encodeHtmlEntity = function(str) {
+        var buf = [];
+        for (var i=str.length-1;i>=0;i--) {
+            buf.unshift(['&#', str[i].charCodeAt(), ';'].join(''));
+        }
+        return buf.join('');
+    };
+
+    tinymce.init({
+        selector: '#content',
+        plugins: "image code",
+        image_title: true,
+        automatic_uploads: true,
+        file_picker_types: 'image',
+        file_picker_callback: function(cb, value, meta) {
+            var input = document.createElement('input');
+            input.setAttribute('type', 'file');
+            input.setAttribute('accept', 'image/*');
+            input.onchange = function () {
+                var file = this.files[0];
+                var reader = new FileReader();
+
+                reader.onload = function () {
+                    var id = 'blobid' + (new Date()).getTime();
+                    var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                    var base64 = reader.result.split(',')[1];
+                    var blobInfo = blobCache.create(id, file, base64);
+                    blobCache.add(blobInfo);
+                    cb(blobInfo.blobUri(), {title: file.name});
+                };
+                reader.readAsDataURL(file);
+            };
+            input.click();
+        }
+    });
+
+    $('#content').html(encodeHtmlEntity(`<%- post.items.content %>`));
+    $('#btn-edit-post').on('click', function (e) {
+        e.preventDefault();
+        var id = <%= post.items.id %>;
+        Post.editPost(id);
+    });
+</script>

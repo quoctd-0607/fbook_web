@@ -26,6 +26,8 @@
     "Cancel fail, Please login to continue": "Hủy chờ sách đã xảy ra lỗi, vui lòng đăng nhập để tiếp tục",
     "Cancel waiting errors": "Hủy chờ thất bại",
     "Cancel waiting success": "Hủy chờ sách thành công",
+    "Content field is required": "Nội dung tin tức  không được để trống",
+    "Can\\'t create your post": "Không thể tạo bài viết của bạn",
     "Data Invalid": "Dữ liệu không hợp lệ",
     "day ago": "ngày trước",
     "days ago": "ngày trước",
@@ -82,6 +84,7 @@
     "Thanks for your vote!": "Cảm ơn đã bình chọn",
     "The book is not in the your workspace. Are you sure you want to share this book?": "Cuốn sách không có tại văn phòng của bạn, bạn vẫn muốn chia sẻ chứ?",
     "The book is not in the your workspace. Want to read book?": "Cuốn sách không thuộc văn phòng của bạn, bạn vẫn muốn đọc chứ?",
+    "Title field is required": "Tiêu đề tin tức không được để trống",
     "Unapprove your request edit book": "Không duyệt yêu cầu chỉnh sửa của bạn",
     "Unfollow success": "Bỏ theo dõi thành công",
     "Update interested categories fail": "Cập nhật danh mục yêu thích thất bại",
@@ -103,5 +106,6 @@
     "Set Role": "Thay đổi quyền",
     "Just change your role": "Vừa mới thay đổi quyền của bạn",
     "Set role user successfull": "Thay đổi quyền người dùng thành công",
-    "Set role user fail": "Set role user Thay đổi quyền người dùng thất bại"
+    "Set role user fail": "Set role user Thay đổi quyền người dùng thất bại",
+    "Image feature field is required": "Ảnh đại diện bài viết không được để trống"
 }
