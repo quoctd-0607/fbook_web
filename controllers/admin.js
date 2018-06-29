@@ -643,4 +643,48 @@ router.get('/posts/:id/edit', authorize.isAdmin, function (req, res, next) {
     });
 });
 
+router.get('/posts/search', authorize.isAdmin, function (req, res, next) {
+    var page = req.query.page ? req.query.page : 1;
+    var keyWord = (typeof(req.query.key_word) != 'undefined') ? req.query.key_word : '';
+    if (keyWord.trim() == '') {
+        req.flash('error', res.__('Please input something to search'));
+        return res.redirect('/admin/posts');
+    }
+    request.post({
+        url: req.configs.api_base_url + 'admin/posts/search/',
+        form: {
+            'key': keyWord,
+            'page': page
+        },
+        headers: objectHeaders.headers({'Authorization': req.session.access_token})
+    }, function (error, response, body) {
+        console.log("Loi" + response.statusCode);
+        console.log("data" + body);
+        if (!error && response.statusCode === 200) {
+            try {
+                var data = JSON.parse(body);
+                var paginate = helper.paginate({
+                    total_record: data.items.total,
+                    current_page: page,
+                    link: `${req.configs.web_domain}:${req.configs.port}/admin/posts/search?key_word=${keyWord}&page={?}`
+                });
+                res.render('admin/posts', {
+                    layout: 'admin/layout/admin_template',
+                    dataRequest: data,
+                    pageTitle: res.__('Admin Dashboard'),
+                    paginate: paginate,
+                    info: req.flash('info'),
+                    error: req.flash('error'),
+                    activePost: true,
+                });
+            } catch (errorJSONParse) {
+                req.flash('error', res.__('Unknown error'));
+                return res.redirect('/admin/posts');
+            }
+        } else {
+            req.flash('error', res.__('Sorry, something went wrong'));
+            return res.redirect('/admin/posts');
+        }
+    });
+});
 module.exports = router;

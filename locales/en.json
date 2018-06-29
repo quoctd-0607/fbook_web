@@ -163,6 +163,7 @@
 	"Newsfeed": "Newsfeed",
 	"new notifications": "new notifications",
 	"Next": "Next",
+	"New Post": "New Post",
 	"No Author": "No Author",
 	"No book in section": "No book in section",
 	"No book waiting to approve": "No book waiting to approve",
@@ -209,7 +210,6 @@
 	"Post's name...": "Post's name...",
 	"Post Edit": "Post Edit",
 	"Post": "Post",
-	"Posts": "Posts",
 	"Rate this book": "Rate this book",
 	"rating books": "rating books",
 	"rating": "rating",
@@ -338,5 +338,6 @@
 	"TITLE": "TITLE",
 	"AUTHOR": "AUTHOR",
 	"DESCRIPTION": "DESCRIPTION",
-	"Publish Date": "Publish Date"
+	"Publish Date": "Publish Date",
+	"New Post": "New Post"
 }

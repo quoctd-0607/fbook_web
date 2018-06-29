@@ -5,13 +5,43 @@
             <div class="col-xs-12 col-md-12 pull-right ">
                 <h3><i class="icofont icofont-paper"></i></h3>
                 <div class="row">
-                    <div class="pull-left col-xs-12 col-sm-12 col-md-12 post-detail">
+                    <div class="pull-left col-xs-12 col-sm-12 col-md-7 ">
                         <h2><strong><%= post.items.title %></strong></h2>
                         <div class="space-30"></div>
                         <%- post.items.content %>
                     </div>
+                    <div class="col-md-5 text-center gray-bg">
+                    <div class="space-40"></div>
+                    <h2><strong><%= __('New Post') %></strong></h2>
+                    <div class="title-bar blue">
+                        <ul class="list-inline list-unstyled">
+                            <li><i class="icofont icofont-square"></i></li>
+                            <li><i class="icofont icofont-square"></i></li>
+                        </ul>
+                    </div>
+                    <div class="space-20"></div>
+                    <% if (post.suggest.length > 0) { %>
+                        <% post.suggest.forEach(function(suggestPost) {%>
+                            <div class="row hot-user">
+                                <div class="row">
+                                    <div class="media-left col-md-4">
+                                        <img src="<%= suggestPost.web.thumbnail_path %>" onclick="window.open('/home/post/<%= suggestPost.id%>-<%= suggestPost.slug%>', '_self')" class="media-object">
+                                    </div>
+                                    <div class="infor col-md-8 text-left">
+                                        <a href="/home/post/<%= suggestPost.id%>-<%= suggestPost.slug%>"><h5><%= suggestPost.title %></h5></a>
+                                        <h6 class="hot-user-email"><span class="glyphicon glyphicon-book icon-book"></span></h6>
+                                    </div>    
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <h4 class="text-center"><%= __('No post') %></h4> 
+                    <% }%>
+                    <hr class="hr-new">
+                    <div class="space-20"></div>
                 </div>
                 <hr>
+                </div>
                 <div class="space-60"></div>
             </div>
         </div>
