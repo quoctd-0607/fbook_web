@@ -106,6 +106,27 @@ router.get('/', authorize.isAdmin, function (req, res, next) {
     });
 });
 
+router.get('/log', authorize.isAdmin, function (req, res, next) {
+    request({
+        url: req.configs.api_base_url + 'admin/logs',
+        headers: objectHeaders.headers({'Authorization': req.session.access_token})
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            try {
+                var data = JSON.parse(body);
+                res.render('admin/log', {
+                    layout: 'admin/layout/admin_template',
+                    dataRequest: data,
+                    config: req.configs.log_type,
+                });
+            } catch (errorJSONParse) {
+
+                return res.redirect('/admin');
+            }
+        }
+    })
+})
+
 router.get('/waiting-request-edit-book', authorize.isAdmin, function (req, res, next) {
     var page = req.query.page ? req.query.page : 1;
     var langCategory = req.cookies.lang;

@@ -225,3 +225,21 @@ section.content{
 .set_role_user{
     width: auto;
 }
+.img-circle {
+    border-radius: 50%;
+}
+.owner-image-home {
+    padding: 1px;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+}
+.user {
+    width: 200px;
+}
+.point {
+    width: 90px;
+}
+td {
+    padding: 0px 5px;
+}

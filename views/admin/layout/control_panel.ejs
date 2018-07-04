@@ -24,7 +24,16 @@
                     <span><%= __('Category manager') %></span>
                 </a>
             </li>
-
+            <% if (typeof(activeLog) != 'undefined') { %>
+                <li class="active">
+            <% } else { %>
+                <li>
+            <% } %>
+                <a href="/admin/log">
+                    <i class="fa fa-list" aria-hidden="true"></i>
+                    <span><%= __('Log reputation') %></span>
+                </a>
+            </li>
             <% if (typeof(activeUser) != 'undefined') { %>
                 <li class="active">
             <% } else { %>
