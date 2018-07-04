@@ -1,0 +1,134 @@
+<section class="content-header">
+    <h1><%= __('Reputation Log') %></h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-11">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination pull-right">
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-11 offset-1">
+            <div class="box">
+                <div>
+                    <table class="table table-striped">
+                        <tr>
+                            <th class="text-center user"><%= __('User') %></th>
+                            <th class="text-center point"><%= __('Received') %></th>
+                            <th class="text-center"><%= __('At') %></th>
+                            <th class="text-left"><%= __('By') %></th>
+                        </tr>
+                        <% if (typeof dataRequest != undefined) { %>
+                            <% if (typeof dataRequest.items != undefined && dataRequest.items.length > 0) { %>
+                                <% dataRequest.items.forEach(function(data) { %>
+                                    <% switch (data.log_type) {
+                                        case config.share_book: %>
+                                            <tr>
+                                                <td class="user">
+                                                    <img class="owner-image-home img-circle" src="<%= data.user.avatar != null ? data.user.avatar : '/images/user_default.png' %>"
+                                                 class="media-object author-photo img-thumbnail"
+                                                 alt="<%= __('Avatar') %>">
+                                                    <a href="/users/<%= data.user.id %>"><%= data.user.name %></a>
+                                                </td>
+                                                <td><%= data.point %> <%= __('points') %>
+                                                </td>
+                                                <td>
+                                                    <%= data.created_at %>
+                                                </td>
+                                                <td>
+                                                    <%= __('Share') %> <a href="/books/<%= data.book.id %>"><%= data.book.title %></a>
+                                                </td>
+                                            </tr>
+                                        <% break;
+                                        case config.add_owner: %>
+                                            <tr>
+                                                <td class="user">
+                                                    <img class="owner-image-home img-circle" src="<%= data.user.avatar != null ? data.user.avatar : '/images/user_default.png' %>"
+                                                 class="media-object author-photo img-thumbnail"
+                                                 alt="<%= __('Avatar') %>">
+                                                    <a href="/users/<%= data.user.id %>"><%= data.user.name %></a>
+                                                </td>
+                                                <td><%= data.point %> <%= __('points') %>
+                                                </td>
+                                                <td>
+                                                    <%= data.created_at %>
+                                                </td>
+                                                <td>
+                                                    <%= __('Share') %> <a href="/books/<%= data.book.id %>"><%= data.book.title %></a>
+                                                </td>
+                                            </tr>
+                                        <% break;
+                                        case config.approve_borrow: %>
+                                            <tr>
+                                                <td class="user">
+                                                    <img class="owner-image-home img-circle" src="<%= data.user.avatar != null ? data.user.avatar : '/images/user_default.png' %>"
+                                                 class="media-object author-photo img-thumbnail"
+                                                 alt="<%= __('Avatar') %>">
+                                                    <a href="/users/<%= data.owner.id %>"><%= data.owner.name %></a>
+                                                </td>
+                                                <td><%= data.point %> <%= __('points') %></td>
+                                                <td>
+                                                    <%= data.created_at %>
+                                                </td>
+                                                <td>
+                                                    <%= __('approve for') %> <a href="/users/<%= data.user.id %>"><%= data.user.name %></a>
+                                                    <%= __('to borrow') %> <a href="/books/<%= data.book_pivot.id %>"><%= data.book_pivot.title %></a>
+                                                </td>
+                                            </tr>
+                                        <% break;
+                                        case config.be_upvoted: %>
+                                            <tr>
+                                                <td class="user">
+                                                    <img class="owner-image-home img-circle" src="<%= data.review_owner.avatar != null ? data.review_owner.avatar : '/images/user_default.png' %>"
+                                                 class="media-object author-photo img-thumbnail"
+                                                 alt="<%= __('Avatar') %>">
+                                                    <a href="/users/<%= data.user_vote.id %>"><%= data.review_owner.name %></a>
+                                                </td>
+                                                <td><%= data.point %> <%= __('points') %></td>
+                                                <td><%= data.created_at %></td>
+                                                <td><a href="/books/view-review/<%= data.review.id %>"><%= __('Review') %></a> <%= __('was upvoted by') %> <a href="/users/<%= data.user_vote.id %>"><%= data.user_vote.name %></td>
+                                            </tr>
+                                        <% break;
+                                        case config.be_followed: %>
+                                            <tr>
+                                                <td class="user">
+                                                    <img class="owner-image-home img-circle" src="<%= data.following.avatar != null ? data.following.avatar : '/images/user_default.png' %>"
+                                                 class="media-object author-photo img-thumbnail"
+                                                 alt="<%= __('Avatar') %>">
+                                                    <a href="/users/<%= data.following.id %>"><%= data.following.name %></a>
+                                                </td>
+                                                <td><%= data.point %> <%= __('points') %> </td>
+                                                <td>
+                                                    <%= data.created_at %>
+                                                </td>
+                                                <td> <%= __('be followed by') %> <a href="/users/<%= data.follower.id %>"><%= data.follower.name %></a>
+                                                </td>
+                                            </tr>
+                                        <% break;
+                                        default: %>
+                                        <tr>
+                                            <td colspan="4"><%= __('Errors') %></td>
+                                        </tr>
+                                    <% } %>
+                                <% }) %>
+                            <% } %>
+                        <% } %>
+                    </table>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-11">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination pull-right">
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>

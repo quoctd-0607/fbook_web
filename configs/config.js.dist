@@ -69,6 +69,13 @@ var config = {
         "be_upvoted": 1,
         "be_followed": 1
     },
+    log_type: {
+        'share_book': 1,
+        'add_owner': 2,
+        'approve_borrow': 3,
+        'be_upvoted': 4,
+        'be_followed': 5
+    },
     role: {
         "admin": "admin",
         "user": "user",
