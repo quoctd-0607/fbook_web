@@ -10,7 +10,6 @@
                     </div>
                 </div>
                 <hr>
-                
                 <div class="row ajax-book-content">
                     <% if (dataRequest.items.data.length > 0) { %>
                     <% dataRequest.items.data.forEach(function (post) { %>
@@ -19,12 +18,12 @@
                             <div class="media">
                                 <div class="media-left">
                                     <% if (post.web.thumbnail_path !== undefined) { %>
-                                        <img onclick="window.open('/home/post/<%= post.id %>/<%= post.slug %>', '_self')" 
+                                        <img onclick="window.open('/home/post/<%= post.id %>-<%= post.slug %>', '_self')" 
                                             src="<%= post.web.thumbnail_path %>" 
                                             class="media-object" 
                                             alt="<%= post.title %>">
                                     <% } else { %>
-                                        <img onclick="window.open('/home/post/<%= post.id %>/<%= post.slug %>', '_self')" 
+                                        <img onclick="window.open('/home/post/<%= post.id %>-<%= post.slug %>', '_self')" 
                                             src="/images/book_thumb_default.jpg" 
                                             class="media-object" 
                                             alt="<%= post.title %>">
@@ -32,7 +31,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h5 title="<%= post.title %>" 
-                                        onclick="window.open('/post/<%= post.id %>/<%= post.slug %>', '_self')"
+                                        onclick="window.open('/post/<%= post.id %>-<%= post.slug %>', '_self')"
                                         data-toggle="tooltip">
                                         <%= post.title ? post.title : __('No title') %>
                                     </h5>

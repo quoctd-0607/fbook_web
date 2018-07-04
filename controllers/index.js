@@ -267,7 +267,7 @@ router.get('/get-list-posts', localSession, function (req, res, next) {
     });
 });
 
-router.get('/post/:id/:slug', function (req, res, next) {
+router.get('/post/:id-:slug', localSession, function (req, res, next) {
     request({
         url: req.configs.api_base_url + 'home/get-post/' + req.params.id,
         headers: objectHeaders.headers({'Authorization': req.session.access_token})
