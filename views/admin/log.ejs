@@ -7,6 +7,7 @@
         <div class="col-11">
             <nav aria-label="Page navigation example">
                 <ul class="pagination pull-right">
+                    <%- paginate %>
                 </ul>
             </nav>
         </div>
@@ -14,6 +15,19 @@
     <div class="row">
         <div class="col-11 offset-1">
             <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title"><%= __('Log Repulation Manager') %></h3>
+                    <div class="box-tools">
+                        <form method="GET" action="/admin/log/search" class="form-log">
+                            <div class="input-group input-group-sm" >
+                                <input type="text" name="key_word" class="form-control pull-right" placeholder="<%= __('Search by name') %>">
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <div>
                     <table class="table table-striped">
                         <tr>
@@ -23,8 +37,8 @@
                             <th class="text-left"><%= __('By') %></th>
                         </tr>
                         <% if (typeof dataRequest != undefined) { %>
-                            <% if (typeof dataRequest.items != undefined && dataRequest.items.length > 0) { %>
-                                <% dataRequest.items.forEach(function(data) { %>
+                            <% if (typeof dataRequest != undefined && dataRequest.length > 0) { %>
+                                <% dataRequest.forEach(function(data, index) { %>
                                     <% switch (data.log_type) {
                                         case config.share_book: %>
                                             <tr>
@@ -127,6 +141,7 @@
         <div class="col-11">
             <nav aria-label="Page navigation example">
                 <ul class="pagination pull-right">
+                    <%- paginate %>
                 </ul>
             </nav>
         </div>
