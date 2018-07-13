@@ -543,16 +543,134 @@ $(function ($) {
         }
 
         var bookOffice = parseInt($(this).attr('data-office-id'));
+        var idBook = parseInt($(this).attr('data-book-id'));
+        var officeIdUserCurrent = $(this).data('officeIdUser');
+        var nameCurrentBook = $(this).data('nameBook');
+        
         if (user.office_id && bookOffice !== user.office_id) {
             swal({
-                title: i18n['The book is not in the your workspace. Are you sure you want to share this book?'],
+                title: i18n['The book is not in the your workspace. Are you sure you want to create new your book?'],
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#DD6B55',
                 confirmButtonText: i18n['Yes'],
                 closeOnConfirm: true
             }, function () {
-                window.location.href = '/books/add';
+                $.ajax({
+                    url: API_PATH + 'books/check-book-current-user/' + nameCurrentBook + '/search_equal',
+                    type: 'POST',
+                    dataType: 'json',
+                    headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
+                })
+                .done(function(response) {
+                    if (response.message.status) {
+                        if (response.items.length > 0) {
+                            showNotify(
+                                'danger', 
+                                i18n['This book have shared'],
+                                {icon: 'glyphicon glyphicon-remove'}, 
+                                {delay: 3000}
+                            );
+                        } else {
+                            $.ajax({
+                                url: API_PATH + 'books/check-book-current-user/' + nameCurrentBook + '/search_like',
+                                type: 'POST',
+                                dataType: 'json',
+                                headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
+                            })
+                            .done(function(response) {
+                                if (response.message.status) {
+                                    if (response.items.length > 0) {
+                                        var bookList = '';
+                                        response.items.forEach(function (book, index) {
+                                            bookList += (index + 1) + '. ' + book.title + ': ' + book.author + '<br>'; 
+                                        });
+                                        swal({
+                                            title: i18n['There are many book which have title like current name book you have shared.'],
+                                            type: 'warning',
+                                            showCancelButton: true,
+                                            confirmButtonColor: '#DD6B55',
+                                            confirmButtonText: i18n['Next'],
+                                            closeOnConfirm: true        
+                                        }, function () {
+                                            $('#modalShowCurrentNameAndAuthorBook .modal-body').html('');
+                                            $('#modalShowCurrentNameAndAuthorBook .modal-body').append(bookList + '<br>' + i18n['Are you sure you want to share this book?']);
+                                            $('#modalShowCurrentNameAndAuthorBook').modal('show');
+                                            $('#addBookOffice').on('click', function (e) {
+                                                $('#modalShowCurrentNameAndAuthorBook').modal('hide');
+                                                $.ajax({
+                                                    url: API_PATH + 'books/add-book-office/' + idBook,
+                                                    type: 'POST',
+                                                    dataType: 'json',
+                                                    headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
+                                                })
+                                                .done(function(response) {
+                                                    if (response.message.status) {
+                                                        showNotify(
+                                                            'success',
+                                                            i18n['Add owner success'] + '. ' + i18n['You are received ']
+                                                            + configs.reputation.add_owner + ' ' + i18n['point'] + '.',
+                                                            {icon: 'glyphicon glyphicon-ok'},
+                                                            {delay: 3000}
+                                                        );
+                                                    } else {
+                                                         showNotify(
+                                                            'danger', 
+                                                            i18n['Add owner fail'],
+                                                            {icon: 'glyphicon glyphicon-remove'}, 
+                                                            {delay: 3000}
+                                                        );
+                                                    }
+                                                });
+                                            });
+                                        });
+                                    } else {
+                                        $.ajax({
+                                            url: API_PATH + 'books/add-book-office/' + idBook,
+                                            type: 'POST',
+                                            dataType: 'json',
+                                            headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
+                                        })
+                                        .done(function(response) {
+                                            if (response.message.status) {
+                                                showNotify(
+                                                    'success',
+                                                    i18n['Add owner success'] + '. ' + i18n['You are received ']
+                                                    + configs.reputation.add_owner + ' ' + i18n['point'] + '.',
+                                                    {icon: 'glyphicon glyphicon-ok'},
+                                                    {delay: 3000}
+                                                );
+                                            } else {
+                                                 showNotify(
+                                                    'danger', 
+                                                    i18n['Add owner fail'],
+                                                    {icon: 'glyphicon glyphicon-remove'}, 
+                                                    {delay: 3000}
+                                                );
+                                            }
+                                        })
+                                        .fail(function() {
+                                            showNotify(
+                                                'danger',
+                                                i18n['You have to refresh page'],
+                                                {icon: 'glyphicon glyphicon-remove'},
+                                                {delay: 3000}
+                                            );
+                                        });
+                                    }
+                                } 
+                            });
+                        } 
+                    }
+                })
+                .fail(function() {
+                    showNotify(
+                        'danger', 
+                        i18n['Add owner fail'],
+                        {icon: 'glyphicon glyphicon-remove'}, 
+                        {delay: 3000}
+                    );
+                });
             });
         } else {
             swal({
@@ -630,6 +748,10 @@ $(function ($) {
                 });
             });
         }
+    });
+    
+    $('body').on('click', '#cancelModalAddBookOffice', function (e) {
+        $('#modalShowCurrentNameAndAuthorBook').modal('hide');
     });
 
     $('body').on('click', '.remove-owner', function (e) {
