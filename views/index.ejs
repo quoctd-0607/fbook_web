@@ -395,6 +395,78 @@
         <% } %>
         <hr class="hr-new">
         <div class="space-20"></div>
+
+        <h2><strong><%= __('Hot User') %></strong></h2>    
+        <div class="title-bar blue">
+            <ul class="list-inline list-unstyled">
+                <li><i class="icofont icofont-square"></i></li>
+                <li><i class="icofont icofont-square"></i></li>
+            </ul>
+        </div>
+        <div class="space-20"></div>
+        <% if (data.item2) { %>
+            <% data.item2.forEach(function(hotUser) {%>
+                <div class="row hot-user">
+                    <div class="row">
+                        <div class="hot-user-img col-md-4">
+                            <a href="/users/<%= hotUser.user.id %>">
+                                <img src="<%= hotUser.user.avatar %>">
+                            </a>
+                        </div>
+                        <div class="infor col-md-8 text-left">
+                            <a href="/users/<%= hotUser.user.id %>"><h5><%= hotUser.user.name %></h5></a>
+                            <h6 class="hot-user-email"><span class="glyphicon glyphicon-star icon-star"></span><%= hotUser.sum %></h6>
+                            <% switch (hotUser.user.office_id) {
+                                case 1: %>
+                                    <span class="badge badge-3">
+                                        <a href="#" class="office_on_books">
+                                            Da Nang Office
+                                        </a>
+                                    </span>
+                                <% break;
+                                case 2: %>
+                                    <span class="badge badge-1">
+                                        <a href="#" class="office_on_books">
+                                            Tran Khat Chan
+                                        </a>
+                                    </span>
+                                <% break;
+                                case 3: %>
+                                    <span class="badge badge-5">
+                                        <a href="#" class="office_on_books">
+                                            Handico Office
+                                        </a>
+                                    </span>
+                                <% break;
+                                case 4: %>
+                                    <span class="badge badge-4">
+                                        <a href="#" class="office_on_books">
+                                            Hanoi Office
+                                        </a>
+                                    </span>
+                                <% break;
+                                case 5: %>
+                                    <span class="badge badge-4">
+                                        <a href="#" class="office_on_books">
+                                            HCMC Office
+                                        </a>
+                                    </span>
+                                <% break;
+                                default: %>
+                                    <span class="badge badge-4">
+                                        <a href="#" class="office_on_books">
+                                            Hanoi Office
+                                        </a>
+                                    </span>
+                            <% } %>
+                        </div>    
+                    </div>
+                </div>
+            <% }) %>
+        <% } %>
+        <hr class="hr-new">
+        <div class="space-20"></div>
+
         <% if (typeof user != 'undefined' && typeof user.name !== 'undefined' && user.name) { %>
             <h2><strong><%= __('Newsfeed') %></strong></h2>
             <div class="title-bar blue">
