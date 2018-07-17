@@ -489,4 +489,87 @@ $('.delete_post').on('click', function(e) {
             });
         });
     }); 
+$('#btn-priority').on('click', function() {
+    var obj = $(this);
+    if (obj.val() == 'Change'){
+        document.getElementById('btn-priority').childNodes[0].className = 'fa fa-repeat';
+        obj.val('Ok');
+        $('.checkbox-priority').prop('disabled', false);
+        $('input.checkbox-priority').on('click', function(){
+            var obj2 = $(this),
+                id = obj2.data('id');
+            $.ajax({
+                url: API_PATH + 'admin/posts/priority/' + id,
+                headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
+                type: 'POST',
+                data: {},
+            }).done(function(response) {
+                if (response.message.code == 200) {
+                    showNotify(
+                        'success', 
+                        i18n['Change priority successfull!'], 
+                        {icon: 'glyphicon glyphicon-remove'},
+                        {delay: 3000}
+                    );
+                } else {
+                    showNotify(
+                        'danger', 
+                        i18n['Opp\'s something went wrong'],
+                        {icon: 'glyphicon glyphicon-remove'},
+                        {delay: 3000}
+                    );
+                }
+            }).fail(function(error) {
+                showNotify(
+                    'danger', 
+                    i18n['Opp\'s something went wrong'],
+                    {icon: 'glyphicon glyphicon-remove'},
+                    {delay: 3000}
+                );
+            });
+        });
+    } else if (obj.val() == 'Ok') {
+        location.reload();
+    }
+});
+$('#checkbox-status').on('change', function() {
+    if ($(this).is(':checked')) {
+        $(this).attr('value', 1);
+    } else {
+        $(this).attr('value', 0);
+    }
+});
+$('.checkbox-status').on('change', function() {
+    var id = $(this).data('id'),
+        status = $(this).is(':checked');
+    $.ajax({
+        url: API_PATH + 'admin/posts/public/' + id,
+        headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
+        type: 'POST',
+        data: {},
+    }).done(function(response) {
+        if (response.message.code == 200) {
+            if (status) {
+                document.getElementById('dd-status' + id).innerHTML = i18n['Public'];
+            } else {
+                document.getElementById('dd-status' + id).innerHTML = i18n['Private'];
+            }
+            $('#myModal' + id).modal('show');
+        } else {
+            showNotify(
+                'danger', 
+                i18n['Opp\'s something went wrong'],
+                {icon: 'glyphicon glyphicon-remove'},
+                {delay: 3000}
+            );
+        }
+    }).fail(function(error) {
+        showNotify(
+            'danger', 
+            i18n['Opp\'s something went wrong'],
+            {icon: 'glyphicon glyphicon-remove'},
+            {delay: 3000}
+        );
+    });
+});
 }(jQuery));

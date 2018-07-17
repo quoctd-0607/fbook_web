@@ -38,6 +38,7 @@ Post.addNew = function () {
 
     var formData = new FormData();
     formData.append('title', $('#title').val().trim());
+    formData.append('public', $('#checkbox-status').val());
     formData.append('content', tinymce.get('content').getContent());
  
     //Attach file
@@ -83,6 +84,7 @@ Post.editPost = function (id) {
 
     var formData = new FormData();
     formData.append('title', $('#title').val().trim());
+    formData.append('public', $('#checkbox-status').val());
     formData.append('content', tinymce.get('content').getContent());
  
     //Attach file

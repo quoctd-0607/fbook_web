@@ -21,6 +21,9 @@
                             <input type="file" id="image1" name="file" accept="Image/*" key="1" />
                         </div>
                         <div class="form-group">
+                            <input type="checkbox" class="checkbox" id="checkbox-status" name="status" value="1" checked><%= __('Public') %></input>
+                        </div>
+                        <div class="form-group">
                             <label for="name"><%= __('Content') %></label>
                             <textarea class="form-control" name="content" id="content" placeholder="<%= __('Content\'s name...') %>" rows="15"> </textarea>
                         </div>

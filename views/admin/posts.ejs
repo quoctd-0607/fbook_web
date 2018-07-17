@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-11">
             <div class="col-1 offset-1">
-                <a href="/admin/posts/create" class="btn btn-info"><i class="fa fa-plus"></i><%= __('Create post') %></a>
+                <a href="/admin/posts/create" class="btn btn-info"><i class="fa fa-plus plus-icon"></i><%= __('Create post') %></a>
             </div>
             <nav aria-label="Page navigation example">
                 <ul class="pagination pull-right">
@@ -36,15 +36,32 @@
                 <div class="box-body no-padding">
                     <table class="table table-hover table-responsive">
                         <tr>
-                            <th class="width-55-percent text-center"><%= __('Title') %></th>
-                            <th class="width-55-percent"><%= __('Created at') %></th>
+                            <th class="width-10-percent text-center"><%= __('Title') %></th>
+                            <th class="width-30-percent text-center"><%= __('Picture') %></th>
+                            <th class="width-10-percent text-center"><%= __('Created at') %></th>
+                            <th class="width-5-percent text-center"><button type="button" id="btn-priority" value="<%= __('Change') %>"><i class="fa fa-check-square-o"></i></button></th>
+                            <th class="width-15-percent text-center"><%= __('Public') %></th>
                             <th class="width-30-percent text-center" colspan="3"><%= __('Action') %></th>
                         </tr>
                         <% if (dataRequest.items.data.length > 0) { %>
                             <% dataRequest.items.data.forEach(function(data) { %>
                             <tr class="cursor-hover" id="post<%= data.id %>">
                                 <td><%= data.title %></td>
+                                <td>
+                                    <div class="img-thumbnail">
+                                    <img src="<%= data.web.medium_path %>" class="img-avatar-book" alt="<%= data.title %>">
+                                    </div>
+                                </td>
                                 <td><%= data.created_at %></td>
+                                <td>
+                                    <div class="text-center">
+                                        <input type="checkbox" class="checkbox checkbox-priority" data-id="<%= data.id%>" name="priority" <%= data.priority > 0 ? __('checked') : null %> disabled>
+                                        <span><%= data.priority %></span>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <input type="checkbox" class="checkbox checkbox-status" data-id="<%= data.id%>" name="priority" <%= data.public == true ? __('checked') : null %>>
+                                </td>
                                 <td>
                                     <button onClick="window.location.href='/admin/posts/<%= data.id %>/edit'" ><i class="fa fa-edit"></i></button> 
                                 </td>
@@ -73,6 +90,8 @@
                                                     <dl class="dl-horizontal">
                                                         <dt><%= __('Title') %></dt>
                                                         <dd><strong><%= data.title %></strong></dd>
+                                                        <dt><%= __('Status') %></dt>
+                                                        <dd id="dd-status<%= data.id %>"><%= data.public == true ? __('Public') : __('Private') %></dd>
                                                         <dt><%= __('Content') %></dt>
                                                         <dd><%- data.content %></dd>
                                                     </dl>

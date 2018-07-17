@@ -6,6 +6,7 @@
     "Accept your request unapprove book": "Chấp nhận yêu cầu không duyệt",
     "Accept your request waiting book": "Chấp nhận yêu cầu mượn sách",
     "Accept your request waiting edit book": "Chấp nhận yêu cầu chờ sửa sách",
+    "Action" : "Hành động",
     "Activities": "Hoạt động",
     "Add book": "Thêm sách",
     "Add post": "Thêm bài viết",
@@ -340,5 +341,11 @@
     "Japanese name": "Tên tiếng nhật",
     "TITLE": "TIÊU ĐỀ",
     "AUTHOR": "TÁC GIẢ",
-    "DESCRIPTION": "MÔ TẢ"
+    "DESCRIPTION": "MÔ TẢ",
+    "Picture": "Hình ảnh",
+    "Public": "Công khai",
+    "Private": "Riêng tư",
+    "Hot User": "Hot User",
+    "Change": "Change",
+    "checked": "checked"
 }
