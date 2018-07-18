@@ -800,14 +800,20 @@ input:-webkit-autofill:focus {
     list-style: none;
     padding: 15px;
 }
+
 .search-page-img {
     width: 45px;
     float: left;
     margin-right: 10px;
 }
+
 .owner-page-search-image {
     width: 45px;
     height: 45px;
+}
+
+.icon-star {
+    padding-right: 5px; 
 }
 
 @media (min-width: 576px) {
