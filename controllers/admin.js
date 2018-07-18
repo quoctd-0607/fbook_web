@@ -679,8 +679,6 @@ router.get('/posts/search', authorize.isAdmin, function (req, res, next) {
         },
         headers: objectHeaders.headers({'Authorization': req.session.access_token})
     }, function (error, response, body) {
-        console.log("Loi" + response.statusCode);
-        console.log("data" + body);
         if (!error && response.statusCode === 200) {
             try {
                 var data = JSON.parse(body);

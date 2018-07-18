@@ -73,7 +73,7 @@ if (typeof searchBooks === 'undefined') {
                             } else {
                                 $('#data-search').append('<li><a href="/books/'
                                     + book.id
-                                    + '" class="search-book-url"><img src="/images/book_thumb_default.jpg", class="search-img"><b class="book-search">'
+                                    + '" class="search-book-url"><img src="/images/book_thumb_default.jpg" class="search-img"><b class="book-search">'
                                     + book.title.slice(0, configs.search.title_limit_search) 
                                     + (book.title.length > configs.search.title_limit_search ? "..." : "")
                                     + '<br><p class="author-search">'
@@ -81,6 +81,9 @@ if (typeof searchBooks === 'undefined') {
                                     + '</p></b></a></li>'
                                 );
                             }
+                            i++;
+                        } if (i == maxsearch) {
+                            $('#data-search').append('<li><a href="/search/' + $('#search-box').val() + '" class="search-book-url"><u>' + i18n['See all'] + '<u></a></li>');
                             i++;
                         } else {
                             return false;
@@ -101,7 +104,7 @@ if (typeof searchBooks === 'undefined') {
                                 $('#data-search').append('<li><a href="/books/'
                                     + book.id + '" class="search-book-url"><img src="'
                                     + book.image.web.thumbnail_path
-                                    + '", class="search-img"><b class="book-search">'
+                                    + '" class="search-img"><b class="book-search">'
                                     + book.title.slice(0, configs.search.title_limit_search) 
                                     + (book.title.length > configs.search.title_limit_search ? "..." : "")
                                     + '<br><p class="author-search">'
@@ -119,6 +122,9 @@ if (typeof searchBooks === 'undefined') {
                                     + '</p></b></a></li>'
                                 );
                             }
+                            i++;
+                        } if (i == maxsearch) {
+                            $('#data-search').append('<li><a href="/search/' + $('#search-box').val() + '" class="search-book-url"><u>' + i18n['See all'] + '<u></a></li>');
                             i++;
                         } else {
                             return false;
@@ -149,13 +155,56 @@ if (typeof searchBooks === 'undefined') {
                                 $('#data-search').append('<li><a href="/books/'
                                     + book.id
                                     + '" class="search-book-url"><img src="/images/book_thumb_default.jpg", class="search-img"><b class="book-search">'
-                                    + book.title.slice(0, configs.search.title_limit_search) 
+                                    + book.title.slice(0, configs.search.ttle_limit_search) 
                                     + (book.title.length > configs.search.title_limit_search ? "..." : "")
                                     + '<br><p class="author-search">'
                                     + book.author
                                     + '</p></b></a></li>'
                                 );
                             }
+                            i++;
+                        } if (i == maxsearch) {
+                            $('#data-search').append('<li><a href="/search/' + $('#search-box').val() + '" class="search-book-url"><u>' + i18n['See all'] + '<u></a></li>');
+                            i++;
+                        } else {
+                            return false;
+                        }
+                    });
+                }
+
+                if (response.users.total == 0) {
+                    $('#data-search').append('<li><a href="#" class="bg-lightgray"><h5 class="m-0">' + i18n['USER'] + '</h5></a></li>');
+                    $('#data-search').append('<li><a href="#">' + i18n['Not found'] + '</a></li>');
+                } else {
+                    $('#data-search').append('<li><a href="#" class="bg-lightgray"><h5 class="m-0">' + i18n['USER'] + '</h5></a></li>');
+                    var i = 0;
+                    response.users.data.forEach(function (user) {
+                        if (i < maxsearch) {
+                            if (user.avatar) {
+                                $('#data-search').append('<li><a href="/users/'
+                                    + user.id + '" class="search-book-url"><img src="'
+                                    + user.avatar
+                                    + '" class="avatar search-img owner-image-home img-circle"><b class="book-search">'
+                                    + user.name.slice(0, configs.search.title_limit_search) 
+                                    + (user.name.length > configs.search.title_limit_search ? "..." : "")
+                                    + '<br><p class="author-search">'
+                                    + user.office.area
+                                    + '</p></b></a></li>'
+                                );
+                            } else {
+                                $('#data-search').append('<li><a href="/users/'
+                                    + user.id
+                                    + '" class="avatar search-book-url"><img src="/images/user/icon_user_default.png" class="avatar search-img owner-image-home img-circle"><b class="book-search">'
+                                    + user.name.slice(0, configs.search.title_limit_search) 
+                                    + (user.name.length > configs.search.title_limit_search ? "..." : "")
+                                    + '<br><p class="author-search">'
+                                    + user.office.area
+                                    + '</p></b></a></li>'
+                                );
+                            }
+                            i++;
+                        } if (i == maxsearch) {
+                            $('#data-search').append('<li><a href="/search/' + $('#search-box').val() + '" class="search-book-url"><u>' + i18n['See all'] + '<u></a></li>');
                             i++;
                         } else {
                             return false;

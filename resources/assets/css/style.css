@@ -252,7 +252,7 @@ input:-webkit-autofill:focus {
     border: 1px solid #ddd; /* Add a border to all links */
     margin-top: -1px; /* Prevent double borders */
     background-color: #f6f6f6; /* Grey background color */
-    padding: 12px; /* Add some padding */
+    padding: 7px; /* Add some padding */
     text-decoration: none; /* Remove default text underline */
     font-size: 18px; /* Increase the font-size */
     color: black; /* Add a black text color */
@@ -794,6 +794,20 @@ input:-webkit-autofill:focus {
 
 .icon-book {
     padding-right: 10px;
+}
+
+.search-page-li {
+    list-style: none;
+    padding: 15px;
+}
+.search-page-img {
+    width: 45px;
+    float: left;
+    margin-right: 10px;
+}
+.owner-page-search-image {
+    width: 45px;
+    height: 45px;
 }
 
 @media (min-width: 576px) {
