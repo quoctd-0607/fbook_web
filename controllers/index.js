@@ -238,25 +238,52 @@ router.get('/change-lang/:lang', function(req, res) {
     res.redirect('back');
 });
 
+router.get('/search/:keyword', localSession, function(req, res, next) {
+    request.post({
+        url: req.configs.api_base_url + 'search',
+        form: { 
+            'search': {
+                'keyword': req.params.keyword,
+            }},
+        headers: objectHeaders.headers({'Authorization': req.session.access_token})
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            try {
+                var data = JSON.parse(body);
+
+                res.render('search', {
+                    keyword: req.params.keyword,
+                    dataRequest: data,
+                    error: req.flash('error'),
+                    info: req.flash('info')
+                })
+            } catch (errorJSONParse) {
+                req.flash('error', res.__('Unknown error'));
+                res.redirect('back');
+            }
+        } else {
+            req.flash('error', res.__('Don\'t allow show this search'));
+            res.redirect('back');
+        }
+    });
+});
+
 router.get('/get-list-posts', localSession, function (req, res, next) {
     var page = req.query.page ? req.query.page : 1;
-    console.log(page);
     request({
         url: req.configs.api_base_url + 'home/get-list-posts?page=' + page,
         headers: objectHeaders.headers({'Authorization': req.session.access_token})
     }, function (error, response, body) {
-            console.log(response.statusCode);
         if (!error && response.statusCode === 200) {
             try {
                 var data = JSON.parse(body);
                 
                 res.render('books/posts', {
-                        dataRequest: data,
-                        error: req.flash('error'),
-                        info: req.flash('info')
+                    dataRequest: data,
+                    error: req.flash('error'),
+                    info: req.flash('info')
                 });
             } catch (errorJSONParse) {
-                console.log(errorJSONParse);
                 req.flash('error', res.__('Unknown error'));
                 return res.redirect('/home');
             }

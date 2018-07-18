@@ -293,7 +293,7 @@ $(function ($) {
                             i18n['Just change your role'] + "</span>" + "</p>" + "<span class='text-color-noti label label-success" +
                             "'>" + i18n['Set Role'] + "</span>";
                     }
-                        htmlModel += "<p class='show text-danger pull-right time-ago-notification-dropdown'><span class='time_a_go'>" +
+                    htmlModel += "<p class='show text-danger pull-right time-ago-notification-dropdown'><span class='time_a_go'>" +
                             data.created_at + "</span></p></a></div></div>";
                 });
                 htmlModel += "</div>";

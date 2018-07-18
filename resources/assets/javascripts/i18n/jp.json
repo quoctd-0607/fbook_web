@@ -102,6 +102,8 @@
     "TITLE": "TITLE",
     "AUTHOR": "AUTHOR",
     "DESCRIPTION": "DESCRIPTION",
+    "USER": "USER",
+    "See all": "See all",
     "Set role user successfull": "Set role user successfull",
     "Set Role": "Set Role",
     "Just change your role": "Just change your role.",
