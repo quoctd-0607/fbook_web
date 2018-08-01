@@ -113,7 +113,7 @@
                                 <div class="media padding5">
                                     <div class="media-body">
                                         <a href="javascript:void(0);" onclick="showTab('#user_review')">
-                                            <span class="badge"><%= data.item.reviews_detail.length %></span> <%= __('Review')%>
+                                            <span class="badge" id="review-span"><%= data.item.reviews_detail.length %></span> <%= __('Review')%>
                                             <span class="badge"></span>
                                         </a>
                                     </div>
@@ -188,7 +188,7 @@
                             <% if (isCurrentUserOwneredBook) { %>
                                 <button class="btn btn-danger btn-sm remove-owner"><i class="glyphicon glyphicon-remove"></i> <%= __('Remove owner this book') %></button>
                             <% } else { %>
-                                <button class="btn btn-primary btn-sm add-owner" data-office-id="<%= data.item.office.id %>" data-book-id="<%= data.item.id %>" data-office-id-user="<%= user.office_id %>" data-name-book="<%= data.item.title %>"><i class="glyphicon glyphicon-plus"></i> <%= __('I have this book')%>  </button>
+                                <button class="btn btn-primary btn-sm add-owner" data-office-id="<%= data.item.office.id %>" data-book-id="<%= data.item.id %>" data-office-id-user="<%= user != null ? user.office_id : null %>" data-name-book="<%= data.item.title %>"><i class="glyphicon glyphicon-plus"></i> <%= __('I have this book')%>  </button>
                             <% } %>
                         </div>
                     </div>
