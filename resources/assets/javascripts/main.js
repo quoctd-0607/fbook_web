@@ -141,6 +141,7 @@ $(function ($) {
 
     $('.delete-btn-topright').on('click', function(e) {
         var reviewId = $(this).val();
+        var numbReview = $('#review-span').html();
         $.ajax({
             url: API_PATH + 'reviews/delete/' + reviewId,
             headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': access_token},
@@ -154,6 +155,7 @@ $(function ($) {
                     {icon: 'glyphicon glyphicon-remove'}, 
                     {delay: 3000}
                 );
+                $('#review-span').html(--numbReview);
                 $('#review' + reviewId).remove();
                 $('#review_edit_btn').html('Add review');
             } else {

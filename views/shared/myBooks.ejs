@@ -3,7 +3,7 @@
         <% if (books && books.items.data.length && books.items.total) { %>
         <% books.items.data.forEach(function (book, index) { %>
             <div class="col-xs-12 col-md-4 wow fadeInLeft" data-wow-delay="0.1s" data-wow-offset="50">
-                <div class="category-item well yellow">
+                <div class="category-item well yellow book-item" style="width: 245px; height: 265px;">
                     <div class="media">
                         <% if (book.office.name == 'Tran Khat Chan') { %>
                             <span class="badge badge-1">
@@ -93,7 +93,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="owners">
+                    <div class="owners share-box">
                         <strong><%= __('Shared by')%> : </strong>
                         <% if (book.owners) { %>
                             <% var countOwner = 0 %>

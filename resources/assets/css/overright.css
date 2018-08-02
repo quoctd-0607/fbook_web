@@ -378,7 +378,8 @@
 
 .img-avatar-book {
     cursor: pointer;
-    width: 100%;
+    width: 120px; 
+    height: 160px;
 }
 
 .loader {
@@ -468,4 +469,9 @@
 
 .b-r-0 {
     border-radius: 0;
+}
+
+.category-item.share-box {
+    width: 230px; 
+    height: 55px;
 }

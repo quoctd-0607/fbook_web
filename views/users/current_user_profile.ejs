@@ -18,8 +18,7 @@
                 <ul class="nav nav-tabs prnav-tabs">
                     <% var isTabActived = false; %>
                     
-                    <% if (!isTabActived && pageReading === 1 || 
-                            pageWaiting === 1 && pageDone === 1 && pageSharing !== 1 && pageSuggest === 1 && pageReviewed === 1) {
+                    <% if (!isTabActived && pageWaiting === 1 && pageDone === 1 && pageSuggest === 1 && pageReviewed === 1) {
                         isTabActived = true;
                     %>
                         <li class="active">
@@ -264,10 +263,9 @@
                 <div class="tab-content">
                     <% var isTabPaneActived = false; %>
                     <div id="sharing_books" class="tab-pane fade
-                        <% if (!isTabPaneActived && pageReading === 1 || 
+                        <% if ( !isTabPaneActived &&
                         pageWaiting === 1 && 
-                        pageDone === 1 && 
-                        pageSharing !== 1 && 
+                        pageDone === 1 &&  
                         pageSuggest === 1 && 
                         pageReviewed === 1) { isTabPaneActived = true; %> in active <% } %>">
                         <%- include('../shared/myBooks', {books: sharingBooks, pageName: 'pageSharing'}); %>
