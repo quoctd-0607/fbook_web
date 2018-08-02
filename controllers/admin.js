@@ -107,6 +107,7 @@ router.get('/', authorize.isAdmin, function (req, res, next) {
 });
 
 router.get('/log', authorize.isAdmin, function (req, res, next) {
+    var page = req.query.page ? req.query.page : 1; 
     request({
         url: req.configs.api_base_url + 'admin/logs',
         headers: objectHeaders.headers({'Authorization': req.session.access_token})
@@ -114,19 +115,88 @@ router.get('/log', authorize.isAdmin, function (req, res, next) {
         if (!error && response.statusCode === 200) {
             try {
                 var data = JSON.parse(body);
+                var pagination = helper.paginate({
+                    total_record: data.items.length,
+                    current_page: page,
+                    link: `${req.configs.web_domain}:${req.configs.port}/admin/log?page={?}`
+                });
+                var minCurrentIdLog = helper.config.record_per_page * (page - 1);
+                var maxCurrentIdLog = helper.config.record_per_page * page;
+                var list = [];
+                data.items.forEach(function (item, index) {
+                    if (index >= minCurrentIdLog && index < maxCurrentIdLog) {
+                        list.push(item);
+                    }
+                });
                 res.render('admin/log', {
                     layout: 'admin/layout/admin_template',
-                    dataRequest: data,
+                    dataRequest: list,
                     config: req.configs.log_type,
+                    paginate: pagination,
+                    page: page,
+                    minCurrentIdLog: minCurrentIdLog,
+                    maxCurrentIdLog: maxCurrentIdLog
                 });
             } catch (errorJSONParse) {
 
                 return res.redirect('/admin');
             }
         }
-    })
-})
+    });
+});
 
+router.get('/log/search', authorize.isAdmin, function (req, res, next) {
+    var page = req.query.page ? req.query.page : 1; 
+    var keyWord = (typeof(req.query.key_word) != 'undefined') ? req.query.key_word : '';
+    if (keyWord.trim() == '') {
+        req.flash('error', res.__('Please input something to search'));
+
+        return res.redirect('/admin/log'); 
+    }
+    
+    request.post({
+        url: req.configs.api_base_url + 'admin/logs/search/',
+        form: {
+            'key': keyWord
+        },
+        headers: objectHeaders.headers({'Authorization': req.session.access_token})
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            try {
+                var data = JSON.parse(body);
+                var pagination = helper.paginate({
+                    total_record: data.items.length,
+                    current_page: page,
+                    link: `${req.configs.web_domain}:${req.configs.port}/admin/log/search?key_word=${keyWord}&page={?}`
+                });
+
+                var minCurrentIdLog = helper.config.record_per_page * (page - 1);
+                var maxCurrentIdLog = helper.config.record_per_page * page;
+                var list = [];
+                data.items.forEach(function (item, index) {
+                    if (index >= minCurrentIdLog && index < maxCurrentIdLog) {
+                        list.push(item);
+                    }
+                });
+                res.render('admin/log', {
+                    layout: 'admin/layout/admin_template',
+                    dataRequest: list,
+                    config: req.configs.log_type,
+                    paginate: pagination,
+                    page: page,
+                    minCurrentIdLog: minCurrentIdLog,
+                    maxCurrentIdLog: maxCurrentIdLog
+                });
+            } catch (errorJSONParse) {
+                return res.redirect('/admin');
+            }
+        } else {
+            req.flash('error', res.__('Sorry, something went wrong'));
+            
+            return res.redirect('/admin/log');
+        }
+    });
+});
 router.get('/waiting-request-edit-book', authorize.isAdmin, function (req, res, next) {
     var page = req.query.page ? req.query.page : 1;
     var langCategory = req.cookies.lang;
