@@ -22,19 +22,19 @@
                         <div class="book-list">
                             <% data.item.media.forEach(function (image) { %>
                             <div class="book_item">
-                                <img src="<%= image.web.medium_path %>" alt="<%= __('book') %>">
+                                <img src="<%= image.web.medium_path %>" alt="<%= __('book') %>" class="img-avatar-book">
                             </div>
                             <% }) %>
                             <% if (data.item.media.length == 1) { %>
                                 <div class="book_item">
-                                    <img src="<%= data.item.media[0].web.medium_path %>" alt="<%= __('book') %>">
+                                    <img src="<%= data.item.media[0].web.medium_path %>" alt="<%= __('book') %>" class="img-avatar-book">
                                 </div>
                             <% } %>
                         </div>
                     <% } else { %>
                         <div class="book-list">
                             <div class="book_item">
-                                <img src="/images/book_default.jpg" alt="<%= __('book') %>">
+                                <img src="/images/book_default.jpg" alt="<%= __('book') %>" class="img-avatar-book">
                             </div>
                         </div>
                     <% } %>
