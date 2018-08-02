@@ -538,7 +538,7 @@ router.post('/booking/:id', authorize.isAuthenticated, function (req, res, next)
                         req.flash('error', res.__('Please login to booking this book'));
                         res.redirect('back');
                     } else if (response.statusCode === 500) {
-                        req.flash('error', JSON.parse(body).message.description);
+                        req.flash('error', res.__('You can\'t booking book which you owned'));
                         res.redirect('back');
                     } else {
                         req.flash('error', res.__('Don\'t allow booking this book'));
