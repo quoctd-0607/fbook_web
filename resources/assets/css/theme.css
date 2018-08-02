@@ -928,8 +928,12 @@ a.media-button-customize {
     font-size: 13px !important;
     padding: 10px 17px;
 }
-
 .book-item {
     width: 245px; 
     height: 265px;
+}
+.img-returning {
+    width: 64px;
+    height: 64px;
+    border-radius: 30px!important;
 }
