@@ -219,7 +219,8 @@ router.get('/waiting_approve', authorize.isAuthenticated, function (req, res, ne
     });
 });
 
-router.get('/:id/approve-request', authorize.isAuthenticated, function (req, res, next) {
+router.get('/:id/approve-request/:request', authorize.isAuthenticated, function (req, res, next) {
+    var currentRequest = req.params.request;
     var langCategory = req.cookies.lang;
     req.checkParams('id', 'Invalid id').notEmpty().isInt();
     req.getValidationResult().then(function (result) {
@@ -234,10 +235,19 @@ router.get('/:id/approve-request', authorize.isAuthenticated, function (req, res
                 if (!error && response.statusCode === 200) {
                     try {
                         var data = JSON.parse(body);
-
+                        var activeRequestReturning = false;
+                        var activeRequestWaiting = false;
+                        if (currentRequest ==  req.configs.notification.returning) {
+                            activeRequestReturning = true;
+                        } else {
+                            activeRequestWaiting = true;
+                        }
+                        
                         res.render('books/approve_user', {
                             data: data,
-                            pageTitle: 'Approve requests'
+                            pageTitle: 'Approve requests',
+                            activeRequestReturning: activeRequestReturning,
+                            activeRequestWaiting: activeRequestWaiting
                         });
                     } catch (errorJSONParse) {
                         req.flash('error', res.__('Don\'t allow show approve request page'));

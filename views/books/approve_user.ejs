@@ -92,11 +92,21 @@
         <div class="panel">
             <div class="panel-heading">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#waiting_requests"><%= __('Approve waiting-reading requests') %></a></li>
-                    <li><a data-toggle="tab" href="#returning_requests"><%= __('Approve returning-returned requests') %></a></li>
+                    <% if (activeRequestWaiting) { %>
+                        <li class="active"><a data-toggle="tab" href="#waiting_requests"><%= __('Approve waiting-reading requests') %></a></li>
+                    <% } else { %>
+                        <li><a data-toggle="tab" href="#waiting_requests"><%= __('Approve waiting-reading requests') %></a></li>
+                    <% } %>
+            
+                    <% if (activeRequestReturning) { %>
+                        <li class="active"><a data-toggle="tab" href="#returning_requests"><%= __('Approve returning-returned requests') %></a></li>
+                    <% } else { %>
+                        <li><a data-toggle="tab" href="#returning_requests"><%= __('Approve returning-returned requests') %></a></li>
+                    <% } %> 
                 </ul>
             </div>
-            <div class="panel-body">
+            <% if (activeRequestWaiting) { %>
+                <div class="panel-body">
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="waiting_requests">
                         <div class="row event-list">
@@ -112,7 +122,7 @@
                                                 <div class="well">
                                                     <div class="media">
                                                         <div class="media-left">
-                                                            <a href="/user/<%= user.id %>" class="avatar">
+                                                            <a href="/users/<%= user.id %>" class="avatar">
                                                                 <img src="<%= user.avatar ? user.avatar : '/images/user/icon_user_default.png'%>" class="media-object  w-70-h-70" alt="<%= __('Avatar') %>">
                                                             </a>
                                                         </div>
@@ -136,7 +146,7 @@
                                             <div class="well">
                                                 <div class="media">
                                                     <div class="media-left">
-                                                        <a href="/user/<%= user.id %>" class="avatar">
+                                                        <a href="/users/<%= user.id %>" class="avatar">
                                                             <img src="<%= user.avatar ? user.avatar : '/images/user/icon_user_default.png'%>" class="media-object  w-70-h-70" alt="<%= __('Avatar') %>">
                                                         </a>
                                                     </div>
@@ -181,7 +191,7 @@
                 <div class="tab-pane fade" id="returning_requests">
                     <div class="row event-list">
                         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-9">
-                            <div class="event-item wow fadeInRight">
+                            <div class="event-item wow fadeInRight comment-box">
                                 <% if (data.item.users_returning.length == 0 && data.item.users_returned.length == 0) { %>
                                     <%= __('No request') %>
                                     <% } %>
@@ -191,7 +201,7 @@
                                     <div class="well">
                                         <div class="media">
                                             <div class="media-left">
-                                                <img src="<%= user.avatar ? user.avatar : '/images/user/icon_user_default.png'%>" class="media-object  w-70-h-70" alt="<%= __('Avatar') %>">
+                                                <img src="<%= user.avatar ? user.avatar : '/images/user/icon_user_default.png'%>" class="media-object  w-70-h-70 img-returning" alt="<%= __('Avatar') %>">
                                             </div>
                                             <div class="media-body">
                                                 <div class="space-10"></div>
@@ -212,7 +222,7 @@
                                         <div class="well">
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <img src="<%= user.avatar ? user.avatar : '/images/user/icon_user_default.png'%>" class="media-object  w-70-h-70" alt="<%= __('Avatar') %>">
+                                                    <img src="<%= user.avatar ? user.avatar : '/images/user/icon_user_default.png'%>" class="media-object  w-70-h-70 img-returning" alt="<%= __('Avatar') %>">
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="space-10"></div>
@@ -229,6 +239,140 @@
                     </div>
                 </div>
             </div>
+            <% } elseif (activeRequestReturning) { %>
+                <div class="panel-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade" id="waiting_requests">
+                        <div class="row event-list">
+                            <div class="col-xs-12 col-sm-8 col-md-12 revsdv fix">
+                                <div class="event-item wow fadeInRight comment-box">
+                                    <% if (data.item.users_reading.length == 0 && data.item.users_waiting.length == 0) { %>
+                                    <%= __('No request') %>
+                                    <% } %>
+                                    <% if (data.item.users_reading.length) { %>
+                                        <% data.item.users_reading.forEach(function(user) { %>
+                                            <div class="approve-waiting-area-<%= user.id %>">
+                                                <h4 class="show tip-left"><span class=""><%= user.pivot.created_at %></span></h4>
+                                                <div class="well">
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <a href="/users/<%= user.id %>" class="avatar">
+                                                                <img src="<%= user.avatar ? user.avatar : '/images/user/icon_user_default.png'%>" class="media-object  w-70-h-70" alt="<%= __('Avatar') %>">
+                                                            </a>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <div class="space-10"></div>
+                                                            <a href="/users/<%= user.id %>"><h4 class="media-heading"><%= user.name %> [<%= user.email %>]</h4></a>
+                                                            <span class="label label-success lbl-reading<%= user.id %>"><%= __('Reading') %></span>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <a href="javascript:void(0)" onclick="return unapproveRequestWaiting(<%= user.id %>, <%= data.item.id %>);" class="btn btn-primary btn-xs btn-approve btn-unapprove-reading<%= user.id %>"><%= __('Unapprove') %></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <% }) %>
+                                    <% } %>
+                                    <% if (data.item.users_waiting.length) { %>
+                                        <% data.item.users_waiting.forEach(function(user) { %>
+                                        <div class="approve-waiting-area-<%= user.id %>">
+                                            <h4 class="show tip-left"><span class=""><%= user.pivot.created_at %></span></h4>
+                                            <div class="well">
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <a href="/users/<%= user.id %>" class="avatar">
+                                                            <img src="<%= user.avatar ? user.avatar : '/images/user/icon_user_default.png'%>" class="media-object  w-70-h-70" alt="<%= __('Avatar') %>">
+                                                        </a>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="space-10"></div>
+                                                        <a href="/users/<%= user.id %>"><h4 class="media-heading"><%= user.name %> [<%= user.email %>]</h4></a>
+                                                        <span class="label label-warning lbl-waiting<%= user.id %>"><%= __('Waiting') %></span>
+                                                        <span class="text-success"><%= __('Time want to borrow') %>:
+                                                            <% if (user.pivot.days_to_read == 1) { %>
+                                                                <%= user.pivot.days_to_read %> <%= __('day') %>
+                                                            <% } else { %>
+                                                                <%= user.pivot.days_to_read %> <%= __('days') %>
+                                                            <% } %>
+                                                        </span>
+                                                    </div>
+                                                    <% if (!data.item.users_reading.length) {%>
+                                                        <div class="media-body">
+                                                            <a onclick="return approveRequestWaiting(<%= user.id %>, <%= data.item.id %>);" class="btn btn-primary btn-xs btn-approve btn-approve-waiting<%= user.id %>"><%= __('Approve') %>
+                                                            </a>
+                                                        </div>
+                                                    <% } else { %>
+                                                        <div class="media-body">
+                                                            <a onclick="return approveRequestWaiting(<%= user.id %>, <%= data.item.id %>);" class="btn btn-primary btn-xs hidden btn-approve btn-approve-waiting<%= user.id %>"><%= __('Approve') %>
+                                                            </a>
+                                                        </div>
+                                                    <% } %>
+                                                     <div class="media-body">
+                                                        <a onclick="return removeRequestWaiting(<%= user.id %>, <%= data.item.id %>);" class="btn btn-danger btn-xs btn-remove btn-remove-waiting<%= user.id %>"><%= __('Remove this request') %>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% }) %>
+                                    <% } %>
+                                </div>
+                            <div class="space-20"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade in active" id="returning_requests">
+                    <div class="row event-list">
+                        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-9">
+                            <div class="event-item wow fadeInRight">
+                                <% if (data.item.users_returning.length == 0 && data.item.users_returned.length == 0) { %>
+                                    <%= __('No request') %>
+                                    <% } %>
+                                <% if (data.item.users_returning.length) { %>
+                                    <% data.item.users_returning.forEach(function(user) { %>
+                                    <h4 class="show tip-left"><span class=""><%= user.pivot.created_at %></span></h4>
+                                    <div class="well">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <img src="<%= user.avatar ? user.avatar : '/images/user/icon_user_default.png'%>" class="media-object  w-70-h-70 img-returning" alt="<%= __('Avatar') %>">
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="space-10"></div>
+                                                <a href="/users/<%= user.id %>"><h4 class="media-heading"><%= user.name %> [<%= user.email %>]</h4></a>
+                                                <span class="label label-warning lbl-returning<%= user.id %>"><%= __('Returning') %></span>
+                                               </div>
+                                            <div class="media-body">
+                                                <a href="javascript:void(0)" onclick="return approveRequestReturning(<%= user.id %>, <%= data.item.id %>);" class="btn btn-primary btn-xs btn-approve-returning<%= user.id %>"><%= __('Approve') %>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% }) %>
+                                <% } %>
+                                <% if (data.item.users_returned.length) { %>
+                                    <% data.item.users_returned.forEach(function(user) { %>
+                                        <h4 class="show tip-left"><span class=""><%= user.pivot.created_at %></span></h4>
+                                        <div class="well">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <img src="<%= user.avatar ? user.avatar : '/images/user/icon_user_default.png'%>" class="media-object  w-70-h-70 img-returning" alt="<%= __('Avatar') %>">
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="space-10"></div>
+                                                    <a href="/users/<%= user.id %>"><h4 class="media-heading"><%= user.name %> [<%= user.email %>]</h4></a>
+                                                    <span class="label label-success lbl-returned<%= user.id %>"><%= __('Returned') %></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <% }) %>
+                                <% } %>
+                            </div>
+                        <div class="space-20"></div>
+                        </div>
+                    </div>
+                </div> 
+            <% }%>
         </div>
     </div>
     <div class="space-20"></div>

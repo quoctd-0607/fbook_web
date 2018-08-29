@@ -23,7 +23,7 @@ $(function ($) {
                     htmlModel += "<div  class='noti-body-popup media-body media-body-notification'>";
                     if (data.type == configs.notification.waiting) {
                         htmlModel += "<a href='/books/" + data.book.id +
-                            "/approve-request' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
+                            "/approve-request/waiting' class='a-notification-dropdown clearfix notification_onclick' data-notification-id='" +
                             data.id + "'>";
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
@@ -124,7 +124,7 @@ $(function ($) {
                             data.user_send.id + "'>" + i18n['DownVote'] + "</span>";
                     } else if (data.type == configs.notification.returning) {
                         htmlModel += "<a href='/books/" + data.book.id +
-                            "/approve-request' class='a-notification-dropdown clearfix notification_onclick' style='display: block;' data-notification-id='" +
+                            "/approve-request/returning' class='a-notification-dropdown clearfix notification_onclick' style='display: block;' data-notification-id='" +
                             data.id + "'>";
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
@@ -145,7 +145,7 @@ $(function ($) {
                             data.user_send.id + "'>" + i18n['returning'] + "</span>";
                     } else if (data.type == configs.notification.returned) {
                         htmlModel += "<a href='/books/" + data.book.id +
-                            "/approve-request' class='a-notification-dropdown clearfix notification_onclick' style='display: block;' data-notification-id='" +
+                            "/approve-request/returned' class='a-notification-dropdown clearfix notification_onclick' style='display: block;' data-notification-id='" +
                             data.id + "'>";
                         if (data.book.title.length > showChar) {
                             var content = data.book.title.substr(0, showChar);
