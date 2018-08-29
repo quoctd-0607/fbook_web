@@ -360,6 +360,8 @@
                                     </div>
                                 </div>
                                 <% }) %>
+                            <% } else { %>
+                            <%= __('There are no review') %>
                             <% } %>
                         </div>
                         <div class="row ">
@@ -379,200 +381,200 @@
 
                     <% if (data.item.users_reading) { %>
                         <div class="tab-pane fade" id="user_reading">
-                        <div class="row event-list">
-                            <% if (data.item.users_reading.length > 0) { %>
-                                <% data.item.users_reading.forEach(function (user) { %>
-                                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1" id="user-<%= user.id %>">
-                                    <div class="event-item wow fadeInRight">
-                                        <% if (data.item.owners) { %>
-                                            <% data.item.owners.forEach(function (owner) { %>
-                                                <div class="media-left owner-right">
-                                                    <% if (owner.id === user.owner_id) { %>
-                                                        <a href="/users/<%= owner.id %>">
-                                                            <img src="<%= owner.avatar ? owner.avatar : '/images/user/icon_user_default.png'%>" class="w-30-h-30" alt="<%= __('Avatar') %>">
-                                                            <%= owner.name %>
-                                                        </a><strong>[<%= __('Owner this book') %>]</strong>
-                                                    <% } %>
-                                                </div>
-                                            <% }) %>
-                                        <% } %>
-                                        <div class="well padding5 owner-clear">
-                                            <div class="media">
-                                                <div class="media-left">
-                                                    <% if (user.avatar !== null) { %>
-                                                        <a href="/users/<%= user.id %>">
-                                                            <img src="<%= user.avatar %>" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
-                                                        </a>
-                                                    <% } else { %>
-                                                        <a href="/users/<%= user.id %>">
-                                                            <img src="/images/user/icon_user_default.png" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
-                                                        </a>
-                                                    <% } %>
-                                                </div>
-                                                <div class="media-body">
-                                                    <div class="space-10"></div>
-                                                    <a href="/users/<%= user.id %>"><h4 class="media-heading"><%= user.name %></h4></a>
-                                                    <div class="space-10"></div>
-                                                    <p><%= user.email %></p>
+                            <div class="row event-list">
+                                <% if (data.item.users_reading.length > 0) { %>
+                                    <% data.item.users_reading.forEach(function (user) { %>
+                                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1" id="user-<%= user.id %>">
+                                        <div class="event-item wow fadeInRight">
+                                            <% if (data.item.owners) { %>
+                                                <% data.item.owners.forEach(function (owner) { %>
+                                                    <div class="media-left owner-right">
+                                                        <% if (owner.id === user.owner_id) { %>
+                                                            <a href="/users/<%= owner.id %>">
+                                                                <img src="<%= owner.avatar ? owner.avatar : '/images/user/icon_user_default.png'%>" class="w-30-h-30" alt="<%= __('Avatar') %>">
+                                                                <%= owner.name %>
+                                                            </a><strong>[<%= __('Owner this book') %>]</strong>
+                                                        <% } %>
+                                                    </div>
+                                                <% }) %>
+                                            <% } %>
+                                            <div class="well padding5 owner-clear">
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <% if (user.avatar !== null) { %>
+                                                            <a href="/users/<%= user.id %>">
+                                                                <img src="<%= user.avatar %>" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
+                                                            </a>
+                                                        <% } else { %>
+                                                            <a href="/users/<%= user.id %>">
+                                                                <img src="/images/user/icon_user_default.png" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
+                                                            </a>
+                                                        <% } %>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="space-10"></div>
+                                                        <a href="/users/<%= user.id %>"><h4 class="media-heading"><%= user.name %></h4></a>
+                                                        <div class="space-10"></div>
+                                                        <p><%= user.email %></p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <% }) %>
-                            <% } %>
+                                    <% }) %>
+                                <% } %>
+                            </div>
                         </div>
-                    </div>
                    <% } else { %>
                        <%= __('No user reading this book') %>
                    <% } %>
 
                     <% if (data.item.users_waiting) { %>
                         <div class="tab-pane fade" id="user_waiting">
-                        <div class="row event-list">
-                            <% if (data.item.users_waiting.length > 0) { %>
-                                <% data.item.users_waiting.forEach(function (user) { %>
-                                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1" id="user-<%= user.id %>">
-                                    <div class="event-item wow fadeInRight">
-                                        <% if (data.item.owners) { %>
-                                            <% data.item.owners.forEach(function (owner) { %>
-                                                <div class="media-left owner-right">
-                                                    <% if (owner.id === user.owner_id) { %>
-                                                        <a href="/users/<%= owner.id %>">
-                                                            <img src="<%= owner.avatar ? owner.avatar : '/images/user/icon_user_default.png'%>" class="w-30-h-30" alt="<%= __('Avatar') %>">
-                                                            <%= owner.name %>
-                                                        </a><strong>[<%= __('Owner this book') %>]</strong>
-                                                    <% } %>
-                                                </div>
-                                            <% }) %>
-                                        <% } %>
-                                        <div class="well padding5 owner-clear">
-                                            <div class="media">
-                                                <div class="media-left">
-                                                    <% if (user.avatar !== null) { %>
-                                                        <a href="/users/<%= user.id %>">
-                                                            <img src="<%= user.avatar %>" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
-                                                        </a>
-                                                    <% } else { %>
-                                                        <a href="/users/<%= user.id %>">
-                                                            <img src="/images/user/icon_user_default.png" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
-                                                        </a>
-                                                    <% } %>
-                                                </div>
-                                                <div class="media-body">
-                                                    <div class="space-10"></div>
-                                                    <a href="/users/<%= user.id %>"><h4 class="media-heading"><%= user.name %></h4></a>
-                                                    <div class="space-10"></div>
-                                                    <p><%= user.email %></p>
+                            <div class="row event-list">
+                                <% if (data.item.users_waiting.length > 0) { %>
+                                    <% data.item.users_waiting.forEach(function (user) { %>
+                                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1" id="user-<%= user.id %>">
+                                        <div class="event-item wow fadeInRight">
+                                            <% if (data.item.owners) { %>
+                                                <% data.item.owners.forEach(function (owner) { %>
+                                                    <div class="media-left owner-right">
+                                                        <% if (owner.id === user.owner_id) { %>
+                                                            <a href="/users/<%= owner.id %>">
+                                                                <img src="<%= owner.avatar ? owner.avatar : '/images/user/icon_user_default.png'%>" class="w-30-h-30" alt="<%= __('Avatar') %>">
+                                                                <%= owner.name %>
+                                                            </a><strong>[<%= __('Owner this book') %>]</strong>
+                                                        <% } %>
+                                                    </div>
+                                                <% }) %>
+                                            <% } %>
+                                            <div class="well padding5 owner-clear">
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <% if (user.avatar !== null) { %>
+                                                            <a href="/users/<%= user.id %>">
+                                                                <img src="<%= user.avatar %>" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
+                                                            </a>
+                                                        <% } else { %>
+                                                            <a href="/users/<%= user.id %>">
+                                                                <img src="/images/user/icon_user_default.png" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
+                                                            </a>
+                                                        <% } %>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="space-10"></div>
+                                                        <a href="/users/<%= user.id %>"><h4 class="media-heading"><%= user.name %></h4></a>
+                                                        <div class="space-10"></div>
+                                                        <p><%= user.email %></p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <% }) %>
-                            <% } %>
+                                    <% }) %>
+                                <% } %>
+                            </div>
                         </div>
-                    </div>
                    <% } else { %>
                        <%= __('No user waiting to read this book') %>
                    <% } %>
 
                    <% if (data.item.users_returning) { %>
                        <div class="tab-pane fade" id="user_returning">
-                       <div class="row event-list">
-                           <% if (data.item.users_returning.length > 0) { %>
-                               <% data.item.users_returning.forEach(function (user) { %>
-                               <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1" id="user-<%= user.id %>">
-                                   <div class="event-item wow fadeInRight">
-                                       <% if (data.item.owners) { %>
-                                           <% data.item.owners.forEach(function (owner) { %>
-                                               <div class="media-left owner-right">
-                                                   <% if (owner.id === user.owner_id) { %>
-                                                       <a href="/users/<%= owner.id %>">
-                                                           <img src="<%= owner.avatar ? owner.avatar : '/images/user/icon_user_default.png'%>" class="w-30-h-30" alt="<%= __('Avatar') %>">
-                                                           <%= owner.name %>
-                                                       </a><strong>[<%= __('Owner this book') %>]</strong>
-                                                   <% } %>
-                                               </div>
-                                           <% }) %>
-                                       <% } %>
-                                       <div class="well padding5 owner-clear">
-                                           <div class="media">
-                                               <div class="media-left">
-                                                   <% if (user.avatar !== null) { %>
-                                                       <a href="/users/<%= user.id %>">
-                                                           <img src="<%= user.avatar %>" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
-                                                       </a>
-                                                   <% } else { %>
-                                                       <a href="/users/<%= user.id %>">
-                                                           <img src="/images/user/icon_user_default.png" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
-                                                       </a>
-                                                   <% } %>
-                                               </div>
-                                               <div class="media-body">
-                                                   <div class="space-10"></div>
-                                                   <a href="/users/<%= user.id %>"><h4 class="media-heading"><%= user.name %></h4></a>
-                                                   <div class="space-10"></div>
-                                                   <p><%= user.email %></p>
+                           <div class="row event-list">
+                               <% if (data.item.users_returning.length > 0) { %>
+                                   <% data.item.users_returning.forEach(function (user) { %>
+                                   <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1" id="user-<%= user.id %>">
+                                       <div class="event-item wow fadeInRight">
+                                           <% if (data.item.owners) { %>
+                                               <% data.item.owners.forEach(function (owner) { %>
+                                                   <div class="media-left owner-right">
+                                                       <% if (owner.id === user.owner_id) { %>
+                                                           <a href="/users/<%= owner.id %>">
+                                                               <img src="<%= owner.avatar ? owner.avatar : '/images/user/icon_user_default.png'%>" class="w-30-h-30" alt="<%= __('Avatar') %>">
+                                                               <%= owner.name %>
+                                                           </a><strong>[<%= __('Owner this book') %>]</strong>
+                                                       <% } %>
+                                                   </div>
+                                               <% }) %>
+                                           <% } %>
+                                           <div class="well padding5 owner-clear">
+                                               <div class="media">
+                                                   <div class="media-left">
+                                                       <% if (user.avatar !== null) { %>
+                                                           <a href="/users/<%= user.id %>">
+                                                               <img src="<%= user.avatar %>" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
+                                                           </a>
+                                                       <% } else { %>
+                                                           <a href="/users/<%= user.id %>">
+                                                               <img src="/images/user/icon_user_default.png" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
+                                                           </a>
+                                                       <% } %>
+                                                   </div>
+                                                   <div class="media-body">
+                                                       <div class="space-10"></div>
+                                                       <a href="/users/<%= user.id %>"><h4 class="media-heading"><%= user.name %></h4></a>
+                                                       <div class="space-10"></div>
+                                                       <p><%= user.email %></p>
+                                                   </div>
                                                </div>
                                            </div>
                                        </div>
                                    </div>
-                               </div>
-                               <% }) %>
-                           <% } %>
+                                   <% }) %>
+                               <% } %>
+                           </div>
                        </div>
-                   </div>
                   <% } else { %>
                       <%= __('No user returning this book') %>
                   <% } %>
 
                    <% if (data.item.users_returned) { %>
                        <div class="tab-pane fade" id="user_returned">
-                       <div class="row event-list">
-                           <% if (data.item.users_returned.length > 0) { %>
-                               <% data.item.users_returned.forEach(function (user) { %>
-                               <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1" id="user-<%= user.id %>">
-                                   <div class="event-item wow fadeInRight">
-                                       <% if (data.item.owners) { %>
-                                           <% data.item.owners.forEach(function (owner) { %>
-                                               <div class="media-left owner-right">
-                                                   <% if (owner.id === user.owner_id) { %>
-                                                       <a href="/users/<%= owner.id %>">
-                                                           <img src="<%= owner.avatar ? owner.avatar : '/images/user/icon_user_default.png'%>" class="w-30-h-30" alt="<%= __('Avatar') %>">
-                                                           <%= owner.name %>
-                                                       </a><strong>[<%= __('Owner this book') %>]</strong>
-                                                   <% } %>
-                                               </div>
-                                           <% }) %>
-                                       <% } %>
-                                       <div class="well padding5 owner-clear">
-                                           <div class="media">
-                                               <div class="media-left">
-                                                   <% if (user.avatar !== null) { %>
-                                                       <a href="/users/<%= user.id %>">
-                                                           <img src="<%= user.avatar %>" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
-                                                       </a>
-                                                   <% } else { %>
-                                                       <a href="/users/<%= user.id %>">
-                                                           <img src="/images/user/icon_user_default.png" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
-                                                       </a>
-                                                   <% } %>
-                                               </div>
-                                               <div class="media-body">
-                                                   <div class="space-10"></div>
-                                                   <a href="/users/<%= user.id %>"><h4 class="media-heading"><%= user.name %></h4></a>
-                                                   <div class="space-10"></div>
-                                                   <p><%= user.email %></p>
+                           <div class="row event-list">
+                               <% if (data.item.users_returned.length > 0) { %>
+                                   <% data.item.users_returned.forEach(function (user) { %>
+                                   <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1" id="user-<%= user.id %>">
+                                       <div class="event-item wow fadeInRight">
+                                           <% if (data.item.owners) { %>
+                                               <% data.item.owners.forEach(function (owner) { %>
+                                                   <div class="media-left owner-right">
+                                                       <% if (owner.id === user.owner_id) { %>
+                                                           <a href="/users/<%= owner.id %>">
+                                                               <img src="<%= owner.avatar ? owner.avatar : '/images/user/icon_user_default.png'%>" class="w-30-h-30" alt="<%= __('Avatar') %>">
+                                                               <%= owner.name %>
+                                                           </a><strong>[<%= __('Owner this book') %>]</strong>
+                                                       <% } %>
+                                                   </div>
+                                               <% }) %>
+                                           <% } %>
+                                           <div class="well padding5 owner-clear">
+                                               <div class="media">
+                                                   <div class="media-left">
+                                                       <% if (user.avatar !== null) { %>
+                                                           <a href="/users/<%= user.id %>">
+                                                               <img src="<%= user.avatar %>" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
+                                                           </a>
+                                                       <% } else { %>
+                                                           <a href="/users/<%= user.id %>">
+                                                               <img src="/images/user/icon_user_default.png" class="media-object w-85-b-50" alt="<%= __('Avatar') %>">
+                                                           </a>
+                                                       <% } %>
+                                                   </div>
+                                                   <div class="media-body">
+                                                       <div class="space-10"></div>
+                                                       <a href="/users/<%= user.id %>"><h4 class="media-heading"><%= user.name %></h4></a>
+                                                       <div class="space-10"></div>
+                                                       <p><%= user.email %></p>
+                                                   </div>
                                                </div>
                                            </div>
                                        </div>
-                                   </div>
-                                </div>
-                                <% }) %>
-                            <% } %>
+                                    </div>
+                                    <% }) %>
+                                <% } %>
+                            </div>
                         </div>
-                    </div>
                     <% } else { %>
                         <%= __('No user returned this book') %>
                     <% } %>

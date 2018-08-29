@@ -68,20 +68,20 @@
                                         </p>
                                         <p><a href="/books/<%= book.id %>/approve-request" class="media-button-customize"><%= __('View all request')%> (<%- book.users_waiting.length + book.users_returning.length %>)</a></p>
                                         <% if (book.users_reading && book.users_reading.length) { %>
-                                                <strong> <%= __('Keeped by') %>: </strong>
-                                                <% book.users_reading.forEach(function (user, index) { %>
-                                                    <% if (index == 6) {
-                                                            %> <strong> ... </strong> <%
-                                                            return;
-                                                        }
-                                                    %>
-                                                    <img onclick="window.open('/users/<%= user.id %>')" 
-                                                        data-toggle="tooltip" 
-                                                        title="<%= user.name %>"
-                                                        class="owner-image-home img-circle" 
-                                                        src="<%= (user && user.avatar) ? user.avatar : '/images/user_default.png' %>"
-                                                        alt="<%= __('book') %>">
-                                                <% }) %>
+                                            <strong> <%= __('Keeped by') %>: </strong>
+                                            <% book.users_reading.forEach(function (user, index) { %>
+                                                <% if (index == 6) {
+                                                        %> <strong> ... </strong> <%
+                                                        return;
+                                                    }
+                                                %>
+                                                <img onclick="window.open('/users/<%= user.id %>')" 
+                                                    data-toggle="tooltip" 
+                                                    title="<%= user.name %>"
+                                                    class="owner-image-home img-circle" 
+                                                    src="<%= (user && user.avatar) ? user.avatar : '/images/user_default.png' %>"
+                                                    alt="<%= __('book') %>">
+                                            <% }) %>
                                         <% } %>
                                     </div>
                                 </div>
