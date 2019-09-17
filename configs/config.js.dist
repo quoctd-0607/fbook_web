@@ -3,8 +3,8 @@ var config = {
     web_domain: "book.framgia.vn",
     api_base_url: "http://localhost:8000/api/v0/",
     auth_server_base_url: "https://wsm.framgia.vn/authorize",
-    client_id: "cd398Lu2QqTdJTodWbM5AykC",
-    client_secret: "1d47ffde8df79a58e9f56919ebba3ae37b8fadd11d9c2a7a13a7d4d4ccf0",
+    client_id: "env_client_id",
+    client_secret: "env_client_secret",
     auth_server_authorization_code_url: "https://wsm.framgia.vn",
     url_sign_in_auth_server: "https://wsm.framgia.vn/users/sign_in",
     book: {
