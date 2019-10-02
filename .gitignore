@@ -61,3 +61,5 @@ typings/
 public/*
 
 package-lock.json
+
+gkc_*
